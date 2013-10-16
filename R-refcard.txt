@@ -1,7 +1,7 @@
 #+TITLE:     R quick reference card
 #+AUTHOR:    Fabrice Niessen
 #+EMAIL:     (concat "fniessen" at-sign "pirilampo.org")
-#+Time-stamp: <2013-10-16 Wed 15:05>
+#+Time-stamp: <2013-10-16 Wed 16:39>
 #+DESCRIPTION:
 #+KEYWORDS:
 #+LANGUAGE:  american
@@ -13,18 +13,72 @@
 Welcome to R reference card. It contains the reference documentation that
 describes how to perform *data analysis* using R.
 
+* Overview and history of R
+
+R system that you download from [[http://cran.r-project.org/][CRAN]]:
+- =base= package
+- Familiar packages (=utils=, =datasets=, ...)
+- Recommended packages (=lattice=, ...)
+- 4,000 other packages
+
+Some R manuals:
+- [[http://cran.r-project.org/doc/manuals/R-intro.html][An introduction to R]]
+- [[http://cran.r-project.org/doc/manuals/R-exts.html][Writing R extensions]]
+- [[http://cran.r-project.org/doc/manuals/r-release/R-data.html][R data import/export]]
+
 * Getting started and getting help
 
 - args(function) ::
      Look at the arguments of a FUNCTION.
 
+- Google
+- [[mailto:r-help@r-project.org][R general mailing list]]
+- Stack Overflow
+
 * Some basics
+
+** Setting variables
 
 - =<-= ::
      Assign a value to a variable.
 
-- =ls()= ::
+** Listing variables
+
+- =ls()=, =ls.str()= ::
      Show objects in my workspace.
+
+** Deleting variables
+
+- =rm()= ::
+     Remove objects from your workspace.
+
+     #+begin_src R
+     rm(list=ls())                      # remove everything from the workspace
+     #+end_src
+
+     #+results:
+
+** Computing basic statistics
+
+- =mean()= ::
+     Take the mean.
+
+- =median()= ::
+     Take the median.
+
+- =cor()= ::
+     Correlation function.
+
+** Creating sequences
+
+- =n:m= ::
+     Create an *sequence of* integers from =n= to =m= (=n= < =m= or =n= > =m=).
+
+- =seq(from, to, len)= ::
+     Create a *sequence of* =len= equally spaced fractional numbers.
+
+- =rep(x, times)= ::
+     Create a series of repeated values.
 
 ** Defining a function
 
@@ -34,6 +88,8 @@ myfunction <- function(x) {
     mean(y)
 }
 #+end_src
+
+#+results:
 
 * Navigating the software
 
@@ -87,13 +143,50 @@ When objects of different classes are mixed in a vector, /coercion/ occurs behin
 the scene so that every element is of the same class (the "lowest common
 denominator" class).
 
+- =c()= ::
+     Create a vector of objects (that is, *concatenate* or combine things
+     together).
+
+- =vector(class, length)= ::
+     Create an empty vector.
+
 ** Matrices
 
 *Matrices* are vectors with multiple dimensions (=dimension= attribute).
 
+They are constructed /column-wise/ (vector inserted by column).
+
+They can be created from vectors by adding a dimension attribute:
+
+#+begin_src R
+v <- 1:10
+dim(v) <- c(2,5)
+print(v)
+#+end_src
+
+#+results:
+| 1 | 3 | 5 | 7 |  9 |
+| 2 | 4 | 6 | 8 | 10 |
+
+They can be created by /column-binding/ or /row-binding/.
+
+- =matrix(nrow = x, ncol = y)= ::
+     Create an empty matrix.
+
+- =cbind()= ::
+     Column-bind.
+
+- =rbind()= ::
+     Row-bind.
+
 ** Lists
 
 *Lists* are vectors of objects of possibly different classes.
+
+The indexes of the elements of a list have double brackets around them.
+
+- =list()= ::
+     Construct a list.
 
 ** Factors
 
@@ -102,6 +195,9 @@ self-describing codes for /labels/ (such as "male" and "female", or "low",
 "medium" and "high").
 
 Unordered or ordered.
+
+- =factor(character vector)= ::
+     Create a factor variable (with levels by alphabetical order).
 
 ** Data frames
 
@@ -115,7 +211,13 @@ different class.
   sequence of integers)
 - Most often created by calling =read.table()= or =read.csv()=
 
-** Functions
+- =data.frame()= ::
+     Create a data frame.
+
+- =data.matrix()= ::
+     Convert a data frame to a /numeric/ matrix (forced *coercion*!).
+
+** Converting
 
 - =as.*()= ::
      Explicitly coerce from one class to another.
@@ -130,6 +232,208 @@ different class.
      Convert to a time series object.
 
 * Data transformations
+
+** Splitting a vector into groups
+
+- =split(dataframe, dataframe$column)= ::
+
+** The =apply= functions
+
+Alternative (to =for= *loops*) to apply a function (or summary statistics)
+
+** =lapply=
+
+- Loop over a single *list* and apply a *function* on each element
+  + (coerced) list =X=
+  + function =FUN=
+  + other arguments =...=
+
+- Always returns a *list* back (that is, not a simplified result)
+
+#+begin_src R
+x <- list(a = 1:5, b = rnorm(10))
+lapply(x, mean)
+#+end_src
+
+#+results:
+| 3 | 0.00969243157894123 |
+
+#+begin_src R
+lapply(1:4, runif, min = 0, max = 10) # arguments passed through the ...
+#+end_src
+
+#+results:
+
+- Extract the first column of each matrix of a list
+
+  #+begin_src R
+  lapply(x, function(elt) elt[,1])
+  #+end_src
+
+  #+results:
+
+** split
+
+- Auxiliary function, useful in conjunction with functions like =lapply= or
+  =sapply=
+
+- Takes a vector, and *split* it into subpieces (the number of groups identified
+  by the levels of a factor variable)
+
+- Always return a *list* back
+
+  + drop = TRUE :: Don't keep the empty levels of the factor
+
+- Used in conjunction with functions like =lapply= or =sapply= to apply a
+  function to those individual groups
+
+  #+begin_src R
+  lapply(split(x, f), mean)
+  #+end_src
+
+  #+results:
+
+- Like =tapply=, but without applying the summary statistics
+
+- Splitting a data frame (or other kinds of lists), and apply an /anonymous
+  function/
+
+  #+begin_src R
+  s <- split(airquality, airquality$Month) # split according to month
+  lapply(s, function(x) colMeans(x[, c("Ozone", "Solar.R", "Wind")])
+  #+end_src
+
+  #+results:
+
+** =sapply=
+
+- Same as lapply, but tries to *simplify* the result in a much more compact
+  format (put all the elements into a *vector* or a *matrix*, instead of returning
+  a list)
+
+  #+begin_src R
+  sapply(s, function(x) colMeans(x[, c("Ozone", "Solar.R", "Wind")]))
+  #+end_src
+
+  #+results:
+
+- Pass =na.rm= argument to =ColMeans= to remove the missing values before
+  calculating the mean
+
+  #+begin_src R
+  sapply(s, function(x) colMeans(x[, c("Ozone", "Solar.R", "Wind")],
+                                 na.rm = TRUE))
+  #+end_src
+
+  #+results:
+
+** =apply=
+
+- Apply a (anonymous) function over the *margins* of an array
+  + Very useful if you wanna take *summaries* of matrices or higher-dimensional
+    arrays
+  + Often used to apply a function to the rows or columns of a matrix
+  + Can be used with general arrays (such as array of matrices)
+
+- apply(X, MARGIN, FUN, ...)
+  + X array (= vector which has dimensions attached to it; matrix =
+    2-dimensional array)
+  + MARGIN is an integer vector which indicates which margins should be
+    "retained"
+  + FUN you want to apply to each of the margins
+  + ... for other arguments you wanna passed to the function
+
+#+begin_src R
+x <- matrix(rnorm(200), 20, 10)
+apply(x, 2, mean)
+#+end_src
+
+#+results:
+| 0.000939709771350901 |
+|  -0.0625027242017975 |
+|   -0.173046988344362 |
+|    0.245404879699881 |
+|   -0.183382178399117 |
+|  -0.0959049731322618 |
+|   0.0746936522355389 |
+|    0.117673774180329 |
+|    0.265657939647043 |
+|   0.0457328948997711 |
+
+- margin 1 = apply FUN for each row (dimension 1); preserve all the rows,
+  eliminate all columns, get a vector of the number of rows
+
+- margin 2 = for each column (dimension 2); first dimension has been
+  eliminated
+
+- Shortcut functions (/much/ faster on large matrices):
+  + rowSums = apply(x, 1, sum)
+  + rowMeans = apply(x, 1, mean)
+  + colSums = apply(x, 2, sum)
+  + colMeans = apply(x, 2, mean)
+
+#+begin_src R
+x <- matrix(rnorm(200), 20, 10)
+apply(x, 1, quantile, probs = c(0.25, 0.75)) # no default value for `probs'
+#+end_src
+
+#+results:
+| -0.696394640074218 |    -1.27769650244151 | -0.477184032480875 | -0.59909716837159 | -0.507982013818726 | -0.579277437580012 | -0.468949788994042 | -0.440038036475035 | -0.658391976743049 | -0.973431613407168 | -0.490062482625581 | -0.665179415092495 | -0.408377075056267 | -0.200697190393934 | -0.340229480842862 | -0.160028255943806 | -0.777921921234259 | -0.404706716000387 | -0.980425578253542 |  -1.0421464154607 |
+|  0.314525034430565 | -0.00454240115294438 |  0.710975955101181 | 0.676913616561641 |  0.727460913162698 | -0.147756356968527 |  0.320455310518407 | 0.0506050709485897 | 0.0196012052481382 |  0.466743197381298 |  0.886399565686325 |  0.687937370392238 |  0.915471606888593 |  0.489995293443996 |  0.774319979864188 |  0.815934835353059 | 0.0200990767753117 |  0.726928595723518 |   1.22348333548359 | 0.830235233595474 |
+
+** tapply(X, INDEX, FUN)
+
+- Short for "table apply"
+
+- Apply a *function* over *subsets* of a vector:
+  + Splits up a vector into little groups (such as men and women, indicated by
+    a *factor*),
+  + Applies a function to those groups and
+  + Brings the pieces back together
+
+- Function may be anonymous
+
+- Simplify = FALSE to get back a list
+
+  #+begin_src R
+  tapply(x, f, mean, simplify = FALSE)   =   lapply(split(x, f), mean)
+  #+end_src
+
+  #+results:
+
+- interaction(f1, f2) :: combines all the levels of the first factor with all
+     the levels of the second factor
+
+** =mapply=
+
+- mapply is a multivariate version of =lapply=: applies a function in parallel
+  over a set of arguments
+
+- Apply a *function* to the elements of *multiple lists* in parallel
+
+  + For example, apply a function over 2 lists, where the elements of the
+    first list go into one argument of the function, and the elements of the
+    second list go into another argument of the function
+
+- *Vectorizing a function* (that doesn't allow for vector arguments)
+
+  #+begin_src R
+  mapply(rnorm, 1:5, 1:5, 2) # fixed standard deviation
+  #+end_src
+
+  #+results:
+
+  is the same as
+
+  #+begin_src R
+  list(rnorm(1, 1, 2),
+       rnorm(2, 2, 2),
+       rnorm(3, 3, 2),
+       rnorm(4, 4, 2),
+       rnorm(5, 5, 2))
+  #+end_src
+
+  #+results:
 
 * Strings and dates
 
@@ -150,3 +454,16 @@ different class.
 
 - =tail()= ::
      Look at the last 6 rows.
+
+- =str()= ::
+     /Compactly/ display the internal *structure* of an object.
+
+     Alternative to =summary()=.
+
+     When applied to functions, show the arguments.
+
+     #+begin_src R
+     str(.Platform)                     # what is the operating system
+     #+end_src
+
+     #+results:
