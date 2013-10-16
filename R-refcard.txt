@@ -1,11 +1,13 @@
 #+TITLE:     R quick reference card
 #+AUTHOR:    Fabrice Niessen
 #+EMAIL:     (concat "fniessen" at-sign "pirilampo.org")
-#+Time-stamp: <2013-10-16 Wed 16:39>
+#+Time-stamp: <2013-10-16 Wed 16:47>
 #+DESCRIPTION:
 #+KEYWORDS:
 #+LANGUAGE:  american
 
+#+PROPERTY:  eval no
+#+PROPERTY:  exports both
 #+SETUPFILE: ~/src/org-style/bigblow-local-abs.setup
 
 * R reference card
@@ -13,7 +15,7 @@
 Welcome to R reference card. It contains the reference documentation that
 describes how to perform *data analysis* using R.
 
-* Overview and history of R
+* Overview of R
 
 R system that you download from [[http://cran.r-project.org/][CRAN]]:
 - =base= package
@@ -89,8 +91,6 @@ myfunction <- function(x) {
 }
 #+end_src
 
-#+results:
-
 * Navigating the software
 
 - =getwd()= ::
@@ -158,7 +158,7 @@ They are constructed /column-wise/ (vector inserted by column).
 
 They can be created from vectors by adding a dimension attribute:
 
-#+begin_src R
+#+begin_src R :eval yes
 v <- 1:10
 dim(v) <- c(2,5)
 print(v)
@@ -255,22 +255,15 @@ x <- list(a = 1:5, b = rnorm(10))
 lapply(x, mean)
 #+end_src
 
-#+results:
-| 3 | 0.00969243157894123 |
-
 #+begin_src R
 lapply(1:4, runif, min = 0, max = 10) # arguments passed through the ...
 #+end_src
-
-#+results:
 
 - Extract the first column of each matrix of a list
 
   #+begin_src R
   lapply(x, function(elt) elt[,1])
   #+end_src
-
-  #+results:
 
 ** split
 
@@ -291,8 +284,6 @@ lapply(1:4, runif, min = 0, max = 10) # arguments passed through the ...
   lapply(split(x, f), mean)
   #+end_src
 
-  #+results:
-
 - Like =tapply=, but without applying the summary statistics
 
 - Splitting a data frame (or other kinds of lists), and apply an /anonymous
@@ -302,8 +293,6 @@ lapply(1:4, runif, min = 0, max = 10) # arguments passed through the ...
   s <- split(airquality, airquality$Month) # split according to month
   lapply(s, function(x) colMeans(x[, c("Ozone", "Solar.R", "Wind")])
   #+end_src
-
-  #+results:
 
 ** =sapply=
 
@@ -315,8 +304,6 @@ lapply(1:4, runif, min = 0, max = 10) # arguments passed through the ...
   sapply(s, function(x) colMeans(x[, c("Ozone", "Solar.R", "Wind")]))
   #+end_src
 
-  #+results:
-
 - Pass =na.rm= argument to =ColMeans= to remove the missing values before
   calculating the mean
 
@@ -324,8 +311,6 @@ lapply(1:4, runif, min = 0, max = 10) # arguments passed through the ...
   sapply(s, function(x) colMeans(x[, c("Ozone", "Solar.R", "Wind")],
                                  na.rm = TRUE))
   #+end_src
-
-  #+results:
 
 ** =apply=
 
@@ -348,18 +333,6 @@ x <- matrix(rnorm(200), 20, 10)
 apply(x, 2, mean)
 #+end_src
 
-#+results:
-| 0.000939709771350901 |
-|  -0.0625027242017975 |
-|   -0.173046988344362 |
-|    0.245404879699881 |
-|   -0.183382178399117 |
-|  -0.0959049731322618 |
-|   0.0746936522355389 |
-|    0.117673774180329 |
-|    0.265657939647043 |
-|   0.0457328948997711 |
-
 - margin 1 = apply FUN for each row (dimension 1); preserve all the rows,
   eliminate all columns, get a vector of the number of rows
 
@@ -376,10 +349,6 @@ apply(x, 2, mean)
 x <- matrix(rnorm(200), 20, 10)
 apply(x, 1, quantile, probs = c(0.25, 0.75)) # no default value for `probs'
 #+end_src
-
-#+results:
-| -0.696394640074218 |    -1.27769650244151 | -0.477184032480875 | -0.59909716837159 | -0.507982013818726 | -0.579277437580012 | -0.468949788994042 | -0.440038036475035 | -0.658391976743049 | -0.973431613407168 | -0.490062482625581 | -0.665179415092495 | -0.408377075056267 | -0.200697190393934 | -0.340229480842862 | -0.160028255943806 | -0.777921921234259 | -0.404706716000387 | -0.980425578253542 |  -1.0421464154607 |
-|  0.314525034430565 | -0.00454240115294438 |  0.710975955101181 | 0.676913616561641 |  0.727460913162698 | -0.147756356968527 |  0.320455310518407 | 0.0506050709485897 | 0.0196012052481382 |  0.466743197381298 |  0.886399565686325 |  0.687937370392238 |  0.915471606888593 |  0.489995293443996 |  0.774319979864188 |  0.815934835353059 | 0.0200990767753117 |  0.726928595723518 |   1.22348333548359 | 0.830235233595474 |
 
 ** tapply(X, INDEX, FUN)
 
@@ -398,8 +367,6 @@ apply(x, 1, quantile, probs = c(0.25, 0.75)) # no default value for `probs'
   #+begin_src R
   tapply(x, f, mean, simplify = FALSE)   =   lapply(split(x, f), mean)
   #+end_src
-
-  #+results:
 
 - interaction(f1, f2) :: combines all the levels of the first factor with all
      the levels of the second factor
@@ -421,8 +388,6 @@ apply(x, 1, quantile, probs = c(0.25, 0.75)) # no default value for `probs'
   mapply(rnorm, 1:5, 1:5, 2) # fixed standard deviation
   #+end_src
 
-  #+results:
-
   is the same as
 
   #+begin_src R
@@ -432,8 +397,6 @@ apply(x, 1, quantile, probs = c(0.25, 0.75)) # no default value for `probs'
        rnorm(4, 4, 2),
        rnorm(5, 5, 2))
   #+end_src
-
-  #+results:
 
 * Strings and dates
 
@@ -465,5 +428,3 @@ apply(x, 1, quantile, probs = c(0.25, 0.75)) # no default value for `probs'
      #+begin_src R
      str(.Platform)                     # what is the operating system
      #+end_src
-
-     #+results:
