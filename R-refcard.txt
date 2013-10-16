@@ -1,0 +1,32 @@
+#+TITLE:     R quick reference card
+#+AUTHOR:    Fabrice Niessen
+#+EMAIL:     (concat "fniessen" at-sign "pirilampo.org")
+#+Time-stamp: <2013-10-16 Wed 10:56>
+#+DESCRIPTION:
+#+KEYWORDS:
+#+LANGUAGE:  american
+
+* R reference card
+
+Welcome to R reference card. It contains the reference documentation that
+describes how to perform *data analysis* documents using R.
+
+* Getting started and getting help
+
+* Some basics
+
+* Input and output
+
+* Data structures
+
+* Data transformations
+
+* Strings and dates
+
+* Probability
+
+* General statistics
+
+* Graphics
+
+* Linear regression and ANOVA
