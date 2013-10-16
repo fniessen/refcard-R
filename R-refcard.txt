@@ -1,23 +1,133 @@
 #+TITLE:     R quick reference card
 #+AUTHOR:    Fabrice Niessen
 #+EMAIL:     (concat "fniessen" at-sign "pirilampo.org")
-#+Time-stamp: <2013-10-16 Wed 10:56>
+#+Time-stamp: <2013-10-16 Wed 15:05>
 #+DESCRIPTION:
 #+KEYWORDS:
 #+LANGUAGE:  american
 
+#+SETUPFILE: ~/src/org-style/bigblow-local-abs.setup
+
 * R reference card
 
 Welcome to R reference card. It contains the reference documentation that
-describes how to perform *data analysis* documents using R.
+describes how to perform *data analysis* using R.
 
 * Getting started and getting help
 
+- args(function) ::
+     Look at the arguments of a FUNCTION.
+
 * Some basics
+
+- =<-= ::
+     Assign a value to a variable.
+
+- =ls()= ::
+     Show objects in my workspace.
+
+** Defining a function
+
+#+begin_src R
+myfunction <- function(x) {
+    y <- norm(100)
+    mean(y)
+}
+#+end_src
+
+* Navigating the software
+
+- =getwd()= ::
+     Figure out what your working directory is.
+
+- =library(package)= ::
+     Load PACKAGE.
+
+- =data(dataset)= ::
+     Load DATASET.
+
+- =source("file.R")= ::
+     Load R code file.
 
 * Input and output
 
+- =read.table("file.txt")= ::
+     Read tabular data file, create data frame.
+
+     Important arguments:
+     + =file=,
+     + =header=,
+     + =sep= (defaults to the *space*)
+     + =colClasses=, class of each column
+     + =nrows=,
+     + =comment.char=,
+     + =skip=, number of lines to skip from the beginning
+     + =stringsAsFactors= (defaults to =TRUE=)
+
+- =read.csv("file.csv")= ::
+     Read data from CSV file, create data frame.
+     + =header= defaults to =TRUE=
+     + default =separator=: *comma*
+
 * Data structures
+
+| Class     | Example                     |
+|-----------+-----------------------------|
+| =logical=   | =TRUE= / =FALSE=                |
+| =integer=   | =1L= (with explicit =L= suffix) |
+| =numeric=   | =0.5= or =1= (/real/ numbers)     |
+| =complex=   | =1+0i=                        |
+| =character= | "hello" (lowest class)      |
+
+** Vectors
+
+*Vectors* are sets of elements of the /same class/.
+
+When objects of different classes are mixed in a vector, /coercion/ occurs behind
+the scene so that every element is of the same class (the "lowest common
+denominator" class).
+
+** Matrices
+
+*Matrices* are vectors with multiple dimensions (=dimension= attribute).
+
+** Lists
+
+*Lists* are vectors of objects of possibly different classes.
+
+** Factors
+
+*Factors* are /qualitative/ variables used to represent /categorical/ data, to store
+self-describing codes for /labels/ (such as "male" and "female", or "low",
+"medium" and "high").
+
+Unordered or ordered.
+
+** Data frames
+
+*Data frames* are used to store tabular data where each column can be of a
+different class.
+
+- Row = observation, column = variable
+- Special type of list (of variables in columns) where every element has
+  the same length
+- Special attribute =row.names= (every row has a name, or defaults to a
+  sequence of integers)
+- Most often created by calling =read.table()= or =read.csv()=
+
+** Functions
+
+- =as.*()= ::
+     Explicitly coerce from one class to another.
+
+- =as.numeric()= ::
+     Coerce the (=character=) column to be =numeric=.
+
+- =as.Date("January 2, 2007", "%B %d, %Y")= ::
+     "2007-01-02"
+
+- =as.ts()= ::
+     Convert to a time series object.
 
 * Data transformations
 
@@ -30,3 +140,13 @@ describes how to perform *data analysis* documents using R.
 * Graphics
 
 * Linear regression and ANOVA
+
+* Useful tricks
+
+** Peeking at your data
+
+- =head()= ::
+     Look at the first 6 rows.
+
+- =tail()= ::
+     Look at the last 6 rows.
