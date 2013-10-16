@@ -1,7 +1,7 @@
 #+TITLE:     R quick reference card
 #+AUTHOR:    Fabrice Niessen
 #+EMAIL:     (concat "fniessen" at-sign "pirilampo.org")
-#+Time-stamp: <2013-10-16 Wed 16:47>
+#+Time-stamp: <2013-10-16 Wed 18:33>
 #+DESCRIPTION:
 #+KEYWORDS:
 #+LANGUAGE:  american
@@ -28,16 +28,23 @@ Some R manuals:
 - [[http://cran.r-project.org/doc/manuals/R-exts.html][Writing R extensions]]
 - [[http://cran.r-project.org/doc/manuals/r-release/R-data.html][R data import/export]]
 
-* Getting started and getting help
+* 1. Getting started and getting help
+
+#+begin_src R
+?function
+?dataset
+package ? lattice
+library(help = lattice)
+#+end_src
 
 - args(function) ::
      Look at the arguments of a FUNCTION.
 
 - Google
 - [[mailto:r-help@r-project.org][R general mailing list]]
-- Stack Overflow
+- [[http://stackoverflow.com/questions/tagged/r][Stack Overflow]]
 
-* Some basics
+* 2. Some basics
 
 ** Setting variables
 
@@ -57,8 +64,6 @@ Some R manuals:
      #+begin_src R
      rm(list=ls())                      # remove everything from the workspace
      #+end_src
-
-     #+results:
 
 ** Computing basic statistics
 
@@ -91,7 +96,7 @@ myfunction <- function(x) {
 }
 #+end_src
 
-* Navigating the software
+* 3. Navigating the software
 
 - =getwd()= ::
      Figure out what your working directory is.
@@ -105,7 +110,21 @@ myfunction <- function(x) {
 - =source("file.R")= ::
      Load R code file.
 
-* Input and output
+** 13. Running a batch script
+
+You may write a script containing R code:
+
+#+begin_src sh
+#!/usr/bin/env Rscript
+
+argv <- commandArgs(TRUE)
+x <- as.numeric(argv[1])
+# etc.
+#+end_src
+
+* 4. Input and output
+
+** Reading tabular data files
 
 - =read.table("file.txt")= ::
      Read tabular data file, create data frame.
@@ -120,12 +139,25 @@ myfunction <- function(x) {
      + =skip=, number of lines to skip from the beginning
      + =stringsAsFactors= (defaults to =TRUE=)
 
+** Reading from CSV files
+
 - =read.csv("file.csv")= ::
      Read data from CSV file, create data frame.
      + =header= defaults to =TRUE=
      + default =separator=: *comma*
 
-* Data structures
+** Reading from SQL databases
+
+#+begin_src R
+library(RODBC)
+# con <- odbcConnect("DSN", uid="username")
+con <- odbcDriverConnect('driver={SQL Server};server=hostname;database=dbname;uid=username;pwd=password')
+sql <- 'SELECT * FROM table'
+rows <- sqlQuery(con, sql)
+print(head(rows))
+#+end_src
+
+* 5. Data structures
 
 | Class     | Example                     |
 |-----------+-----------------------------|
@@ -202,11 +234,10 @@ Unordered or ordered.
 ** Data frames
 
 *Data frames* are used to store tabular data where each column can be of a
-different class.
+different class: special type of list (of columns) where every element has the
+same length.
 
 - Row = observation, column = variable
-- Special type of list (of variables in columns) where every element has
-  the same length
 - Special attribute =row.names= (every row has a name, or defaults to a
   sequence of integers)
 - Most often created by calling =read.table()= or =read.csv()=
@@ -217,7 +248,71 @@ different class.
 - =data.matrix()= ::
      Convert a data frame to a /numeric/ matrix (forced *coercion*!).
 
-** Converting
+** 7. Selecting list elements or data frame columns by position (subsetting)
+
+- =[[= ::
+     Extract a *single element* of a list (or a single column of a data frame).
+
+     Can be used with /computed/ indices.
+
+     Can extract nested elements of a list:
+
+     #+begin_src R
+     x[[1]][[3]]                        # same as: x[[c(1,3)]]
+                                        # third element of the first element
+     #+end_src
+
+     Partial matching allowed at the command-line:
+
+     #+begin_src R
+     x[["a", exact = FALSE]]            # instead of: x[["aardvark"]]
+     #+end_src
+
+- =[= ::
+     Return an object of the *same class* as the original: a list of elements (or
+     a data frame built from multiple columns).
+
+     Extract multiple elements of a list:
+
+     #+begin_src R
+     x[c(1,3)]
+     #+end_src
+
+     Remove the first column:
+
+     #+begin_src R
+     df[,-1]
+     #+end_src
+
+** 8. Selecting list elements or data frame columns by name (subsetting)
+
+- =$= ::
+     Extract a single element of a list (or a single column of a data frame)
+     *by name*: you don't have to remember where the element is in the list.
+
+     #+begin_src R
+     x$bar                              # same as x[["bar"]]
+     #+end_src
+
+     Can only be used with literal names.
+
+     Partial matching allowed at the command-line:
+
+     #+begin_src R
+     x$a                                # instead of: x$aardvark
+     #+end_src
+
+** 27. Removing rows that contain NAs from a data frame
+
+** 27b. Removing columns that contain NAs from a data frame
+
+Get rid of any column that has one or more NAs.
+
+#+begin_src R
+df <- df[,colSums(is.na(df))==0]
+#+end_src
+
+** 32. Converting
 
 - =as.*()= ::
      Explicitly coerce from one class to another.
@@ -231,7 +326,7 @@ different class.
 - =as.ts()= ::
      Convert to a time series object.
 
-* Data transformations
+* 6. Data transformations
 
 ** Splitting a vector into groups
 
@@ -398,17 +493,28 @@ apply(x, 1, quantile, probs = c(0.25, 0.75)) # no default value for `probs'
        rnorm(5, 5, 2))
   #+end_src
 
-* Strings and dates
+* 7. Strings and dates
 
-* Probability
+* 8. Probability
 
-* General statistics
+* 9. General statistics
 
-* Graphics
+** Summarizing your data
 
-* Linear regression and ANOVA
+- =summary()= ::
+     Produce a summary of the object.
 
-* Useful tricks
+** Tabulating factors
+
+- =table(vector)= ::
+     *Count* the number of observations in each /level/ (see factors). Give a
+     frequency of how many levels there are.
+
+* 10. Graphics
+
+* 11. Linear regression and ANOVA
+
+* 12. Useful tricks
 
 ** Peeking at your data
 

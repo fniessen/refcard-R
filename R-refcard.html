@@ -7,7 +7,7 @@
   <meta name="generator" content=
   "HTML Tidy for Cygwin (vers 1st September 2004), see www.w3.org" />
 
-  <title>R quick reference card</title><!-- 2013-10-16 Wed 16:47 -->
+  <title>R quick reference card</title><!-- 2013-10-16 Wed 18:33 -->
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="generator" content="Org-mode" />
   <meta name="author" content="Fabrice Niessen" />
@@ -36,10 +36,10 @@ type="text/javascript">
 
           <li><a href="#sec-2">2. Overview of R</a></li>
 
-          <li><a href="#sec-3">3. Getting started and getting help</a></li>
+          <li><a href="#sec-3">3. 1. Getting started and getting help</a></li>
 
           <li>
-            <a href="#sec-4">4. Some basics</a>
+            <a href="#sec-4">4. 2. Some basics</a>
 
             <ul>
               <li><a href="#sec-4-1">4.1. Setting variables</a></li>
@@ -56,12 +56,28 @@ type="text/javascript">
             </ul>
           </li>
 
-          <li><a href="#sec-5">5. Navigating the software</a></li>
+          <li>
+            <a href="#sec-5">5. 3. Navigating the software</a>
 
-          <li><a href="#sec-6">6. Input and output</a></li>
+            <ul>
+              <li><a href="#sec-5-1">5.1. 13. Running a batch script</a></li>
+            </ul>
+          </li>
 
           <li>
-            <a href="#sec-7">7. Data structures</a>
+            <a href="#sec-6">6. 4. Input and output</a>
+
+            <ul>
+              <li><a href="#sec-6-1">6.1. Reading tabular data files</a></li>
+
+              <li><a href="#sec-6-2">6.2. Reading from CSV files</a></li>
+
+              <li><a href="#sec-6-3">6.3. Reading from SQL databases</a></li>
+            </ul>
+          </li>
+
+          <li>
+            <a href="#sec-7">7. 5. Data structures</a>
 
             <ul>
               <li><a href="#sec-7-1">7.1. Vectors</a></li>
@@ -74,12 +90,24 @@ type="text/javascript">
 
               <li><a href="#sec-7-5">7.5. Data frames</a></li>
 
-              <li><a href="#sec-7-6">7.6. Converting</a></li>
+              <li><a href="#sec-7-6">7.6. 7. Selecting list elements or data
+              frame columns by position (subsetting)</a></li>
+
+              <li><a href="#sec-7-7">7.7. 8. Selecting list elements or data
+              frame columns by name (subsetting)</a></li>
+
+              <li><a href="#sec-7-8">7.8. 27. Removing rows that contain NAs
+              from a data frame</a></li>
+
+              <li><a href="#sec-7-9">7.9. 27b. Removing columns that contain
+              NAs from a data frame</a></li>
+
+              <li><a href="#sec-7-10">7.10. 32. Converting</a></li>
             </ul>
           </li>
 
           <li>
-            <a href="#sec-8">8. Data transformations</a>
+            <a href="#sec-8">8. 6. Data transformations</a>
 
             <ul>
               <li><a href="#sec-8-1">8.1. Splitting a vector into
@@ -102,18 +130,26 @@ type="text/javascript">
             </ul>
           </li>
 
-          <li><a href="#sec-9">9. Strings and dates</a></li>
+          <li><a href="#sec-9">9. 7. Strings and dates</a></li>
 
-          <li><a href="#sec-10">10. Probability</a></li>
-
-          <li><a href="#sec-11">11. General statistics</a></li>
-
-          <li><a href="#sec-12">12. Graphics</a></li>
-
-          <li><a href="#sec-13">13. Linear regression and ANOVA</a></li>
+          <li><a href="#sec-10">10. 8. Probability</a></li>
 
           <li>
-            <a href="#sec-14">14. Useful tricks</a>
+            <a href="#sec-11">11. 9. General statistics</a>
+
+            <ul>
+              <li><a href="#sec-11-1">11.1. Summarizing your data</a></li>
+
+              <li><a href="#sec-11-2">11.2. Tabulating factors</a></li>
+            </ul>
+          </li>
+
+          <li><a href="#sec-12">12. 10. Graphics</a></li>
+
+          <li><a href="#sec-13">13. 11. Linear regression and ANOVA</a></li>
+
+          <li>
+            <a href="#sec-14">14. 12. Useful tricks</a>
 
             <ul>
               <li><a href="#sec-14-1">14.1. Peeking at your data</a></li>
@@ -169,10 +205,19 @@ type="text/javascript">
     </div>
 
     <div id="outline-container-sec-3" class="outline-2">
-      <h2 id="sec-3"><span class="section-number-2">3</span> Getting started
+      <h2 id="sec-3"><span class="section-number-2">3</span> 1. Getting started
       and getting help</h2>
 
       <div class="outline-text-2" id="text-3">
+        <div class="org-src-container">
+          <pre class="src src-R">
+?function
+?dataset
+package ? lattice
+library(help = lattice)
+</pre>
+        </div>
+
         <dl class="org-dl">
           <dt>args(function)</dt>
 
@@ -189,13 +234,15 @@ type="text/javascript">
 
           <dt>(no term)</dt>
 
-          <dd>Stack Overflow</dd>
+          <dd><a href="http://stackoverflow.com/questions/tagged/r">Stack
+          Overflow</a></dd>
         </dl>
       </div>
     </div>
 
     <div id="outline-container-sec-4" class="outline-2">
-      <h2 id="sec-4"><span class="section-number-2">4</span> Some basics</h2>
+      <h2 id="sec-4"><span class="section-number-2">4</span> 2. Some
+      basics</h2>
 
       <div class="outline-text-2" id="text-4"></div>
 
@@ -309,7 +356,7 @@ myfunction &lt;- function(x) {
     </div>
 
     <div id="outline-container-sec-5" class="outline-2">
-      <h2 id="sec-5"><span class="section-number-2">5</span> Navigating the
+      <h2 id="sec-5"><span class="section-number-2">5</span> 3. Navigating the
       software</h2>
 
       <div class="outline-text-2" id="text-5">
@@ -331,59 +378,116 @@ myfunction &lt;- function(x) {
           <dd>Load R code file.</dd>
         </dl>
       </div>
+
+      <div id="outline-container-sec-5-1" class="outline-3">
+        <h3 id="sec-5-1"><span class="section-number-3">5.1</span> 13. Running
+        a batch script</h3>
+
+        <div class="outline-text-3" id="text-5-1">
+          <p>You may write a script containing R code:</p>
+
+          <div class="org-src-container">
+            <pre class="src src-sh">
+<span style="color: #008200;">#</span><span style=
+"color: #008200; font-style: italic;">!/usr/bin/</span><span style=
+"color: #0000FF;">env</span><span style=
+"color: #008200; font-style: italic;"> Rscript</span>
+
+argv &lt;- commandArgs(TRUE)
+x &lt;- as.numeric(argv[1])
+<span style="color: #008200;"># </span><span style=
+"color: #008200; font-style: italic;">etc.</span>
+</pre>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div id="outline-container-sec-6" class="outline-2">
-      <h2 id="sec-6"><span class="section-number-2">6</span> Input and
+      <h2 id="sec-6"><span class="section-number-2">6</span> 4. Input and
       output</h2>
 
-      <div class="outline-text-2" id="text-6">
-        <dl class="org-dl">
-          <dt><code>read.table("file.txt")</code></dt>
+      <div class="outline-text-2" id="text-6"></div>
 
-          <dd>
-            Read tabular data file, create data frame.
+      <div id="outline-container-sec-6-1" class="outline-3">
+        <h3 id="sec-6-1"><span class="section-number-3">6.1</span> Reading
+        tabular data files</h3>
 
-            <p>Important arguments:</p>
+        <div class="outline-text-3" id="text-6-1">
+          <dl class="org-dl">
+            <dt><code>read.table("file.txt")</code></dt>
 
-            <ul class="org-ul">
-              <li><code>file</code>,</li>
+            <dd>
+              Read tabular data file, create data frame.
 
-              <li><code>header</code>,</li>
+              <p>Important arguments:</p>
 
-              <li><code>sep</code> (defaults to the <b>space</b>)</li>
+              <ul class="org-ul">
+                <li><code>file</code>,</li>
 
-              <li><code>colClasses</code>, class of each column</li>
+                <li><code>header</code>,</li>
 
-              <li><code>nrows</code>,</li>
+                <li><code>sep</code> (defaults to the <b>space</b>)</li>
 
-              <li><code>comment.char</code>,</li>
+                <li><code>colClasses</code>, class of each column</li>
 
-              <li><code>skip</code>, number of lines to skip from the
-              beginning</li>
+                <li><code>nrows</code>,</li>
 
-              <li><code>stringsAsFactors</code> (defaults to
-              <code>TRUE</code>)</li>
-            </ul>
-          </dd>
+                <li><code>comment.char</code>,</li>
 
-          <dt><code>read.csv("file.csv")</code></dt>
+                <li><code>skip</code>, number of lines to skip from the
+                beginning</li>
 
-          <dd>
-            Read data from CSV file, create data frame.
+                <li><code>stringsAsFactors</code> (defaults to
+                <code>TRUE</code>)</li>
+              </ul>
+            </dd>
+          </dl>
+        </div>
+      </div>
 
-            <ul class="org-ul">
-              <li><code>header</code> defaults to <code>TRUE</code></li>
+      <div id="outline-container-sec-6-2" class="outline-3">
+        <h3 id="sec-6-2"><span class="section-number-3">6.2</span> Reading from
+        CSV files</h3>
 
-              <li>default <code>separator</code>: <b>comma</b></li>
-            </ul>
-          </dd>
-        </dl>
+        <div class="outline-text-3" id="text-6-2">
+          <dl class="org-dl">
+            <dt><code>read.csv("file.csv")</code></dt>
+
+            <dd>
+              Read data from CSV file, create data frame.
+
+              <ul class="org-ul">
+                <li><code>header</code> defaults to <code>TRUE</code></li>
+
+                <li>default <code>separator</code>: <b>comma</b></li>
+              </ul>
+            </dd>
+          </dl>
+        </div>
+      </div>
+
+      <div id="outline-container-sec-6-3" class="outline-3">
+        <h3 id="sec-6-3"><span class="section-number-3">6.3</span> Reading from
+        SQL databases</h3>
+
+        <div class="outline-text-3" id="text-6-3">
+          <div class="org-src-container">
+            <pre class="src src-R">
+library(RODBC)
+# con &lt;- odbcConnect("DSN", uid="username")
+con &lt;- odbcDriverConnect('driver={SQL Server};server=hostname;database=dbname;uid=username;pwd=password')
+sql &lt;- 'SELECT * FROM table'
+rows &lt;- sqlQuery(con, sql)
+print(head(rows))
+</pre>
+          </div>
+        </div>
       </div>
     </div>
 
     <div id="outline-container-sec-7" class="outline-2">
-      <h2 id="sec-7"><span class="section-number-2">7</span> Data
+      <h2 id="sec-7"><span class="section-number-2">7</span> 5. Data
       structures</h2>
 
       <div class="outline-text-2" id="text-7">
@@ -583,13 +687,11 @@ print(v)
 
         <div class="outline-text-3" id="text-7-5">
           <p><b>Data frames</b> are used to store tabular data where each
-          column can be of a different class.</p>
+          column can be of a different class: special type of list (of columns)
+          where every element has the same length.</p>
 
           <ul class="org-ul">
             <li>Row = observation, column = variable</li>
-
-            <li>Special type of list (of variables in columns) where every
-            element has the same length</li>
 
             <li>Special attribute <code>row.names</code> (every row has a name,
             or defaults to a sequence of integers)</li>
@@ -607,10 +709,121 @@ print(v)
       </div>
 
       <div id="outline-container-sec-7-6" class="outline-3">
-        <h3 id="sec-7-6"><span class="section-number-3">7.6</span>
-        Converting</h3>
+        <h3 id="sec-7-6"><span class="section-number-3">7.6</span> 7. Selecting
+        list elements or data frame columns by position (subsetting)</h3>
 
         <div class="outline-text-3" id="text-7-6">
+          <dl class="org-dl">
+            <dt><code>[[</code></dt>
+
+            <dd>
+              Extract a <b>single element</b> of a list (or a single column of
+              a data frame).
+
+              <p>Can be used with <i>computed</i> indices.</p>
+
+              <p>Can extract nested elements of a list:</p>
+
+              <div class="org-src-container">
+                <pre class="src src-R">
+x[[1]][[3]]                        # same as: x[[c(1,3)]]
+                                   # third element of the first element
+</pre>
+              </div>
+
+              <p>Partial matching allowed at the command-line:</p>
+
+              <div class="org-src-container">
+                <pre class="src src-R">
+x[["a", exact = FALSE]]            # instead of: x[["aardvark"]]
+</pre>
+              </div>
+            </dd>
+
+            <dt><code>[</code></dt>
+
+            <dd>
+              Return an object of the <b>same class</b> as the original: a list
+              of elements (or a data frame built from multiple columns).
+
+              <p>Extract multiple elements of a list:</p>
+
+              <div class="org-src-container">
+                <pre class="src src-R">
+x[c(1,3)]
+</pre>
+              </div>
+
+              <p>Remove the first column:</p>
+
+              <div class="org-src-container">
+                <pre class="src src-R">
+df[,-1]
+</pre>
+              </div>
+            </dd>
+          </dl>
+        </div>
+      </div>
+
+      <div id="outline-container-sec-7-7" class="outline-3">
+        <h3 id="sec-7-7"><span class="section-number-3">7.7</span> 8. Selecting
+        list elements or data frame columns by name (subsetting)</h3>
+
+        <div class="outline-text-3" id="text-7-7">
+          <dl class="org-dl">
+            <dt><code>$</code></dt>
+
+            <dd>
+              Extract a single element of a list (or a single column of a data
+              frame) <b>by name</b>: you don't have to remember where the
+              element is in the list.
+
+              <div class="org-src-container">
+                <pre class="src src-R">
+x$bar                              # same as x[["bar"]]
+</pre>
+              </div>
+
+              <p>Can only be used with literal names.</p>
+
+              <p>Partial matching allowed at the command-line:</p>
+
+              <div class="org-src-container">
+                <pre class="src src-R">
+x$a                                # instead of: x$aardvark
+</pre>
+              </div>
+            </dd>
+          </dl>
+        </div>
+      </div>
+
+      <div id="outline-container-sec-7-8" class="outline-3">
+        <h3 id="sec-7-8"><span class="section-number-3">7.8</span> 27. Removing
+        rows that contain NAs from a data frame</h3>
+      </div>
+
+      <div id="outline-container-sec-7-9" class="outline-3">
+        <h3 id="sec-7-9"><span class="section-number-3">7.9</span> 27b.
+        Removing columns that contain NAs from a data frame</h3>
+
+        <div class="outline-text-3" id="text-7-9">
+          <p>Get rid of any column that has one or more NAs.</p>
+
+          <div class="org-src-container">
+            <pre class="src src-R">
+df &lt;- df[,colSums(is.na(df))==0]
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="outline-container-sec-7-10" class="outline-3">
+        <h3 id="sec-7-10"><span class="section-number-3">7.10</span> 32.
+        Converting</h3>
+
+        <div class="outline-text-3" id="text-7-10">
           <dl class="org-dl">
             <dt><code>as.*()</code></dt>
 
@@ -634,7 +847,7 @@ print(v)
     </div>
 
     <div id="outline-container-sec-8" class="outline-2">
-      <h2 id="sec-8"><span class="section-number-2">8</span> Data
+      <h2 id="sec-8"><span class="section-number-2">8</span> 6. Data
       transformations</h2>
 
       <div class="outline-text-2" id="text-8"></div>
@@ -946,30 +1159,61 @@ list(rnorm(1, 1, 2),
     </div>
 
     <div id="outline-container-sec-9" class="outline-2">
-      <h2 id="sec-9"><span class="section-number-2">9</span> Strings and
+      <h2 id="sec-9"><span class="section-number-2">9</span> 7. Strings and
       dates</h2>
     </div>
 
     <div id="outline-container-sec-10" class="outline-2">
-      <h2 id="sec-10"><span class="section-number-2">10</span> Probability</h2>
+      <h2 id="sec-10"><span class="section-number-2">10</span> 8.
+      Probability</h2>
     </div>
 
     <div id="outline-container-sec-11" class="outline-2">
-      <h2 id="sec-11"><span class="section-number-2">11</span> General
+      <h2 id="sec-11"><span class="section-number-2">11</span> 9. General
       statistics</h2>
+
+      <div class="outline-text-2" id="text-11"></div>
+
+      <div id="outline-container-sec-11-1" class="outline-3">
+        <h3 id="sec-11-1"><span class="section-number-3">11.1</span>
+        Summarizing your data</h3>
+
+        <div class="outline-text-3" id="text-11-1">
+          <dl class="org-dl">
+            <dt><code>summary()</code></dt>
+
+            <dd>Produce a summary of the object.</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div id="outline-container-sec-11-2" class="outline-3">
+        <h3 id="sec-11-2"><span class="section-number-3">11.2</span> Tabulating
+        factors</h3>
+
+        <div class="outline-text-3" id="text-11-2">
+          <dl class="org-dl">
+            <dt><code>table(vector)</code></dt>
+
+            <dd><b>Count</b> the number of observations in each <i>level</i>
+            (see factors). Give a frequency of how many levels there are.</dd>
+          </dl>
+        </div>
+      </div>
     </div>
 
     <div id="outline-container-sec-12" class="outline-2">
-      <h2 id="sec-12"><span class="section-number-2">12</span> Graphics</h2>
+      <h2 id="sec-12"><span class="section-number-2">12</span> 10.
+      Graphics</h2>
     </div>
 
     <div id="outline-container-sec-13" class="outline-2">
-      <h2 id="sec-13"><span class="section-number-2">13</span> Linear
+      <h2 id="sec-13"><span class="section-number-2">13</span> 11. Linear
       regression and ANOVA</h2>
     </div>
 
     <div id="outline-container-sec-14" class="outline-2">
-      <h2 id="sec-14"><span class="section-number-2">14</span> Useful
+      <h2 id="sec-14"><span class="section-number-2">14</span> 12. Useful
       tricks</h2>
 
       <div class="outline-text-2" id="text-14"></div>
