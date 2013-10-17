@@ -1,7 +1,7 @@
 #+TITLE:     R quick reference card
 #+AUTHOR:    Fabrice Niessen
 #+EMAIL:     (concat "fniessen" at-sign "pirilampo.org")
-#+Time-stamp: <2013-10-16 Wed 18:33>
+#+Time-stamp: <2013-10-17 Thu 10:50>
 #+DESCRIPTION:
 #+KEYWORDS:
 #+LANGUAGE:  american
@@ -37,7 +37,7 @@ package ? lattice
 library(help = lattice)
 #+end_src
 
-- args(function) ::
+- =args(function)= ::
      Look at the arguments of a FUNCTION.
 
 - Google
@@ -45,6 +45,15 @@ library(help = lattice)
 - [[http://stackoverflow.com/questions/tagged/r][Stack Overflow]]
 
 * 2. Some basics
+
+** Print something
+
+- =print(object)= ::
+     Explicitly print out an object.
+
+- =cat()= ::
+     Concatenate together a set of strings and prints out the concatanated
+     string (to a file or to the console).
 
 ** Setting variables
 
@@ -87,6 +96,11 @@ library(help = lattice)
 - =rep(x, times)= ::
      Create a series of repeated values.
 
+** Operators
+
+- =%in%= ::
+     Membership test.
+
 ** Defining a function
 
 #+begin_src R
@@ -122,41 +136,6 @@ x <- as.numeric(argv[1])
 # etc.
 #+end_src
 
-* 4. Input and output
-
-** Reading tabular data files
-
-- =read.table("file.txt")= ::
-     Read tabular data file, create data frame.
-
-     Important arguments:
-     + =file=,
-     + =header=,
-     + =sep= (defaults to the *space*)
-     + =colClasses=, class of each column
-     + =nrows=,
-     + =comment.char=,
-     + =skip=, number of lines to skip from the beginning
-     + =stringsAsFactors= (defaults to =TRUE=)
-
-** Reading from CSV files
-
-- =read.csv("file.csv")= ::
-     Read data from CSV file, create data frame.
-     + =header= defaults to =TRUE=
-     + default =separator=: *comma*
-
-** Reading from SQL databases
-
-#+begin_src R
-library(RODBC)
-# con <- odbcConnect("DSN", uid="username")
-con <- odbcDriverConnect('driver={SQL Server};server=hostname;database=dbname;uid=username;pwd=password')
-sql <- 'SELECT * FROM table'
-rows <- sqlQuery(con, sql)
-print(head(rows))
-#+end_src
-
 * 5. Data structures
 
 | Class     | Example                     |
@@ -166,6 +145,12 @@ print(head(rows))
 | =numeric=   | =0.5= or =1= (/real/ numbers)     |
 | =complex=   | =1+0i=                        |
 | =character= | "hello" (lowest class)      |
+
+- =class()= ::
+     Show the class of the object.
+
+- =unclass(vector)= ::
+     Strip out the class (see factors).
 
 ** Vectors
 
@@ -181,6 +166,11 @@ denominator" class).
 
 - =vector(class, length)= ::
      Create an empty vector.
+
+- =names()= ::
+     Show or give a name to each *element* of a vector.
+
+- =length()= ::
 
 ** Matrices
 
@@ -210,6 +200,13 @@ They can be created by /column-binding/ or /row-binding/.
 
 - =rbind()= ::
      Row-bind.
+
+** Arrays
+
+Arrays are n-dimensional matrices.
+
+- =array()= ::
+     Create an array.
 
 ** Lists
 
@@ -247,6 +244,24 @@ same length.
 
 - =data.matrix()= ::
      Convert a data frame to a /numeric/ matrix (forced *coercion*!).
+
+- =names()= ::
+     Tell the names of each *column* included in the data frame.
+
+** Vectorized operations (recycling rule)
+
+Avoid writing loops (code is a lot simpler):
+
+#+begin_src R
+x + y                                   # element-wise addition
+#+end_src
+
+Similar for the matrices:
+
+#+begin_src R
+x * y                                   # element-wise multiplication
+x %*% y                                 # true matrix multiplication
+#+end_src
 
 ** 7. Selecting list elements or data frame columns by position (subsetting)
 
@@ -302,6 +317,57 @@ same length.
      x$a                                # instead of: x$aardvark
      #+end_src
 
+** Selecting data frame columns by position (subsetting)
+
+Matrices can be subsetted with =(row, col)= type indices.
+
+Indices can also be missing:
+- =x[i,]= :: Row i.
+- =x[,j]= :: Column j.
+
+By default,
+
+- a single element is retrieved as a vector of length 1 rather than a 1x1
+  matrix.
+
+- a single column or a single row is retrieved as a vector, not as a matrix.
+
+This can be turned off by setting =drop = FALSE= (don't drop the dimension).
+
+** 13. Removing list elements using a condition
+
+Subsetting by using 2 types of index:
+- a *numeric* index (=x[2]=, =x[1:4]=)
+- a *logical* index (=x[x > "a"]=)
+
+Create a logical vector:
+
+#+begin_src R
+u <- x > "a"
+x[u]                                    # get all elements which are greater than "a"
+#+end_src
+
+Remove missing values (=NA=) from a list:
+
+#+begin_src R
+missing <- is.na(x)                     # logical vector
+x[!missing]
+#+end_src
+
+Take the subset of all objects (=x= and =y=) that has no missing values:
+
+#+begin_src R
+bothnonmissing <- complete.cases(x, y)  # logical vector
+x[bothnonmissing]
+#+end_src
+
+Take all the rows of a data frame where *all the values* are not missing:
+
+#+begin_src R
+nonmissing <- complete.cases(x)
+x[nonmissing, ]
+#+end_src
+
 ** 27. Removing rows that contain NAs from a data frame
 
 ** 27b. Removing columns that contain NAs from a data frame
@@ -325,6 +391,255 @@ df <- df[,colSums(is.na(df))==0]
 
 - =as.ts()= ::
      Convert to a time series object.
+
+* Control structures
+
+Control structures mentioned here are primarily useful for writing programs.
+For command-line interactive work, the =*apply= functions are more useful.
+
+** Conditional statements
+
+#+begin_src R
+if (<condition>) {
+    ## do something
+} else {
+    ## do something else
+}
+#+end_src
+
+Here, the entire =if/else= construct is all about assigning a value to =y=:
+
+#+begin_src R
+y <- if(x > 3) {                        # x must be a scalar here, not a vector
+    10
+} else {
+    0
+}
+#+end_src
+
+** Loops
+
+#+begin_src R
+for (i in 1:10) {                       # successive values from a sequence or vector
+    ## do something
+}
+
+for (letter in x) {                     # take elements from the vector
+    ## do something
+}
+#+end_src
+
+- seq_along(vector) :: create an integer sequence that's equal to the *length
+     of the input vector*
+
+- seq_len(integer) :: create an integer sequence that's as long as the
+     integer in input
+
+- nrow(dataset) :: tell the number of rows
+
+- ncol(dataset) :: tell the number of columns
+
+#+begin_src R
+while (z >= 3 && z <= 10) {             # conditions are always evaluated from left to right
+    ## do something
+}
+#+end_src
+
+Initiate an infinite loop:
+
+#+begin_src R
+repeat {
+    ## do something
+    if(<condition>) {
+        break                           # only way to exit a repeat loop
+    }
+}
+#+end_src
+
+- =break= ::
+     Break the iteration of a loop.
+
+- =next= ::
+     Skip an iteration of a loop.
+
+- =return= ::
+     Exit an entire function and return a given value.
+
+Better to use a =for= loop with an hard limit on the number of iterations that
+it's allowed to run.
+
+* Writing functions
+
+- Functions are R objects of class =function=
+
+#+begin_src R
+f <- function(<arguments>) {
+    ## do something
+}
+#+end_src
+
+- Functions can be *passed as arguments to other functions*
+
+- Functions can be nested, so that you can define a function inside of
+  another function (implications: see *lexical scoping*)
+
+- The return value of a function is the last expression in the function body
+  to be evaluated
+
+- 3 types of...
+  + formal argument
+  + local variable
+  + free variable
+
+** Arguments
+
+- /Named arguments/ can potentially have /default values/ (useful: not every
+  function call makes use of all the formal arguments; some can be /missing/)
+
+- The /formal arguments/ are the arguments included in the function definition
+
+- =formals()= returns a list of all the formal arguments of a function
+
+- Arguments can be matched *positionally* or *by name*
+
+  + When an argument is matched by name, it is "taken out" of the argument
+    list and the remaining unnamed arguments are matched in the order that
+    they are listed in the function definition
+
+- Named arguments help when:
+
+  + you want to use the defaults for evererything except for an argument near
+    the end of the list
+
+  + you can't remember the position of the argument
+
+- Function arguments can also be partially /matched/
+  1. Check for an exact match
+  2. Check for a partial match
+  3. Check for a positional match
+
+- When defining a function, you can also set an argument value to =NULL= (there
+  is nothing there)
+
+- Arguments to functions are evaluated /lazily/ (only when needed to be
+  evaluated
+
+- The =...= argument indicates a variable number of arguments
+
+  + Used when extending a function and you don't want to copy the entire
+    argument list of the original function
+
+  + Used by generic functions (such as =mean=) so that extra arguments can be
+    passed to methods
+
+  + Used when the number of arguments cannot be known in advance (see =paste=
+    function)
+
+  + Any argument that appears /after/ the =...= must be named explicitly and
+    cannot be partially matched
+
+** Scoping rules for R
+
+- R searches through the /search list/ (a series of =environments=, an environment
+  being a collection of symbol/value pairs) to bind the appropriate value to a
+  symbol:
+
+  + Search the global environment =.GlobalEnv= (always the first)
+
+  + Search the namespaces of each of the packages on the search list
+
+    #+begin_src R
+    search() # find the search list
+    #+end_src
+
+  + Search the =base= package (always the last element)
+
+- Last loaded package gets put in position 2 of the search list and
+  everything else gets shifted
+
+- Separate namespaces for functions and non-function objects
+
+- R uses *lexical* (or /static/) *scoping* (instead of /dynamic scoping/): /the value
+  of free variables are searched for in the environment in which the function/
+  /was/ *defined* (until the empty environment, after the =base= package)
+
+  + With *dynamic* scoping, the value of free variables is looked up in the
+    environment from which the function was *called* (/calling environment/ =
+    /parent frame/) -- see slide 24 of "Scoping Rules for R" for a comparative
+    example
+
+  + Other languages that support lexical scoping: Scheme, Perl, Python,
+    Common Lisp
+
+  + Consequences: all objects must be stored in memory, and all functions
+    must carry a *pointer to their respective defining environment*
+
+- Every environment has one parent environment (next thing down on the search
+  list); it is possible for an environment to have mulitple "children"
+
+- A function + an environment = a (/function/) /closure/
+
+- In R (unlike C), you can have functions defined /inside other functions/ -- in
+  this case, the environment in which a function is defined is the body of
+  another function!
+
+  #+begin_src R
+  make.power <- function(n) { # "constructor" function
+      pow <- function(x) {
+          x^n # n is a free variable (not defined inside pow)
+      }
+      pow # return function as return value
+  }
+  #+end_src
+
+  This function returns another function as its value
+
+  #+begin_src R
+  cube <- make.power(3)
+  square <- make.power(2)
+  #+end_src
+
+- Functions:
+  + environment(f) ::
+  + parent.env(environment) :: next thing down on the search list
+  + ls(environment) :: list all the variabls in the environment
+  + get(object, environment) :: get the value of an object inside an
+       environment
+
+* 4. Input and output
+
+** Reading tabular data files
+
+- =read.table("file.txt")= ::
+     Read tabular data file, create data frame.
+
+     Important arguments:
+     + =file=,
+     + =header=,
+     + =sep= (defaults to the *space*)
+     + =colClasses=, class of each column
+     + =nrows=,
+     + =comment.char=,
+     + =skip=, number of lines to skip from the beginning
+     + =stringsAsFactors= (defaults to =TRUE=)
+
+** Reading from CSV files
+
+- =read.csv("file.csv")= ::
+     Read data from CSV file, create data frame.
+     + =header= defaults to =TRUE=
+     + default =separator=: *comma*
+
+** Reading from SQL databases
+
+#+begin_src R
+library(RODBC)
+# con <- odbcConnect("DSN", uid="username")
+con <- odbcDriverConnect('driver={SQL Server};server=hostname;database=dbname;uid=username;pwd=password')
+sql <- 'SELECT * FROM table'
+rows <- sqlQuery(con, sql)
+print(head(rows))
+#+end_src
 
 * 6. Data transformations
 
@@ -495,11 +810,135 @@ apply(x, 1, quantile, probs = c(0.25, 0.75)) # no default value for `probs'
 
 * 7. Strings and dates
 
+** Getting the length of a string
+
+- =nchar()= ::
+     Get the length of a string.
+
+** Concatenating strings
+
+- =paste()= ::
+     *Concatenate* a set of *strings together* to create one string or a vector of
+     strings.
+
+** 4b. Regular expressions
+
+For the moment, we assume pattern matching on *ASCII strings*...
+
+Metacharacters:
+
+- =^= ::
+     Start of a line (or negation of a character class).
+
+- =$= ::
+     End of a line.
+
+- =[]= ::
+     Character classes.
+
+- =.= ::
+     Any character.
+
+- =|= ::
+     Or.
+
+- =()= ::
+     Subexpressions (alternatives or "remember" matched text).
+
+- =?= ::
+     Optional.
+
+- \ ::
+     "Escape" the metacharacter.
+
+- =+= ::
+     Any number, including none.
+
+- =*= ::
+     Any number, at least one -- it is "greedy" so it always matches the
+     /longest/ possible string that satisfies the regular expression.
+
+     The greediness can be turned off with the =?= metacharacter (make the regex
+     "lazy"), as in:
+
+     #+begin_src R
+     ^s(.*?)s$
+     #+end_src
+
+- ={}= ::
+     Interval quantifiers (minimum, maximum).
+
+These functions can take vector arguments.
+
+- =grep= ::
+     Return the *indices* into the character vector where the regex pattern
+     matches (it won't do anything).
+
+     #+begin_src R
+     i <- grep("regexp", vector) # get a set of indices
+     j <- grep("anotherregexp", vector) # get another set of indices
+     setdiff(i, j) # substract j elements from i when they are the same
+     setdiff(j, i) # different result
+     #+end_src
+
+     Setting =value = TRUE= returns the *actual elements* of the character vector
+     that match.
+
+- =grepl= ::
+     Return a *logical vector* (=TRUE= / =FALSE=) indicating which element matches
+     (used for /subsetting/).
+
+- =regexpr= ::
+     Return the indices (integer vector) of the string *where the first match
+     begins* and the length of the match.
+
+     If I want to see what the match is, use =substr=:
+
+     #+begin_src R
+     regexpr("...", string)
+     substr(string, start + length - 1)
+     #+end_src
+
+     Useful in conjunction with =regmatches= which extracts the matches in the
+     strings without having you to use =substr=.
+
+     #+begin_src R
+     r <- regexpr("...", string)
+     regmatches(string, r)
+     #+end_src
+
+- =gregexpr= ::
+     Return *all of the matches* ("global") in a given string.
+
+- =sub= ::
+     Replace *the first match* with another string (used to strip out stuff by
+     replacing the match with nothing).
+
+- =gsub= ::
+     Replace *all of the matches* with another string.
+
+- =regexec= ::
+     Give the indices (list) for parenthesized sub-expressions.
+
+     If I want to see what the submatch is:
+
+     #+begin_src R
+     r <- regexpr("... (.*) ...", string) # find all the date fields
+     m <- regmatches(string, r) # parse out
+     dates <- sapply(m, function (x) x[2]) # extract the 2nd element of each list object
+     dates <- as.Date(dates, "%B %d, %Y") # convert to date
+     hist(dates, "month", freq = TRUE) # aggregate the dates by month and give an histogram
+     #+end_src
+
 * 8. Probability
 
 * 9. General statistics
 
 ** Summarizing your data
+
+- =range()= ::
+     Give the min and the max (vector of length 2) of the observations (vector
+     of numbers).
 
 - =summary()= ::
      Produce a summary of the object.
@@ -534,3 +973,6 @@ apply(x, 1, quantile, probs = c(0.25, 0.75)) # no default value for `probs'
      #+begin_src R
      str(.Platform)                     # what is the operating system
      #+end_src
+
+- =attributes()= ::
+     Access (set or modify) the (list of) attributes of an object.
