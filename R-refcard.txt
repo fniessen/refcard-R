@@ -1,7 +1,7 @@
 #+TITLE:     R quick reference card
 #+AUTHOR:    Fabrice Niessen
 #+EMAIL:     (concat "fniessen" at-sign "pirilampo.org")
-#+Time-stamp: <2013-10-17 Thu 10:50>
+#+Time-stamp: <2013-10-18 Fri 17:46>
 #+DESCRIPTION:
 #+KEYWORDS:
 #+LANGUAGE:  american
@@ -117,6 +117,11 @@ myfunction <- function(x) {
 
 - =library(package)= ::
      Load PACKAGE.
+
+     #+begin_src R
+     library(datasets)
+     airquality
+     #+end_src
 
 - =data(dataset)= ::
      Load DATASET.
@@ -950,6 +955,276 @@ These functions can take vector arguments.
      frequency of how many levels there are.
 
 * 10. Graphics
+  :PROPERTIES:
+  :eval:     yes
+  :END:
+
+2 systems:
+
+- =base= ::
+     Graphics are constructed piecemeal by *different function calls*;
+     you can add things one by one:
+     - annotate (some of the points in) the plot,
+     - put some points on the canvas,
+     - draw a title,
+     - add some axis labels,
+     - add some colors,
+     - add a legend.
+
+- =lattice= ::
+     Graphics are constructed via a single function call: all options have to
+     be specified at once (advantage: that allows R to calculate the necessary
+     spacings, margins and font sizes).
+
+Behavior:
+
+- Base graphics functions have a "side effect": they plot data directly to
+  the graphics device.
+
+- Lattice graphics functions return an object of the class =trellis= (object
+  designed for plotting).
+
+  When you call Lattice functions, even if you don't assign it to a "plot
+  object", the result will be *auto-printed* (generate the plot *on the
+  graphics device*), so it will look like Lattice functions have a "side
+  effect"
+
+You cannot use functions from the base plotting system in a Lattice plot.
+
+** Base graphics
+
+*** Make a plot
+
+- =plot= ::
+     Create a *scatter plot* (or another type of plot, depending on the class of
+     the object being plotted).
+
+- =hist= ::
+     Make an *histogram* showing the distribution of the numeric vector =x=.
+
+- =boxplot= ::
+     Create a box plot of the =y= variable by the grouping variable =x= (usually a
+     =factor=).
+
+**** Create a scatter plot
+
+- =plot(x)= ::
+     Plot the (numeric) data against the index (=1:N=).
+
+- =plot(x, y)= ::
+     Create a scatter plot of =x= and =y=.
+
+     #+begin_src R :results graphics :file base-scatterplot.png
+     data(iris)
+     plot(iris$Petal.Length, iris$Petal.Width,
+          main="Petals: Length vs Width",
+          xlab="Length",
+          ylab="Width")
+     #+end_src
+
+     #+results:
+     [[file:base-scatterplot.png]]
+
+- =plot(x, y, type = "n")= ::
+     Set up the plot window, but don't actually plot the data in there.
+
+- =plot(dfrm)= ::
+     Create multiple scatter plots if your data frame contains more than
+     2 columns.
+
+     #+begin_src R :results graphics :file base-multi-scatterplots.png
+     data(iris)
+     plot(iris[,1:4], main="Multiple scatter plots")
+     #+end_src
+
+     #+results:
+     [[file:base-multi-scatterplots.png]]
+
+**** =hist=
+
+Generic function: you can call it on different types of data. When you call
+=hist= on a =Date= object, it requires an interval ("day" / "week" / "month" /
+"year") in order to break it up into sequences.
+
+**** =boxplot=
+
+*** Add to an existing plot
+
+- =lines= ::
+     Add lines (connect all the dots).
+
+     #+begin_src R
+     lines(x, y)                        # all lines
+     #+end_src
+
+     #+results:
+
+- =abline= ::
+     Add a straight line.
+
+     Plot the *regression line* of a scatter plot.
+
+     #+begin_src R :results graphics :file base-abline.png
+     data(iris)
+     attach(iris)
+     plot(Petal.Length, Petal.Width)
+     fit <- lm(Petal.Width ~ Petal.Length)
+     abline(fit, lwd=3, col="blue")
+     #+end_src
+
+     #+results:
+     [[file:base-abline.png]]
+
+- =points= ::
+     Add points (=col= for boundary color, =bg= for fill color, =pch= for plotting
+     character).
+
+     Plot points *in groups separately*.
+
+     #+begin_src R :results graphics :file base-points-distinguished.png
+     data(iris)
+     attach(iris)
+     plot(Petal.Length, Petal.Width, type="n")
+     points(Petal.Length[Species == "setosa"], Petal.Width[Species == "setosa"], col = "red")
+     points(Petal.Length[Species == "versicolor"], Petal.Width[Species == "versicolor"], col = "green", pch = 20)
+     points(Petal.Length[Species == "virginica"], Petal.Width[Species == "virginica"], col = "blue", pch = 19)
+     #+end_src
+
+     #+results:
+     [[file:base-points-distinguished.png]]
+
+     #+begin_src R :results graphics :file base-points-distinguished-col.png
+     data(iris)
+     plot(iris$Petal.Length, iris$Petal.Width, col=as.integer(iris$Species))
+     #+end_src
+
+     #+results:
+     [[file:base-points-distinguished-col.png]]
+
+- =text= ::
+     Add text labels.
+
+     #+begin_src R
+     text(-2, 2, "Label")
+     #+end_src
+
+     #+results:
+
+- =title= ::
+     Add a title (or axis labels, subtitle, ...).
+
+     #+begin_src R
+     title("plot")
+     plot(x, y, xlab = "Weight", ylab = "Height", main = "Scatterplot")
+     #+end_src
+
+     #+results:
+
+- =mtext= ::
+     Add text to the margins.
+
+- =axis= ::
+     *Annotate the axis* (tick marks, labels).
+
+- =legend= ::
+     Add a legend.
+
+     #+begin_src R
+     legend("topleft", legend = "Data", pch = 1)
+     #+end_src
+
+     #+results:
+
+*** Changing graphical parameters
+
+- =par()= ::
+     control *all the graphing parameters* that you can specify (/defaults/ for all
+     plots in a session, which can be overridden as arguments to specific
+     plotting functions).
+
+     + =pch= ::
+          Plotting character (default: open circle symbol).
+
+     + =lty= ::
+          Line type (default: =solid= line).
+
+     + =lwd= ::
+          Line width.
+
+     + =col= ::
+          Plotting color.
+
+     + =las= ::
+          Orientation of the axis labels on the plot (=las = 2= will set the tick
+          labels to be perpendicular to the axis).
+
+     + =bg= ::
+          Background color (default: =transparent=).
+
+     + =mar= ::
+          Margin size (vector of 4 numbers, 1 per side).
+
+          #+begin_src R
+          par(mar = c(2,2,1,1))
+          #+end_src
+
+          #+results:
+          | 5.1 |
+          | 4.1 |
+          | 4.1 |
+          | 2.1 |
+
+     + =oma= ::
+          Outer margin size (relevant if you have more than one plot per
+          canvas).
+
+     + =mfrow= ::
+          Number of *plots per row and per column* on the canvas (filled
+          row-wise).
+
+          #+begin_src R
+          par(mfrow = c(2,1))           # 2 rows and 1 column
+          plot(x, y)
+          plot(x, z)
+          #+end_src
+
+          #+results:
+
+     + =mfcol= ::
+          Number of plots per row and per column on the canvas (filled
+          column-wise).
+
+     Look at the defaults:
+
+     #+begin_src R
+     par("lty")
+     #+end_src
+
+     #+results:
+     : solid
+
+- =?Devices= ::
+     List graphical devices.
+
+     + =pdf= ::
+          Vector format (very, very large for a graphic with *2 million points*
+          on it: specify information for every single object on the plot).
+
+     + =png= ::
+          Bitmapped format (specify information for pixels), losless
+          *compression*, but *does not resize well*.
+
+     + =jpeg= ::
+          Lossy compression.
+
+     + =bitmap= ::
+          If you're running R in a batch mode (you can't use the =png= and =jpeg=
+          functions).
+
+- Copy the plot to another device
+  + =dev.copy2pdf= :: copy a plot to PDF
+
+** Lattice graphics
 
 * 11. Linear regression and ANOVA
 
