@@ -1,7 +1,7 @@
 #+TITLE:     R quick reference card
 #+AUTHOR:    Fabrice Niessen
 #+EMAIL:     (concat "fniessen" at-sign "pirilampo.org")
-#+Time-stamp: <2013-10-18 Fri 17:46>
+#+Time-stamp: <2013-10-22 Tue 14:46>
 #+DESCRIPTION:
 #+KEYWORDS:
 #+LANGUAGE:  american
@@ -15,7 +15,7 @@
 Welcome to R reference card. It contains the reference documentation that
 describes how to perform *data analysis* using R.
 
-* Overview of R
+* 0. Overview of R
 
 R system that you download from [[http://cran.r-project.org/][CRAN]]:
 - =base= package
@@ -23,10 +23,12 @@ R system that you download from [[http://cran.r-project.org/][CRAN]]:
 - Recommended packages (=lattice=, ...)
 - 4,000 other packages
 
-Some R manuals:
+[[http://cran.r-project.org/doc/contrib/Short-refcard.pdf][R Reference Card]]
+
+Some [[http://cran.r-project.org/manuals.html][R manuals]]:
 - [[http://cran.r-project.org/doc/manuals/R-intro.html][An introduction to R]]
-- [[http://cran.r-project.org/doc/manuals/R-exts.html][Writing R extensions]]
 - [[http://cran.r-project.org/doc/manuals/r-release/R-data.html][R data import/export]]
+- [[http://cran.r-project.org/doc/manuals/R-exts.html][Writing R extensions]]
 
 * 1. Getting started and getting help
 
@@ -127,9 +129,9 @@ myfunction <- function(x) {
      Load DATASET.
 
 - =source("file.R")= ::
-     Load R code file.
+     Evaluate R code file.
 
-** 13. Running a batch script
+** Running a batch script
 
 You may write a script containing R code:
 
@@ -179,7 +181,7 @@ denominator" class).
 
 ** Matrices
 
-*Matrices* are vectors with multiple dimensions (=dimension= attribute).
+*Matrices* are vectors with *2 dimensions* (see =dimension= attribute).
 
 They are constructed /column-wise/ (vector inserted by column).
 
@@ -208,7 +210,7 @@ They can be created by /column-binding/ or /row-binding/.
 
 ** Arrays
 
-Arrays are n-dimensional matrices.
+Arrays are *n-dimensional* matrices.
 
 - =array()= ::
      Create an array.
@@ -232,6 +234,9 @@ Unordered or ordered.
 
 - =factor(character vector)= ::
      Create a factor variable (with levels by alphabetical order).
+
+- =levels(x)= ::
+     Return the value of the levels.
 
 ** Data frames
 
@@ -268,7 +273,7 @@ x * y                                   # element-wise multiplication
 x %*% y                                 # true matrix multiplication
 #+end_src
 
-** 7. Selecting list elements or data frame columns by position (subsetting)
+** Selecting list elements or data frame columns by position (subsetting)
 
 - =[[= ::
      Extract a *single element* of a list (or a single column of a data frame).
@@ -304,7 +309,7 @@ x %*% y                                 # true matrix multiplication
      df[,-1]
      #+end_src
 
-** 8. Selecting list elements or data frame columns by name (subsetting)
+** Selecting list elements or data frame columns by name (subsetting)
 
 - =$= ::
      Extract a single element of a list (or a single column of a data frame)
@@ -339,11 +344,11 @@ By default,
 
 This can be turned off by setting =drop = FALSE= (don't drop the dimension).
 
-** 13. Removing list elements using a condition
+** Removing list elements using a condition
 
-Subsetting by using 2 types of index:
-- a *numeric* index (=x[2]=, =x[1:4]=)
-- a *logical* index (=x[x > "a"]=)
+*Subsetting* by using 2 types of index:
+- a numeric vector (=x[2]=, =x[1:4]=)
+- a *logical vector* (=x[x > "a"]=)
 
 Create a logical vector:
 
@@ -366,16 +371,27 @@ bothnonmissing <- complete.cases(x, y)  # logical vector
 x[bothnonmissing]
 #+end_src
 
-Take all the rows of a data frame where *all the values* are not missing:
+Take all the rows of a data frame where *all the values are not missing*:
 
 #+begin_src R
 nonmissing <- complete.cases(x)
 x[nonmissing, ]
 #+end_src
 
-** 27. Removing rows that contain NAs from a data frame
+To *drop columns by name* in a data frame, you can use direct indexing (with
+booleans vectors) and then, simply reassign data:
 
-** 27b. Removing columns that contain NAs from a data frame
+#+begin_src R
+tokeep <- !names(x) %in% c("remove1", "remove2")
+x <- x[,tokeep]                         # or...
+x <- x[,tokeep, drop = FALSE]           # you will need this option to avoid
+                                        # the conversion to an atomic vector if
+                                        # there is only one column left
+#+end_src
+
+** Removing rows that contain NAs from a data frame
+
+** Removing columns that contain NAs from a data frame
 
 Get rid of any column that has one or more NAs.
 
@@ -383,7 +399,7 @@ Get rid of any column that has one or more NAs.
 df <- df[,colSums(is.na(df))==0]
 #+end_src
 
-** 32. Converting
+** Converting
 
 - =as.*()= ::
      Explicitly coerce from one class to another.
@@ -396,6 +412,13 @@ df <- df[,colSums(is.na(df))==0]
 
 - =as.ts()= ::
      Convert to a time series object.
+
+Convert at once all the string columns to factors:
+
+#+begin_src R
+ind <- sapply(x, is.character)
+x[ind] <- lapply(x[ind], factor)
+#+end_src
 
 * Control structures
 
@@ -554,7 +577,7 @@ f <- function(<arguments>) {
   + Search the namespaces of each of the packages on the search list
 
     #+begin_src R
-    search() # find the search list
+    search()                            # find the search list
     #+end_src
 
   + Search the =base= package (always the last element)
@@ -589,11 +612,12 @@ f <- function(<arguments>) {
   another function!
 
   #+begin_src R
-  make.power <- function(n) { # "constructor" function
+  make.power <- function(n) {           # "constructor" function
       pow <- function(x) {
-          x^n # n is a free variable (not defined inside pow)
+          x^n                           # n is a free variable (not defined
+                                        # inside pow)
       }
-      pow # return function as return value
+      pow                               # return function as return value
   }
   #+end_src
 
@@ -607,7 +631,7 @@ f <- function(<arguments>) {
 - Functions:
   + environment(f) ::
   + parent.env(environment) :: next thing down on the search list
-  + ls(environment) :: list all the variabls in the environment
+  + ls(environment) :: list all the variables in the environment
   + get(object, environment) :: get the value of an object inside an
        environment
 
@@ -639,31 +663,29 @@ f <- function(<arguments>) {
 
 #+begin_src R
 library(RODBC)
-# con <- odbcConnect("DSN", uid="username")
-con <- odbcDriverConnect('driver={SQL Server};server=hostname;database=dbname;uid=username;pwd=password')
-sql <- 'SELECT * FROM table'
+## con <- odbcConnect("DSN", uid="username")
+## con <- odbcDriverConnect("driver={SQL Server};server=hostname;database=dbname;trusted_connection=true")
+con <- odbcDriverConnect("driver={SQL Server};server=hostname;database=dbname;uid=username;pwd=password")
+sql <- "SELECT * FROM table"
 rows <- sqlQuery(con, sql)
 print(head(rows))
+odbcClose(con)
 #+end_src
 
 * 6. Data transformations
 
-** Splitting a vector into groups
+** Applying a function to each list element
 
-- =split(dataframe, dataframe$column)= ::
+Alternative (to =for= *loops*) to apply a function (or summary statistics).
 
-** The =apply= functions
+*** =lapply=
 
-Alternative (to =for= *loops*) to apply a function (or summary statistics)
+*Loop over a list* and apply a *function* on each element. /Always/ returns a *list*
+back (that is, not a simplified result).
 
-** =lapply=
-
-- Loop over a single *list* and apply a *function* on each element
-  + (coerced) list =X=
-  + function =FUN=
-  + other arguments =...=
-
-- Always returns a *list* back (that is, not a simplified result)
+- (coerced) list =X=
+- function =FUN=
+- other arguments =...=
 
 #+begin_src R
 x <- list(a = 1:5, b = rnorm(10))
@@ -671,73 +693,70 @@ lapply(x, mean)
 #+end_src
 
 #+begin_src R
-lapply(1:4, runif, min = 0, max = 10) # arguments passed through the ...
+lapply(1:4, runif, min = 0, max = 10)   # arguments passed through the `...'
 #+end_src
 
-- Extract the first column of each matrix of a list
+Extract the first column of each matrix of a list:
 
-  #+begin_src R
-  lapply(x, function(elt) elt[,1])
-  #+end_src
+#+begin_src R
+lapply(x, function(elt) elt[,1])
+#+end_src
 
-** split
+*** =sapply=
 
-- Auxiliary function, useful in conjunction with functions like =lapply= or
-  =sapply=
+Same as =lapply=, but tries to "*simplify*" the result in a much more compact
+format (put all the elements into a *vector* or a *matrix* if that is possible,
+instead of returning a list).
 
-- Takes a vector, and *split* it into subpieces (the number of groups identified
-  by the levels of a factor variable)
+#+begin_src R
+sapply(s, function(x) colMeans(x[, c("Ozone", "Solar.R", "Wind")]))
+#+end_src
 
-- Always return a *list* back
+Pass =na.rm= argument to =ColMeans= to remove the missing values before calculating
+the mean.
 
-  + drop = TRUE :: Don't keep the empty levels of the factor
+#+begin_src R
+sapply(s, function(x) colMeans(x[, c("Ozone", "Solar.R", "Wind")], na.rm = TRUE))
+#+end_src
 
-- Used in conjunction with functions like =lapply= or =sapply= to apply a
-  function to those individual groups
+** Splitting a vector into groups
 
-  #+begin_src R
-  lapply(split(x, f), mean)
-  #+end_src
+- =split(dataframe, dataframe$column)= ::
+     Take a vector, and *split* it into subpieces (the number of groups
+     identified by the levels of a *factor* variable). Always return a *list* (of
+     lists?) back.
 
-- Like =tapply=, but without applying the summary statistics
+     + =drop = TRUE= ::
+          Don't keep the empty levels of the factor.
 
-- Splitting a data frame (or other kinds of lists), and apply an /anonymous
-  function/
+Auxiliary function, used in conjunction with functions like =lapply= or =sapply= to
+apply a function to those individual groups.
 
-  #+begin_src R
-  s <- split(airquality, airquality$Month) # split according to month
-  lapply(s, function(x) colMeans(x[, c("Ozone", "Solar.R", "Wind")])
-  #+end_src
+#+begin_src R
+lapply(split(x, f), mean)
+#+end_src
 
-** =sapply=
+Like =tapply=, but without applying the summary statistics.
 
-- Same as lapply, but tries to *simplify* the result in a much more compact
-  format (put all the elements into a *vector* or a *matrix*, instead of returning
-  a list)
+Splitting a data frame (or other kinds of lists), and apply an /anonymous
+function/:
 
-  #+begin_src R
-  sapply(s, function(x) colMeans(x[, c("Ozone", "Solar.R", "Wind")]))
-  #+end_src
+#+begin_src R
+s <- split(airquality, airquality$Month) # split according to month
+lapply(s, function(x) colMeans(x[, c("Ozone", "Solar.R", "Wind")])
+#+end_src
 
-- Pass =na.rm= argument to =ColMeans= to remove the missing values before
-  calculating the mean
+** Applying a function to every row/column
 
-  #+begin_src R
-  sapply(s, function(x) colMeans(x[, c("Ozone", "Solar.R", "Wind")],
-                                 na.rm = TRUE))
-  #+end_src
+- =apply= ::
 
-** =apply=
-
-- Apply a (anonymous) function over the *margins* of an array
-  + Very useful if you wanna take *summaries* of matrices or higher-dimensional
-    arrays
+- Apply a function over the *margins* of an array
   + Often used to apply a function to the rows or columns of a matrix
-  + Can be used with general arrays (such as array of matrices)
+  + Very useful if you wanna take *summaries* of matrices or higher-dimensional
+    arrays (such as array of matrices)
 
 - apply(X, MARGIN, FUN, ...)
-  + X array (= vector which has dimensions attached to it; matrix =
-    2-dimensional array)
+  + X array (= vector which has dimensions attached to it)
   + MARGIN is an integer vector which indicates which margins should be
     "retained"
   + FUN you want to apply to each of the margins
@@ -765,9 +784,11 @@ x <- matrix(rnorm(200), 20, 10)
 apply(x, 1, quantile, probs = c(0.25, 0.75)) # no default value for `probs'
 #+end_src
 
-** tapply(X, INDEX, FUN)
+** Applying a function to groups of data
 
-- Short for "table apply"
+- =tapply(X, INDEX, FUN)= ::
+
+- Short for "*table apply*"
 
 - Apply a *function* over *subsets* of a vector:
   + Splits up a vector into little groups (such as men and women, indicated by
@@ -777,16 +798,19 @@ apply(x, 1, quantile, probs = c(0.25, 0.75)) # no default value for `probs'
 
 - Function may be anonymous
 
-- Simplify = FALSE to get back a list
+- =Simplify = FALSE= to get back a list
 
   #+begin_src R
-  tapply(x, f, mean, simplify = FALSE)   =   lapply(split(x, f), mean)
+  tapply(x, f, mean, simplify = FALSE)  # = lapply(split(x, f), mean)
   #+end_src
 
-- interaction(f1, f2) :: combines all the levels of the first factor with all
-     the levels of the second factor
+- =interaction(f1, f2)= ::
+     Combines all the levels of the first factor with all the levels of the
+     second factor.
 
-** =mapply=
+** Applying a function to parallel vectors or lists
+
+- =mapply= ::
 
 - mapply is a multivariate version of =lapply=: applies a function in parallel
   over a set of arguments
@@ -826,7 +850,7 @@ apply(x, 1, quantile, probs = c(0.25, 0.75)) # no default value for `probs'
      *Concatenate* a set of *strings together* to create one string or a vector of
      strings.
 
-** 4b. Regular expressions
+** Regular expressions
 
 For the moment, we assume pattern matching on *ASCII strings*...
 
@@ -1108,8 +1132,6 @@ Generic function: you can call it on different types of data. When you call
      text(-2, 2, "Label")
      #+end_src
 
-     #+results:
-
 - =title= ::
      Add a title (or axis labels, subtitle, ...).
 
@@ -1117,8 +1139,6 @@ Generic function: you can call it on different types of data. When you call
      title("plot")
      plot(x, y, xlab = "Weight", ylab = "Height", main = "Scatterplot")
      #+end_src
-
-     #+results:
 
 - =mtext= ::
      Add text to the margins.
@@ -1132,8 +1152,6 @@ Generic function: you can call it on different types of data. When you call
      #+begin_src R
      legend("topleft", legend = "Data", pch = 1)
      #+end_src
-
-     #+results:
 
 *** Changing graphical parameters
 
@@ -1168,12 +1186,6 @@ Generic function: you can call it on different types of data. When you call
           par(mar = c(2,2,1,1))
           #+end_src
 
-          #+results:
-          | 5.1 |
-          | 4.1 |
-          | 4.1 |
-          | 2.1 |
-
      + =oma= ::
           Outer margin size (relevant if you have more than one plot per
           canvas).
@@ -1188,8 +1200,6 @@ Generic function: you can call it on different types of data. When you call
           plot(x, z)
           #+end_src
 
-          #+results:
-
      + =mfcol= ::
           Number of plots per row and per column on the canvas (filled
           column-wise).
@@ -1199,9 +1209,6 @@ Generic function: you can call it on different types of data. When you call
      #+begin_src R
      par("lty")
      #+end_src
-
-     #+results:
-     : solid
 
 - =?Devices= ::
      List graphical devices.
@@ -1226,6 +1233,12 @@ Generic function: you can call it on different types of data. When you call
 
 ** Lattice graphics
 
+** ggplot2
+
+See post of Antoine Lizée in
+http://stackoverflow.com/questions/5234117/how-to-drop-columns-by-name-in-a-data-frame
+for an excellent performance reporting.
+
 * 11. Linear regression and ANOVA
 
 * 12. Useful tricks
@@ -1239,11 +1252,11 @@ Generic function: you can call it on different types of data. When you call
      Look at the last 6 rows.
 
 - =str()= ::
-     /Compactly/ display the internal *structure* of an object.
+     /Compactly/ display the internal *structure* (*classes*, etc.) of an object.
 
      Alternative to =summary()=.
 
-     When applied to functions, show the arguments.
+     When applied to functions, show the *arguments*.
 
      #+begin_src R
      str(.Platform)                     # what is the operating system

@@ -7,7 +7,7 @@
   <meta name="generator" content=
   "HTML Tidy for Cygwin (vers 1st September 2004), see www.w3.org" />
 
-  <title>R quick reference card</title><!-- 2013-10-18 Fri 17:47 -->
+  <title>R quick reference card</title><!-- 2013-10-22 Tue 14:45 -->
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="generator" content="Org-mode" />
   <meta name="author" content="Fabrice Niessen" />
@@ -34,7 +34,7 @@ type="text/javascript">
         <ul>
           <li><a href="#sec-1">1. R reference card</a></li>
 
-          <li><a href="#sec-2">2. Overview of R</a></li>
+          <li><a href="#sec-2">2. 0. Overview of R</a></li>
 
           <li><a href="#sec-3">3. 1. Getting started and getting help</a></li>
 
@@ -64,7 +64,7 @@ type="text/javascript">
             <a href="#sec-5">5. 3. Navigating the software</a>
 
             <ul>
-              <li><a href="#sec-5-1">5.1. 13. Running a batch script</a></li>
+              <li><a href="#sec-5-1">5.1. Running a batch script</a></li>
             </ul>
           </li>
 
@@ -87,25 +87,25 @@ type="text/javascript">
               <li><a href="#sec-6-7">6.7. Vectorized operations (recycling
               rule)</a></li>
 
-              <li><a href="#sec-6-8">6.8. 7. Selecting list elements or data
-              frame columns by position (subsetting)</a></li>
+              <li><a href="#sec-6-8">6.8. Selecting list elements or data frame
+              columns by position (subsetting)</a></li>
 
-              <li><a href="#sec-6-9">6.9. 8. Selecting list elements or data
-              frame columns by name (subsetting)</a></li>
+              <li><a href="#sec-6-9">6.9. Selecting list elements or data frame
+              columns by name (subsetting)</a></li>
 
               <li><a href="#sec-6-10">6.10. Selecting data frame columns by
               position (subsetting)</a></li>
 
-              <li><a href="#sec-6-11">6.11. 13. Removing list elements using a
+              <li><a href="#sec-6-11">6.11. Removing list elements using a
               condition</a></li>
 
-              <li><a href="#sec-6-12">6.12. 27. Removing rows that contain NAs
+              <li><a href="#sec-6-12">6.12. Removing rows that contain NAs from
+              a data frame</a></li>
+
+              <li><a href="#sec-6-13">6.13. Removing columns that contain NAs
               from a data frame</a></li>
 
-              <li><a href="#sec-6-13">6.13. 27b. Removing columns that contain
-              NAs from a data frame</a></li>
-
-              <li><a href="#sec-6-14">6.14. 32. Converting</a></li>
+              <li><a href="#sec-6-14">6.14. Converting</a></li>
             </ul>
           </li>
 
@@ -145,23 +145,30 @@ type="text/javascript">
             <a href="#sec-10">10. 6. Data transformations</a>
 
             <ul>
-              <li><a href="#sec-10-1">10.1. Splitting a vector into
+              <li>
+                <a href="#sec-10-1">10.1. Applying a function to each list
+                element</a>
+
+                <ul>
+                  <li><a href="#sec-10-1-1">10.1.1.
+                  <code>lapply</code></a></li>
+
+                  <li><a href="#sec-10-1-2">10.1.2.
+                  <code>sapply</code></a></li>
+                </ul>
+              </li>
+
+              <li><a href="#sec-10-2">10.2. Splitting a vector into
               groups</a></li>
 
-              <li><a href="#sec-10-2">10.2. The <code>apply</code>
-              functions</a></li>
+              <li><a href="#sec-10-3">10.3. Applying a function to every
+              row/column</a></li>
 
-              <li><a href="#sec-10-3">10.3. <code>lapply</code></a></li>
+              <li><a href="#sec-10-4">10.4. Applying a function to groups of
+              data</a></li>
 
-              <li><a href="#sec-10-4">10.4. split</a></li>
-
-              <li><a href="#sec-10-5">10.5. <code>sapply</code></a></li>
-
-              <li><a href="#sec-10-6">10.6. <code>apply</code></a></li>
-
-              <li><a href="#sec-10-7">10.7. tapply(X, INDEX, FUN)</a></li>
-
-              <li><a href="#sec-10-8">10.8. <code>mapply</code></a></li>
+              <li><a href="#sec-10-5">10.5. Applying a function to parallel
+              vectors or lists</a></li>
             </ul>
           </li>
 
@@ -174,7 +181,7 @@ type="text/javascript">
 
               <li><a href="#sec-11-2">11.2. Concatenating strings</a></li>
 
-              <li><a href="#sec-11-3">11.3. 4b. Regular expressions</a></li>
+              <li><a href="#sec-11-3">11.3. Regular expressions</a></li>
             </ul>
           </li>
 
@@ -209,6 +216,8 @@ type="text/javascript">
               </li>
 
               <li><a href="#sec-14-2">14.2. Lattice graphics</a></li>
+
+              <li><a href="#sec-14-3">14.3. ggplot2</a></li>
             </ul>
           </li>
 
@@ -236,7 +245,8 @@ type="text/javascript">
     </div>
 
     <div id="outline-container-sec-2" class="outline-2">
-      <h2 id="sec-2"><span class="section-number-2">2</span> Overview of R</h2>
+      <h2 id="sec-2"><span class="section-number-2">2</span> 0. Overview of
+      R</h2>
 
       <div class="outline-text-2" id="text-2">
         <p>R system that you download from <a href=
@@ -253,19 +263,23 @@ type="text/javascript">
           <li>4,000 other packages</li>
         </ul>
 
-        <p>Some R manuals:</p>
+        <p><a href="http://cran.r-project.org/doc/contrib/Short-refcard.pdf">R
+        Reference Card</a></p>
+
+        <p>Some <a href="http://cran.r-project.org/manuals.html">R
+        manuals</a>:</p>
 
         <ul class="org-ul">
           <li><a href="http://cran.r-project.org/doc/manuals/R-intro.html">An
           introduction to R</a></li>
 
           <li><a href=
-          "http://cran.r-project.org/doc/manuals/R-exts.html">Writing R
-          extensions</a></li>
-
-          <li><a href=
           "http://cran.r-project.org/doc/manuals/r-release/R-data.html">R data
           import/export</a></li>
+
+          <li><a href=
+          "http://cran.r-project.org/doc/manuals/R-exts.html">Writing R
+          extensions</a></li>
         </ul>
       </div>
     </div>
@@ -277,10 +291,10 @@ type="text/javascript">
       <div class="outline-text-2" id="text-3">
         <div class="org-src-container">
           <pre class="src src-R">
-?<span style="color: #0000FF;">function</span>
+?function
 ?dataset
 package ? lattice
-<span style="color: #6434A3;">library</span>(help = lattice)
+library(help = lattice)
 </pre>
         </div>
 
@@ -369,9 +383,7 @@ package ? lattice
 
               <div class="org-src-container">
                 <pre class="src src-R">
-rm(list=ls())                      <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">remove everything from the workspace</span>
+rm(list=ls())                      # remove everything from the workspace
 </pre>
               </div>
             </dd>
@@ -444,10 +456,8 @@ rm(list=ls())                      <span style=
         <div class="outline-text-3" id="text-4-8">
           <div class="org-src-container">
             <pre class="src src-R">
-<span style="color: #006699;">myfunction</span> <span style=
-"color: #6434A3;">&lt;-</span> <span style=
-"color: #0000FF;">function</span>(x) {
-    y <span style="color: #6434A3;">&lt;-</span> norm(100)
+myfunction &lt;- function(x) {
+    y &lt;- norm(100)
     mean(y)
 }
 </pre>
@@ -473,7 +483,7 @@ rm(list=ls())                      <span style=
 
             <div class="org-src-container">
               <pre class="src src-R">
-<span style="color: #6434A3;">library</span>(datasets)
+library(datasets)
 airquality
 </pre>
             </div>
@@ -485,13 +495,13 @@ airquality
 
           <dt><code>source("file.R")</code></dt>
 
-          <dd>Load R code file.</dd>
+          <dd>Evaluate R code file.</dd>
         </dl>
       </div>
 
       <div id="outline-container-sec-5-1" class="outline-3">
-        <h3 id="sec-5-1"><span class="section-number-3">5.1</span> 13. Running
-        a batch script</h3>
+        <h3 id="sec-5-1"><span class="section-number-3">5.1</span> Running a
+        batch script</h3>
 
         <div class="outline-text-3" id="text-5-1">
           <p>You may write a script containing R code:</p>
@@ -613,8 +623,8 @@ x &lt;- as.numeric(argv[1])
         Matrices</h3>
 
         <div class="outline-text-3" id="text-6-2">
-          <p><b>Matrices</b> are vectors with multiple dimensions
-          (<code>dimension</code> attribute).</p>
+          <p><b>Matrices</b> are vectors with <b>2 dimensions</b> (see
+          <code>dimension</code> attribute).</p>
 
           <p>They are constructed <i>column-wise</i> (vector inserted by
           column).</p>
@@ -624,8 +634,8 @@ x &lt;- as.numeric(argv[1])
 
           <div class="org-src-container">
             <pre class="src src-R">
-v <span style="color: #6434A3;">&lt;-</span> 1:10
-dim(v) <span style="color: #6434A3;">&lt;-</span> c(2,5)
+v &lt;- 1:10
+dim(v) &lt;- c(2,5)
 print(v)
 </pre>
           </div>
@@ -690,7 +700,7 @@ print(v)
         <h3 id="sec-6-3"><span class="section-number-3">6.3</span> Arrays</h3>
 
         <div class="outline-text-3" id="text-6-3">
-          <p>Arrays are n-dimensional matrices.</p>
+          <p>Arrays are <b>n-dimensional</b> matrices.</p>
 
           <dl class="org-dl">
             <dt><code>array()</code></dt>
@@ -734,6 +744,10 @@ print(v)
 
             <dd>Create a factor variable (with levels by alphabetical
             order).</dd>
+
+            <dt><code>levels(x)</code></dt>
+
+            <dd>Return the value of the levels.</dd>
           </dl>
         </div>
       </div>
@@ -777,9 +791,7 @@ print(v)
 
           <div class="org-src-container">
             <pre class="src src-R">
-x + y                                   <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">element-wise addition</span>
+x + y                                   # element-wise addition
 </pre>
           </div>
 
@@ -787,19 +799,15 @@ x + y                                   <span style=
 
           <div class="org-src-container">
             <pre class="src src-R">
-x * y                                   <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">element-wise multiplication</span>
-x %*% y                                 <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">true matrix multiplication</span>
+x * y                                   # element-wise multiplication
+x %*% y                                 # true matrix multiplication
 </pre>
           </div>
         </div>
       </div>
 
       <div id="outline-container-sec-6-8" class="outline-3">
-        <h3 id="sec-6-8"><span class="section-number-3">6.8</span> 7. Selecting
+        <h3 id="sec-6-8"><span class="section-number-3">6.8</span> Selecting
         list elements or data frame columns by position (subsetting)</h3>
 
         <div class="outline-text-3" id="text-6-8">
@@ -816,12 +824,8 @@ x %*% y                                 <span style=
 
               <div class="org-src-container">
                 <pre class="src src-R">
-x[[1]][[3]]                        <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">same as: x[[c(1,3)]]</span>
-                                   <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">third element of the first element</span>
+x[[1]][[3]]                        # same as: x[[c(1,3)]]
+                                   # third element of the first element
 </pre>
               </div>
 
@@ -829,10 +833,7 @@ x[[1]][[3]]                        <span style=
 
               <div class="org-src-container">
                 <pre class="src src-R">
-x[[<span style="color: #FF4700;">"a"</span>, exact = <span style=
-"color: #666666;">FALSE</span>]]            <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">instead of: x[["aardvark"]]</span>
+x[["a", exact = FALSE]]            # instead of: x[["aardvark"]]
 </pre>
               </div>
             </dd>
@@ -864,7 +865,7 @@ df[,-1]
       </div>
 
       <div id="outline-container-sec-6-9" class="outline-3">
-        <h3 id="sec-6-9"><span class="section-number-3">6.9</span> 8. Selecting
+        <h3 id="sec-6-9"><span class="section-number-3">6.9</span> Selecting
         list elements or data frame columns by name (subsetting)</h3>
 
         <div class="outline-text-3" id="text-6-9">
@@ -878,9 +879,7 @@ df[,-1]
 
               <div class="org-src-container">
                 <pre class="src src-R">
-x$bar                              <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">same as x[["bar"]]</span>
+x$bar                              # same as x[["bar"]]
 </pre>
               </div>
 
@@ -890,9 +889,7 @@ x$bar                              <span style=
 
               <div class="org-src-container">
                 <pre class="src src-R">
-x$a                                <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">instead of: x$aardvark</span>
+x$a                                # instead of: x$aardvark
 </pre>
               </div>
             </dd>
@@ -936,28 +933,24 @@ x$a                                <span style=
       </div>
 
       <div id="outline-container-sec-6-11" class="outline-3">
-        <h3 id="sec-6-11"><span class="section-number-3">6.11</span> 13.
-        Removing list elements using a condition</h3>
+        <h3 id="sec-6-11"><span class="section-number-3">6.11</span> Removing
+        list elements using a condition</h3>
 
         <div class="outline-text-3" id="text-6-11">
-          <p>Subsetting by using 2 types of index:</p>
+          <p><b>Subsetting</b> by using 2 types of index:</p>
 
           <ul class="org-ul">
-            <li>a <b>numeric</b> index (<code>x[2]</code>,
-            <code>x[1:4]</code>)</li>
+            <li>a numeric vector (<code>x[2]</code>, <code>x[1:4]</code>)</li>
 
-            <li>a <b>logical</b> index (<code>x[x &gt; "a"]</code>)</li>
+            <li>a <b>logical vector</b> (<code>x[x &gt; "a"]</code>)</li>
           </ul>
 
           <p>Create a logical vector:</p>
 
           <div class="org-src-container">
             <pre class="src src-R">
-u <span style="color: #6434A3;">&lt;-</span> x &gt; <span style=
-"color: #FF4700;">"a"</span>
-x[u]                                    <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">get all elements which are greater than "a"</span>
+u &lt;- x &gt; "a"
+x[u]                                    # get all elements which are greater than "a"
 </pre>
           </div>
 
@@ -965,10 +958,7 @@ x[u]                                    <span style=
 
           <div class="org-src-container">
             <pre class="src src-R">
-missing <span style=
-"color: #6434A3;">&lt;-</span> is.na(x)                     <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">logical vector</span>
+missing &lt;- is.na(x)                     # logical vector
 x[!missing]
 </pre>
           </div>
@@ -978,48 +968,58 @@ x[!missing]
 
           <div class="org-src-container">
             <pre class="src src-R">
-bothnonmissing <span style=
-"color: #6434A3;">&lt;-</span> complete.cases(x, y)  <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">logical vector</span>
+bothnonmissing &lt;- complete.cases(x, y)  # logical vector
 x[bothnonmissing]
 </pre>
           </div>
 
-          <p>Take all the rows of a data frame where <b>all the values</b> are
-          not missing:</p>
+          <p>Take all the rows of a data frame where <b>all the values are not
+          missing</b>:</p>
 
           <div class="org-src-container">
             <pre class="src src-R">
-nonmissing <span style="color: #6434A3;">&lt;-</span> complete.cases(x)
+nonmissing &lt;- complete.cases(x)
 x[nonmissing, ]
+</pre>
+          </div>
+
+          <p>To <b>drop columns by name</b> in a data frame, you can use direct
+          indexing (with booleans vectors) and then, simply reassign data:</p>
+
+          <div class="org-src-container">
+            <pre class="src src-R">
+tokeep &lt;- !names(x) %in% c("remove1", "remove2")
+x &lt;- x[,tokeep]                         # or...
+x &lt;- x[,tokeep, drop = FALSE]           # you will need this option to avoid
+                                        # the conversion to an atomic vector if
+                                        # there is only one column left
 </pre>
           </div>
         </div>
       </div>
 
       <div id="outline-container-sec-6-12" class="outline-3">
-        <h3 id="sec-6-12"><span class="section-number-3">6.12</span> 27.
-        Removing rows that contain NAs from a data frame</h3>
+        <h3 id="sec-6-12"><span class="section-number-3">6.12</span> Removing
+        rows that contain NAs from a data frame</h3>
       </div>
 
       <div id="outline-container-sec-6-13" class="outline-3">
-        <h3 id="sec-6-13"><span class="section-number-3">6.13</span> 27b.
-        Removing columns that contain NAs from a data frame</h3>
+        <h3 id="sec-6-13"><span class="section-number-3">6.13</span> Removing
+        columns that contain NAs from a data frame</h3>
 
         <div class="outline-text-3" id="text-6-13">
           <p>Get rid of any column that has one or more NAs.</p>
 
           <div class="org-src-container">
             <pre class="src src-R">
-df <span style="color: #6434A3;">&lt;-</span> df[,colSums(is.na(df))==0]
+df &lt;- df[,colSums(is.na(df))==0]
 </pre>
           </div>
         </div>
       </div>
 
       <div id="outline-container-sec-6-14" class="outline-3">
-        <h3 id="sec-6-14"><span class="section-number-3">6.14</span> 32.
+        <h3 id="sec-6-14"><span class="section-number-3">6.14</span>
         Converting</h3>
 
         <div class="outline-text-3" id="text-6-14">
@@ -1041,6 +1041,15 @@ df <span style="color: #6434A3;">&lt;-</span> df[,colSums(is.na(df))==0]
 
             <dd>Convert to a time series object.</dd>
           </dl>
+
+          <p>Convert at once all the string columns to factors:</p>
+
+          <div class="org-src-container">
+            <pre class="src src-R">
+ind &lt;- sapply(x, is.character)
+x[ind] &lt;- lapply(x[ind], factor)
+</pre>
+          </div>
         </div>
       </div>
     </div>
@@ -1062,12 +1071,10 @@ df <span style="color: #6434A3;">&lt;-</span> df[,colSums(is.na(df))==0]
         <div class="outline-text-3" id="text-7-1">
           <div class="org-src-container">
             <pre class="src src-R">
-<span style="color: #0000FF;">if</span> (&lt;condition&gt;) {
-    <span style="color: #008200;">## </span><span style=
-"color: #008200; font-style: italic;">do something</span>
-} <span style="color: #0000FF;">else</span> {
-    <span style="color: #008200;">## </span><span style=
-"color: #008200; font-style: italic;">do something else</span>
+if (&lt;condition&gt;) {
+    ## do something
+} else {
+    ## do something else
 }
 </pre>
           </div>
@@ -1077,12 +1084,9 @@ df <span style="color: #6434A3;">&lt;-</span> df[,colSums(is.na(df))==0]
 
           <div class="org-src-container">
             <pre class="src src-R">
-y <span style="color: #6434A3;">&lt;-</span> <span style=
-"color: #0000FF;">if</span>(x &gt; 3) {                        <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">x must be a scalar here, not a vector</span>
+y &lt;- if(x &gt; 3) {                        # x must be a scalar here, not a vector
     10
-} <span style="color: #0000FF;">else</span> {
+} else {
     0
 }
 </pre>
@@ -1096,20 +1100,12 @@ y <span style="color: #6434A3;">&lt;-</span> <span style=
         <div class="outline-text-3" id="text-7-2">
           <div class="org-src-container">
             <pre class="src src-R">
-<span style="color: #0000FF;">for</span> (i <span style=
-"color: #0000FF;">in</span> 1:10) {                       <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">successive values from a sequence or vector</span>
-    <span style="color: #008200;">## </span><span style=
-"color: #008200; font-style: italic;">do something</span>
+for (i in 1:10) {                       # successive values from a sequence or vector
+    ## do something
 }
 
-<span style="color: #0000FF;">for</span> (letter <span style=
-"color: #0000FF;">in</span> x) {                     <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">take elements from the vector</span>
-    <span style="color: #008200;">## </span><span style=
-"color: #008200; font-style: italic;">do something</span>
+for (letter in x) {                     # take elements from the vector
+    ## do something
 }
 </pre>
           </div>
@@ -1136,10 +1132,8 @@ y <span style="color: #6434A3;">&lt;-</span> <span style=
 
           <div class="org-src-container">
             <pre class="src src-R">
-<span style=
-"color: #0000FF;">while</span> (z &gt;= 3 &amp;&amp; z &lt;= 10) {             <span style="color: #008200;"># </span><span style="color: #008200; font-style: italic;">conditions are always evaluated from left to right</span>
-    <span style="color: #008200;">## </span><span style=
-"color: #008200; font-style: italic;">do something</span>
+while (z &gt;= 3 &amp;&amp; z &lt;= 10) {             # conditions are always evaluated from left to right
+    ## do something
 }
 </pre>
           </div>
@@ -1148,14 +1142,10 @@ y <span style="color: #6434A3;">&lt;-</span> <span style=
 
           <div class="org-src-container">
             <pre class="src src-R">
-<span style="color: #0000FF;">repeat</span> {
-    <span style="color: #008200;">## </span><span style=
-"color: #008200; font-style: italic;">do something</span>
-    <span style="color: #0000FF;">if</span>(&lt;condition&gt;) {
-        <span style=
-"color: #0000FF;">break</span>                           <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">only way to exit a repeat loop</span>
+repeat {
+    ## do something
+    if(&lt;condition&gt;) {
+        break                           # only way to exit a repeat loop
     }
 }
 </pre>
@@ -1192,11 +1182,8 @@ y <span style="color: #6434A3;">&lt;-</span> <span style=
 
         <div class="org-src-container">
           <pre class="src src-R">
-<span style="color: #006699;">f</span> <span style=
-"color: #6434A3;">&lt;-</span> <span style=
-"color: #0000FF;">function</span>(&lt;arguments&gt;) {
-    <span style="color: #008200;">## </span><span style=
-"color: #008200; font-style: italic;">do something</span>
+f &lt;- function(&lt;arguments&gt;) {
+    ## do something
 }
 </pre>
         </div>
@@ -1317,8 +1304,7 @@ y <span style="color: #6434A3;">&lt;-</span> <span style=
 
                   <div class="org-src-container">
                     <pre class="src src-R">
-search() <span style="color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">find the search list</span>
+search()                            # find the search list
 </pre>
                   </div>
                 </li>
@@ -1368,19 +1354,12 @@ search() <span style="color: #008200;"># </span><span style=
 
               <div class="org-src-container">
                 <pre class="src src-R">
-<span style="color: #006699;">make.power</span> <span style=
-"color: #6434A3;">&lt;-</span> <span style=
-"color: #0000FF;">function</span>(n) { <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">"constructor" function</span>
-    <span style="color: #006699;">pow</span> <span style=
-"color: #6434A3;">&lt;-</span> <span style=
-"color: #0000FF;">function</span>(x) {
-        x^n <span style="color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">n is a free variable (not defined inside pow)</span>
+make.power &lt;- function(n) {           # "constructor" function
+    pow &lt;- function(x) {
+        x^n                           # n is a free variable (not defined
+                                      # inside pow)
     }
-    pow <span style="color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">return function as return value</span>
+    pow                               # return function as return value
 }
 </pre>
               </div>
@@ -1389,8 +1368,8 @@ search() <span style="color: #008200;"># </span><span style=
 
               <div class="org-src-container">
                 <pre class="src src-R">
-cube <span style="color: #6434A3;">&lt;-</span> make.power(3)
-square <span style="color: #6434A3;">&lt;-</span> make.power(2)
+cube &lt;- make.power(3)
+square &lt;- make.power(2)
 </pre>
               </div>
             </li>
@@ -1406,7 +1385,7 @@ square <span style="color: #6434A3;">&lt;-</span> make.power(2)
 
                 <dt>ls(environment)</dt>
 
-                <dd>list all the variabls in the environment</dd>
+                <dd>list all the variables in the environment</dd>
 
                 <dt>get(object, environment)</dt>
 
@@ -1489,15 +1468,14 @@ square <span style="color: #6434A3;">&lt;-</span> make.power(2)
         <div class="outline-text-3" id="text-9-3">
           <div class="org-src-container">
             <pre class="src src-R">
-<span style="color: #6434A3;">library</span>(RODBC)
-<span style="color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">con &lt;- odbcConnect("DSN", uid="username")</span>
-con <span style="color: #6434A3;">&lt;-</span> odbcDriverConnect(<span style=
-"color: #FF4700;">'driver={SQL Server};server=hostname;database=dbname;uid=username;pwd=password'</span>)
-sql <span style="color: #6434A3;">&lt;-</span> <span style=
-"color: #FF4700;">'SELECT * FROM table'</span>
-rows <span style="color: #6434A3;">&lt;-</span> sqlQuery(con, sql)
+library(RODBC)
+## con &lt;- odbcConnect("DSN", uid="username")
+## con &lt;- odbcDriverConnect("driver={SQL Server};server=hostname;database=dbname;trusted_connection=true")
+con &lt;- odbcDriverConnect("driver={SQL Server};server=hostname;database=dbname;uid=username;pwd=password")
+sql &lt;- "SELECT * FROM table"
+rows &lt;- sqlQuery(con, sql)
 print(head(rows))
+odbcClose(con)
 </pre>
           </div>
         </div>
@@ -1511,196 +1489,157 @@ print(head(rows))
       <div class="outline-text-2" id="text-10"></div>
 
       <div id="outline-container-sec-10-1" class="outline-3">
-        <h3 id="sec-10-1"><span class="section-number-3">10.1</span> Splitting
-        a vector into groups</h3>
+        <h3 id="sec-10-1"><span class="section-number-3">10.1</span> Applying a
+        function to each list element</h3>
 
         <div class="outline-text-3" id="text-10-1">
-          <dl class="org-dl">
-            <dt><code>split(dataframe, dataframe$column)</code></dt>
-          </dl>
+          <p>Alternative (to <code>for</code> <b>loops</b>) to apply a function
+          (or summary statistics).</p>
+        </div>
+
+        <div id="outline-container-sec-10-1-1" class="outline-4">
+          <h4 id="sec-10-1-1"><span class="section-number-4">10.1.1</span>
+          <code>lapply</code></h4>
+
+          <div class="outline-text-4" id="text-10-1-1">
+            <p><b>Loop over a list</b> and apply a <b>function</b> on each
+            element. <i>Always</i> returns a <b>list</b> back (that is, not a
+            simplified result).</p>
+
+            <ul class="org-ul">
+              <li>(coerced) list <code>X</code></li>
+
+              <li>function <code>FUN</code></li>
+
+              <li>other arguments <code>...</code></li>
+            </ul>
+
+            <div class="org-src-container">
+              <pre class="src src-R">
+x &lt;- list(a = 1:5, b = rnorm(10))
+lapply(x, mean)
+</pre>
+            </div>
+
+            <div class="org-src-container">
+              <pre class="src src-R">
+lapply(1:4, runif, min = 0, max = 10)   # arguments passed through the `...'
+</pre>
+            </div>
+
+            <p>Extract the first column of each matrix of a list:</p>
+
+            <div class="org-src-container">
+              <pre class="src src-R">
+lapply(x, function(elt) elt[,1])
+</pre>
+            </div>
+          </div>
+        </div>
+
+        <div id="outline-container-sec-10-1-2" class="outline-4">
+          <h4 id="sec-10-1-2"><span class="section-number-4">10.1.2</span>
+          <code>sapply</code></h4>
+
+          <div class="outline-text-4" id="text-10-1-2">
+            <p>Same as <code>lapply</code>, but tries to "<b>simplify</b>" the
+            result in a much more compact format (put all the elements into a
+            <b>vector</b> or a <b>matrix</b> if that is possible, instead of
+            returning a list).</p>
+
+            <div class="org-src-container">
+              <pre class="src src-R">
+sapply(s, function(x) colMeans(x[, c("Ozone", "Solar.R", "Wind")]))
+</pre>
+            </div>
+
+            <p>Pass <code>na.rm</code> argument to <code>ColMeans</code> to
+            remove the missing values before calculating the mean.</p>
+
+            <div class="org-src-container">
+              <pre class="src src-R">
+sapply(s, function(x) colMeans(x[, c("Ozone", "Solar.R", "Wind")], na.rm = TRUE))
+</pre>
+            </div>
+          </div>
         </div>
       </div>
 
       <div id="outline-container-sec-10-2" class="outline-3">
-        <h3 id="sec-10-2"><span class="section-number-3">10.2</span> The
-        <code>apply</code> functions</h3>
+        <h3 id="sec-10-2"><span class="section-number-3">10.2</span> Splitting
+        a vector into groups</h3>
 
         <div class="outline-text-3" id="text-10-2">
-          <p>Alternative (to <code>for</code> <b>loops</b>) to apply a function
-          (or summary statistics)</p>
+          <dl class="org-dl">
+            <dt><code>split(dataframe, dataframe$column)</code></dt>
+
+            <dd>
+              Take a vector, and <b>split</b> it into subpieces (the number of
+              groups identified by the levels of a <b>factor</b> variable).
+              Always return a <b>list</b> (of lists?) back.
+
+              <dl class="org-dl">
+                <dt><code>drop = TRUE</code></dt>
+
+                <dd>Don't keep the empty levels of the factor.</dd>
+              </dl>
+            </dd>
+          </dl>
+
+          <p>Auxiliary function, used in conjunction with functions like
+          <code>lapply</code> or <code>sapply</code> to apply a function to
+          those individual groups.</p>
+
+          <div class="org-src-container">
+            <pre class="src src-R">
+lapply(split(x, f), mean)
+</pre>
+          </div>
+
+          <p>Like <code>tapply</code>, but without applying the summary
+          statistics.</p>
+
+          <p>Splitting a data frame (or other kinds of lists), and apply an
+          <i>anonymous function</i>:</p>
+
+          <div class="org-src-container">
+            <pre class="src src-R">
+s &lt;- split(airquality, airquality$Month) # split according to month
+lapply(s, function(x) colMeans(x[, c("Ozone", "Solar.R", "Wind")])
+</pre>
+          </div>
         </div>
       </div>
 
       <div id="outline-container-sec-10-3" class="outline-3">
-        <h3 id="sec-10-3"><span class="section-number-3">10.3</span>
-        <code>lapply</code></h3>
+        <h3 id="sec-10-3"><span class="section-number-3">10.3</span> Applying a
+        function to every row/column</h3>
 
         <div class="outline-text-3" id="text-10-3">
-          <ul class="org-ul">
-            <li>Loop over a single <b>list</b> and apply a <b>function</b> on
-            each element
+          <dl class="org-dl">
+            <dt><code>apply</code></dt>
+
+            <dt>(no term)</dt>
+
+            <dd>
+              Apply a function over the <b>margins</b> of an array
 
               <ul class="org-ul">
-                <li>(coerced) list <code>X</code></li>
-
-                <li>function <code>FUN</code></li>
-
-                <li>other arguments <code>...</code></li>
-              </ul>
-            </li>
-
-            <li>Always returns a <b>list</b> back (that is, not a simplified
-            result)</li>
-          </ul>
-
-          <div class="org-src-container">
-            <pre class="src src-R">
-x <span style="color: #6434A3;">&lt;-</span> list(a = 1:5, b = rnorm(10))
-lapply(x, mean)
-</pre>
-          </div>
-
-          <div class="org-src-container">
-            <pre class="src src-R">
-lapply(1:4, runif, min = 0, max = 10) <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">arguments passed through the ...</span>
-</pre>
-          </div>
-
-          <ul class="org-ul">
-            <li>Extract the first column of each matrix of a list
-
-              <div class="org-src-container">
-                <pre class="src src-R">
-lapply(x, <span style="color: #0000FF;">function</span>(elt) elt[,1])
-</pre>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div id="outline-container-sec-10-4" class="outline-3">
-        <h3 id="sec-10-4"><span class="section-number-3">10.4</span> split</h3>
-
-        <div class="outline-text-3" id="text-10-4">
-          <ul class="org-ul">
-            <li>Auxiliary function, useful in conjunction with functions like
-            <code>lapply</code> or <code>sapply</code></li>
-
-            <li>Takes a vector, and <b>split</b> it into subpieces (the number
-            of groups identified by the levels of a factor variable)</li>
-
-            <li>Always return a <b>list</b> back
-
-              <dl class="org-dl">
-                <dt>drop = TRUE</dt>
-
-                <dd>Don't keep the empty levels of the factor</dd>
-              </dl>
-            </li>
-
-            <li>Used in conjunction with functions like <code>lapply</code> or
-            <code>sapply</code> to apply a function to those individual groups
-
-              <div class="org-src-container">
-                <pre class="src src-R">
-lapply(split(x, f), mean)
-</pre>
-              </div>
-            </li>
-
-            <li>Like <code>tapply</code>, but without applying the summary
-            statistics</li>
-
-            <li>Splitting a data frame (or other kinds of lists), and apply an
-            <i>anonymous function</i>
-
-              <div class="org-src-container">
-                <pre class="src src-R">
-s <span style=
-"color: #6434A3;">&lt;-</span> split(airquality, airquality$Month) <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">split according to month</span>
-lapply(s, <span style=
-"color: #0000FF;">function</span>(x) colMeans(x[, c(<span style=
-"color: #FF4700;">"Ozone"</span>, <span style=
-"color: #FF4700;">"Solar.R"</span>, <span style=
-"color: #FF4700;">"Wind"</span>)])
-</pre>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div id="outline-container-sec-10-5" class="outline-3">
-        <h3 id="sec-10-5"><span class="section-number-3">10.5</span>
-        <code>sapply</code></h3>
-
-        <div class="outline-text-3" id="text-10-5">
-          <ul class="org-ul">
-            <li>Same as lapply, but tries to <b>simplify</b> the result in a
-            much more compact format (put all the elements into a <b>vector</b>
-            or a <b>matrix</b>, instead of returning a list)
-
-              <div class="org-src-container">
-                <pre class="src src-R">
-sapply(s, <span style=
-"color: #0000FF;">function</span>(x) colMeans(x[, c(<span style=
-"color: #FF4700;">"Ozone"</span>, <span style=
-"color: #FF4700;">"Solar.R"</span>, <span style=
-"color: #FF4700;">"Wind"</span>)]))
-</pre>
-              </div>
-            </li>
-
-            <li>Pass <code>na.rm</code> argument to <code>ColMeans</code> to
-            remove the missing values before calculating the mean
-
-              <div class="org-src-container">
-                <pre class="src src-R">
-sapply(s, <span style=
-"color: #0000FF;">function</span>(x) colMeans(x[, c(<span style=
-"color: #FF4700;">"Ozone"</span>, <span style=
-"color: #FF4700;">"Solar.R"</span>, <span style=
-"color: #FF4700;">"Wind"</span>)],
-                               na.rm = <span style=
-"color: #666666;">TRUE</span>))
-</pre>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div id="outline-container-sec-10-6" class="outline-3">
-        <h3 id="sec-10-6"><span class="section-number-3">10.6</span>
-        <code>apply</code></h3>
-
-        <div class="outline-text-3" id="text-10-6">
-          <ul class="org-ul">
-            <li>Apply a (anonymous) function over the <b>margins</b> of an
-            array
-
-              <ul class="org-ul">
-                <li>Very useful if you wanna take <b>summaries</b> of matrices
-                or higher-dimensional arrays</li>
-
                 <li>Often used to apply a function to the rows or columns of a
                 matrix</li>
 
-                <li>Can be used with general arrays (such as array of
-                matrices)</li>
+                <li>Very useful if you wanna take <b>summaries</b> of matrices
+                or higher-dimensional arrays (such as array of matrices)</li>
               </ul>
-            </li>
+            </dd>
 
-            <li>apply(X, MARGIN, FUN, …)
+            <dt>(no term)</dt>
+
+            <dd>
+              apply(X, MARGIN, FUN, …)
 
               <ul class="org-ul">
-                <li>X array (= vector which has dimensions attached to it;
-                matrix = 2-dimensional array)</li>
+                <li>X array (= vector which has dimensions attached to it)</li>
 
                 <li>MARGIN is an integer vector which indicates which margins
                 should be "retained"</li>
@@ -1709,12 +1648,12 @@ sapply(s, <span style=
 
                 <li>… for other arguments you wanna passed to the function</li>
               </ul>
-            </li>
-          </ul>
+            </dd>
+          </dl>
 
           <div class="org-src-container">
             <pre class="src src-R">
-x <span style="color: #6434A3;">&lt;-</span> matrix(rnorm(200), 20, 10)
+x &lt;- matrix(rnorm(200), 20, 10)
 apply(x, 2, mean)
 </pre>
           </div>
@@ -1743,24 +1682,29 @@ apply(x, 2, mean)
 
           <div class="org-src-container">
             <pre class="src src-R">
-x <span style="color: #6434A3;">&lt;-</span> matrix(rnorm(200), 20, 10)
-apply(x, 1, quantile, probs = c(0.25, 0.75)) <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">no default value for `probs'</span>
+x &lt;- matrix(rnorm(200), 20, 10)
+apply(x, 1, quantile, probs = c(0.25, 0.75)) # no default value for `probs'
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="outline-container-sec-10-7" class="outline-3">
-        <h3 id="sec-10-7"><span class="section-number-3">10.7</span> tapply(X,
-        INDEX, FUN)</h3>
+      <div id="outline-container-sec-10-4" class="outline-3">
+        <h3 id="sec-10-4"><span class="section-number-3">10.4</span> Applying a
+        function to groups of data</h3>
 
-        <div class="outline-text-3" id="text-10-7">
-          <ul class="org-ul">
-            <li>Short for "table apply"</li>
+        <div class="outline-text-3" id="text-10-4">
+          <dl class="org-dl">
+            <dt><code>tapply(X, INDEX, FUN)</code></dt>
 
-            <li>Apply a <b>function</b> over <b>subsets</b> of a vector:
+            <dt>(no term)</dt>
+
+            <dd>Short for "<b>table apply</b>"</dd>
+
+            <dt>(no term)</dt>
+
+            <dd>
+              Apply a <b>function</b> over <b>subsets</b> of a vector:
 
               <ul class="org-ul">
                 <li>Splits up a vector into little groups (such as men and
@@ -1770,37 +1714,50 @@ apply(x, 1, quantile, probs = c(0.25, 0.75)) <span style=
 
                 <li>Brings the pieces back together</li>
               </ul>
-            </li>
+            </dd>
 
-            <li>Function may be anonymous</li>
+            <dt>(no term)</dt>
 
-            <li>Simplify = FALSE to get back a list
+            <dd>Function may be anonymous</dd>
+
+            <dt>(no term)</dt>
+
+            <dd>
+              <code>Simplify = FALSE</code> to get back a list
 
               <div class="org-src-container">
                 <pre class="src src-R">
-tapply(x, f, mean, simplify = <span style=
-"color: #666666;">FALSE</span>)   =   lapply(split(x, f), mean)
+tapply(x, f, mean, simplify = FALSE)  # = lapply(split(x, f), mean)
 </pre>
               </div>
-            </li>
+            </dd>
 
-            <li id="interaction(f1, f2)">combines all the levels of the first
-            factor with all the levels of the second factor</li>
-          </ul>
+            <dt><code>interaction(f1, f2)</code></dt>
+
+            <dd>Combines all the levels of the first factor with all the levels
+            of the second factor.</dd>
+          </dl>
         </div>
       </div>
 
-      <div id="outline-container-sec-10-8" class="outline-3">
-        <h3 id="sec-10-8"><span class="section-number-3">10.8</span>
-        <code>mapply</code></h3>
+      <div id="outline-container-sec-10-5" class="outline-3">
+        <h3 id="sec-10-5"><span class="section-number-3">10.5</span> Applying a
+        function to parallel vectors or lists</h3>
 
-        <div class="outline-text-3" id="text-10-8">
-          <ul class="org-ul">
-            <li>mapply is a multivariate version of <code>lapply</code>:
-            applies a function in parallel over a set of arguments</li>
+        <div class="outline-text-3" id="text-10-5">
+          <dl class="org-dl">
+            <dt><code>mapply</code></dt>
 
-            <li>Apply a <b>function</b> to the elements of <b>multiple
-            lists</b> in parallel
+            <dt>(no term)</dt>
+
+            <dd>mapply is a multivariate version of <code>lapply</code>:
+            applies a function in parallel over a set of arguments</dd>
+
+            <dt>(no term)</dt>
+
+            <dd>
+              Apply a <b>function</b> to the elements of <b>multiple lists</b>
+              in parallel
 
               <ul class="org-ul">
                 <li>For example, apply a function over 2 lists, where the
@@ -1808,16 +1765,17 @@ tapply(x, f, mean, simplify = <span style=
                 function, and the elements of the second list go into another
                 argument of the function</li>
               </ul>
-            </li>
+            </dd>
 
-            <li>
+            <dt>(no term)</dt>
+
+            <dd>
               <b>Vectorizing a function</b> (that doesn't allow for vector
               arguments)
 
               <div class="org-src-container">
                 <pre class="src src-R">
-mapply(rnorm, 1:5, 1:5, 2) <span style="color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">fixed standard deviation</span>
+mapply(rnorm, 1:5, 1:5, 2) # fixed standard deviation
 </pre>
               </div>
 
@@ -1832,8 +1790,8 @@ list(rnorm(1, 1, 2),
      rnorm(5, 5, 2))
 </pre>
               </div>
-            </li>
-          </ul>
+            </dd>
+          </dl>
         </div>
       </div>
     </div>
@@ -1872,8 +1830,8 @@ list(rnorm(1, 1, 2),
       </div>
 
       <div id="outline-container-sec-11-3" class="outline-3">
-        <h3 id="sec-11-3"><span class="section-number-3">11.3</span> 4b.
-        Regular expressions</h3>
+        <h3 id="sec-11-3"><span class="section-number-3">11.3</span> Regular
+        expressions</h3>
 
         <div class="outline-text-3" id="text-11-3">
           <p>For the moment, we assume pattern matching on <b>ASCII
@@ -1951,18 +1909,10 @@ list(rnorm(1, 1, 2),
 
               <div class="org-src-container">
                 <pre class="src src-R">
-i <span style="color: #6434A3;">&lt;-</span> grep(<span style=
-"color: #FF4700;">"regexp"</span>, vector) <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">get a set of indices</span>
-j <span style="color: #6434A3;">&lt;-</span> grep(<span style=
-"color: #FF4700;">"anotherregexp"</span>, vector) <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">get another set of indices</span>
-setdiff(i, j) <span style="color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">substract j elements from i when they are the same</span>
-setdiff(j, i) <span style="color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">different result</span>
+i &lt;- grep("regexp", vector) # get a set of indices
+j &lt;- grep("anotherregexp", vector) # get another set of indices
+setdiff(i, j) # substract j elements from i when they are the same
+setdiff(j, i) # different result
 </pre>
               </div>
 
@@ -1987,7 +1937,7 @@ setdiff(j, i) <span style="color: #008200;"># </span><span style=
 
               <div class="org-src-container">
                 <pre class="src src-R">
-regexpr(<span style="color: #FF4700;">"..."</span>, string)
+regexpr("...", string)
 substr(string, start + length - 1)
 </pre>
               </div>
@@ -1998,8 +1948,7 @@ substr(string, start + length - 1)
 
               <div class="org-src-container">
                 <pre class="src src-R">
-r <span style="color: #6434A3;">&lt;-</span> regexpr(<span style=
-"color: #FF4700;">"..."</span>, string)
+r &lt;- regexpr("...", string)
 regmatches(string, r)
 </pre>
               </div>
@@ -2028,25 +1977,11 @@ regmatches(string, r)
 
               <div class="org-src-container">
                 <pre class="src src-R">
-r <span style="color: #6434A3;">&lt;-</span> regexpr(<span style=
-"color: #FF4700;">"... (.*) ..."</span>, string) <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">find all the date fields</span>
-m <span style="color: #6434A3;">&lt;-</span> regmatches(string, r) <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">parse out</span>
-dates <span style="color: #6434A3;">&lt;-</span> sapply(m, <span style=
-"color: #0000FF;">function</span> (x) x[2]) <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">extract the 2nd element of each list object</span>
-dates <span style="color: #6434A3;">&lt;-</span> as.Date(dates, <span style=
-"color: #FF4700;">"%B %d, %Y"</span>) <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">convert to date</span>
-hist(dates, <span style="color: #FF4700;">"month"</span>, freq = <span style=
-"color: #666666;">TRUE</span>) <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">aggregate the dates by month and give an histogram</span>
+r &lt;- regexpr("... (.*) ...", string) # find all the date fields
+m &lt;- regmatches(string, r) # parse out
+dates &lt;- sapply(m, function (x) x[2]) # extract the 2nd element of each list object
+dates &lt;- as.Date(dates, "%B %d, %Y") # convert to date
+hist(dates, "month", freq = TRUE) # aggregate the dates by month and give an histogram
 </pre>
               </div>
             </dd>
@@ -2204,9 +2139,9 @@ hist(dates, <span style="color: #FF4700;">"month"</span>, freq = <span style=
                       <pre class="src src-R">
 data(iris)
 plot(iris$Petal.Length, iris$Petal.Width,
-     main=<span style="color: #FF4700;">"Petals: Length vs Width"</span>,
-     xlab=<span style="color: #FF4700;">"Length"</span>,
-     ylab=<span style="color: #FF4700;">"Width"</span>)
+     main="Petals: Length vs Width",
+     xlab="Length",
+     ylab="Width")
 </pre>
                     </div>
 
@@ -2230,8 +2165,7 @@ plot(iris$Petal.Length, iris$Petal.Width,
                     <div class="org-src-container">
                       <pre class="src src-R">
 data(iris)
-plot(iris[,1:4], main=<span style=
-"color: #FF4700;">"Multiple scatter plots"</span>)
+plot(iris[,1:4], main="Multiple scatter plots")
 </pre>
                     </div>
 
@@ -2272,9 +2206,7 @@ plot(iris[,1:4], main=<span style=
 
                 <div class="org-src-container">
                   <pre class="src src-R">
-lines(x, y)                        <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">all lines</span>
+lines(x, y)                        # all lines
 </pre>
                 </div>
               </dd>
@@ -2289,10 +2221,10 @@ lines(x, y)                        <span style=
                 <div class="org-src-container">
                   <pre class="src src-R">
 data(iris)
-<span style="color: #6434A3;">attach</span>(iris)
+attach(iris)
 plot(Petal.Length, Petal.Width)
-fit <span style="color: #6434A3;">&lt;-</span> lm(Petal.Width ~ Petal.Length)
-abline(fit, lwd=3, col=<span style="color: #FF4700;">"blue"</span>)
+fit &lt;- lm(Petal.Width ~ Petal.Length)
+abline(fit, lwd=3, col="blue")
 </pre>
                 </div>
 
@@ -2313,20 +2245,11 @@ abline(fit, lwd=3, col=<span style="color: #FF4700;">"blue"</span>)
                 <div class="org-src-container">
                   <pre class="src src-R">
 data(iris)
-<span style="color: #6434A3;">attach</span>(iris)
-plot(Petal.Length, Petal.Width, type=<span style="color: #FF4700;">"n"</span>)
-points(Petal.Length[Species == <span style=
-"color: #FF4700;">"setosa"</span>], Petal.Width[Species == <span style=
-"color: #FF4700;">"setosa"</span>], col = <span style=
-"color: #FF4700;">"red"</span>)
-points(Petal.Length[Species == <span style=
-"color: #FF4700;">"versicolor"</span>], Petal.Width[Species == <span style=
-"color: #FF4700;">"versicolor"</span>], col = <span style=
-"color: #FF4700;">"green"</span>, pch = 20)
-points(Petal.Length[Species == <span style=
-"color: #FF4700;">"virginica"</span>], Petal.Width[Species == <span style=
-"color: #FF4700;">"virginica"</span>], col = <span style=
-"color: #FF4700;">"blue"</span>, pch = 19)
+attach(iris)
+plot(Petal.Length, Petal.Width, type="n")
+points(Petal.Length[Species == "setosa"], Petal.Width[Species == "setosa"], col = "red")
+points(Petal.Length[Species == "versicolor"], Petal.Width[Species == "versicolor"], col = "green", pch = 20)
+points(Petal.Length[Species == "virginica"], Petal.Width[Species == "virginica"], col = "blue", pch = 19)
 </pre>
                 </div>
 
@@ -2355,7 +2278,7 @@ plot(iris$Petal.Length, iris$Petal.Width, col=as.integer(iris$Species))
 
                 <div class="org-src-container">
                   <pre class="src src-R">
-text(-2, 2, <span style="color: #FF4700;">"Label"</span>)
+text(-2, 2, "Label")
 </pre>
                 </div>
               </dd>
@@ -2367,11 +2290,8 @@ text(-2, 2, <span style="color: #FF4700;">"Label"</span>)
 
                 <div class="org-src-container">
                   <pre class="src src-R">
-title(<span style="color: #FF4700;">"plot"</span>)
-plot(x, y, xlab = <span style=
-"color: #FF4700;">"Weight"</span>, ylab = <span style=
-"color: #FF4700;">"Height"</span>, main = <span style=
-"color: #FF4700;">"Scatterplot"</span>)
+title("plot")
+plot(x, y, xlab = "Weight", ylab = "Height", main = "Scatterplot")
 </pre>
                 </div>
               </dd>
@@ -2391,8 +2311,7 @@ plot(x, y, xlab = <span style=
 
                 <div class="org-src-container">
                   <pre class="src src-R">
-legend(<span style="color: #FF4700;">"topleft"</span>, legend = <span style=
-"color: #FF4700;">"Data"</span>, pch = 1)
+legend("topleft", legend = "Data", pch = 1)
 </pre>
                 </div>
               </dd>
@@ -2491,9 +2410,7 @@ par(mar = c(2,2,1,1))
 
                     <div class="org-src-container">
                       <pre class="src src-R">
-par(mfrow = c(2,1))           <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">2 rows and 1 column</span>
+par(mfrow = c(2,1))           # 2 rows and 1 column
 plot(x, y)
 plot(x, z)
 </pre>
@@ -2510,7 +2427,7 @@ plot(x, z)
 
                 <div class="org-src-container">
                   <pre class="src src-R">
-par(<span style="color: #FF4700;">"lty"</span>)
+par("lty")
 </pre>
                 </div>
                 <pre class="example">
@@ -2567,6 +2484,18 @@ solid
         <h3 id="sec-14-2"><span class="section-number-3">14.2</span> Lattice
         graphics</h3>
       </div>
+
+      <div id="outline-container-sec-14-3" class="outline-3">
+        <h3 id="sec-14-3"><span class="section-number-3">14.3</span>
+        ggplot2</h3>
+
+        <div class="outline-text-3" id="text-14-3">
+          <p>See post of Antoine Lizée in <a href=
+          "http://stackoverflow.com/questions/5234117/how-to-drop-columns-by-name-in-a-data-frame">
+          http://stackoverflow.com/questions/5234117/how-to-drop-columns-by-name-in-a-data-frame</a>
+          for an excellent performance reporting.</p>
+        </div>
+      </div>
     </div>
 
     <div id="outline-container-sec-15" class="outline-2">
@@ -2597,18 +2526,16 @@ solid
             <dt><code>str()</code></dt>
 
             <dd>
-              <i>Compactly</i> display the internal <b>structure</b> of an
-              object.
+              <i>Compactly</i> display the internal <b>structure</b>
+              (<b>classes</b>, etc.) of an object.
 
               <p>Alternative to <code>summary()</code>.</p>
 
-              <p>When applied to functions, show the arguments.</p>
+              <p>When applied to functions, show the <b>arguments</b>.</p>
 
               <div class="org-src-container">
                 <pre class="src src-R">
-str(.Platform)                     <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">what is the operating system</span>
+str(.Platform)                     # what is the operating system
 </pre>
               </div>
             </dd>
