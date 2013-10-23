@@ -1,7 +1,7 @@
 #+TITLE:     R quick reference card
 #+AUTHOR:    Fabrice Niessen
 #+EMAIL:     (concat "fniessen" at-sign "pirilampo.org")
-#+Time-stamp: <2013-10-22 Tue 14:46>
+#+Time-stamp: <2013-10-23 Wed 12:12>
 #+DESCRIPTION:
 #+KEYWORDS:
 #+LANGUAGE:  american
@@ -101,7 +101,7 @@ library(help = lattice)
 ** Operators
 
 - =%in%= ::
-     Membership test.
+     Test membership.
 
 ** Defining a function
 
@@ -344,82 +344,6 @@ By default,
 
 This can be turned off by setting =drop = FALSE= (don't drop the dimension).
 
-** Removing list elements using a condition
-
-*Subsetting* by using 2 types of index:
-- a numeric vector (=x[2]=, =x[1:4]=)
-- a *logical vector* (=x[x > "a"]=)
-
-Create a logical vector:
-
-#+begin_src R
-u <- x > "a"
-x[u]                                    # get all elements which are greater than "a"
-#+end_src
-
-Remove missing values (=NA=) from a list:
-
-#+begin_src R
-missing <- is.na(x)                     # logical vector
-x[!missing]
-#+end_src
-
-Take the subset of all objects (=x= and =y=) that has no missing values:
-
-#+begin_src R
-bothnonmissing <- complete.cases(x, y)  # logical vector
-x[bothnonmissing]
-#+end_src
-
-Take all the rows of a data frame where *all the values are not missing*:
-
-#+begin_src R
-nonmissing <- complete.cases(x)
-x[nonmissing, ]
-#+end_src
-
-To *drop columns by name* in a data frame, you can use direct indexing (with
-booleans vectors) and then, simply reassign data:
-
-#+begin_src R
-tokeep <- !names(x) %in% c("remove1", "remove2")
-x <- x[,tokeep]                         # or...
-x <- x[,tokeep, drop = FALSE]           # you will need this option to avoid
-                                        # the conversion to an atomic vector if
-                                        # there is only one column left
-#+end_src
-
-** Removing rows that contain NAs from a data frame
-
-** Removing columns that contain NAs from a data frame
-
-Get rid of any column that has one or more NAs.
-
-#+begin_src R
-df <- df[,colSums(is.na(df))==0]
-#+end_src
-
-** Converting
-
-- =as.*()= ::
-     Explicitly coerce from one class to another.
-
-- =as.numeric()= ::
-     Coerce the (=character=) column to be =numeric=.
-
-- =as.Date("January 2, 2007", "%B %d, %Y")= ::
-     "2007-01-02"
-
-- =as.ts()= ::
-     Convert to a time series object.
-
-Convert at once all the string columns to factors:
-
-#+begin_src R
-ind <- sapply(x, is.character)
-x[ind] <- lapply(x[ind], factor)
-#+end_src
-
 * Control structures
 
 Control structures mentioned here are primarily useful for writing programs.
@@ -457,15 +381,17 @@ for (letter in x) {                     # take elements from the vector
 }
 #+end_src
 
-- seq_along(vector) :: create an integer sequence that's equal to the *length
-     of the input vector*
+- seq_along(vector) ::
+     Create an integer sequence that's equal to the *length of the input vector*.
 
-- seq_len(integer) :: create an integer sequence that's as long as the
-     integer in input
+- seq_len(integer) ::
+     Create an integer sequence that's as long as the integer in input.
 
-- nrow(dataset) :: tell the number of rows
+- nrow(dataset) ::
+     Tell the number of rows.
 
-- ncol(dataset) :: tell the number of columns
+- ncol(dataset) ::
+     Tell the number of columns.
 
 #+begin_src R
 while (z >= 3 && z <= 10) {             # conditions are always evaluated from left to right
@@ -674,6 +600,94 @@ odbcClose(con)
 
 * 6. Data transformations
 
+(Partial list of) munging operations (= key process)
+- *These steps must be recorded* in their own R script
+- *90% of your effort will often be spent here*
+
+** Removing list elements using a condition
+
+*Subsetting* by using 2 types of index:
+- a numeric vector (=x[2]=, =x[1:4]=)
+- a *logical vector* (=x[x > "a"]=)
+
+Create a logical vector:
+
+#+begin_src R
+u <- x > "a"
+x[u]                                    # get all elements which are greater than "a"
+#+end_src
+
+Remove missing values (=NA=) from a list:
+
+#+begin_src R
+missing <- is.na(x)                     # logical vector
+x[!missing]
+#+end_src
+
+Take the subset of all objects (=x= and =y=) that has no missing values:
+
+#+begin_src R
+bothnonmissing <- complete.cases(x, y)  # logical vector
+x[bothnonmissing]
+#+end_src
+
+Take all the rows of a data frame where *all the values are not missing*:
+
+#+begin_src R
+nonmissing <- complete.cases(x)
+x[nonmissing, ]
+#+end_src
+
+To *drop columns by name* in a data frame, you can use direct indexing (with
+booleans vectors) and then, simply reassign data:
+
+#+begin_src R
+tokeep <- !names(x) %in% c("remove1", "remove2")
+x <- x[,tokeep]                         # or...
+x <- x[,tokeep, drop = FALSE]           # you will need this option to avoid
+                                        # the conversion to an atomic vector if
+                                        # there is only one column left
+#+end_src
+
+** Removing rows that contain NAs from a data frame
+
+** Removing columns that contain NAs from a data frame
+
+Get rid of any column that has one or more NAs.
+
+#+begin_src R
+df <- df[,colSums(is.na(df))==0]
+#+end_src
+
+** Merging data frames by commun column
+
+Merge data sets.
+
+#+begin_src R
+mergedData <- merge(df1, df2, by.x="id1", by.y="id2", all=TRUE)
+#+end_src
+
+** Converting
+
+- =as.*()= ::
+     Explicitly coerce from one class to another.
+
+- =as.numeric()= ::
+     Coerce the (=character=) column to be =numeric=.
+
+- =as.Date("January 2, 2007", "%B %d, %Y")= ::
+     "2007-01-02"
+
+- =as.ts()= ::
+     Convert to a time series object.
+
+Convert at once all the string columns to factors:
+
+#+begin_src R
+ind <- sapply(x, is.character)
+x[ind] <- lapply(x[ind], factor)
+#+end_src
+
 ** Applying a function to each list element
 
 Alternative (to =for= *loops*) to apply a function (or summary statistics).
@@ -836,6 +850,8 @@ apply(x, 1, quantile, probs = c(0.25, 0.75)) # no default value for `probs'
        rnorm(4, 4, 2),
        rnorm(5, 5, 2))
   #+end_src
+
+** Checking on and removing inconsistent values
 
 * 7. Strings and dates
 
@@ -1077,11 +1093,9 @@ Generic function: you can call it on different types of data. When you call
 - =lines= ::
      Add lines (connect all the dots).
 
-     #+begin_src R
+     #+begin_src R :eval no
      lines(x, y)                        # all lines
      #+end_src
-
-     #+results:
 
 - =abline= ::
      Add a straight line.
@@ -1128,14 +1142,14 @@ Generic function: you can call it on different types of data. When you call
 - =text= ::
      Add text labels.
 
-     #+begin_src R
+     #+begin_src R :eval no
      text(-2, 2, "Label")
      #+end_src
 
 - =title= ::
      Add a title (or axis labels, subtitle, ...).
 
-     #+begin_src R
+     #+begin_src R :eval no
      title("plot")
      plot(x, y, xlab = "Weight", ylab = "Height", main = "Scatterplot")
      #+end_src
@@ -1149,7 +1163,7 @@ Generic function: you can call it on different types of data. When you call
 - =legend= ::
      Add a legend.
 
-     #+begin_src R
+     #+begin_src R :eval no
      legend("topleft", legend = "Data", pch = 1)
      #+end_src
 
@@ -1182,7 +1196,7 @@ Generic function: you can call it on different types of data. When you call
      + =mar= ::
           Margin size (vector of 4 numbers, 1 per side).
 
-          #+begin_src R
+          #+begin_src R :eval no
           par(mar = c(2,2,1,1))
           #+end_src
 
@@ -1194,7 +1208,7 @@ Generic function: you can call it on different types of data. When you call
           Number of *plots per row and per column* on the canvas (filled
           row-wise).
 
-          #+begin_src R
+          #+begin_src R :eval no
           par(mfrow = c(2,1))           # 2 rows and 1 column
           plot(x, y)
           plot(x, z)
@@ -1206,7 +1220,7 @@ Generic function: you can call it on different types of data. When you call
 
      Look at the defaults:
 
-     #+begin_src R
+     #+begin_src R :eval no
      par("lty")
      #+end_src
 
