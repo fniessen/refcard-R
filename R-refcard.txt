@@ -1,7 +1,7 @@
 #+TITLE:     R quick reference card
 #+AUTHOR:    Fabrice Niessen
 #+EMAIL:     (concat "fniessen" at-sign "pirilampo.org")
-#+Time-stamp: <2013-10-23 Wed 12:12>
+#+Time-stamp: <2013-10-23 Wed 12:14>
 #+DESCRIPTION:
 #+KEYWORDS:
 #+LANGUAGE:  american
@@ -1054,7 +1054,7 @@ You cannot use functions from the base plotting system in a Lattice plot.
 - =plot(x, y)= ::
      Create a scatter plot of =x= and =y=.
 
-     #+begin_src R :results graphics :file base-scatterplot.png
+     #+begin_src R :results graphics :file images/base-scatterplot.png
      data(iris)
      plot(iris$Petal.Length, iris$Petal.Width,
           main="Petals: Length vs Width",
@@ -1063,7 +1063,7 @@ You cannot use functions from the base plotting system in a Lattice plot.
      #+end_src
 
      #+results:
-     [[file:base-scatterplot.png]]
+     [[file:images/base-scatterplot.png]]
 
 - =plot(x, y, type = "n")= ::
      Set up the plot window, but don't actually plot the data in there.
@@ -1072,13 +1072,13 @@ You cannot use functions from the base plotting system in a Lattice plot.
      Create multiple scatter plots if your data frame contains more than
      2 columns.
 
-     #+begin_src R :results graphics :file base-multi-scatterplots.png
+     #+begin_src R :results graphics :file images/base-multi-scatterplots.png
      data(iris)
      plot(iris[,1:4], main="Multiple scatter plots")
      #+end_src
 
      #+results:
-     [[file:base-multi-scatterplots.png]]
+     [[file:images/base-multi-scatterplots.png]]
 
 **** =hist=
 
@@ -1102,7 +1102,7 @@ Generic function: you can call it on different types of data. When you call
 
      Plot the *regression line* of a scatter plot.
 
-     #+begin_src R :results graphics :file base-abline.png
+     #+begin_src R :results graphics :file images/base-abline.png
      data(iris)
      attach(iris)
      plot(Petal.Length, Petal.Width)
@@ -1111,7 +1111,7 @@ Generic function: you can call it on different types of data. When you call
      #+end_src
 
      #+results:
-     [[file:base-abline.png]]
+     [[file:images/base-abline.png]]
 
 - =points= ::
      Add points (=col= for boundary color, =bg= for fill color, =pch= for plotting
@@ -1119,7 +1119,7 @@ Generic function: you can call it on different types of data. When you call
 
      Plot points *in groups separately*.
 
-     #+begin_src R :results graphics :file base-points-distinguished.png
+     #+begin_src R :results graphics :file images/base-points-distinguished.png
      data(iris)
      attach(iris)
      plot(Petal.Length, Petal.Width, type="n")
@@ -1129,15 +1129,15 @@ Generic function: you can call it on different types of data. When you call
      #+end_src
 
      #+results:
-     [[file:base-points-distinguished.png]]
+     [[file:images/base-points-distinguished.png]]
 
-     #+begin_src R :results graphics :file base-points-distinguished-col.png
+     #+begin_src R :results graphics :file images/base-points-distinguished-col.png
      data(iris)
      plot(iris$Petal.Length, iris$Petal.Width, col=as.integer(iris$Species))
      #+end_src
 
      #+results:
-     [[file:base-points-distinguished-col.png]]
+     [[file:images/base-points-distinguished-col.png]]
 
 - =text= ::
      Add text labels.
