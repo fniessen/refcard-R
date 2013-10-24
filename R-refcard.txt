@@ -1,7 +1,7 @@
 #+TITLE:     R quick reference card
 #+AUTHOR:    Fabrice Niessen
 #+EMAIL:     (concat "fniessen" at-sign "pirilampo.org")
-#+Time-stamp: <2013-10-23 Wed 12:14>
+#+Time-stamp: <2013-10-24 Thu 13:55>
 #+DESCRIPTION:
 #+KEYWORDS:
 #+LANGUAGE:  american
@@ -100,6 +100,9 @@ library(help = lattice)
 
 ** Operators
 
+- == ::
+     Compare.
+
 - =%in%= ::
      Test membership.
 
@@ -113,9 +116,6 @@ myfunction <- function(x) {
 #+end_src
 
 * 3. Navigating the software
-
-- =getwd()= ::
-     Figure out what your working directory is.
 
 - =library(package)= ::
      Load PACKAGE.
@@ -563,29 +563,140 @@ f <- function(<arguments>) {
 
 * 4. Input and output
 
+Types of files:
+- Tab-delimited
+- CSV
+- Excel
+- JSON
+- HTML/XML
+- Database
+
+** Getting the current working directory
+
+- =getwd()= ::
+     Figure out what your *working directory* is.
+
+** Creating, opening and closing connections
+
+- =file()= ::
+     + =description= is the name of the file
+     + =open= is a code (read-only, write, append)
+
+     #+begin_src R
+     con <- file("./data/cameras.csv", "r")
+     cameraData <- read.csv(con)
+     close(con)
+     #+end_src
+
 ** Reading tabular data files
 
-- =read.table("file.txt")= ::
+- =read.table(file)= ::
      Read tabular data file, create data frame.
 
      Important arguments:
-     + =file=,
-     + =header=,
+     + =file=
+     + =header=
      + =sep= (defaults to the *space*)
-     + =colClasses=, class of each column
-     + =nrows=,
-     + =comment.char=,
-     + =skip=, number of lines to skip from the beginning
+     + =quote=
+     + =colClasses= (class of each column)
+     + =nrows=
+     + =skip= (number of lines to skip from the beginning)
+     + =comment.char=
      + =stringsAsFactors= (defaults to =TRUE=)
+
+     #+begin_src R
+     data <- read.table("./data/file.txt", header=T, sep="\t", quote="")
+     #+end_src
+
+For large datasets:
+
+- set =comment.char= = "" if there are no comments in your file
+
+- use the =colClasses= argument
+
+  Quick and dirty way to figure out the classes of each column:
+
+  #+begin_src R
+  initial <- read.table("datatable.txt", nrows = 100)
+  classes <- sapply(initial, class)
+  tabAll <- read.table("datatable.txt", colClasses = classes)
+  #+end_src
+
+- set =nrows= helps with memory usage
+
+** Writing tabular data files
+
+- =write.table()= ::
+     Write data.
 
 ** Reading from CSV files
 
-- =read.csv("file.csv")= ::
+- =read.csv(file)= ::
      Read data from CSV file, create data frame.
-     + =header= defaults to =TRUE=
-     + default =separator=: *comma*
+     + =header= (defaults to =TRUE=)
+     + =separator= (defaults to *comma*)
 
-** Reading from SQL databases
+     #+begin_src R
+     data <- read.csv("./data/file.csv")
+
+     read.csv(file.choose())            # pick a file
+     #+end_src
+
+     It calls =read.table= with some default values. To look at them, just look
+     at the code of =read.csv= by typing =read.csv= and hitting <enter> at your R
+     command line).
+
+- =read.csv2(file)= ::
+     Read data from CSV file, create data frame.
+     + =header= (defaults to =TRUE=)
+     + =separator= (defaults to =;=)
+
+** Reading from Excel files
+
+- =read.xlsx()=, =read.xlsx2()= ::
+     Read Excel files.
+
+** Reading files from the Internet
+
+- =download.file()= ::
+     Download a file from the Internet.
+
+     Be sure to record when you downloaded.
+
+     #+begin_src R
+     fileUrl <- "http://..."
+     download.file(fileUrl, destfile="./data/file.csv", method="curl")
+     #+end_src
+
+** Reading files with a complex structure
+
+- =readLines()= ::
+     Read lines of text from a connection.
+
+     /Connections/ can be made to:
+     - =file= (most common)
+     - =gzfile=, file compressed with =gzip=
+     - =bzfile=, file compressed with =bzip2=
+     - =url=
+
+     *Remember to close connections*.
+
+     #+begin_src R
+     con <- url("http://scholar.google.com/citations")
+     htmlCode <- readLines(con)
+     close(con)
+
+     # get data off webpages
+     html3 <- htmlTreeParse("...")
+
+     # find value of title tag
+     xpathSApply(html3, "//title", xmlValue)
+
+     # access parts of the table
+     xpathSApply(html3, "//td[@id='col-citedby']", xmlValue)
+     #+end_src
+
+** Reading from SQL Server databases
 
 #+begin_src R
 library(RODBC)
@@ -597,6 +708,73 @@ rows <- sqlQuery(con, sql)
 print(head(rows))
 odbcClose(con)
 #+end_src
+
+** Saving and transporting objects
+
+Textual formats (potentially recoverable in case of corruption).
+
+- =dput()= ::
+     Deparse a single R object.
+
+- =dump()= ::
+     Can be used on multiple R objects.
+
+** Further resources
+
+Packages:
+
+- =httr= ::
+     For working with HTTP connections.
+
+- =RMySQL= ::
+     For interfacing with mySQL.
+
+- =bigmemory= ::
+     For handling data larger than RAM.
+
+- =foreign= ::
+     For getting data into R from SAS, SPSS, Octave, etc.
+
+* 12. Useful tricks
+
+** Peeking at your data
+
+- =head()= ::
+     Look at the first 6 rows.
+
+- =tail()= ::
+     Look at the last 6 rows.
+
+- =str()= ::
+     /Compactly/ display the internal *structure* (*classes*, etc.) of an object.
+
+     Alternative to =summary()=.
+
+     When applied to functions, show the *arguments*.
+
+     #+begin_src R
+     str(.Platform)                     # what is the operating system
+     #+end_src
+
+- =attributes()= ::
+     Access (set or modify) the (list of) attributes of an object.
+
+* 9. General statistics
+
+** Summarizing your data
+
+- =range()= ::
+     Give the min and the max (vector of length 2) of the observations (vector
+     of numbers).
+
+- =summary()= ::
+     Produce a summary of the object.
+
+** Tabulating factors
+
+- =table(vector)= ::
+     *Count* the number of observations in each /level/ (see factors). Give a
+     frequency of how many levels there are.
 
 * 6. Data transformations
 
@@ -644,10 +822,28 @@ booleans vectors) and then, simply reassign data:
 #+begin_src R
 tokeep <- !names(x) %in% c("remove1", "remove2")
 x <- x[,tokeep]                         # or...
-x <- x[,tokeep, drop = FALSE]           # you will need this option to avoid
+x <- x[,tokeep, drop=FALSE]             # you will need this option to avoid
                                         # the conversion to an atomic vector if
                                         # there is only one column left
 #+end_src
+
+** Selecting rows and columns more easily
+
+Indexing approach.
+
+#+begin_src R
+dfrm[dfrm$var1 > 0 & dfrm$var2 > 0, c(1,2)] # subset on var1 and var2
+dfrm[dfrm$var1 > 0 | dfrm$var2 > 0, c(1,2)] # subset on var1 or var2
+#+end_src
+
+Using the =subset= function.
+
+#+begin_src R
+subset(dfrm, select=c(var1,var2), subset=(var1 > 0 & var2 > 0))
+subset(dfrm, select=c(var1,var2), subset=(var1 > 0 | var2 > 0))
+#+end_src
+
+Note that you do /not/ quote the column names.
 
 ** Removing rows that contain NAs from a data frame
 
@@ -660,6 +856,21 @@ df <- df[,colSums(is.na(df))==0]
 #+end_src
 
 ** Merging data frames by commun column
+
+- =merge(df1, df2, by = "CustomerId")= ::
+     *Inner* join.
+
+- =merge(df1, df2, by = "CustomerId", all = TRUE)= ::
+     *Full outer* join (all records from both tables).
+
+- =merge(df1, df2, by = "CustomerId", all.x = TRUE)= ::
+     *Left* outer join.
+
+- =merge(df1, df2, by = "CustomerId", all.y = TRUE)= ::
+     *Right* outer join.
+
+- =merge(df1, df2, by = NULL)= ::
+     *Cross* join.
 
 Merge data sets.
 
@@ -680,6 +891,18 @@ mergedData <- merge(df1, df2, by.x="id1", by.y="id2", all=TRUE)
 
 - =as.ts()= ::
      Convert to a time series object.
+
+You can always convert variables between types.
+
+#+begin_src R
+dfrm$x <- as.factor(dfrm$x)             # character to factor
+dfrm$x <- as.character(dfrm$x)          # factor to character
+#+end_src
+
+Warning: To convert factors to numeric or integer, first convert to character.
+Converting factors directly to numeric or integer data can lead to unwanted
+outcomes. Always check the results of a conversion to make sure R did what you
+wanted.
 
 Convert at once all the string columns to factors:
 
@@ -977,23 +1200,6 @@ These functions can take vector arguments.
 
 * 8. Probability
 
-* 9. General statistics
-
-** Summarizing your data
-
-- =range()= ::
-     Give the min and the max (vector of length 2) of the observations (vector
-     of numbers).
-
-- =summary()= ::
-     Produce a summary of the object.
-
-** Tabulating factors
-
-- =table(vector)= ::
-     *Count* the number of observations in each /level/ (see factors). Give a
-     frequency of how many levels there are.
-
 * 10. Graphics
   :PROPERTIES:
   :eval:     yes
@@ -1085,6 +1291,26 @@ You cannot use functions from the base plotting system in a Lattice plot.
 Generic function: you can call it on different types of data. When you call
 =hist= on a =Date= object, it requires an interval ("day" / "week" / "month" /
 "year") in order to break it up into sequences.
+
+#+begin_src R :results graphics :file images/base-hist.png
+data(iris)
+hist(iris$Petal.Length, main="Histogram")
+#+end_src
+
+#+results:
+[[file:images/base-hist.png]]
+
+#+begin_src R :results graphics :file images/base-plot-table.png
+data(iris)
+plot(table(iris$Petal.Length), main="Table")
+#+end_src
+
+#+results:
+[[file:images/base-plot-table.png]]
+
+Note -- In the table plot, x values with one occurrence would be visible (one
+dot) in the graphics. They don't in the histogram (as the line, being too
+small, would be on the x-axis itself).
 
 **** =boxplot=
 
@@ -1254,27 +1480,3 @@ http://stackoverflow.com/questions/5234117/how-to-drop-columns-by-name-in-a-data
 for an excellent performance reporting.
 
 * 11. Linear regression and ANOVA
-
-* 12. Useful tricks
-
-** Peeking at your data
-
-- =head()= ::
-     Look at the first 6 rows.
-
-- =tail()= ::
-     Look at the last 6 rows.
-
-- =str()= ::
-     /Compactly/ display the internal *structure* (*classes*, etc.) of an object.
-
-     Alternative to =summary()=.
-
-     When applied to functions, show the *arguments*.
-
-     #+begin_src R
-     str(.Platform)                     # what is the operating system
-     #+end_src
-
-- =attributes()= ::
-     Access (set or modify) the (list of) attributes of an object.
