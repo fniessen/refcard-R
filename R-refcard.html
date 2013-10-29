@@ -7,7 +7,7 @@
   <meta name="generator" content=
   "HTML Tidy for Cygwin (vers 1st September 2004), see www.w3.org" />
 
-  <title>R quick reference card</title><!-- 2013-10-23 Wed 12:14 -->
+  <title>R quick reference card</title><!-- 2013-10-29 Tue 10:21 -->
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="generator" content="Org-mode" />
   <meta name="author" content="Fabrice Niessen" />
@@ -122,120 +122,155 @@ type="text/javascript">
             <a href="#sec-9">9. 4. Input and output</a>
 
             <ul>
-              <li><a href="#sec-9-1">9.1. Reading tabular data files</a></li>
+              <li><a href="#sec-9-1">9.1. Getting the current working
+              directory</a></li>
 
-              <li><a href="#sec-9-2">9.2. Reading from CSV files</a></li>
+              <li><a href="#sec-9-2">9.2. Creating, opening and closing
+              connections</a></li>
 
-              <li><a href="#sec-9-3">9.3. Reading from SQL databases</a></li>
+              <li><a href="#sec-9-3">9.3. Reading tabular data files</a></li>
+
+              <li><a href="#sec-9-4">9.4. Writing tabular data files</a></li>
+
+              <li><a href="#sec-9-5">9.5. Reading from CSV files</a></li>
+
+              <li><a href="#sec-9-6">9.6. Reading from Excel files</a></li>
+
+              <li><a href="#sec-9-7">9.7. Reading files from the
+              Internet</a></li>
+
+              <li><a href="#sec-9-8">9.8. Reading files with a complex
+              structure</a></li>
+
+              <li><a href="#sec-9-9">9.9. Reading from SQL Server
+              databases</a></li>
+
+              <li><a href="#sec-9-10">9.10. Saving and transporting
+              objects</a></li>
+
+              <li><a href="#sec-9-11">9.11. Further resources</a></li>
             </ul>
           </li>
 
           <li>
-            <a href="#sec-10">10. 6. Data transformations</a>
+            <a href="#sec-10">10. 12. Useful tricks</a>
 
             <ul>
-              <li><a href="#sec-10-1">10.1. Removing list elements using a
+              <li><a href="#sec-10-1">10.1. Peeking at your data</a></li>
+            </ul>
+          </li>
+
+          <li>
+            <a href="#sec-11">11. 9. General statistics</a>
+
+            <ul>
+              <li><a href="#sec-11-1">11.1. Summarizing your data</a></li>
+
+              <li><a href="#sec-11-2">11.2. Tabulating factors</a></li>
+
+              <li><a href="#sec-11-3">11.3. Testing categorical variables for
+              independence</a></li>
+
+              <li><a href="#sec-11-4">11.4. Calculating quantiles (and
+              quartiles) of a dataset</a></li>
+            </ul>
+          </li>
+
+          <li>
+            <a href="#sec-12">12. 6. Data transformations</a>
+
+            <ul>
+              <li><a href="#sec-12-1">12.1. Fixing variable names</a></li>
+
+              <li><a href="#sec-12-2">12.2. Creating new variables</a></li>
+
+              <li><a href="#sec-12-3">12.3. Removing list elements using a
               condition</a></li>
 
-              <li><a href="#sec-10-2">10.2. Removing rows that contain NAs from
+              <li><a href="#sec-12-4">12.4. Selecting rows and columns more
+              easily</a></li>
+
+              <li><a href="#sec-12-5">12.5. Removing rows that contain NAs from
               a data frame</a></li>
 
-              <li><a href="#sec-10-3">10.3. Removing columns that contain NAs
+              <li><a href="#sec-12-6">12.6. Removing columns that contain NAs
               from a data frame</a></li>
 
-              <li><a href="#sec-10-4">10.4. Merging data frames by commun
+              <li><a href="#sec-12-7">12.7. Merging data frames by commun
               column</a></li>
 
-              <li><a href="#sec-10-5">10.5. Converting</a></li>
+              <li><a href="#sec-12-8">12.8. Converting</a></li>
 
               <li>
-                <a href="#sec-10-6">10.6. Applying a function to each list
+                <a href="#sec-12-9">12.9. Applying a function to each list
                 element</a>
 
                 <ul>
-                  <li><a href="#sec-10-6-1">10.6.1.
+                  <li><a href="#sec-12-9-1">12.9.1.
                   <code>lapply</code></a></li>
 
-                  <li><a href="#sec-10-6-2">10.6.2.
+                  <li><a href="#sec-12-9-2">12.9.2.
                   <code>sapply</code></a></li>
                 </ul>
               </li>
 
-              <li><a href="#sec-10-7">10.7. Splitting a vector into
+              <li><a href="#sec-12-10">12.10. Splitting a vector into
               groups</a></li>
 
-              <li><a href="#sec-10-8">10.8. Applying a function to every
+              <li><a href="#sec-12-11">12.11. Applying a function to every
               row/column</a></li>
 
-              <li><a href="#sec-10-9">10.9. Applying a function to groups of
+              <li><a href="#sec-12-12">12.12. Applying a function to groups of
               data</a></li>
 
-              <li><a href="#sec-10-10">10.10. Applying a function to parallel
+              <li><a href="#sec-12-13">12.13. Applying a function to parallel
               vectors or lists</a></li>
 
-              <li><a href="#sec-10-11">10.11. Checking on and removing
+              <li><a href="#sec-12-14">12.14. Checking on and removing
               inconsistent values</a></li>
             </ul>
           </li>
 
           <li>
-            <a href="#sec-11">11. 7. Strings and dates</a>
+            <a href="#sec-13">13. 7. Strings and dates</a>
 
             <ul>
-              <li><a href="#sec-11-1">11.1. Getting the length of a
+              <li><a href="#sec-13-1">13.1. Getting the length of a
               string</a></li>
 
-              <li><a href="#sec-11-2">11.2. Concatenating strings</a></li>
+              <li><a href="#sec-13-2">13.2. Concatenating strings</a></li>
 
-              <li><a href="#sec-11-3">11.3. Regular expressions</a></li>
+              <li><a href="#sec-13-3">13.3. Regular expressions</a></li>
             </ul>
           </li>
 
-          <li><a href="#sec-12">12. 8. Probability</a></li>
+          <li><a href="#sec-14">14. 8. Probability</a></li>
 
           <li>
-            <a href="#sec-13">13. 9. General statistics</a>
-
-            <ul>
-              <li><a href="#sec-13-1">13.1. Summarizing your data</a></li>
-
-              <li><a href="#sec-13-2">13.2. Tabulating factors</a></li>
-            </ul>
-          </li>
-
-          <li>
-            <a href="#sec-14">14. 10. Graphics</a>
+            <a href="#sec-15">15. 10. Graphics</a>
 
             <ul>
               <li>
-                <a href="#sec-14-1">14.1. Base graphics</a>
+                <a href="#sec-15-1">15.1. Base graphics</a>
 
                 <ul>
-                  <li><a href="#sec-14-1-1">14.1.1. Make a plot</a></li>
+                  <li><a href="#sec-15-1-1">15.1.1. Make a plot</a></li>
 
-                  <li><a href="#sec-14-1-2">14.1.2. Add to an existing
+                  <li><a href="#sec-15-1-2">15.1.2. Add to an existing
                   plot</a></li>
 
-                  <li><a href="#sec-14-1-3">14.1.3. Changing graphical
+                  <li><a href="#sec-15-1-3">15.1.3. Changing graphical
                   parameters</a></li>
                 </ul>
               </li>
 
-              <li><a href="#sec-14-2">14.2. Lattice graphics</a></li>
+              <li><a href="#sec-15-2">15.2. Lattice graphics</a></li>
 
-              <li><a href="#sec-14-3">14.3. ggplot2</a></li>
+              <li><a href="#sec-15-3">15.3. ggplot2</a></li>
             </ul>
           </li>
 
-          <li><a href="#sec-15">15. 11. Linear regression and ANOVA</a></li>
-
-          <li>
-            <a href="#sec-16">16. 12. Useful tricks</a>
-
-            <ul>
-              <li><a href="#sec-16-1">16.1. Peeking at your data</a></li>
-            </ul>
-          </li>
+          <li><a href="#sec-16">16. 11. Linear regression and ANOVA</a></li>
         </ul>
       </div>
     </div>
@@ -450,6 +485,10 @@ rm(list=ls())                      <span style=
 
         <div class="outline-text-3" id="text-4-7">
           <dl class="org-dl">
+            <dt>==</dt>
+
+            <dd>Compare.</dd>
+
             <dt><code>%in%</code></dt>
 
             <dd>Test membership.</dd>
@@ -482,10 +521,6 @@ rm(list=ls())                      <span style=
 
       <div class="outline-text-2" id="text-5">
         <dl class="org-dl">
-          <dt><code>getwd()</code></dt>
-
-          <dd>Figure out what your working directory is.</dd>
-
           <dt><code>library(package)</code></dt>
 
           <dd>
@@ -538,6 +573,30 @@ x &lt;- as.numeric(argv[1])
       structures</h2>
 
       <div class="outline-text-2" id="text-6">
+        <p>What is data?</p>
+
+        <dl class="org-dl">
+          <dt>Population</dt>
+
+          <dd>Set of items.</dd>
+
+          <dt>Variable</dt>
+
+          <dd>
+            Measurement or characteristic.
+
+            <dl class="org-dl">
+              <dt>Qualitative</dt>
+
+              <dd>Can be defined by a label and have discrete values.</dd>
+
+              <dt>Quantitative</dt>
+
+              <dd>Measured on a numerical scale.</dd>
+            </dl>
+          </dd>
+        </dl>
+
         <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame=
         "hsides">
           <colgroup>
@@ -583,7 +642,7 @@ x &lt;- as.numeric(argv[1])
             <tr>
               <td class="left"><code>character</code></td>
 
-              <td class="left">"hello" (lowest class)</td>
+              <td class="left">"hello" (= lowest class)</td>
             </tr>
           </tbody>
         </table>
@@ -1343,15 +1402,73 @@ square <span style="color: #6434A3;">&lt;-</span> make.power(2)
       <h2 id="sec-9"><span class="section-number-2">9</span> 4. Input and
       output</h2>
 
-      <div class="outline-text-2" id="text-9"></div>
+      <div class="outline-text-2" id="text-9">
+        <p>Types of files:</p>
+
+        <ul class="org-ul">
+          <li>Tab-delimited</li>
+
+          <li>CSV</li>
+
+          <li>Excel</li>
+
+          <li>JSON</li>
+
+          <li>HTML/XML</li>
+
+          <li>Database</li>
+        </ul>
+      </div>
 
       <div id="outline-container-sec-9-1" class="outline-3">
-        <h3 id="sec-9-1"><span class="section-number-3">9.1</span> Reading
-        tabular data files</h3>
+        <h3 id="sec-9-1"><span class="section-number-3">9.1</span> Getting the
+        current working directory</h3>
 
         <div class="outline-text-3" id="text-9-1">
           <dl class="org-dl">
-            <dt><code>read.table("file.txt")</code></dt>
+            <dt><code>getwd()</code></dt>
+
+            <dd>Figure out what your <b>working directory</b> is.</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div id="outline-container-sec-9-2" class="outline-3">
+        <h3 id="sec-9-2"><span class="section-number-3">9.2</span> Creating,
+        opening and closing connections</h3>
+
+        <div class="outline-text-3" id="text-9-2">
+          <dl class="org-dl">
+            <dt><code>file()</code></dt>
+
+            <dd>
+              <ul class="org-ul">
+                <li><code>description</code> is the name of the file</li>
+
+                <li><code>open</code> is a code (read-only, write, append)</li>
+              </ul>
+
+              <div class="org-src-container">
+                <pre class="src src-R">
+con <span style="color: #6434A3;">&lt;-</span> file(<span style=
+"color: #FF4700;">"./data/cameras.csv"</span>, <span style=
+"color: #FF4700;">"r"</span>)
+cameraData <span style="color: #6434A3;">&lt;-</span> read.csv(con)
+close(con)
+</pre>
+              </div>
+            </dd>
+          </dl>
+        </div>
+      </div>
+
+      <div id="outline-container-sec-9-3" class="outline-3">
+        <h3 id="sec-9-3"><span class="section-number-3">9.3</span> Reading
+        tabular data files</h3>
+
+        <div class="outline-text-3" id="text-9-3">
+          <dl class="org-dl">
+            <dt><code>read.table(file)</code></dt>
 
             <dd>
               Read tabular data file, create data frame.
@@ -1359,55 +1476,225 @@ square <span style="color: #6434A3;">&lt;-</span> make.power(2)
               <p>Important arguments:</p>
 
               <ul class="org-ul">
-                <li><code>file</code>,</li>
+                <li><code>file</code></li>
 
-                <li><code>header</code>,</li>
+                <li><code>header</code></li>
 
                 <li><code>sep</code> (defaults to the <b>space</b>)</li>
 
-                <li><code>colClasses</code>, class of each column</li>
+                <li><code>quote</code></li>
 
-                <li><code>nrows</code>,</li>
+                <li><code>colClasses</code> (class of each column)</li>
 
-                <li><code>comment.char</code>,</li>
+                <li><code>nrows</code></li>
 
-                <li><code>skip</code>, number of lines to skip from the
-                beginning</li>
+                <li><code>skip</code> (number of lines to skip from the
+                beginning)</li>
+
+                <li><code>comment.char</code></li>
 
                 <li><code>stringsAsFactors</code> (defaults to
                 <code>TRUE</code>)</li>
               </ul>
+
+              <div class="org-src-container">
+                <pre class="src src-R">
+data <span style="color: #6434A3;">&lt;-</span> read.table(<span style=
+"color: #FF4700;">"./data/file.txt"</span>, header=T, sep=<span style=
+"color: #FF4700;">"\t"</span>, quote=<span style="color: #FF4700;">""</span>)
+</pre>
+              </div>
             </dd>
+          </dl>
+
+          <p>For <b>large datasets</b>:</p>
+
+          <ul class="org-ul">
+            <li>Set <code>comment.char</code> = "" if there are no comments in
+            your file.</li>
+
+            <li>Use the <code>colClasses</code> argument.
+
+              <p>Quick and dirty way to figure out the classes of each
+              column:</p>
+
+              <div class="org-src-container">
+                <pre class="src src-R">
+initial <span style="color: #6434A3;">&lt;-</span> read.table(<span style=
+"color: #FF4700;">"datatable.txt"</span>, nrows = 100)
+classes <span style="color: #6434A3;">&lt;-</span> sapply(initial, class)
+tabAll <span style="color: #6434A3;">&lt;-</span> read.table(<span style=
+"color: #FF4700;">"datatable.txt"</span>, colClasses = classes)
+</pre>
+              </div>
+            </li>
+
+            <li>Set <code>nrows</code> helps with memory usage.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="outline-container-sec-9-4" class="outline-3">
+        <h3 id="sec-9-4"><span class="section-number-3">9.4</span> Writing
+        tabular data files</h3>
+
+        <div class="outline-text-3" id="text-9-4">
+          <dl class="org-dl">
+            <dt><code>write.table()</code></dt>
+
+            <dd>Write data.</dd>
           </dl>
         </div>
       </div>
 
-      <div id="outline-container-sec-9-2" class="outline-3">
-        <h3 id="sec-9-2"><span class="section-number-3">9.2</span> Reading from
+      <div id="outline-container-sec-9-5" class="outline-3">
+        <h3 id="sec-9-5"><span class="section-number-3">9.5</span> Reading from
         CSV files</h3>
 
-        <div class="outline-text-3" id="text-9-2">
+        <div class="outline-text-3" id="text-9-5">
           <dl class="org-dl">
-            <dt><code>read.csv("file.csv")</code></dt>
+            <dt><code>read.csv(file)</code></dt>
 
             <dd>
               Read data from CSV file, create data frame.
 
               <ul class="org-ul">
-                <li><code>header</code> defaults to <code>TRUE</code></li>
+                <li><code>header</code> (defaults to <code>TRUE</code>)</li>
 
-                <li>default <code>separator</code>: <b>comma</b></li>
+                <li><code>separator</code> (defaults to <b>comma</b>)</li>
+              </ul>
+
+              <div class="org-src-container">
+                <pre class="src src-R">
+data <span style="color: #6434A3;">&lt;-</span> read.csv(<span style=
+"color: #FF4700;">"./data/file.csv"</span>)
+
+read.csv(file.choose())            <span style=
+"color: #008200;"># </span><span style=
+"color: #008200; font-style: italic;">pick a file</span>
+</pre>
+              </div>
+
+              <p>It calls <code>read.table</code> with some default values. To
+              look at them, just look at the code of <code>read.csv</code> by
+              typing <code>read.csv</code> and hitting &lt;enter&gt; at your R
+              command line).</p>
+            </dd>
+
+            <dt><code>read.csv2(file)</code></dt>
+
+            <dd>
+              Read data from CSV file, create data frame.
+
+              <ul class="org-ul">
+                <li><code>header</code> (defaults to <code>TRUE</code>)</li>
+
+                <li><code>separator</code> (defaults to <code>;</code>)</li>
               </ul>
             </dd>
           </dl>
         </div>
       </div>
 
-      <div id="outline-container-sec-9-3" class="outline-3">
-        <h3 id="sec-9-3"><span class="section-number-3">9.3</span> Reading from
-        SQL databases</h3>
+      <div id="outline-container-sec-9-6" class="outline-3">
+        <h3 id="sec-9-6"><span class="section-number-3">9.6</span> Reading from
+        Excel files</h3>
 
-        <div class="outline-text-3" id="text-9-3">
+        <div class="outline-text-3" id="text-9-6">
+          <dl class="org-dl">
+            <dt><code>read.xlsx()</code>, <code>read.xlsx2()</code></dt>
+
+            <dd>Read Excel files.</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div id="outline-container-sec-9-7" class="outline-3">
+        <h3 id="sec-9-7"><span class="section-number-3">9.7</span> Reading
+        files from the Internet</h3>
+
+        <div class="outline-text-3" id="text-9-7">
+          <dl class="org-dl">
+            <dt><code>download.file()</code></dt>
+
+            <dd>
+              Download a file from the Internet.
+
+              <p>Be sure to record when you downloaded.</p>
+
+              <div class="org-src-container">
+                <pre class="src src-R">
+fileUrl <span style="color: #6434A3;">&lt;-</span> <span style=
+"color: #FF4700;">"http://..."</span>
+download.file(fileUrl, destfile=<span style=
+"color: #FF4700;">"./data/file.csv"</span>, method=<span style=
+"color: #FF4700;">"curl"</span>)
+</pre>
+              </div>
+            </dd>
+          </dl>
+        </div>
+      </div>
+
+      <div id="outline-container-sec-9-8" class="outline-3">
+        <h3 id="sec-9-8"><span class="section-number-3">9.8</span> Reading
+        files with a complex structure</h3>
+
+        <div class="outline-text-3" id="text-9-8">
+          <dl class="org-dl">
+            <dt><code>readLines()</code></dt>
+
+            <dd>
+              Read lines of text from a connection.
+
+              <p><i>Connections</i> can be made to:</p>
+
+              <ul class="org-ul">
+                <li><code>file</code> (most common)</li>
+
+                <li><code>gzfile</code>, file compressed with
+                <code>gzip</code></li>
+
+                <li><code>bzfile</code>, file compressed with
+                <code>bzip2</code></li>
+
+                <li><code>url</code></li>
+              </ul>
+
+              <p><b>Remember to close connections</b>.</p>
+
+              <div class="org-src-container">
+                <pre class="src src-R">
+con <span style="color: #6434A3;">&lt;-</span> url(<span style=
+"color: #FF4700;">"http://scholar.google.com/citations"</span>)
+htmlCode <span style="color: #6434A3;">&lt;-</span> readLines(con)
+close(con)
+
+<span style="color: #008200;"># </span><span style=
+"color: #008200; font-style: italic;">get data off webpages</span>
+html3 <span style="color: #6434A3;">&lt;-</span> htmlTreeParse(<span style=
+"color: #FF4700;">"..."</span>)
+
+<span style="color: #008200;"># </span><span style=
+"color: #008200; font-style: italic;">find value of title tag</span>
+xpathSApply(html3, <span style="color: #FF4700;">"//title"</span>, xmlValue)
+
+<span style="color: #008200;"># </span><span style=
+"color: #008200; font-style: italic;">access parts of the table</span>
+xpathSApply(html3, <span style=
+"color: #FF4700;">"//td[@id='col-citedby']"</span>, xmlValue)
+</pre>
+              </div>
+            </dd>
+          </dl>
+        </div>
+      </div>
+
+      <div id="outline-container-sec-9-9" class="outline-3">
+        <h3 id="sec-9-9"><span class="section-number-3">9.9</span> Reading from
+        SQL Server databases</h3>
+
+        <div class="outline-text-3" id="text-9-9">
           <div class="org-src-container">
             <pre class="src src-R">
 <span style="color: #6434A3;">library</span>(RODBC)
@@ -1426,13 +1713,214 @@ odbcClose(con)
           </div>
         </div>
       </div>
+
+      <div id="outline-container-sec-9-10" class="outline-3">
+        <h3 id="sec-9-10"><span class="section-number-3">9.10</span> Saving and
+        transporting objects</h3>
+
+        <div class="outline-text-3" id="text-9-10">
+          <p>Textual formats (potentially recoverable in case of
+          corruption).</p>
+
+          <dl class="org-dl">
+            <dt><code>dput()</code></dt>
+
+            <dd>Deparse a single R object.</dd>
+
+            <dt><code>dump()</code></dt>
+
+            <dd>Can be used on multiple R objects.</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div id="outline-container-sec-9-11" class="outline-3">
+        <h3 id="sec-9-11"><span class="section-number-3">9.11</span> Further
+        resources</h3>
+
+        <div class="outline-text-3" id="text-9-11">
+          <p>Packages:</p>
+
+          <dl class="org-dl">
+            <dt><code>httr</code></dt>
+
+            <dd>For working with HTTP connections.</dd>
+
+            <dt><code>RMySQL</code></dt>
+
+            <dd>For interfacing with mySQL.</dd>
+
+            <dt><code>bigmemory</code></dt>
+
+            <dd>For handling data larger than RAM.</dd>
+
+            <dt><code>foreign</code></dt>
+
+            <dd>For getting data into R from SAS, SPSS, Octave, etc.</dd>
+          </dl>
+        </div>
+      </div>
     </div>
 
     <div id="outline-container-sec-10" class="outline-2">
-      <h2 id="sec-10"><span class="section-number-2">10</span> 6. Data
+      <h2 id="sec-10"><span class="section-number-2">10</span> 12. Useful
+      tricks</h2>
+
+      <div class="outline-text-2" id="text-10"></div>
+
+      <div id="outline-container-sec-10-1" class="outline-3">
+        <h3 id="sec-10-1"><span class="section-number-3">10.1</span> Peeking at
+        your data</h3>
+
+        <div class="outline-text-3" id="text-10-1">
+          <dl class="org-dl">
+            <dt><code>head()</code></dt>
+
+            <dd>Look at the first 6 rows.</dd>
+
+            <dt><code>tail()</code></dt>
+
+            <dd>Look at the last 6 rows.</dd>
+
+            <dt><code>str()</code></dt>
+
+            <dd>
+              <i>Compactly</i> display the internal <b>structure</b>
+              (<b>classes</b>, etc.) of an object.
+
+              <p>Alternative to <code>summary()</code>.</p>
+
+              <p>When applied to functions, show the <b>arguments</b>.</p>
+
+              <div class="org-src-container">
+                <pre class="src src-R">
+str(.Platform)                     <span style=
+"color: #008200;"># </span><span style=
+"color: #008200; font-style: italic;">what is the operating system</span>
+</pre>
+              </div>
+            </dd>
+
+            <dt><code>attributes()</code></dt>
+
+            <dd>Access (set or modify) the (list of) attributes of an
+            object.</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <div id="outline-container-sec-11" class="outline-2">
+      <h2 id="sec-11"><span class="section-number-2">11</span> 9. General
+      statistics</h2>
+
+      <div class="outline-text-2" id="text-11"></div>
+
+      <div id="outline-container-sec-11-1" class="outline-3">
+        <h3 id="sec-11-1"><span class="section-number-3">11.1</span>
+        Summarizing your data</h3>
+
+        <div class="outline-text-3" id="text-11-1">
+          <dl class="org-dl">
+            <dt><code>range()</code></dt>
+
+            <dd>Give the min and the max (vector of length 2) of the
+            observations (vector of numbers).</dd>
+
+            <dt><code>summary()</code></dt>
+
+            <dd>Produce a summary of the object.</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div id="outline-container-sec-11-2" class="outline-3">
+        <h3 id="sec-11-2"><span class="section-number-3">11.2</span> Tabulating
+        factors</h3>
+
+        <div class="outline-text-3" id="text-11-2">
+          <dl class="org-dl">
+            <dt><code>table(f)</code></dt>
+
+            <dd>
+              <b>Count</b> the number of observations in each <i>level</i>
+              (only works on <i>factors</i>). Give a <b>frequency</b> of how
+              many levels there are.
+
+              <div class="org-src-container">
+                <pre class="src src-R">
+unique(dfrm$f)
+length(unique(dfrm$f))             <span style=
+"color: #008200;"># </span><span style=
+"color: #008200; font-style: italic;">how many unique values</span>
+
+table(dfrm$f, useNA=<span style=
+"color: #FF4700;">"ifany"</span>)       <span style=
+"color: #008200;"># </span><span style=
+"color: #008200; font-style: italic;">number of times each unique value appears</span>
+                                   <span style=
+"color: #008200;"># </span><span style=
+"color: #008200; font-style: italic;">(show missing values as well)</span>
+</pre>
+              </div>
+
+              <p>Use the <code>cut</code> function to calculate tables with
+              <i>numeric</i> values.</p>
+            </dd>
+
+            <dt><code>table(f1, f2)</code></dt>
+
+            <dd>
+              Produce a <i>contingency table</i> (cross-tabulation).
+
+              <div class="org-src-container">
+                <pre class="src src-R">
+table(dfrm$f1, dfrm$f2)            <span style=
+"color: #008200;"># </span><span style=
+"color: #008200; font-style: italic;">look at the relationship between f1 and f2</span>
+</pre>
+              </div>
+            </dd>
+          </dl>
+        </div>
+      </div>
+
+      <div id="outline-container-sec-11-3" class="outline-3">
+        <h3 id="sec-11-3"><span class="section-number-3">11.3</span> Testing
+        categorical variables for independence</h3>
+
+        <div class="outline-text-3" id="text-11-3">
+          <div class="org-src-container">
+            <pre class="src src-R">
+summary(table(f1, f2))
+</pre>
+          </div>
+
+          <p>Conventionally, a <i>p</i>-value of less than 0.05 indicates that
+          the variables are likely not independent (there is some connection
+          between the variables).</p>
+        </div>
+      </div>
+
+      <div id="outline-container-sec-11-4" class="outline-3">
+        <h3 id="sec-11-4"><span class="section-number-3">11.4</span>
+        Calculating quantiles (and quartiles) of a dataset</h3>
+
+        <div class="outline-text-3" id="text-11-4">
+          <div class="org-src-container">
+            <pre class="src src-R">
+quantile(vec, na.rm=<span style="color: #666666;">TRUE</span>)
+</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="outline-container-sec-12" class="outline-2">
+      <h2 id="sec-12"><span class="section-number-2">12</span> 6. Data
       transformations</h2>
 
-      <div class="outline-text-2" id="text-10">
+      <div class="outline-text-2" id="text-12">
         <p>(Partial list of) munging operations (= key process)</p>
 
         <ul class="org-ul">
@@ -1440,13 +1928,77 @@ odbcClose(con)
 
           <li><b>90% of your effort will often be spent here</b></li>
         </ul>
+
+        <p>Processed (<b>tidy</b>) data:</p>
+
+        <ul class="org-ul">
+          <li>Each variable forms a column.</li>
+
+          <li>Each observation forms a row.</li>
+
+          <li>Each table / file stores data about one kind of observation.</li>
+        </ul>
       </div>
 
-      <div id="outline-container-sec-10-1" class="outline-3">
-        <h3 id="sec-10-1"><span class="section-number-3">10.1</span> Removing
+      <div id="outline-container-sec-12-1" class="outline-3">
+        <h3 id="sec-12-1"><span class="section-number-3">12.1</span> Fixing
+        variable names</h3>
+
+        <div class="outline-text-3" id="text-12-1">
+          <div class="org-src-container">
+            <pre class="src src-R">
+tolower(names(dfrm))
+</pre>
+          </div>
+
+          <div class="org-src-container">
+            <pre class="src src-R">
+splitNames <span style=
+"color: #6434A3;">&lt;-</span> strsplit(names(dfrm),<span style=
+"color: #FF4700;">"\\."</span>) <span style=
+"color: #008200;"># </span><span style=
+"color: #008200; font-style: italic;">split at period in names</span>
+<span style="color: #006699;">firstElement</span> <span style=
+"color: #6434A3;">&lt;-</span> <span style=
+"color: #0000FF;">function</span>(x){x[1]}       <span style=
+"color: #008200;"># </span><span style=
+"color: #008200; font-style: italic;">select the 1st component of the vector</span>
+sapply(splitNames, firstElement)        <span style=
+"color: #008200;"># </span><span style=
+"color: #008200; font-style: italic;">remove everything after the trailing dot</span>
+</pre>
+          </div>
+
+          <div class="org-src-container">
+            <pre class="src src-R">
+gsub(<span style="color: #FF4700;">"_"</span>, <span style=
+"color: #FF4700;">""</span>, names(dfrm))
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="outline-container-sec-12-2" class="outline-3">
+        <h3 id="sec-12-2"><span class="section-number-3">12.2</span> Creating
+        new variables</h3>
+
+        <div class="outline-text-3" id="text-12-2">
+          <div class="org-src-container">
+            <pre class="src src-R">
+dfrm$ranges <span style=
+"color: #6434A3;">&lt;-</span> ranges                   <span style=
+"color: #008200;"># </span><span style=
+"color: #008200; font-style: italic;">add a variable to the data frame</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="outline-container-sec-12-3" class="outline-3">
+        <h3 id="sec-12-3"><span class="section-number-3">12.3</span> Removing
         list elements using a condition</h3>
 
-        <div class="outline-text-3" id="text-10-1">
+        <div class="outline-text-3" id="text-12-3">
           <p><b>Subsetting</b> by using 2 types of index:</p>
 
           <ul class="org-ul">
@@ -1515,8 +2067,8 @@ x <span style=
 "color: #6434A3;">&lt;-</span> x[,tokeep]                         <span style=
 "color: #008200;"># </span><span style=
 "color: #008200; font-style: italic;">or...</span>
-x <span style="color: #6434A3;">&lt;-</span> x[,tokeep, drop = <span style=
-"color: #666666;">FALSE</span>]           <span style=
+x <span style="color: #6434A3;">&lt;-</span> x[,tokeep, drop=<span style=
+"color: #666666;">FALSE</span>]             <span style=
 "color: #008200;"># </span><span style=
 "color: #008200; font-style: italic;">you will need this option to avoid</span>
                                         <span style=
@@ -1530,16 +2082,47 @@ x <span style="color: #6434A3;">&lt;-</span> x[,tokeep, drop = <span style=
         </div>
       </div>
 
-      <div id="outline-container-sec-10-2" class="outline-3">
-        <h3 id="sec-10-2"><span class="section-number-3">10.2</span> Removing
+      <div id="outline-container-sec-12-4" class="outline-3">
+        <h3 id="sec-12-4"><span class="section-number-3">12.4</span> Selecting
+        rows and columns more easily</h3>
+
+        <div class="outline-text-3" id="text-12-4">
+          <p>Indexing approach.</p>
+
+          <div class="org-src-container">
+            <pre class="src src-R">
+dfrm[dfrm$var1 &gt; 0 &amp; dfrm$var2 &gt; 0, c(1,2)] <span style=
+"color: #008200;"># </span><span style=
+"color: #008200; font-style: italic;">subset on var1 and var2</span>
+dfrm[dfrm$var1 &gt; 0 | dfrm$var2 &gt; 0, c(1,2)] <span style=
+"color: #008200;"># </span><span style=
+"color: #008200; font-style: italic;">subset on var1 or var2</span>
+</pre>
+          </div>
+
+          <p>Using the <code>subset</code> function.</p>
+
+          <div class="org-src-container">
+            <pre class="src src-R">
+subset(dfrm, select=c(var1,var2), subset=(var1 &gt; 0 &amp; var2 &gt; 0))
+subset(dfrm, select=c(var1,var2), subset=(var1 &gt; 0 | var2 &gt; 0))
+</pre>
+          </div>
+
+          <p>Note that you do <i>not</i> quote the column names.</p>
+        </div>
+      </div>
+
+      <div id="outline-container-sec-12-5" class="outline-3">
+        <h3 id="sec-12-5"><span class="section-number-3">12.5</span> Removing
         rows that contain NAs from a data frame</h3>
       </div>
 
-      <div id="outline-container-sec-10-3" class="outline-3">
-        <h3 id="sec-10-3"><span class="section-number-3">10.3</span> Removing
+      <div id="outline-container-sec-12-6" class="outline-3">
+        <h3 id="sec-12-6"><span class="section-number-3">12.6</span> Removing
         columns that contain NAs from a data frame</h3>
 
-        <div class="outline-text-3" id="text-10-3">
+        <div class="outline-text-3" id="text-12-6">
           <p>Get rid of any column that has one or more NAs.</p>
 
           <div class="org-src-container">
@@ -1550,11 +2133,36 @@ df <span style="color: #6434A3;">&lt;-</span> df[,colSums(is.na(df))==0]
         </div>
       </div>
 
-      <div id="outline-container-sec-10-4" class="outline-3">
-        <h3 id="sec-10-4"><span class="section-number-3">10.4</span> Merging
+      <div id="outline-container-sec-12-7" class="outline-3">
+        <h3 id="sec-12-7"><span class="section-number-3">12.7</span> Merging
         data frames by commun column</h3>
 
-        <div class="outline-text-3" id="text-10-4">
+        <div class="outline-text-3" id="text-12-7">
+          <dl class="org-dl">
+            <dt><code>merge(df1, df2, by = "CustomerId")</code></dt>
+
+            <dd><b>Inner</b> join.</dd>
+
+            <dt><code>merge(df1, df2, by = "CustomerId", all =
+            TRUE)</code></dt>
+
+            <dd><b>Full outer</b> join (all records from both tables).</dd>
+
+            <dt><code>merge(df1, df2, by = "CustomerId", all.x =
+            TRUE)</code></dt>
+
+            <dd><b>Left</b> outer join.</dd>
+
+            <dt><code>merge(df1, df2, by = "CustomerId", all.y =
+            TRUE)</code></dt>
+
+            <dd><b>Right</b> outer join.</dd>
+
+            <dt><code>merge(df1, df2, by = NULL)</code></dt>
+
+            <dd><b>Cross</b> join.</dd>
+          </dl>
+
           <p>Merge data sets.</p>
 
           <div class="org-src-container">
@@ -1568,11 +2176,11 @@ mergedData <span style=
         </div>
       </div>
 
-      <div id="outline-container-sec-10-5" class="outline-3">
-        <h3 id="sec-10-5"><span class="section-number-3">10.5</span>
+      <div id="outline-container-sec-12-8" class="outline-3">
+        <h3 id="sec-12-8"><span class="section-number-3">12.8</span>
         Converting</h3>
 
-        <div class="outline-text-3" id="text-10-5">
+        <div class="outline-text-3" id="text-12-8">
           <dl class="org-dl">
             <dt><code>as.*()</code></dt>
 
@@ -1592,6 +2200,26 @@ mergedData <span style=
             <dd>Convert to a time series object.</dd>
           </dl>
 
+          <p>You can always convert variables between types.</p>
+
+          <div class="org-src-container">
+            <pre class="src src-R">
+dfrm$x <span style=
+"color: #6434A3;">&lt;-</span> as.factor(dfrm$x)             <span style=
+"color: #008200;"># </span><span style=
+"color: #008200; font-style: italic;">character to factor</span>
+dfrm$x <span style=
+"color: #6434A3;">&lt;-</span> as.character(dfrm$x)          <span style=
+"color: #008200;"># </span><span style=
+"color: #008200; font-style: italic;">factor to character</span>
+</pre>
+          </div>
+
+          <p>Warning: To convert factors to numeric or integer, first convert
+          to character. Converting factors directly to numeric or integer data
+          can lead to unwanted outcomes. Always check the results of a
+          conversion to make sure R did what you wanted.</p>
+
           <p>Convert at once all the string columns to factors:</p>
 
           <div class="org-src-container">
@@ -1603,20 +2231,20 @@ x[ind] <span style="color: #6434A3;">&lt;-</span> lapply(x[ind], factor)
         </div>
       </div>
 
-      <div id="outline-container-sec-10-6" class="outline-3">
-        <h3 id="sec-10-6"><span class="section-number-3">10.6</span> Applying a
+      <div id="outline-container-sec-12-9" class="outline-3">
+        <h3 id="sec-12-9"><span class="section-number-3">12.9</span> Applying a
         function to each list element</h3>
 
-        <div class="outline-text-3" id="text-10-6">
+        <div class="outline-text-3" id="text-12-9">
           <p>Alternative (to <code>for</code> <b>loops</b>) to apply a function
           (or summary statistics).</p>
         </div>
 
-        <div id="outline-container-sec-10-6-1" class="outline-4">
-          <h4 id="sec-10-6-1"><span class="section-number-4">10.6.1</span>
+        <div id="outline-container-sec-12-9-1" class="outline-4">
+          <h4 id="sec-12-9-1"><span class="section-number-4">12.9.1</span>
           <code>lapply</code></h4>
 
-          <div class="outline-text-4" id="text-10-6-1">
+          <div class="outline-text-4" id="text-12-9-1">
             <p><b>Loop over a list</b> and apply a <b>function</b> on each
             element. <i>Always</i> returns a <b>list</b> back (that is, not a
             simplified result).</p>
@@ -1654,11 +2282,11 @@ lapply(x, <span style="color: #0000FF;">function</span>(elt) elt[,1])
           </div>
         </div>
 
-        <div id="outline-container-sec-10-6-2" class="outline-4">
-          <h4 id="sec-10-6-2"><span class="section-number-4">10.6.2</span>
+        <div id="outline-container-sec-12-9-2" class="outline-4">
+          <h4 id="sec-12-9-2"><span class="section-number-4">12.9.2</span>
           <code>sapply</code></h4>
 
-          <div class="outline-text-4" id="text-10-6-2">
+          <div class="outline-text-4" id="text-12-9-2">
             <p>Same as <code>lapply</code>, but tries to "<b>simplify</b>" the
             result in a much more compact format (put all the elements into a
             <b>vector</b> or a <b>matrix</b> if that is possible, instead of
@@ -1691,13 +2319,13 @@ sapply(s, <span style=
         </div>
       </div>
 
-      <div id="outline-container-sec-10-7" class="outline-3">
-        <h3 id="sec-10-7"><span class="section-number-3">10.7</span> Splitting
-        a vector into groups</h3>
+      <div id="outline-container-sec-12-10" class="outline-3">
+        <h3 id="sec-12-10"><span class="section-number-3">12.10</span>
+        Splitting a vector into groups</h3>
 
-        <div class="outline-text-3" id="text-10-7">
+        <div class="outline-text-3" id="text-12-10">
           <dl class="org-dl">
-            <dt><code>split(dataframe, dataframe$column)</code></dt>
+            <dt><code>split(x, f)</code></dt>
 
             <dd>
               Take a vector, and <b>split</b> it into subpieces (the number of
@@ -1744,11 +2372,11 @@ lapply(s, <span style=
         </div>
       </div>
 
-      <div id="outline-container-sec-10-8" class="outline-3">
-        <h3 id="sec-10-8"><span class="section-number-3">10.8</span> Applying a
-        function to every row/column</h3>
+      <div id="outline-container-sec-12-11" class="outline-3">
+        <h3 id="sec-12-11"><span class="section-number-3">12.11</span> Applying
+        a function to every row/column</h3>
 
-        <div class="outline-text-3" id="text-10-8">
+        <div class="outline-text-3" id="text-12-11">
           <dl class="org-dl">
             <dt><code>apply</code></dt>
 
@@ -1824,22 +2452,17 @@ apply(x, 1, quantile, probs = c(0.25, 0.75)) <span style=
         </div>
       </div>
 
-      <div id="outline-container-sec-10-9" class="outline-3">
-        <h3 id="sec-10-9"><span class="section-number-3">10.9</span> Applying a
-        function to groups of data</h3>
+      <div id="outline-container-sec-12-12" class="outline-3">
+        <h3 id="sec-12-12"><span class="section-number-3">12.12</span> Applying
+        a function to groups of data</h3>
 
-        <div class="outline-text-3" id="text-10-9">
+        <div class="outline-text-3" id="text-12-12">
           <dl class="org-dl">
-            <dt><code>tapply(X, INDEX, FUN)</code></dt>
-
-            <dt>(no term)</dt>
-
-            <dd>Short for "<b>table apply</b>"</dd>
-
-            <dt>(no term)</dt>
+            <dt><code>tapply(x, index, fun)</code></dt>
 
             <dd>
-              Apply a <b>function</b> over <b>subsets</b> of a vector:
+              Short for "<b>table apply</b>". Apply a <b>function</b> over
+              <b>subsets</b> of a vector:
 
               <ul class="org-ul">
                 <li>Splits up a vector into little groups (such as men and
@@ -1849,23 +2472,20 @@ apply(x, 1, quantile, probs = c(0.25, 0.75)) <span style=
 
                 <li>Brings the pieces back together</li>
               </ul>
-            </dd>
 
-            <dt>(no term)</dt>
+              <p>Function may be anonymous.</p>
 
-            <dd>Function may be anonymous</dd>
-
-            <dt>(no term)</dt>
-
-            <dd>
-              <code>Simplify = FALSE</code> to get back a list
+              <p><code>Simplify = FALSE</code> to get back a list (instead of
+              an array).</p>
 
               <div class="org-src-container">
                 <pre class="src src-R">
-tapply(x, f, mean, simplify = <span style=
-"color: #666666;">FALSE</span>)  <span style=
+tapply(x, f, sum, simplify = <span style=
+"color: #666666;">FALSE</span>) <span style=
 "color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">= lapply(split(x, f), mean)</span>
+"color: #008200; font-style: italic;">= lapply(split(x, f), sum)</span>
+tapply(x, f, mean)
+tapply(x, f, length)
 </pre>
               </div>
             </dd>
@@ -1878,11 +2498,11 @@ tapply(x, f, mean, simplify = <span style=
         </div>
       </div>
 
-      <div id="outline-container-sec-10-10" class="outline-3">
-        <h3 id="sec-10-10"><span class="section-number-3">10.10</span> Applying
+      <div id="outline-container-sec-12-13" class="outline-3">
+        <h3 id="sec-12-13"><span class="section-number-3">12.13</span> Applying
         a function to parallel vectors or lists</h3>
 
-        <div class="outline-text-3" id="text-10-10">
+        <div class="outline-text-3" id="text-12-13">
           <dl class="org-dl">
             <dt><code>mapply</code></dt>
 
@@ -1934,23 +2554,23 @@ list(rnorm(1, 1, 2),
         </div>
       </div>
 
-      <div id="outline-container-sec-10-11" class="outline-3">
-        <h3 id="sec-10-11"><span class="section-number-3">10.11</span> Checking
+      <div id="outline-container-sec-12-14" class="outline-3">
+        <h3 id="sec-12-14"><span class="section-number-3">12.14</span> Checking
         on and removing inconsistent values</h3>
       </div>
     </div>
 
-    <div id="outline-container-sec-11" class="outline-2">
-      <h2 id="sec-11"><span class="section-number-2">11</span> 7. Strings and
+    <div id="outline-container-sec-13" class="outline-2">
+      <h2 id="sec-13"><span class="section-number-2">13</span> 7. Strings and
       dates</h2>
 
-      <div class="outline-text-2" id="text-11"></div>
+      <div class="outline-text-2" id="text-13"></div>
 
-      <div id="outline-container-sec-11-1" class="outline-3">
-        <h3 id="sec-11-1"><span class="section-number-3">11.1</span> Getting
+      <div id="outline-container-sec-13-1" class="outline-3">
+        <h3 id="sec-13-1"><span class="section-number-3">13.1</span> Getting
         the length of a string</h3>
 
-        <div class="outline-text-3" id="text-11-1">
+        <div class="outline-text-3" id="text-13-1">
           <dl class="org-dl">
             <dt><code>nchar()</code></dt>
 
@@ -1959,11 +2579,11 @@ list(rnorm(1, 1, 2),
         </div>
       </div>
 
-      <div id="outline-container-sec-11-2" class="outline-3">
-        <h3 id="sec-11-2"><span class="section-number-3">11.2</span>
+      <div id="outline-container-sec-13-2" class="outline-3">
+        <h3 id="sec-13-2"><span class="section-number-3">13.2</span>
         Concatenating strings</h3>
 
-        <div class="outline-text-3" id="text-11-2">
+        <div class="outline-text-3" id="text-13-2">
           <dl class="org-dl">
             <dt><code>paste()</code></dt>
 
@@ -1973,11 +2593,11 @@ list(rnorm(1, 1, 2),
         </div>
       </div>
 
-      <div id="outline-container-sec-11-3" class="outline-3">
-        <h3 id="sec-11-3"><span class="section-number-3">11.3</span> Regular
+      <div id="outline-container-sec-13-3" class="outline-3">
+        <h3 id="sec-13-3"><span class="section-number-3">13.3</span> Regular
         expressions</h3>
 
-        <div class="outline-text-3" id="text-11-3">
+        <div class="outline-text-3" id="text-13-3">
           <p>For the moment, we assume pattern matching on <b>ASCII
           strings</b>…</p>
 
@@ -2157,55 +2777,16 @@ hist(dates, <span style="color: #FF4700;">"month"</span>, freq = <span style=
       </div>
     </div>
 
-    <div id="outline-container-sec-12" class="outline-2">
-      <h2 id="sec-12"><span class="section-number-2">12</span> 8.
+    <div id="outline-container-sec-14" class="outline-2">
+      <h2 id="sec-14"><span class="section-number-2">14</span> 8.
       Probability</h2>
     </div>
 
-    <div id="outline-container-sec-13" class="outline-2">
-      <h2 id="sec-13"><span class="section-number-2">13</span> 9. General
-      statistics</h2>
-
-      <div class="outline-text-2" id="text-13"></div>
-
-      <div id="outline-container-sec-13-1" class="outline-3">
-        <h3 id="sec-13-1"><span class="section-number-3">13.1</span>
-        Summarizing your data</h3>
-
-        <div class="outline-text-3" id="text-13-1">
-          <dl class="org-dl">
-            <dt><code>range()</code></dt>
-
-            <dd>Give the min and the max (vector of length 2) of the
-            observations (vector of numbers).</dd>
-
-            <dt><code>summary()</code></dt>
-
-            <dd>Produce a summary of the object.</dd>
-          </dl>
-        </div>
-      </div>
-
-      <div id="outline-container-sec-13-2" class="outline-3">
-        <h3 id="sec-13-2"><span class="section-number-3">13.2</span> Tabulating
-        factors</h3>
-
-        <div class="outline-text-3" id="text-13-2">
-          <dl class="org-dl">
-            <dt><code>table(vector)</code></dt>
-
-            <dd><b>Count</b> the number of observations in each <i>level</i>
-            (see factors). Give a frequency of how many levels there are.</dd>
-          </dl>
-        </div>
-      </div>
-    </div>
-
-    <div id="outline-container-sec-14" class="outline-2">
-      <h2 id="sec-14"><span class="section-number-2">14</span> 10.
+    <div id="outline-container-sec-15" class="outline-2">
+      <h2 id="sec-15"><span class="section-number-2">15</span> 10.
       Graphics</h2>
 
-      <div class="outline-text-2" id="text-14">
+      <div class="outline-text-2" id="text-15">
         <p>2 systems:</p>
 
         <dl class="org-dl">
@@ -2257,17 +2838,17 @@ hist(dates, <span style="color: #FF4700;">"month"</span>, freq = <span style=
         plot.</p>
       </div>
 
-      <div id="outline-container-sec-14-1" class="outline-3">
-        <h3 id="sec-14-1"><span class="section-number-3">14.1</span> Base
+      <div id="outline-container-sec-15-1" class="outline-3">
+        <h3 id="sec-15-1"><span class="section-number-3">15.1</span> Base
         graphics</h3>
 
-        <div class="outline-text-3" id="text-14-1"></div>
+        <div class="outline-text-3" id="text-15-1"></div>
 
-        <div id="outline-container-sec-14-1-1" class="outline-4">
-          <h4 id="sec-14-1-1"><span class="section-number-4">14.1.1</span> Make
+        <div id="outline-container-sec-15-1-1" class="outline-4">
+          <h4 id="sec-15-1-1"><span class="section-number-4">15.1.1</span> Make
           a plot</h4>
 
-          <div class="outline-text-4" id="text-14-1-1">
+          <div class="outline-text-4" id="text-15-1-1">
             <dl class="org-dl">
               <dt><code>plot</code></dt>
 
@@ -2290,12 +2871,29 @@ hist(dates, <span style="color: #FF4700;">"month"</span>, freq = <span style=
           <ol class="org-ol">
             <li>Create a scatter plot<br />
 
-              <div class="outline-text-5" id="text-14-1-1-1">
+              <div class="outline-text-5" id="text-15-1-1-1">
                 <dl class="org-dl">
                   <dt><code>plot(x)</code></dt>
 
-                  <dd>Plot the (numeric) data against the index
-                  (<code>1:N</code>).</dd>
+                  <dd>
+                    Plot the (numeric) data against the index
+                    (<code>1:N</code>).
+
+                    <div class="org-src-container">
+                      <pre class="src src-R">
+data(iris)
+plot(sort(iris$Petal.Width),
+     main=<span style="color: #FF4700;">"Distribution of petal widths"</span>,
+     xlab=<span style="color: #FF4700;">"Rank"</span>, ylab=<span style=
+"color: #FF4700;">"Width"</span>, col=as.integer(iris$Species)+1)
+</pre>
+                    </div>
+
+                    <div class="figure">
+                      <p><img src="images/base-scatterplot-sort.png" alt=
+                      "base-scatterplot-sort.png" /></p>
+                    </div>
+                  </dd>
 
                   <dt><code>plot(x, y)</code></dt>
 
@@ -2307,8 +2905,8 @@ hist(dates, <span style="color: #FF4700;">"month"</span>, freq = <span style=
 data(iris)
 plot(iris$Petal.Length, iris$Petal.Width,
      main=<span style="color: #FF4700;">"Petals: Length vs Width"</span>,
-     xlab=<span style="color: #FF4700;">"Length"</span>,
-     ylab=<span style="color: #FF4700;">"Width"</span>)
+     xlab=<span style="color: #FF4700;">"Length"</span>, ylab=<span style=
+"color: #FF4700;">"Width"</span>, col=as.integer(iris$Species)+1)
 </pre>
                     </div>
 
@@ -2326,14 +2924,15 @@ plot(iris$Petal.Length, iris$Petal.Width,
                   <dt><code>plot(dfrm)</code></dt>
 
                   <dd>
-                    Create multiple scatter plots if your data frame contains
-                    more than 2&nbsp;columns.
+                    Create <b>multiple scatter plots</b> if your data frame
+                    contains more than 2&nbsp;columns.
 
                     <div class="org-src-container">
                       <pre class="src src-R">
 data(iris)
 plot(iris[,1:4], main=<span style=
-"color: #FF4700;">"Multiple scatter plots"</span>)
+"color: #FF4700;">"Multiple scatter plots"</span>,
+     col=as.integer(iris$Species)+1)
 </pre>
                     </div>
 
@@ -2341,6 +2940,69 @@ plot(iris[,1:4], main=<span style=
                       <p><img src="images/base-multi-scatterplots.png" alt=
                       "base-multi-scatterplots.png" /></p>
                     </div>
+
+                    <p>You can see that length and width appear strongly
+                    correlated. You could check the correlation between
+                    features with the <code>cor()</code> function.</p>
+
+                    <div class="org-src-container">
+                      <pre class="src src-R">
+data(iris)
+cor(iris[-5])
+</pre>
+                    </div>
+
+                    <table border="2" cellspacing="0" cellpadding="6" rules=
+                    "groups" frame="hsides">
+                      <colgroup>
+                        <col class="right" />
+                        <col class="right" />
+                        <col class="right" />
+                        <col class="right" />
+                      </colgroup>
+
+                      <tbody>
+                        <tr>
+                          <td class="right">1</td>
+
+                          <td class="right">-0.117569784133002</td>
+
+                          <td class="right">0.871753775886583</td>
+
+                          <td class="right">0.817941126271576</td>
+                        </tr>
+
+                        <tr>
+                          <td class="right">-0.117569784133002</td>
+
+                          <td class="right">1</td>
+
+                          <td class="right">-0.42844010433054</td>
+
+                          <td class="right">-0.366125932536439</td>
+                        </tr>
+
+                        <tr>
+                          <td class="right">0.871753775886583</td>
+
+                          <td class="right">-0.42844010433054</td>
+
+                          <td class="right">1</td>
+
+                          <td class="right">0.962865431402796</td>
+                        </tr>
+
+                        <tr>
+                          <td class="right">0.817941126271576</td>
+
+                          <td class="right">-0.366125932536439</td>
+
+                          <td class="right">0.962865431402796</td>
+
+                          <td class="right">1</td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </dd>
                 </dl>
               </div>
@@ -2349,23 +3011,105 @@ plot(iris[,1:4], main=<span style=
             <li>
               <code>hist</code><br />
 
-              <div class="outline-text-5" id="text-14-1-1-2">
+              <div class="outline-text-5" id="text-15-1-1-2">
                 <p>Generic function: you can call it on different types of
                 data. When you call <code>hist</code> on a <code>Date</code>
                 object, it requires an interval ("day" / "week" / "month" /
                 "year") in order to break it up into sequences.</p>
+
+                <div class="org-src-container">
+                  <pre class="src src-R">
+data(iris)
+hist(iris$Petal.Length, main=<span style=
+"color: #FF4700;">"Histogram"</span>, col = <span style=
+"color: #FF4700;">"lightblue"</span>)
+</pre>
+                </div>
+
+                <div class="figure">
+                  <p><img src="images/base-hist.png" alt="base-hist.png" /></p>
+                </div>
+
+                <p><code>breaks</code> is key: it specifies the number of
+                categories to plot or the breakpoints for each category.</p>
+
+                <div class="org-src-container">
+                  <pre class="src src-R">
+data(iris)
+hist(iris$Petal.Length, breaks=seq(1,7,by=0.1), main=<span style=
+"color: #FF4700;">"Histogram"</span>, col = <span style=
+"color: #FF4700;">"lightblue"</span>)
+</pre>
+                </div>
+
+                <div class="figure">
+                  <p><img src="images/base-hist-breaks.png" alt=
+                  "base-hist-breaks.png" /></p>
+                </div>
+
+                <p>Can you explain the peculiar pattern? Graphical
+                representations of data are useful at identifying these sorts
+                of artifacts…</p>
+
+                <div class="org-src-container">
+                  <pre class="src src-R">
+data(iris)
+plot(table(iris$Petal.Length), main=<span style=
+"color: #FF4700;">"Table"</span>, col = <span style=
+"color: #FF4700;">"blue"</span>)
+</pre>
+                </div>
+
+                <div class="figure">
+                  <p><img src="images/base-plot-table.png" alt=
+                  "base-plot-table.png" /></p>
+                </div>
+
+                <p>Note – In the table plot, x values with one occurrence (out
+                of thousands) would be visible as one dot in the graphics. They
+                don't in the histogram (as the line, being too small, would be
+                on the x-axis itself).</p>
               </div>
             </li>
 
-            <li><code>boxplot</code><br /></li>
+            <li>
+              <code>boxplot</code><br />
+
+              <div class="outline-text-5" id="text-15-1-1-3">
+                <p><code>boxplot</code> draws plot summarizing</p>
+
+                <ul class="org-ul">
+                  <li>Median</li>
+
+                  <li>Quartiles (Q1, Q3)</li>
+
+                  <li>Outliers — by default, observations more than 1.5 * (Q3 -
+                  Q1) distant from nearest quartile</li>
+                </ul>
+
+                <div class="org-src-container">
+                  <pre class="src src-R">
+data(iris)
+boxplot(iris[,1:4], col=rainbow(4), main=<span style=
+"color: #FF4700;">"Boxplot"</span>, ylab=<span style=
+"color: #FF4700;">"Appropriate units"</span>)
+</pre>
+                </div>
+
+                <div class="figure">
+                  <p><img src="images/base-boxplot.png" alt=
+                  "base-boxplot.png" /></p>
+                </div>
+              </div>
+            </li>
           </ol>
         </div>
 
-        <div id="outline-container-sec-14-1-2" class="outline-4">
-          <h4 id="sec-14-1-2"><span class="section-number-4">14.1.2</span> Add
+        <div id="outline-container-sec-15-1-2" class="outline-4">
+          <h4 id="sec-15-1-2"><span class="section-number-4">15.1.2</span> Add
           to an existing plot</h4>
 
-          <div class="outline-text-4" id="text-14-1-2">
+          <div class="outline-text-4" id="text-15-1-2">
             <dl class="org-dl">
               <dt><code>lines</code></dt>
 
@@ -2425,11 +3169,11 @@ points(Petal.Length[Species == <span style=
 points(Petal.Length[Species == <span style=
 "color: #FF4700;">"versicolor"</span>], Petal.Width[Species == <span style=
 "color: #FF4700;">"versicolor"</span>], col = <span style=
-"color: #FF4700;">"green"</span>, pch = 20)
+"color: #FF4700;">"green"</span>, pch = 19)
 points(Petal.Length[Species == <span style=
 "color: #FF4700;">"virginica"</span>], Petal.Width[Species == <span style=
 "color: #FF4700;">"virginica"</span>], col = <span style=
-"color: #FF4700;">"blue"</span>, pch = 19)
+"color: #FF4700;">"blue"</span>, pch = 18)
 </pre>
                 </div>
 
@@ -2441,7 +3185,7 @@ points(Petal.Length[Species == <span style=
                 <div class="org-src-container">
                   <pre class="src src-R">
 data(iris)
-plot(iris$Petal.Length, iris$Petal.Width, col=as.integer(iris$Species))
+plot(iris$Petal.Length, iris$Petal.Width, col=as.integer(iris$Species)+1)
 </pre>
                 </div>
 
@@ -2449,12 +3193,31 @@ plot(iris$Petal.Length, iris$Petal.Width, col=as.integer(iris$Species))
                   <p><img src="images/base-points-distinguished-col.png" alt=
                   "base-points-distinguished-col.png" /></p>
                 </div>
-              </dd>
 
+                <div class="org-src-container">
+                  <pre class="src src-R">
+data(iris)
+plot(iris[,3:4], col=c(<span style="color: #FF4700;">"red"</span>,<span style=
+"color: #FF4700;">"green"</span>,<span style=
+"color: #FF4700;">"blue"</span>)[unclass(iris$Species)])
+</pre>
+                </div>
+
+                <div class="figure">
+                  <p><img src=
+                  "images/base-points-distinguished-col-unclass.png" alt=
+                  "base-points-distinguished-col-unclass.png" /></p>
+                </div>
+              </dd>
+            </dl>
+
+            <dl class="org-dl">
               <dt><code>text</code></dt>
 
               <dd>
-                Add text labels.
+                Add text labels (inside the plot region).
+
+                <p>Could be used to label datapoints.</p>
 
                 <div class="org-src-container">
                   <pre class="src src-R">
@@ -2481,7 +3244,11 @@ plot(x, y, xlab = <span style=
 
               <dt><code>mtext</code></dt>
 
-              <dd>Add text to the margins.</dd>
+              <dd>
+                Add text to the margins.
+
+                <p>Can be used to add multiline legends.</p>
+              </dd>
 
               <dt><code>axis</code></dt>
 
@@ -2503,11 +3270,11 @@ legend(<span style="color: #FF4700;">"topleft"</span>, legend = <span style=
           </div>
         </div>
 
-        <div id="outline-container-sec-14-1-3" class="outline-4">
-          <h4 id="sec-14-1-3"><span class="section-number-4">14.1.3</span>
+        <div id="outline-container-sec-15-1-3" class="outline-4">
+          <h4 id="sec-15-1-3"><span class="section-number-4">15.1.3</span>
           Changing graphical parameters</h4>
 
-          <div class="outline-text-4" id="text-14-1-3">
+          <div class="outline-text-4" id="text-15-1-3">
             <dl class="org-dl">
               <dt><code>par()</code></dt>
 
@@ -2519,7 +3286,8 @@ legend(<span style="color: #FF4700;">"topleft"</span>, legend = <span style=
                 <dl class="org-dl">
                   <dt><code>pch</code></dt>
 
-                  <dd>Plotting character (default: open circle symbol).</dd>
+                  <dd><b>Plotting character</b> (default: open circle
+                  symbol).</dd>
 
                   <dt><code>lty</code></dt>
 
@@ -2638,16 +3406,16 @@ par(<span style="color: #FF4700;">"lty"</span>)
         </div>
       </div>
 
-      <div id="outline-container-sec-14-2" class="outline-3">
-        <h3 id="sec-14-2"><span class="section-number-3">14.2</span> Lattice
+      <div id="outline-container-sec-15-2" class="outline-3">
+        <h3 id="sec-15-2"><span class="section-number-3">15.2</span> Lattice
         graphics</h3>
       </div>
 
-      <div id="outline-container-sec-14-3" class="outline-3">
-        <h3 id="sec-14-3"><span class="section-number-3">14.3</span>
+      <div id="outline-container-sec-15-3" class="outline-3">
+        <h3 id="sec-15-3"><span class="section-number-3">15.3</span>
         ggplot2</h3>
 
-        <div class="outline-text-3" id="text-14-3">
+        <div class="outline-text-3" id="text-15-3">
           <p>See post of Antoine Lizée in <a href=
           "http://stackoverflow.com/questions/5234117/how-to-drop-columns-by-name-in-a-data-frame">
           http://stackoverflow.com/questions/5234117/how-to-drop-columns-by-name-in-a-data-frame</a>
@@ -2656,57 +3424,9 @@ par(<span style="color: #FF4700;">"lty"</span>)
       </div>
     </div>
 
-    <div id="outline-container-sec-15" class="outline-2">
-      <h2 id="sec-15"><span class="section-number-2">15</span> 11. Linear
-      regression and ANOVA</h2>
-    </div>
-
     <div id="outline-container-sec-16" class="outline-2">
-      <h2 id="sec-16"><span class="section-number-2">16</span> 12. Useful
-      tricks</h2>
-
-      <div class="outline-text-2" id="text-16"></div>
-
-      <div id="outline-container-sec-16-1" class="outline-3">
-        <h3 id="sec-16-1"><span class="section-number-3">16.1</span> Peeking at
-        your data</h3>
-
-        <div class="outline-text-3" id="text-16-1">
-          <dl class="org-dl">
-            <dt><code>head()</code></dt>
-
-            <dd>Look at the first 6 rows.</dd>
-
-            <dt><code>tail()</code></dt>
-
-            <dd>Look at the last 6 rows.</dd>
-
-            <dt><code>str()</code></dt>
-
-            <dd>
-              <i>Compactly</i> display the internal <b>structure</b>
-              (<b>classes</b>, etc.) of an object.
-
-              <p>Alternative to <code>summary()</code>.</p>
-
-              <p>When applied to functions, show the <b>arguments</b>.</p>
-
-              <div class="org-src-container">
-                <pre class="src src-R">
-str(.Platform)                     <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">what is the operating system</span>
-</pre>
-              </div>
-            </dd>
-
-            <dt><code>attributes()</code></dt>
-
-            <dd>Access (set or modify) the (list of) attributes of an
-            object.</dd>
-          </dl>
-        </div>
-      </div>
+      <h2 id="sec-16"><span class="section-number-2">16</span> 11. Linear
+      regression and ANOVA</h2>
     </div>
   </div>
 

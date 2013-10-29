@@ -1,7 +1,7 @@
 #+TITLE:     R quick reference card
 #+AUTHOR:    Fabrice Niessen
 #+EMAIL:     (concat "fniessen" at-sign "pirilampo.org")
-#+Time-stamp: <2013-10-24 Thu 13:55>
+#+Time-stamp: <2013-10-29 Tue 10:20>
 #+DESCRIPTION:
 #+KEYWORDS:
 #+LANGUAGE:  american
@@ -145,13 +145,27 @@ x <- as.numeric(argv[1])
 
 * 5. Data structures
 
+What is data?
+
+- Population ::
+     Set of items.
+
+- Variable ::
+     Measurement or characteristic.
+
+     + Qualitative ::
+          Can be defined by a label and have discrete values.
+
+     + Quantitative ::
+          Measured on a numerical scale.
+
 | Class     | Example                     |
 |-----------+-----------------------------|
 | =logical=   | =TRUE= / =FALSE=                |
 | =integer=   | =1L= (with explicit =L= suffix) |
 | =numeric=   | =0.5= or =1= (/real/ numbers)     |
 | =complex=   | =1+0i=                        |
-| =character= | "hello" (lowest class)      |
+| =character= | "hello" (= lowest class)    |
 
 - =class()= ::
      Show the class of the object.
@@ -608,11 +622,11 @@ Types of files:
      data <- read.table("./data/file.txt", header=T, sep="\t", quote="")
      #+end_src
 
-For large datasets:
+For *large datasets*:
 
-- set =comment.char= = "" if there are no comments in your file
+- Set =comment.char= = "" if there are no comments in your file.
 
-- use the =colClasses= argument
+- Use the =colClasses= argument.
 
   Quick and dirty way to figure out the classes of each column:
 
@@ -622,7 +636,7 @@ For large datasets:
   tabAll <- read.table("datatable.txt", colClasses = classes)
   #+end_src
 
-- set =nrows= helps with memory usage
+- Set =nrows= helps with memory usage.
 
 ** Writing tabular data files
 
@@ -772,15 +786,74 @@ Packages:
 
 ** Tabulating factors
 
-- =table(vector)= ::
-     *Count* the number of observations in each /level/ (see factors). Give a
-     frequency of how many levels there are.
+- =table(f)= ::
+     *Count* the number of observations in each /level/ (only works on /factors/).
+     Give a *frequency* of how many levels there are.
+
+     #+begin_src R
+     unique(dfrm$f)
+     length(unique(dfrm$f))             # how many unique values
+
+     table(dfrm$f, useNA="ifany")       # number of times each unique value appears
+                                        # (show missing values as well)
+     #+end_src
+
+     Use the =cut= function to calculate tables with /numeric/ values.
+
+- =table(f1, f2)= ::
+     Produce a /contingency table/ (cross-tabulation).
+
+     #+begin_src R
+     table(dfrm$f1, dfrm$f2)            # look at the relationship between f1 and f2
+     #+end_src
+
+** Testing categorical variables for independence
+
+#+begin_src R
+summary(table(f1, f2))
+#+end_src
+
+Conventionally, a /p/-value of less than 0.05 indicates that the variables are
+likely not independent (there is some connection between the variables).
+
+** Calculating quantiles (and quartiles) of a dataset
+
+#+begin_src R
+quantile(vec, na.rm=TRUE)
+#+end_src
 
 * 6. Data transformations
 
 (Partial list of) munging operations (= key process)
 - *These steps must be recorded* in their own R script
 - *90% of your effort will often be spent here*
+
+Processed (*tidy*) data:
+- Each variable forms a column.
+- Each observation forms a row.
+- Each table / file stores data about one kind of observation.
+
+** Fixing variable names
+
+#+begin_src R
+tolower(names(dfrm))
+#+end_src
+
+#+begin_src R
+splitNames <- strsplit(names(dfrm),"\\.") # split at period in names
+firstElement <- function(x){x[1]}       # select the 1st component of the vector
+sapply(splitNames, firstElement)        # remove everything after the trailing dot
+#+end_src
+
+#+begin_src R
+gsub("_", "", names(dfrm))
+#+end_src
+
+** Creating new variables
+
+#+begin_src R
+dfrm$ranges <- ranges                   # add a variable to the data frame
+#+end_src
 
 ** Removing list elements using a condition
 
@@ -958,7 +1031,7 @@ sapply(s, function(x) colMeans(x[, c("Ozone", "Solar.R", "Wind")], na.rm = TRUE)
 
 ** Splitting a vector into groups
 
-- =split(dataframe, dataframe$column)= ::
+- =split(x, f)= ::
      Take a vector, and *split* it into subpieces (the number of groups
      identified by the levels of a *factor* variable). Always return a *list* (of
      lists?) back.
@@ -1023,23 +1096,23 @@ apply(x, 1, quantile, probs = c(0.25, 0.75)) # no default value for `probs'
 
 ** Applying a function to groups of data
 
-- =tapply(X, INDEX, FUN)= ::
+- =tapply(x, index, fun)= ::
+     Short for "*table apply*".
+     Apply a *function* over *subsets* of a vector:
+     + Splits up a vector into little groups (such as men and women, indicated
+       by a *factor*),
+     + Applies a function to those groups and
+     + Brings the pieces back together
 
-- Short for "*table apply*"
+     Function may be anonymous.
 
-- Apply a *function* over *subsets* of a vector:
-  + Splits up a vector into little groups (such as men and women, indicated by
-    a *factor*),
-  + Applies a function to those groups and
-  + Brings the pieces back together
+     =Simplify = FALSE= to get back a list (instead of an array).
 
-- Function may be anonymous
-
-- =Simplify = FALSE= to get back a list
-
-  #+begin_src R
-  tapply(x, f, mean, simplify = FALSE)  # = lapply(split(x, f), mean)
-  #+end_src
+     #+begin_src R
+     tapply(x, f, sum, simplify = FALSE) # = lapply(split(x, f), sum)
+     tapply(x, f, mean)
+     tapply(x, f, length)
+     #+end_src
 
 - =interaction(f1, f2)= ::
      Combines all the levels of the first factor with all the levels of the
@@ -1257,6 +1330,16 @@ You cannot use functions from the base plotting system in a Lattice plot.
 - =plot(x)= ::
      Plot the (numeric) data against the index (=1:N=).
 
+     #+begin_src R :results graphics :file images/base-scatterplot-sort.png
+     data(iris)
+     plot(sort(iris$Petal.Width),
+          main="Distribution of petal widths",
+          xlab="Rank", ylab="Width", col=as.integer(iris$Species)+1)
+     #+end_src
+
+     #+results:
+     [[file:images/base-scatterplot-sort.png]]
+
 - =plot(x, y)= ::
      Create a scatter plot of =x= and =y=.
 
@@ -1264,8 +1347,7 @@ You cannot use functions from the base plotting system in a Lattice plot.
      data(iris)
      plot(iris$Petal.Length, iris$Petal.Width,
           main="Petals: Length vs Width",
-          xlab="Length",
-          ylab="Width")
+          xlab="Length", ylab="Width", col=as.integer(iris$Species)+1)
      #+end_src
 
      #+results:
@@ -1275,16 +1357,31 @@ You cannot use functions from the base plotting system in a Lattice plot.
      Set up the plot window, but don't actually plot the data in there.
 
 - =plot(dfrm)= ::
-     Create multiple scatter plots if your data frame contains more than
+     Create *multiple scatter plots* if your data frame contains more than
      2 columns.
 
      #+begin_src R :results graphics :file images/base-multi-scatterplots.png
      data(iris)
-     plot(iris[,1:4], main="Multiple scatter plots")
+     plot(iris[,1:4], main="Multiple scatter plots",
+          col=as.integer(iris$Species)+1)
      #+end_src
 
      #+results:
      [[file:images/base-multi-scatterplots.png]]
+
+     You can see that length and width appear strongly correlated. You could
+     check the correlation between features with the =cor()= function.
+
+     #+begin_src R
+     data(iris)
+     cor(iris[-5])
+     #+end_src
+
+     #+results:
+     |                  1 | -0.117569784133002 | 0.871753775886583 |  0.817941126271576 |
+     | -0.117569784133002 |                  1 | -0.42844010433054 | -0.366125932536439 |
+     |  0.871753775886583 |  -0.42844010433054 |                 1 |  0.962865431402796 |
+     |  0.817941126271576 | -0.366125932536439 | 0.962865431402796 |                  1 |
 
 **** =hist=
 
@@ -1294,25 +1391,53 @@ Generic function: you can call it on different types of data. When you call
 
 #+begin_src R :results graphics :file images/base-hist.png
 data(iris)
-hist(iris$Petal.Length, main="Histogram")
+hist(iris$Petal.Length, main="Histogram", col = "lightblue")
 #+end_src
 
 #+results:
 [[file:images/base-hist.png]]
 
+=breaks= is key: it specifies the number of categories to plot or the breakpoints
+for each category.
+
+#+begin_src R :results graphics :file images/base-hist-breaks.png
+data(iris)
+hist(iris$Petal.Length, breaks=seq(1,7,by=0.1), main="Histogram", col = "lightblue")
+#+end_src
+
+#+results:
+[[file:images/base-hist-breaks.png]]
+
+Can you explain the peculiar pattern? Graphical representations of data are
+useful at identifying these sorts of artifacts...
+
 #+begin_src R :results graphics :file images/base-plot-table.png
 data(iris)
-plot(table(iris$Petal.Length), main="Table")
+plot(table(iris$Petal.Length), main="Table", col = "blue")
 #+end_src
 
 #+results:
 [[file:images/base-plot-table.png]]
 
-Note -- In the table plot, x values with one occurrence would be visible (one
-dot) in the graphics. They don't in the histogram (as the line, being too
-small, would be on the x-axis itself).
+Note -- In the table plot, x values with one occurrence (out of thousands)
+would be visible as one dot in the graphics. They don't in the histogram (as
+the line, being too small, would be on the x-axis itself).
 
 **** =boxplot=
+
+=boxplot= draws plot summarizing
+- Median
+- Quartiles (Q1, Q3)
+- Outliers --- by default, observations more than 1.5 * (Q3 - Q1) distant from
+  nearest quartile
+
+#+begin_src R :results graphics :file images/base-boxplot.png
+data(iris)
+boxplot(iris[,1:4], col=rainbow(4), main="Boxplot", ylab="Appropriate units")
+#+end_src
+
+#+results:
+[[file:images/base-boxplot.png]]
 
 *** Add to an existing plot
 
@@ -1350,8 +1475,8 @@ small, would be on the x-axis itself).
      attach(iris)
      plot(Petal.Length, Petal.Width, type="n")
      points(Petal.Length[Species == "setosa"], Petal.Width[Species == "setosa"], col = "red")
-     points(Petal.Length[Species == "versicolor"], Petal.Width[Species == "versicolor"], col = "green", pch = 20)
-     points(Petal.Length[Species == "virginica"], Petal.Width[Species == "virginica"], col = "blue", pch = 19)
+     points(Petal.Length[Species == "versicolor"], Petal.Width[Species == "versicolor"], col = "green", pch = 19)
+     points(Petal.Length[Species == "virginica"], Petal.Width[Species == "virginica"], col = "blue", pch = 18)
      #+end_src
 
      #+results:
@@ -1359,14 +1484,25 @@ small, would be on the x-axis itself).
 
      #+begin_src R :results graphics :file images/base-points-distinguished-col.png
      data(iris)
-     plot(iris$Petal.Length, iris$Petal.Width, col=as.integer(iris$Species))
+     plot(iris$Petal.Length, iris$Petal.Width, col=as.integer(iris$Species)+1)
      #+end_src
 
      #+results:
      [[file:images/base-points-distinguished-col.png]]
 
+     #+begin_src R :results graphics :file images/base-points-distinguished-col-unclass.png
+     data(iris)
+     plot(iris[,3:4], col=c("red","green","blue")[unclass(iris$Species)])
+     #+end_src
+
+     #+results:
+     [[file:images/base-points-distinguished-col-unclass.png]]
+
+
 - =text= ::
-     Add text labels.
+     Add text labels (inside the plot region).
+
+     Could be used to label datapoints.
 
      #+begin_src R :eval no
      text(-2, 2, "Label")
@@ -1382,6 +1518,8 @@ small, would be on the x-axis itself).
 
 - =mtext= ::
      Add text to the margins.
+
+     Can be used to add multiline legends.
 
 - =axis= ::
      *Annotate the axis* (tick marks, labels).
@@ -1401,7 +1539,7 @@ small, would be on the x-axis itself).
      plotting functions).
 
      + =pch= ::
-          Plotting character (default: open circle symbol).
+          *Plotting character* (default: open circle symbol).
 
      + =lty= ::
           Line type (default: =solid= line).
