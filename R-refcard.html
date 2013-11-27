@@ -2,12 +2,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="american" xml:lang="american">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
   <meta name="generator" content=
   "HTML Tidy for Cygwin (vers 1st September 2004), see www.w3.org" />
 
-  <title>R quick reference card</title><!-- 2013-10-29 Tue 10:21 -->
+  <title>R quick reference card</title><!-- 2013-11-27 Wed 12:16 -->
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="generator" content="Org-mode" />
   <meta name="author" content="Fabrice Niessen" />
@@ -32,248 +32,325 @@ type="text/javascript">
 
       <div id="text-table-of-contents">
         <ul>
-          <li><a href="#sec-1">1. R reference card</a></li>
-
-          <li><a href="#sec-2">2. 0. Overview of R</a></li>
-
-          <li><a href="#sec-3">3. 1. Getting started and getting help</a></li>
+          <li><a href="#sec-1">R reference card</a></li>
 
           <li>
-            <a href="#sec-4">4. 2. Some basics</a>
+            <a href="#sec-2">Emacs key bindings</a>
 
             <ul>
-              <li><a href="#sec-4-1">4.1. Print something</a></li>
+              <li><a href="#sec-2-1">References</a></li>
 
-              <li><a href="#sec-4-2">4.2. Setting variables</a></li>
+              <li><a href="#sec-2-2">Interacting with the ESS process</a></li>
 
-              <li><a href="#sec-4-3">4.3. Listing variables</a></li>
+              <li><a href="#sec-2-3">Sending code to the ESS process</a></li>
 
-              <li><a href="#sec-4-4">4.4. Deleting variables</a></li>
+              <li><a href="#sec-2-4">Editing objects and functions</a></li>
 
-              <li><a href="#sec-4-5">4.5. Computing basic statistics</a></li>
+              <li><a href="#sec-2-5">Help</a></li>
 
-              <li><a href="#sec-4-6">4.6. Creating sequences</a></li>
-
-              <li><a href="#sec-4-7">4.7. Operators</a></li>
-
-              <li><a href="#sec-4-8">4.8. Defining a function</a></li>
-            </ul>
-          </li>
-
-          <li>
-            <a href="#sec-5">5. 3. Navigating the software</a>
-
-            <ul>
-              <li><a href="#sec-5-1">5.1. Running a batch script</a></li>
-            </ul>
-          </li>
-
-          <li>
-            <a href="#sec-6">6. 5. Data structures</a>
-
-            <ul>
-              <li><a href="#sec-6-1">6.1. Vectors</a></li>
-
-              <li><a href="#sec-6-2">6.2. Matrices</a></li>
-
-              <li><a href="#sec-6-3">6.3. Arrays</a></li>
-
-              <li><a href="#sec-6-4">6.4. Lists</a></li>
-
-              <li><a href="#sec-6-5">6.5. Factors</a></li>
-
-              <li><a href="#sec-6-6">6.6. Data frames</a></li>
-
-              <li><a href="#sec-6-7">6.7. Vectorized operations (recycling
-              rule)</a></li>
-
-              <li><a href="#sec-6-8">6.8. Selecting list elements or data frame
-              columns by position (subsetting)</a></li>
-
-              <li><a href="#sec-6-9">6.9. Selecting list elements or data frame
-              columns by name (subsetting)</a></li>
-
-              <li><a href="#sec-6-10">6.10. Selecting data frame columns by
-              position (subsetting)</a></li>
-            </ul>
-          </li>
-
-          <li>
-            <a href="#sec-7">7. Control structures</a>
-
-            <ul>
-              <li><a href="#sec-7-1">7.1. Conditional statements</a></li>
-
-              <li><a href="#sec-7-2">7.2. Loops</a></li>
-            </ul>
-          </li>
-
-          <li>
-            <a href="#sec-8">8. Writing functions</a>
-
-            <ul>
-              <li><a href="#sec-8-1">8.1. Arguments</a></li>
-
-              <li><a href="#sec-8-2">8.2. Scoping rules for R</a></li>
-            </ul>
-          </li>
-
-          <li>
-            <a href="#sec-9">9. 4. Input and output</a>
-
-            <ul>
-              <li><a href="#sec-9-1">9.1. Getting the current working
-              directory</a></li>
-
-              <li><a href="#sec-9-2">9.2. Creating, opening and closing
-              connections</a></li>
-
-              <li><a href="#sec-9-3">9.3. Reading tabular data files</a></li>
-
-              <li><a href="#sec-9-4">9.4. Writing tabular data files</a></li>
-
-              <li><a href="#sec-9-5">9.5. Reading from CSV files</a></li>
-
-              <li><a href="#sec-9-6">9.6. Reading from Excel files</a></li>
-
-              <li><a href="#sec-9-7">9.7. Reading files from the
-              Internet</a></li>
-
-              <li><a href="#sec-9-8">9.8. Reading files with a complex
-              structure</a></li>
-
-              <li><a href="#sec-9-9">9.9. Reading from SQL Server
-              databases</a></li>
-
-              <li><a href="#sec-9-10">9.10. Saving and transporting
-              objects</a></li>
-
-              <li><a href="#sec-9-11">9.11. Further resources</a></li>
-            </ul>
-          </li>
-
-          <li>
-            <a href="#sec-10">10. 12. Useful tricks</a>
-
-            <ul>
-              <li><a href="#sec-10-1">10.1. Peeking at your data</a></li>
-            </ul>
-          </li>
-
-          <li>
-            <a href="#sec-11">11. 9. General statistics</a>
-
-            <ul>
-              <li><a href="#sec-11-1">11.1. Summarizing your data</a></li>
-
-              <li><a href="#sec-11-2">11.2. Tabulating factors</a></li>
-
-              <li><a href="#sec-11-3">11.3. Testing categorical variables for
-              independence</a></li>
-
-              <li><a href="#sec-11-4">11.4. Calculating quantiles (and
-              quartiles) of a dataset</a></li>
-            </ul>
-          </li>
-
-          <li>
-            <a href="#sec-12">12. 6. Data transformations</a>
-
-            <ul>
-              <li><a href="#sec-12-1">12.1. Fixing variable names</a></li>
-
-              <li><a href="#sec-12-2">12.2. Creating new variables</a></li>
-
-              <li><a href="#sec-12-3">12.3. Removing list elements using a
-              condition</a></li>
-
-              <li><a href="#sec-12-4">12.4. Selecting rows and columns more
-              easily</a></li>
-
-              <li><a href="#sec-12-5">12.5. Removing rows that contain NAs from
-              a data frame</a></li>
-
-              <li><a href="#sec-12-6">12.6. Removing columns that contain NAs
-              from a data frame</a></li>
-
-              <li><a href="#sec-12-7">12.7. Merging data frames by commun
-              column</a></li>
-
-              <li><a href="#sec-12-8">12.8. Converting</a></li>
+              <li><a href="#sec-2-6">Reading help files</a></li>
 
               <li>
-                <a href="#sec-12-9">12.9. Applying a function to each list
-                element</a>
+                <a href="#sec-2-7">Completion</a>
 
                 <ul>
-                  <li><a href="#sec-12-9-1">12.9.1.
-                  <code>lapply</code></a></li>
+                  <li><a href="#sec-2-7-1">Completion of function
+                  arguments</a></li>
 
-                  <li><a href="#sec-12-9-2">12.9.2.
-                  <code>sapply</code></a></li>
+                  <li><a href="#sec-2-7-2">Integration with auto-complete
+                  package</a></li>
                 </ul>
               </li>
 
-              <li><a href="#sec-12-10">12.10. Splitting a vector into
-              groups</a></li>
+              <li>
+                <a href="#sec-2-8">Developing with ESS</a>
 
-              <li><a href="#sec-12-11">12.11. Applying a function to every
-              row/column</a></li>
+                <ul>
+                  <li>
+                    <a href="#sec-2-8-1">ESS tracebug</a>
 
-              <li><a href="#sec-12-12">12.12. Applying a function to groups of
-              data</a></li>
+                    <ul>
+                      <li><a href="#sec-2-8-1-1">Breakpoints</a></li>
 
-              <li><a href="#sec-12-13">12.13. Applying a function to parallel
-              vectors or lists</a></li>
+                      <li><a href="#sec-2-8-1-2">General debugging</a></li>
 
-              <li><a href="#sec-12-14">12.14. Checking on and removing
-              inconsistent values</a></li>
+                      <li><a href="#sec-2-8-1-3">Navigation to errors</a></li>
+
+                      <li><a href="#sec-2-8-1-4">Tracebug visual
+                      debugger</a></li>
+                    </ul>
+                  </li>
+
+                  <li><a href="#sec-2-8-2">ESS developer</a></li>
+                </ul>
+              </li>
+
+              <li><a href="#sec-2-9">Emacs general functionality</a></li>
             </ul>
           </li>
 
+          <li><a href="#sec-3">0. Overview of R</a></li>
+
+          <li><a href="#sec-4">1. Getting started and getting help</a></li>
+
           <li>
-            <a href="#sec-13">13. 7. Strings and dates</a>
+            <a href="#sec-5">2. Some basics</a>
 
             <ul>
-              <li><a href="#sec-13-1">13.1. Getting the length of a
-              string</a></li>
+              <li><a href="#sec-5-1">Print something</a></li>
 
-              <li><a href="#sec-13-2">13.2. Concatenating strings</a></li>
+              <li><a href="#sec-5-2">Setting variables</a></li>
 
-              <li><a href="#sec-13-3">13.3. Regular expressions</a></li>
+              <li><a href="#sec-5-3">Listing variables</a></li>
+
+              <li><a href="#sec-5-4">Deleting variables</a></li>
+
+              <li><a href="#sec-5-5">Computing basic statistics</a></li>
+
+              <li><a href="#sec-5-6">Creating sequences</a></li>
+
+              <li><a href="#sec-5-7">Operators</a></li>
+
+              <li><a href="#sec-5-8">Defining a function</a></li>
             </ul>
           </li>
 
-          <li><a href="#sec-14">14. 8. Probability</a></li>
+          <li>
+            <a href="#sec-6">3. Navigating the software</a>
+
+            <ul>
+              <li><a href="#sec-6-1">Running a batch script</a></li>
+            </ul>
+          </li>
 
           <li>
-            <a href="#sec-15">15. 10. Graphics</a>
+            <a href="#sec-7">5. Data structures</a>
+
+            <ul>
+              <li><a href="#sec-7-1">Vectors</a></li>
+
+              <li><a href="#sec-7-2">Matrices</a></li>
+
+              <li><a href="#sec-7-3">Arrays</a></li>
+
+              <li><a href="#sec-7-4">Lists</a></li>
+
+              <li><a href="#sec-7-5">Factors</a></li>
+
+              <li><a href="#sec-7-6">Data frames</a></li>
+
+              <li><a href="#sec-7-7">Vectorized operations (recycling
+              rule)</a></li>
+
+              <li><a href="#sec-7-8">Selecting list elements or data frame
+              columns by position (subsetting)</a></li>
+
+              <li><a href="#sec-7-9">Selecting list elements or data frame
+              columns by name (subsetting)</a></li>
+
+              <li><a href="#sec-7-10">Selecting data frame columns by position
+              (subsetting)</a></li>
+            </ul>
+          </li>
+
+          <li>
+            <a href="#sec-8">Control structures</a>
+
+            <ul>
+              <li><a href="#sec-8-1">Conditional statements</a></li>
+
+              <li><a href="#sec-8-2">Loops</a></li>
+            </ul>
+          </li>
+
+          <li>
+            <a href="#sec-9">Writing functions</a>
+
+            <ul>
+              <li><a href="#sec-9-1">Arguments</a></li>
+
+              <li><a href="#sec-9-2">Scoping rules for R</a></li>
+            </ul>
+          </li>
+
+          <li>
+            <a href="#sec-10">4. Input and output</a>
+
+            <ul>
+              <li><a href="#sec-10-1">Getting the current working
+              directory</a></li>
+
+              <li><a href="#sec-10-2">Creating, opening and closing
+              connections</a></li>
+
+              <li><a href="#sec-10-3">Reading tabular data files</a></li>
+
+              <li><a href="#sec-10-4">Writing tabular data files</a></li>
+
+              <li><a href="#sec-10-5">Reading from CSV files</a></li>
+
+              <li><a href="#sec-10-6">Reading from Excel files</a></li>
+
+              <li><a href="#sec-10-7">Reading files from the Internet</a></li>
+
+              <li><a href="#sec-10-8">Reading files with a complex
+              structure</a></li>
+
+              <li><a href="#sec-10-9">Reading from SQL Server
+              databases</a></li>
+
+              <li><a href="#sec-10-10">Saving and transporting objects</a></li>
+
+              <li><a href="#sec-10-11">Further resources</a></li>
+            </ul>
+          </li>
+
+          <li>
+            <a href="#sec-11">12. Useful tricks</a>
+
+            <ul>
+              <li><a href="#sec-11-1">Peeking at your data</a></li>
+            </ul>
+          </li>
+
+          <li>
+            <a href="#sec-12">9. General statistics</a>
+
+            <ul>
+              <li><a href="#sec-12-1">Summarizing your data</a></li>
+
+              <li><a href="#sec-12-2">Tabulating factors</a></li>
+
+              <li><a href="#sec-12-3">Testing categorical variables for
+              independence</a></li>
+
+              <li><a href="#sec-12-4">Calculating quantiles (and quartiles) of
+              a dataset</a></li>
+            </ul>
+          </li>
+
+          <li>
+            <a href="#sec-13">6. Data transformations</a>
+
+            <ul>
+              <li><a href="#sec-13-1">Fixing variable names</a></li>
+
+              <li><a href="#sec-13-2">Creating new variables</a></li>
+
+              <li><a href="#sec-13-3">Removing list elements using a
+              condition</a></li>
+
+              <li><a href="#sec-13-4">Selecting rows and columns more
+              easily</a></li>
+
+              <li><a href="#sec-13-5">Removing rows that contain NAs from a
+              data frame</a></li>
+
+              <li><a href="#sec-13-6">Removing columns that contain NAs from a
+              data frame</a></li>
+
+              <li><a href="#sec-13-7">Merging data frames by commun
+              column</a></li>
+
+              <li><a href="#sec-13-8">Converting</a></li>
+
+              <li>
+                <a href="#sec-13-9">Applying a function to each list
+                element</a>
+
+                <ul>
+                  <li><a href="#sec-13-9-1"><code>lapply</code></a></li>
+
+                  <li><a href="#sec-13-9-2"><code>sapply</code></a></li>
+                </ul>
+              </li>
+
+              <li><a href="#sec-13-10">Splitting a vector into groups</a></li>
+
+              <li><a href="#sec-13-11">Applying a function to every
+              row/column</a></li>
+
+              <li><a href="#sec-13-12">Applying a function to groups of
+              data</a></li>
+
+              <li><a href="#sec-13-13">Applying a function to parallel vectors
+              or lists</a></li>
+
+              <li><a href="#sec-13-14">Checking on and removing inconsistent
+              values</a></li>
+            </ul>
+          </li>
+
+          <li>
+            <a href="#sec-14">7. Strings and dates</a>
+
+            <ul>
+              <li><a href="#sec-14-1">Getting the length of a string</a></li>
+
+              <li><a href="#sec-14-2">Concatenating strings</a></li>
+
+              <li><a href="#sec-14-3">Regular expressions</a></li>
+            </ul>
+          </li>
+
+          <li><a href="#sec-15">8. Probability</a></li>
+
+          <li>
+            <a href="#sec-16">10. Graphics</a>
 
             <ul>
               <li>
-                <a href="#sec-15-1">15.1. Base graphics</a>
+                <a href="#sec-16-1">Base graphics</a>
 
                 <ul>
-                  <li><a href="#sec-15-1-1">15.1.1. Make a plot</a></li>
+                  <li>
+                    <a href="#sec-16-1-1">Make a plot</a>
 
-                  <li><a href="#sec-15-1-2">15.1.2. Add to an existing
-                  plot</a></li>
+                    <ul>
+                      <li><a href="#sec-16-1-1-1">Create a scatter
+                      plot</a></li>
 
-                  <li><a href="#sec-15-1-3">15.1.3. Changing graphical
+                      <li><a href="#sec-16-1-1-2"><code>hist</code></a></li>
+
+                      <li><a href="#sec-16-1-1-3"><code>boxplot</code></a></li>
+                    </ul>
+                  </li>
+
+                  <li><a href="#sec-16-1-2">Add to an existing plot</a></li>
+
+                  <li><a href="#sec-16-1-3">Changing graphical
                   parameters</a></li>
                 </ul>
               </li>
 
-              <li><a href="#sec-15-2">15.2. Lattice graphics</a></li>
+              <li><a href="#sec-16-2">Lattice graphics</a></li>
 
-              <li><a href="#sec-15-3">15.3. ggplot2</a></li>
+              <li><a href="#sec-16-3">ggplot2</a></li>
+
+              <li>
+                <a href="#sec-16-4">Other graphics</a>
+
+                <ul>
+                  <li><a href="#sec-16-4-1">Pareto diagrams</a></li>
+                </ul>
+              </li>
             </ul>
           </li>
 
-          <li><a href="#sec-16">16. 11. Linear regression and ANOVA</a></li>
+          <li>
+            <a href="#sec-17">11. Linear regression and ANOVA</a>
+
+            <ul>
+              <li><a href="#sec-17-1">Regression tree models</a></li>
+
+              <li><a href="#sec-17-2">Classification tree models</a></li>
+            </ul>
+          </li>
         </ul>
       </div>
     </div>
+
+    <p>rank()</p>
 
     <div id="outline-container-sec-1" class="outline-2">
       <h2 id="sec-1"><span class="section-number-2">1</span> R reference
@@ -286,10 +363,379 @@ type="text/javascript">
     </div>
 
     <div id="outline-container-sec-2" class="outline-2">
-      <h2 id="sec-2"><span class="section-number-2">2</span> 0. Overview of
+      <h2 id="sec-2"><span class="section-number-2">2</span> Emacs key
+      bindings</h2>
+
+      <div class="outline-text-2" id="text-2"></div>
+
+      <div id="outline-container-sec-2-1" class="outline-3">
+        <h3 id="sec-2-1"><span class="section-number-3">2.1</span>
+        References</h3>
+
+        <div class="outline-text-3" id="text-2-1">
+          <p>See</p>
+
+          <ul class="org-ul">
+            <li><a href=
+            "http://ess.r-project.org/refcard.pdf">http://ess.r-project.org/refcard.pdf</a></li>
+
+            <li><a href=
+            "http://www.damtp.cam.ac.uk/user/sje30/ess11/ess-slides.pdf">http://www.damtp.cam.ac.uk/user/sje30/ess11/ess-slides.pdf</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="outline-container-sec-2-2" class="outline-3">
+        <h3 id="sec-2-2"><span class="section-number-3">2.2</span> Interacting
+        with the ESS process</h3>
+
+        <div class="outline-text-3" id="text-2-2">
+          <dl class="org-dl">
+            <dt><code>C-c C-z</code></dt>
+
+            <dd>Jump back to script buffer.</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div id="outline-container-sec-2-3" class="outline-3">
+        <h3 id="sec-2-3"><span class="section-number-3">2.3</span> Sending code
+        to the ESS process</h3>
+
+        <div class="outline-text-3" id="text-2-3">
+          <p>Primary process interaction commands:</p>
+
+          <dl class="org-dl">
+            <dt><code>C-RET</code></dt>
+
+            <dd>Send the current <b>region or line</b> to the ESS process and
+            <b>step</b> to the next line of code.</dd>
+
+            <dt><code>C-M-x</code></dt>
+
+            <dd>Send the current <b>region or function or paragraph</b> to the
+            ESS process.</dd>
+
+            <dt><code>C-c C-c</code></dt>
+
+            <dd>Send the current <b>region or function or paragraph</b> to the
+            ESS process and <b>step</b> to the next line of code.</dd>
+          </dl>
+
+          <p>Ohter evaluation commands:</p>
+
+          <dl class="org-dl">
+            <dt><code>C-c C-n</code></dt>
+
+            <dd>Send the current <b>line</b> to the ESS process and <b>step</b>
+            to the next line of code.</dd>
+
+            <dt><code>C-c C-r</code></dt>
+
+            <dd>Send the current <b>region</b> to the ESS process.</dd>
+
+            <dt><code>C-c C-f</code></dt>
+
+            <dd>Send the current <b>function</b> to the ESS process.</dd>
+
+            <dt><code>C-c C-p</code></dt>
+
+            <dd>Send the current <b>paragraph</b> (defined as continuous set of
+            lines surrounded by a blank line at top and bottom) to the ESS
+            process.</dd>
+
+            <dt><code>C-c C-b</code></dt>
+
+            <dd>Send the current <b>buffer</b> to the ESS process.</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div id="outline-container-sec-2-4" class="outline-3">
+        <h3 id="sec-2-4"><span class="section-number-3">2.4</span> Editing
+        objects and functions</h3>
+
+        <div class="outline-text-3" id="text-2-4">
+          <dl class="org-dl">
+            <dt><code>C-c C-e C-d</code></dt>
+
+            <dd><b>Edit</b> the code of an <b>object</b>.</dd>
+
+            <dt><code>C-c C-l</code></dt>
+
+            <dd>Load a file into the ESS process using
+            <code>source()</code>.</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div id="outline-container-sec-2-5" class="outline-3">
+        <h3 id="sec-2-5"><span class="section-number-3">2.5</span> Help</h3>
+
+        <div class="outline-text-3" id="text-2-5">
+          <p>Help at your fingertips:</p>
+
+          <dl class="org-dl">
+            <dt><code>C-c C-d C-e</code></dt>
+
+            <dd>Describe object at point (press <code>C-e</code> to
+            cycle).</dd>
+
+            <dt><code>C-c C-d C-a</code></dt>
+
+            <dd>ess-display-help-apropos</dd>
+
+            <dt><code>C-c C-d C-d</code></dt>
+
+            <dd>ess-display-help-on-object</dd>
+
+            <dt><code>C-c C-d C-v</code></dt>
+
+            <dd>ess-display-vignettes</dd>
+
+            <dt><code>C-c C-d C-w</code></dt>
+
+            <dd>ess-help-web-search</dd>
+
+            <dt><code>C-c C-d i</code></dt>
+
+            <dd>ess-display-package-index</dd>
+
+            <dt><code>C-c C-d o</code></dt>
+
+            <dd>ess-display-demos</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div id="outline-container-sec-2-6" class="outline-3">
+        <h3 id="sec-2-6"><span class="section-number-3">2.6</span> Reading help
+        files</h3>
+
+        <div class="outline-text-3" id="text-2-6">
+          <dl class="org-dl">
+            <dt><code>C-c C-v</code></dt>
+
+            <dd>Display <b>R help</b> on an object (which has an help file)
+            <b>in Emacs</b>, for example for the function call you’re currently
+            writing.</dd>
+          </dl>
+
+          <p>Then:</p>
+
+          <dl class="org-dl">
+            <dt><code>l</code></dt>
+
+            <dd><b>Run example</b> in R help page, <b>line by line</b>.</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div id="outline-container-sec-2-7" class="outline-3">
+        <h3 id="sec-2-7"><span class="section-number-3">2.7</span>
+        Completion</h3>
+
+        <div class="outline-text-3" id="text-2-7"></div>
+
+        <div id="outline-container-sec-2-7-1" class="outline-4">
+          <h4 id="sec-2-7-1">Completion of function arguments</h4>
+
+          <div class="outline-text-4" id="text-2-7-1">
+            <p><b>ElDoc</b> support: automatic display of function arguments in
+            the <b>echo area</b>.</p>
+          </div>
+        </div>
+
+        <div id="outline-container-sec-2-7-2" class="outline-4">
+          <h4 id="sec-2-7-2">Integration with auto-complete package</h4>
+
+          <div class="outline-text-4" id="text-2-7-2">
+            <p>Auto-completion of objects and arguments: <a href=
+            "http://www.emacswiki.org/emacs/ESSAuto-complete">http://www.emacswiki.org/emacs/ESSAuto-complete</a>.</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="outline-container-sec-2-8" class="outline-3">
+        <h3 id="sec-2-8"><span class="section-number-3">2.8</span> Developing
+        with ESS</h3>
+
+        <div class="outline-text-3" id="text-2-8"></div>
+
+        <div id="outline-container-sec-2-8-1" class="outline-4">
+          <h4 id="sec-2-8-1">ESS tracebug</h4>
+
+          <div class="outline-text-4" id="text-2-8-1">
+            <p>Tracebug highlighting of errors.</p>
+          </div>
+
+          <div id="outline-container-sec-2-8-1-1" class="outline-5">
+            <h5 id="sec-2-8-1-1">Breakpoints</h5>
+
+            <div class="outline-text-5" id="text-2-8-1-1">
+              <dl class="org-dl">
+                <dt><code>C-c C-t C-b</code></dt>
+
+                <dd>Set breakpoint.</dd>
+
+                <dt><code>C-c C-t B</code></dt>
+
+                <dd>Set conditional breakpoint.</dd>
+
+                <dt><code>C-c C-t k</code></dt>
+
+                <dd>Kill breakpoint.</dd>
+              </dl>
+            </div>
+          </div>
+
+          <div id="outline-container-sec-2-8-1-2" class="outline-5">
+            <h5 id="sec-2-8-1-2">General debugging</h5>
+
+            <div class="outline-text-5" id="text-2-8-1-2">
+              <dl class="org-dl">
+                <dt><code>C-c `</code></dt>
+
+                <dd>Show R traceback (display source locations).</dd>
+
+                <dt><code>C-c ~</code></dt>
+
+                <dd>Show call stack (display source locations).</dd>
+
+                <dt><code>C-c C-t C-e</code></dt>
+
+                <dd>Toggle error action (repeat to cycle).</dd>
+
+                <dt><code>C-c C-t C-d</code></dt>
+
+                <dd>Flag for debugging.</dd>
+
+                <dt><code>C-c C-t C-u</code></dt>
+
+                <dd>Unflag for debugging.</dd>
+
+                <dt><code>C-c C-t C-w</code></dt>
+
+                <dd>Use “ess-watch” while debugging to see variables change at
+                each step, or even just at the prompt.</dd>
+              </dl>
+            </div>
+          </div>
+
+          <div id="outline-container-sec-2-8-1-3" class="outline-5">
+            <h5 id="sec-2-8-1-3">Navigation to errors</h5>
+
+            <div class="outline-text-5" id="text-2-8-1-3">
+              <dl class="org-dl">
+                <dt><code>M-g n</code></dt>
+
+                <dd>Next error.</dd>
+
+                <dt><code>M-g p</code></dt>
+
+                <dd>Previous error.</dd>
+              </dl>
+            </div>
+          </div>
+
+          <div id="outline-container-sec-2-8-1-4" class="outline-5">
+            <h5 id="sec-2-8-1-4">Tracebug visual debugger</h5>
+          </div>
+        </div>
+
+        <div id="outline-container-sec-2-8-2" class="outline-4">
+          <h4 id="sec-2-8-2">ESS developer</h4>
+
+          <div class="outline-text-4" id="text-2-8-2">
+            <dl class="org-dl">
+              <dt><code>C-c C-t C-a</code></dt>
+
+              <dd>Add a package to your development list.</dd>
+
+              <dt><code>C-c C-t C-t</code></dt>
+
+              <dd>Toggle developer mode on and off.</dd>
+
+              <dt><code>C-c C-t l</code></dt>
+
+              <dd>ess-developer-load-package (this one is in ESS dev as
+              yet)</dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+
+      <div id="outline-container-sec-2-9" class="outline-3">
+        <h3 id="sec-2-9"><span class="section-number-3">2.9</span> Emacs
+        general functionality</h3>
+
+        <div class="outline-text-3" id="text-2-9">
+          <p>M-r from comint buffers is worth a wealth IMO.</p>
+
+          <p>I would add C-s and C-r to search in the help buffer and M-\ to
+          indent</p>
+
+          <ol class="org-ol">
+            <li>probably the most used command of mine is imenu-anywhere.
+
+              <p>(global-set-key (kbd “C-.”) ‘imenu-anywhere)</p>
+            </li>
+          </ol>
+
+          <p>and you will be able to navigate to the definition of the symbol
+          at point as long as the other file is open. This is like tag
+          navigation but more convenient IMO. Both ido and helm interfaces are
+          available.</p>
+
+          <ol class="org-ol">
+            <li>multiple processes. I think ESS handling of multiple processes
+            is</li>
+          </ol>
+
+          <p>pretty unique. Even in emacs realm you don’t see this that
+          often.</p>
+
+          <p>C-c C-s ess-switch-process</p>
+
+          <p>Other nice tools ( probably not available in other editors):</p>
+
+          <p>C-c C-q + M-x R to quickly restart the process.</p>
+
+          <p>C-c . ess-set-style (different indentation under your
+          fingertips)</p>
+
+          <p>C-c C-e i ess-install-library C-c C-e l ess-load-library</p>
+
+          <p>C-c C-e C-t ess-build-tags-for-directory (then use M-. to jump to
+          definition) C-c C-e C-w ess-execute-screen-options</p>
+
+          <p>Also the ability to mix in other, general purpose Emacs tools:</p>
+
+          <p>paredit-mode to give me good shortcuts to navigate around and
+          manipulate parentheses and braces, git-gutter-mode to keep tabs on
+          lines I’ve changed in a file. M-/ to complete long words the second
+          type I type them.</p>
+
+          <ol class="org-ol">
+            <li>INDENTATION.</li>
+
+            <li>Navigation &amp; execution of code, follow to <b>R</b>
+            buffer</li>
+
+            <li>In-session function editing. C-c C-e d and C-c C-e C-d can open
+            file</li>
+          </ol>
+
+          <p>versions of R functions. C-c C-e l sends same back.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="outline-container-sec-3" class="outline-2">
+      <h2 id="sec-3"><span class="section-number-2">3</span> 0. Overview of
       R</h2>
 
-      <div class="outline-text-2" id="text-2">
+      <div class="outline-text-2" id="text-3">
         <p>R system that you download from <a href=
         "http://cran.r-project.org/">CRAN</a>:</p>
 
@@ -325,17 +771,17 @@ type="text/javascript">
       </div>
     </div>
 
-    <div id="outline-container-sec-3" class="outline-2">
-      <h2 id="sec-3"><span class="section-number-2">3</span> 1. Getting started
+    <div id="outline-container-sec-4" class="outline-2">
+      <h2 id="sec-4"><span class="section-number-2">4</span> 1. Getting started
       and getting help</h2>
 
-      <div class="outline-text-2" id="text-3">
+      <div class="outline-text-2" id="text-4">
         <div class="org-src-container">
           <pre class="src src-R">
 ?<span style="color: #0000FF;">function</span>
 ?dataset
 package ? lattice
-<span style="color: #6434A3;">library</span>(help = lattice)
+<span style="color: #6434A3;">library</span>(help=lattice)
 </pre>
         </div>
 
@@ -361,17 +807,17 @@ package ? lattice
       </div>
     </div>
 
-    <div id="outline-container-sec-4" class="outline-2">
-      <h2 id="sec-4"><span class="section-number-2">4</span> 2. Some
+    <div id="outline-container-sec-5" class="outline-2">
+      <h2 id="sec-5"><span class="section-number-2">5</span> 2. Some
       basics</h2>
 
-      <div class="outline-text-2" id="text-4"></div>
+      <div class="outline-text-2" id="text-5"></div>
 
-      <div id="outline-container-sec-4-1" class="outline-3">
-        <h3 id="sec-4-1"><span class="section-number-3">4.1</span> Print
+      <div id="outline-container-sec-5-1" class="outline-3">
+        <h3 id="sec-5-1"><span class="section-number-3">5.1</span> Print
         something</h3>
 
-        <div class="outline-text-3" id="text-4-1">
+        <div class="outline-text-3" id="text-5-1">
           <dl class="org-dl">
             <dt><code>print(object)</code></dt>
 
@@ -385,11 +831,11 @@ package ? lattice
         </div>
       </div>
 
-      <div id="outline-container-sec-4-2" class="outline-3">
-        <h3 id="sec-4-2"><span class="section-number-3">4.2</span> Setting
+      <div id="outline-container-sec-5-2" class="outline-3">
+        <h3 id="sec-5-2"><span class="section-number-3">5.2</span> Setting
         variables</h3>
 
-        <div class="outline-text-3" id="text-4-2">
+        <div class="outline-text-3" id="text-5-2">
           <dl class="org-dl">
             <dt><code>&lt;-</code></dt>
 
@@ -398,11 +844,11 @@ package ? lattice
         </div>
       </div>
 
-      <div id="outline-container-sec-4-3" class="outline-3">
-        <h3 id="sec-4-3"><span class="section-number-3">4.3</span> Listing
+      <div id="outline-container-sec-5-3" class="outline-3">
+        <h3 id="sec-5-3"><span class="section-number-3">5.3</span> Listing
         variables</h3>
 
-        <div class="outline-text-3" id="text-4-3">
+        <div class="outline-text-3" id="text-5-3">
           <dl class="org-dl">
             <dt><code>ls()</code>, <code>ls.str()</code></dt>
 
@@ -411,11 +857,11 @@ package ? lattice
         </div>
       </div>
 
-      <div id="outline-container-sec-4-4" class="outline-3">
-        <h3 id="sec-4-4"><span class="section-number-3">4.4</span> Deleting
+      <div id="outline-container-sec-5-4" class="outline-3">
+        <h3 id="sec-5-4"><span class="section-number-3">5.4</span> Deleting
         variables</h3>
 
-        <div class="outline-text-3" id="text-4-4">
+        <div class="outline-text-3" id="text-5-4">
           <dl class="org-dl">
             <dt><code>rm()</code></dt>
 
@@ -424,9 +870,9 @@ package ? lattice
 
               <div class="org-src-container">
                 <pre class="src src-R">
-rm(list=ls())                      <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">remove everything from the workspace</span>
+     rm(list=ls())                      <span style=
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">remove everything from the workspace</span>
 </pre>
               </div>
             </dd>
@@ -434,11 +880,11 @@ rm(list=ls())                      <span style=
         </div>
       </div>
 
-      <div id="outline-container-sec-4-5" class="outline-3">
-        <h3 id="sec-4-5"><span class="section-number-3">4.5</span> Computing
+      <div id="outline-container-sec-5-5" class="outline-3">
+        <h3 id="sec-5-5"><span class="section-number-3">5.5</span> Computing
         basic statistics</h3>
 
-        <div class="outline-text-3" id="text-4-5">
+        <div class="outline-text-3" id="text-5-5">
           <dl class="org-dl">
             <dt><code>mean()</code></dt>
 
@@ -455,11 +901,11 @@ rm(list=ls())                      <span style=
         </div>
       </div>
 
-      <div id="outline-container-sec-4-6" class="outline-3">
-        <h3 id="sec-4-6"><span class="section-number-3">4.6</span> Creating
+      <div id="outline-container-sec-5-6" class="outline-3">
+        <h3 id="sec-5-6"><span class="section-number-3">5.6</span> Creating
         sequences</h3>
 
-        <div class="outline-text-3" id="text-4-6">
+        <div class="outline-text-3" id="text-5-6">
           <dl class="org-dl">
             <dt><code>n:m</code></dt>
 
@@ -479,11 +925,11 @@ rm(list=ls())                      <span style=
         </div>
       </div>
 
-      <div id="outline-container-sec-4-7" class="outline-3">
-        <h3 id="sec-4-7"><span class="section-number-3">4.7</span>
+      <div id="outline-container-sec-5-7" class="outline-3">
+        <h3 id="sec-5-7"><span class="section-number-3">5.7</span>
         Operators</h3>
 
-        <div class="outline-text-3" id="text-4-7">
+        <div class="outline-text-3" id="text-5-7">
           <dl class="org-dl">
             <dt>==</dt>
 
@@ -496,11 +942,11 @@ rm(list=ls())                      <span style=
         </div>
       </div>
 
-      <div id="outline-container-sec-4-8" class="outline-3">
-        <h3 id="sec-4-8"><span class="section-number-3">4.8</span> Defining a
+      <div id="outline-container-sec-5-8" class="outline-3">
+        <h3 id="sec-5-8"><span class="section-number-3">5.8</span> Defining a
         function</h3>
 
-        <div class="outline-text-3" id="text-4-8">
+        <div class="outline-text-3" id="text-5-8">
           <div class="org-src-container">
             <pre class="src src-R">
 <span style="color: #006699;">myfunction</span> <span style=
@@ -515,11 +961,11 @@ rm(list=ls())                      <span style=
       </div>
     </div>
 
-    <div id="outline-container-sec-5" class="outline-2">
-      <h2 id="sec-5"><span class="section-number-2">5</span> 3. Navigating the
+    <div id="outline-container-sec-6" class="outline-2">
+      <h2 id="sec-6"><span class="section-number-2">6</span> 3. Navigating the
       software</h2>
 
-      <div class="outline-text-2" id="text-5">
+      <div class="outline-text-2" id="text-6">
         <dl class="org-dl">
           <dt><code>library(package)</code></dt>
 
@@ -528,8 +974,8 @@ rm(list=ls())                      <span style=
 
             <div class="org-src-container">
               <pre class="src src-R">
-<span style="color: #6434A3;">library</span>(datasets)
-airquality
+     <span style="color: #6434A3;">library</span>(datasets)
+     airquality
 </pre>
             </div>
           </dd>
@@ -544,35 +990,41 @@ airquality
         </dl>
       </div>
 
-      <div id="outline-container-sec-5-1" class="outline-3">
-        <h3 id="sec-5-1"><span class="section-number-3">5.1</span> Running a
+      <div id="outline-container-sec-6-1" class="outline-3">
+        <h3 id="sec-6-1"><span class="section-number-3">6.1</span> Running a
         batch script</h3>
 
-        <div class="outline-text-3" id="text-5-1">
+        <div class="outline-text-3" id="text-6-1">
           <p>You may write a script containing R code:</p>
 
           <div class="org-src-container">
             <pre class="src src-sh">
-<span style="color: #008200;">#</span><span style=
-"color: #008200; font-style: italic;">!/usr/bin/</span><span style=
+<span style="color: #4C886B;">#</span><span style=
+"color: #4C886B; font-style: italic;">!/usr/bin/</span><span style=
 "color: #0000FF;">env</span><span style=
-"color: #008200; font-style: italic;"> Rscript</span>
+"color: #4C886B; font-style: italic;"> Rscript</span>
 
 argv &lt;- commandArgs(TRUE)
 x &lt;- as.numeric(argv[1])
-<span style="color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">etc.</span>
+
+<span style="color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">etc.</span>
+
+<span style="color: #006699;">png</span>(<span style=
+"color: #036A07;">"graph.png"</span>, 500, 500)
+<span style="color: #006699;">plot</span>(graph)
+<span style="color: #006699;">graphics.off</span>()
 </pre>
           </div>
         </div>
       </div>
     </div>
 
-    <div id="outline-container-sec-6" class="outline-2">
-      <h2 id="sec-6"><span class="section-number-2">6</span> 5. Data
+    <div id="outline-container-sec-7" class="outline-2">
+      <h2 id="sec-7"><span class="section-number-2">7</span> 5. Data
       structures</h2>
 
-      <div class="outline-text-2" id="text-6">
+      <div class="outline-text-2" id="text-7">
         <p>What is data?</p>
 
         <dl class="org-dl">
@@ -642,7 +1094,7 @@ x &lt;- as.numeric(argv[1])
             <tr>
               <td class="left"><code>character</code></td>
 
-              <td class="left">"hello" (= lowest class)</td>
+              <td class="left">“hello” (= lowest class)</td>
             </tr>
           </tbody>
         </table>
@@ -658,15 +1110,15 @@ x &lt;- as.numeric(argv[1])
         </dl>
       </div>
 
-      <div id="outline-container-sec-6-1" class="outline-3">
-        <h3 id="sec-6-1"><span class="section-number-3">6.1</span> Vectors</h3>
+      <div id="outline-container-sec-7-1" class="outline-3">
+        <h3 id="sec-7-1"><span class="section-number-3">7.1</span> Vectors</h3>
 
-        <div class="outline-text-3" id="text-6-1">
+        <div class="outline-text-3" id="text-7-1">
           <p><b>Vectors</b> are sets of elements of the <i>same class</i>.</p>
 
           <p>When objects of different classes are mixed in a vector,
           <i>coercion</i> occurs behind the scene so that every element is of
-          the same class (the "lowest common denominator" class).</p>
+          the same class (the “lowest common denominator” class).</p>
 
           <dl class="org-dl">
             <dt><code>c()</code></dt>
@@ -687,13 +1139,13 @@ x &lt;- as.numeric(argv[1])
         </div>
       </div>
 
-      <div id="outline-container-sec-6-2" class="outline-3">
-        <h3 id="sec-6-2"><span class="section-number-3">6.2</span>
+      <div id="outline-container-sec-7-2" class="outline-3">
+        <h3 id="sec-7-2"><span class="section-number-3">7.2</span>
         Matrices</h3>
 
-        <div class="outline-text-3" id="text-6-2">
-          <p><b>Matrices</b> are vectors with <b>2 dimensions</b> (see
-          <code>dimension</code> attribute).</p>
+        <div class="outline-text-3" id="text-7-2">
+          <p>Matrices are <b>vectors with 2 dimensions</b> attached to them
+          (see <code>dimension</code> attribute).</p>
 
           <p>They are constructed <i>column-wise</i> (vector inserted by
           column).</p>
@@ -750,13 +1202,14 @@ print(v)
           <i>row-binding</i>.</p>
 
           <dl class="org-dl">
-            <dt><code>matrix(nrow = x, ncol = y)</code></dt>
+            <dt><code>matrix(nrow=x, ncol=y)</code></dt>
 
             <dd>Create an empty matrix.</dd>
 
             <dt><code>cbind()</code></dt>
 
-            <dd>Column-bind.</dd>
+            <dd>Column-bind (if the row order matches; otherwise, use
+            <code>merge</code>).</dd>
 
             <dt><code>rbind()</code></dt>
 
@@ -765,11 +1218,11 @@ print(v)
         </div>
       </div>
 
-      <div id="outline-container-sec-6-3" class="outline-3">
-        <h3 id="sec-6-3"><span class="section-number-3">6.3</span> Arrays</h3>
+      <div id="outline-container-sec-7-3" class="outline-3">
+        <h3 id="sec-7-3"><span class="section-number-3">7.3</span> Arrays</h3>
 
-        <div class="outline-text-3" id="text-6-3">
-          <p>Arrays are <b>n-dimensional</b> matrices.</p>
+        <div class="outline-text-3" id="text-7-3">
+          <p>Arrays are <b>n-dimensional matrices</b>.</p>
 
           <dl class="org-dl">
             <dt><code>array()</code></dt>
@@ -779,10 +1232,10 @@ print(v)
         </div>
       </div>
 
-      <div id="outline-container-sec-6-4" class="outline-3">
-        <h3 id="sec-6-4"><span class="section-number-3">6.4</span> Lists</h3>
+      <div id="outline-container-sec-7-4" class="outline-3">
+        <h3 id="sec-7-4"><span class="section-number-3">7.4</span> Lists</h3>
 
-        <div class="outline-text-3" id="text-6-4">
+        <div class="outline-text-3" id="text-7-4">
           <p><b>Lists</b> are vectors of objects of possibly different
           classes.</p>
 
@@ -797,14 +1250,14 @@ print(v)
         </div>
       </div>
 
-      <div id="outline-container-sec-6-5" class="outline-3">
-        <h3 id="sec-6-5"><span class="section-number-3">6.5</span> Factors</h3>
+      <div id="outline-container-sec-7-5" class="outline-3">
+        <h3 id="sec-7-5"><span class="section-number-3">7.5</span> Factors</h3>
 
-        <div class="outline-text-3" id="text-6-5">
+        <div class="outline-text-3" id="text-7-5">
           <p><b>Factors</b> are <i>qualitative</i> variables used to represent
           <i>categorical</i> data, to store self-describing codes for
-          <i>labels</i> (such as "male" and "female", or "low", "medium" and
-          "high").</p>
+          <i>labels</i> (such as “male” and “female”, or “low”, “medium” and
+          “high”).</p>
 
           <p>Unordered or ordered.</p>
 
@@ -821,11 +1274,11 @@ print(v)
         </div>
       </div>
 
-      <div id="outline-container-sec-6-6" class="outline-3">
-        <h3 id="sec-6-6"><span class="section-number-3">6.6</span> Data
+      <div id="outline-container-sec-7-6" class="outline-3">
+        <h3 id="sec-7-6"><span class="section-number-3">7.6</span> Data
         frames</h3>
 
-        <div class="outline-text-3" id="text-6-6">
+        <div class="outline-text-3" id="text-7-6">
           <p><b>Data frames</b> are used to store tabular data where each
           column can be of a different class: special type of list (of columns)
           where every element has the same length.</p>
@@ -851,18 +1304,18 @@ print(v)
         </div>
       </div>
 
-      <div id="outline-container-sec-6-7" class="outline-3">
-        <h3 id="sec-6-7"><span class="section-number-3">6.7</span> Vectorized
+      <div id="outline-container-sec-7-7" class="outline-3">
+        <h3 id="sec-7-7"><span class="section-number-3">7.7</span> Vectorized
         operations (recycling rule)</h3>
 
-        <div class="outline-text-3" id="text-6-7">
+        <div class="outline-text-3" id="text-7-7">
           <p>Avoid writing loops (code is a lot simpler):</p>
 
           <div class="org-src-container">
             <pre class="src src-R">
 x + y                                   <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">element-wise addition</span>
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">element-wise addition</span>
 </pre>
           </div>
 
@@ -871,21 +1324,21 @@ x + y                                   <span style=
           <div class="org-src-container">
             <pre class="src src-R">
 x * y                                   <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">element-wise multiplication</span>
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">element-wise multiplication</span>
 x %*% y                                 <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">true matrix multiplication</span>
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">true matrix multiplication</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="outline-container-sec-6-8" class="outline-3">
-        <h3 id="sec-6-8"><span class="section-number-3">6.8</span> Selecting
+      <div id="outline-container-sec-7-8" class="outline-3">
+        <h3 id="sec-7-8"><span class="section-number-3">7.8</span> Selecting
         list elements or data frame columns by position (subsetting)</h3>
 
-        <div class="outline-text-3" id="text-6-8">
+        <div class="outline-text-3" id="text-7-8">
           <dl class="org-dl">
             <dt><code>[[</code></dt>
 
@@ -899,12 +1352,12 @@ x %*% y                                 <span style=
 
               <div class="org-src-container">
                 <pre class="src src-R">
-x[[1]][[3]]                        <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">same as: x[[c(1,3)]]</span>
-                                   <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">third element of the first element</span>
+     x[[1]][[3]]                        <span style=
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">same as: x[[c(1,3)]]</span>
+                                        <span style=
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">third element of the first element</span>
 </pre>
               </div>
 
@@ -912,10 +1365,10 @@ x[[1]][[3]]                        <span style=
 
               <div class="org-src-container">
                 <pre class="src src-R">
-x[[<span style="color: #FF4700;">"a"</span>, exact = <span style=
-"color: #666666;">FALSE</span>]]            <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">instead of: x[["aardvark"]]</span>
+     x[[<span style="color: #036A07;">"a"</span>, exact=<span style=
+"color: #666666;">FALSE</span>]]              <span style=
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">instead of: x[["aardvark"]]</span>
 </pre>
               </div>
             </dd>
@@ -930,7 +1383,7 @@ x[[<span style="color: #FF4700;">"a"</span>, exact = <span style=
 
               <div class="org-src-container">
                 <pre class="src src-R">
-x[c(1,3)]
+     x[c(1,3)]
 </pre>
               </div>
 
@@ -938,7 +1391,7 @@ x[c(1,3)]
 
               <div class="org-src-container">
                 <pre class="src src-R">
-df[,-1]
+     df[,-1]
 </pre>
               </div>
             </dd>
@@ -946,24 +1399,24 @@ df[,-1]
         </div>
       </div>
 
-      <div id="outline-container-sec-6-9" class="outline-3">
-        <h3 id="sec-6-9"><span class="section-number-3">6.9</span> Selecting
+      <div id="outline-container-sec-7-9" class="outline-3">
+        <h3 id="sec-7-9"><span class="section-number-3">7.9</span> Selecting
         list elements or data frame columns by name (subsetting)</h3>
 
-        <div class="outline-text-3" id="text-6-9">
+        <div class="outline-text-3" id="text-7-9">
           <dl class="org-dl">
             <dt><code>$</code></dt>
 
             <dd>
               Extract a single element of a list (or a single column of a data
-              frame) <b>by name</b>: you don't have to remember where the
+              frame) <b>by name</b>: you don’t have to remember where the
               element is in the list.
 
               <div class="org-src-container">
                 <pre class="src src-R">
-x$bar                              <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">same as x[["bar"]]</span>
+     x$bar                              <span style=
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">same as x[["bar"]]</span>
 </pre>
               </div>
 
@@ -973,9 +1426,9 @@ x$bar                              <span style=
 
               <div class="org-src-container">
                 <pre class="src src-R">
-x$a                                <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">instead of: x$aardvark</span>
+     x$a                                <span style=
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">instead of: x$aardvark</span>
 </pre>
               </div>
             </dd>
@@ -983,11 +1436,11 @@ x$a                                <span style=
         </div>
       </div>
 
-      <div id="outline-container-sec-6-10" class="outline-3">
-        <h3 id="sec-6-10"><span class="section-number-3">6.10</span> Selecting
+      <div id="outline-container-sec-7-10" class="outline-3">
+        <h3 id="sec-7-10"><span class="section-number-3">7.10</span> Selecting
         data frame columns by position (subsetting)</h3>
 
-        <div class="outline-text-3" id="text-6-10">
+        <div class="outline-text-3" id="text-7-10">
           <p>Matrices can be subsetted with <code>(row, col)</code> type
           indices.</p>
 
@@ -1013,35 +1466,35 @@ x$a                                <span style=
             as a matrix.</li>
           </ul>
 
-          <p>This can be turned off by setting <code>drop = FALSE</code> (don't
+          <p>This can be turned off by setting <code>drop = FALSE</code> (don’t
           drop the dimension).</p>
         </div>
       </div>
     </div>
 
-    <div id="outline-container-sec-7" class="outline-2">
-      <h2 id="sec-7"><span class="section-number-2">7</span> Control
+    <div id="outline-container-sec-8" class="outline-2">
+      <h2 id="sec-8"><span class="section-number-2">8</span> Control
       structures</h2>
 
-      <div class="outline-text-2" id="text-7">
+      <div class="outline-text-2" id="text-8">
         <p>Control structures mentioned here are primarily useful for writing
         programs. For command-line interactive work, the <code>*apply</code>
         functions are more useful.</p>
       </div>
 
-      <div id="outline-container-sec-7-1" class="outline-3">
-        <h3 id="sec-7-1"><span class="section-number-3">7.1</span> Conditional
+      <div id="outline-container-sec-8-1" class="outline-3">
+        <h3 id="sec-8-1"><span class="section-number-3">8.1</span> Conditional
         statements</h3>
 
-        <div class="outline-text-3" id="text-7-1">
+        <div class="outline-text-3" id="text-8-1">
           <div class="org-src-container">
             <pre class="src src-R">
 <span style="color: #0000FF;">if</span> (&lt;condition&gt;) {
-    <span style="color: #008200;">## </span><span style=
-"color: #008200; font-style: italic;">do something</span>
+    <span style="color: #4C886B;">## </span><span style=
+"color: #4C886B; font-style: italic;">do something</span>
 } <span style="color: #0000FF;">else</span> {
-    <span style="color: #008200;">## </span><span style=
-"color: #008200; font-style: italic;">do something else</span>
+    <span style="color: #4C886B;">## </span><span style=
+"color: #4C886B; font-style: italic;">do something else</span>
 }
 </pre>
           </div>
@@ -1053,8 +1506,8 @@ x$a                                <span style=
             <pre class="src src-R">
 y <span style="color: #6434A3;">&lt;-</span> <span style=
 "color: #0000FF;">if</span>(x &gt; 3) {                        <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">x must be a scalar here, not a vector</span>
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">x must be a scalar here, not a vector</span>
     10
 } <span style="color: #0000FF;">else</span> {
     0
@@ -1064,26 +1517,26 @@ y <span style="color: #6434A3;">&lt;-</span> <span style=
         </div>
       </div>
 
-      <div id="outline-container-sec-7-2" class="outline-3">
-        <h3 id="sec-7-2"><span class="section-number-3">7.2</span> Loops</h3>
+      <div id="outline-container-sec-8-2" class="outline-3">
+        <h3 id="sec-8-2"><span class="section-number-3">8.2</span> Loops</h3>
 
-        <div class="outline-text-3" id="text-7-2">
+        <div class="outline-text-3" id="text-8-2">
           <div class="org-src-container">
             <pre class="src src-R">
 <span style="color: #0000FF;">for</span> (i <span style=
 "color: #0000FF;">in</span> 1:10) {                       <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">successive values from a sequence or vector</span>
-    <span style="color: #008200;">## </span><span style=
-"color: #008200; font-style: italic;">do something</span>
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">successive values from a sequence or vector</span>
+    <span style="color: #4C886B;">## </span><span style=
+"color: #4C886B; font-style: italic;">do something</span>
 }
 
 <span style="color: #0000FF;">for</span> (letter <span style=
 "color: #0000FF;">in</span> x) {                     <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">take elements from the vector</span>
-    <span style="color: #008200;">## </span><span style=
-"color: #008200; font-style: italic;">do something</span>
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">take elements from the vector</span>
+    <span style="color: #4C886B;">## </span><span style=
+"color: #4C886B; font-style: italic;">do something</span>
 }
 </pre>
           </div>
@@ -1091,12 +1544,12 @@ y <span style="color: #6434A3;">&lt;-</span> <span style=
           <dl class="org-dl">
             <dt>seq_along(vector)</dt>
 
-            <dd>Create an integer sequence that's equal to the <b>length of the
+            <dd>Create an integer sequence that’s equal to the <b>length of the
             input vector</b>.</dd>
 
             <dt>seq_len(integer)</dt>
 
-            <dd>Create an integer sequence that's as long as the integer in
+            <dd>Create an integer sequence that’s as long as the integer in
             input.</dd>
 
             <dt>nrow(dataset)</dt>
@@ -1111,9 +1564,9 @@ y <span style="color: #6434A3;">&lt;-</span> <span style=
           <div class="org-src-container">
             <pre class="src src-R">
 <span style=
-"color: #0000FF;">while</span> (z &gt;= 3 &amp;&amp; z &lt;= 10) {             <span style="color: #008200;"># </span><span style="color: #008200; font-style: italic;">conditions are always evaluated from left to right</span>
-    <span style="color: #008200;">## </span><span style=
-"color: #008200; font-style: italic;">do something</span>
+"color: #0000FF;">while</span> (z &gt;= 3 &amp;&amp; z &lt;= 10) {             <span style="color: #4C886B;"># </span><span style="color: #4C886B; font-style: italic;">conditions are always evaluated from left to right</span>
+    <span style="color: #4C886B;">## </span><span style=
+"color: #4C886B; font-style: italic;">do something</span>
 }
 </pre>
           </div>
@@ -1123,13 +1576,13 @@ y <span style="color: #6434A3;">&lt;-</span> <span style=
           <div class="org-src-container">
             <pre class="src src-R">
 <span style="color: #0000FF;">repeat</span> {
-    <span style="color: #008200;">## </span><span style=
-"color: #008200; font-style: italic;">do something</span>
+    <span style="color: #4C886B;">## </span><span style=
+"color: #4C886B; font-style: italic;">do something</span>
     <span style="color: #0000FF;">if</span>(&lt;condition&gt;) {
         <span style=
 "color: #0000FF;">break</span>                           <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">only way to exit a repeat loop</span>
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">only way to exit a repeat loop</span>
     }
 }
 </pre>
@@ -1150,16 +1603,16 @@ y <span style="color: #6434A3;">&lt;-</span> <span style=
           </dl>
 
           <p>Better to use a <code>for</code> loop with an hard limit on the
-          number of iterations that it's allowed to run.</p>
+          number of iterations that it’s allowed to run.</p>
         </div>
       </div>
     </div>
 
-    <div id="outline-container-sec-8" class="outline-2">
-      <h2 id="sec-8"><span class="section-number-2">8</span> Writing
+    <div id="outline-container-sec-9" class="outline-2">
+      <h2 id="sec-9"><span class="section-number-2">9</span> Writing
       functions</h2>
 
-      <div class="outline-text-2" id="text-8">
+      <div class="outline-text-2" id="text-9">
         <ul class="org-ul">
           <li>Functions are R objects of class <code>function</code></li>
         </ul>
@@ -1169,8 +1622,8 @@ y <span style="color: #6434A3;">&lt;-</span> <span style=
 <span style="color: #006699;">f</span> <span style=
 "color: #6434A3;">&lt;-</span> <span style=
 "color: #0000FF;">function</span>(&lt;arguments&gt;) {
-    <span style="color: #008200;">## </span><span style=
-"color: #008200; font-style: italic;">do something</span>
+    <span style="color: #4C886B;">## </span><span style=
+"color: #4C886B; font-style: italic;">do something</span>
 }
 </pre>
         </div>
@@ -1198,11 +1651,11 @@ y <span style="color: #6434A3;">&lt;-</span> <span style=
         </ul>
       </div>
 
-      <div id="outline-container-sec-8-1" class="outline-3">
-        <h3 id="sec-8-1"><span class="section-number-3">8.1</span>
+      <div id="outline-container-sec-9-1" class="outline-3">
+        <h3 id="sec-9-1"><span class="section-number-3">9.1</span>
         Arguments</h3>
 
-        <div class="outline-text-3" id="text-8-1">
+        <div class="outline-text-3" id="text-9-1">
           <ul class="org-ul">
             <li><i>Named arguments</i> can potentially have <i>default
             values</i> (useful: not every function call makes use of all the
@@ -1217,7 +1670,7 @@ y <span style="color: #6434A3;">&lt;-</span> <span style=
             <li>Arguments can be matched <b>positionally</b> or <b>by name</b>
 
               <ul class="org-ul">
-                <li>When an argument is matched by name, it is "taken out" of
+                <li>When an argument is matched by name, it is “taken out” of
                 the argument list and the remaining unnamed arguments are
                 matched in the order that they are listed in the function
                 definition</li>
@@ -1230,7 +1683,7 @@ y <span style="color: #6434A3;">&lt;-</span> <span style=
                 <li>you want to use the defaults for evererything except for an
                 argument near the end of the list</li>
 
-                <li>you can't remember the position of the argument</li>
+                <li>you can’t remember the position of the argument</li>
               </ul>
             </li>
 
@@ -1255,7 +1708,7 @@ y <span style="color: #6434A3;">&lt;-</span> <span style=
             arguments
 
               <ul class="org-ul">
-                <li>Used when extending a function and you don't want to copy
+                <li>Used when extending a function and you don’t want to copy
                 the entire argument list of the original function</li>
 
                 <li>Used by generic functions (such as <code>mean</code>) so
@@ -1272,11 +1725,11 @@ y <span style="color: #6434A3;">&lt;-</span> <span style=
         </div>
       </div>
 
-      <div id="outline-container-sec-8-2" class="outline-3">
-        <h3 id="sec-8-2"><span class="section-number-3">8.2</span> Scoping
+      <div id="outline-container-sec-9-2" class="outline-3">
+        <h3 id="sec-9-2"><span class="section-number-3">9.2</span> Scoping
         rules for R</h3>
 
-        <div class="outline-text-3" id="text-8-2">
+        <div class="outline-text-3" id="text-9-2">
           <ul class="org-ul">
             <li>R searches through the <i>search list</i> (a series of
             <code>environments</code>, an environment being a collection of
@@ -1291,9 +1744,9 @@ y <span style="color: #6434A3;">&lt;-</span> <span style=
 
                   <div class="org-src-container">
                     <pre class="src src-R">
-search()                            <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">find the search list</span>
+    search()                            <span style=
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">find the search list</span>
 </pre>
                   </div>
                 </li>
@@ -1318,7 +1771,7 @@ search()                            <span style=
                 <li>With <b>dynamic</b> scoping, the value of free variables is
                 looked up in the environment from which the function was
                 <b>called</b> (<i>calling environment</i> = <i>parent
-                frame</i>) – see slide 24 of "Scoping Rules for R" for a
+                frame</i>) – see slide 24 of “Scoping Rules for R” for a
                 comparative example</li>
 
                 <li>Other languages that support lexical scoping: Scheme, Perl,
@@ -1332,7 +1785,7 @@ search()                            <span style=
 
             <li>Every environment has one parent environment (next thing down
             on the search list); it is possible for an environment to have
-            mulitple "children"</li>
+            mulitple “children”</li>
 
             <li>A function + an environment = a (<i>function</i>)
             <i>closure</i></li>
@@ -1343,25 +1796,25 @@ search()                            <span style=
 
               <div class="org-src-container">
                 <pre class="src src-R">
-<span style="color: #006699;">make.power</span> <span style=
+  <span style="color: #006699;">make.power</span> <span style=
 "color: #6434A3;">&lt;-</span> <span style=
 "color: #0000FF;">function</span>(n) {           <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">"constructor" function</span>
-    <span style="color: #006699;">pow</span> <span style=
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">"constructor" function</span>
+      <span style="color: #006699;">pow</span> <span style=
 "color: #6434A3;">&lt;-</span> <span style=
 "color: #0000FF;">function</span>(x) {
-        x^n                           <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">n is a free variable (not defined</span>
-                                      <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">inside pow)</span>
-    }
-    pow                               <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">return function as return value</span>
-}
+          x^n                           <span style=
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">n is a free variable (not defined</span>
+                                        <span style=
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">inside pow)</span>
+      }
+      pow                               <span style=
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">return function as return value</span>
+  }
 </pre>
               </div>
 
@@ -1369,8 +1822,8 @@ search()                            <span style=
 
               <div class="org-src-container">
                 <pre class="src src-R">
-cube <span style="color: #6434A3;">&lt;-</span> make.power(3)
-square <span style="color: #6434A3;">&lt;-</span> make.power(2)
+  cube <span style="color: #6434A3;">&lt;-</span> make.power(3)
+  square <span style="color: #6434A3;">&lt;-</span> make.power(2)
 </pre>
               </div>
             </li>
@@ -1398,11 +1851,11 @@ square <span style="color: #6434A3;">&lt;-</span> make.power(2)
       </div>
     </div>
 
-    <div id="outline-container-sec-9" class="outline-2">
-      <h2 id="sec-9"><span class="section-number-2">9</span> 4. Input and
+    <div id="outline-container-sec-10" class="outline-2">
+      <h2 id="sec-10"><span class="section-number-2">10</span> 4. Input and
       output</h2>
 
-      <div class="outline-text-2" id="text-9">
+      <div class="outline-text-2" id="text-10">
         <p>Types of files:</p>
 
         <ul class="org-ul">
@@ -1420,11 +1873,11 @@ square <span style="color: #6434A3;">&lt;-</span> make.power(2)
         </ul>
       </div>
 
-      <div id="outline-container-sec-9-1" class="outline-3">
-        <h3 id="sec-9-1"><span class="section-number-3">9.1</span> Getting the
-        current working directory</h3>
+      <div id="outline-container-sec-10-1" class="outline-3">
+        <h3 id="sec-10-1"><span class="section-number-3">10.1</span> Getting
+        the current working directory</h3>
 
-        <div class="outline-text-3" id="text-9-1">
+        <div class="outline-text-3" id="text-10-1">
           <dl class="org-dl">
             <dt><code>getwd()</code></dt>
 
@@ -1433,11 +1886,11 @@ square <span style="color: #6434A3;">&lt;-</span> make.power(2)
         </div>
       </div>
 
-      <div id="outline-container-sec-9-2" class="outline-3">
-        <h3 id="sec-9-2"><span class="section-number-3">9.2</span> Creating,
+      <div id="outline-container-sec-10-2" class="outline-3">
+        <h3 id="sec-10-2"><span class="section-number-3">10.2</span> Creating,
         opening and closing connections</h3>
 
-        <div class="outline-text-3" id="text-9-2">
+        <div class="outline-text-3" id="text-10-2">
           <dl class="org-dl">
             <dt><code>file()</code></dt>
 
@@ -1450,11 +1903,11 @@ square <span style="color: #6434A3;">&lt;-</span> make.power(2)
 
               <div class="org-src-container">
                 <pre class="src src-R">
-con <span style="color: #6434A3;">&lt;-</span> file(<span style=
-"color: #FF4700;">"./data/cameras.csv"</span>, <span style=
-"color: #FF4700;">"r"</span>)
-cameraData <span style="color: #6434A3;">&lt;-</span> read.csv(con)
-close(con)
+     con <span style="color: #6434A3;">&lt;-</span> file(<span style=
+"color: #036A07;">"./data/cameras.csv"</span>, <span style=
+"color: #036A07;">"r"</span>)
+     cameraData <span style="color: #6434A3;">&lt;-</span> read.csv(con)
+     close(con)
 </pre>
               </div>
             </dd>
@@ -1462,11 +1915,11 @@ close(con)
         </div>
       </div>
 
-      <div id="outline-container-sec-9-3" class="outline-3">
-        <h3 id="sec-9-3"><span class="section-number-3">9.3</span> Reading
+      <div id="outline-container-sec-10-3" class="outline-3">
+        <h3 id="sec-10-3"><span class="section-number-3">10.3</span> Reading
         tabular data files</h3>
 
-        <div class="outline-text-3" id="text-9-3">
+        <div class="outline-text-3" id="text-10-3">
           <dl class="org-dl">
             <dt><code>read.table(file)</code></dt>
 
@@ -1484,7 +1937,8 @@ close(con)
 
                 <li><code>quote</code></li>
 
-                <li><code>colClasses</code> (class of each column)</li>
+                <li><code>colClasses</code> (class of each column, also used to
+                <b>skip columns</b>)</li>
 
                 <li><code>nrows</code></li>
 
@@ -1499,9 +1953,9 @@ close(con)
 
               <div class="org-src-container">
                 <pre class="src src-R">
-data <span style="color: #6434A3;">&lt;-</span> read.table(<span style=
-"color: #FF4700;">"./data/file.txt"</span>, header=T, sep=<span style=
-"color: #FF4700;">"\t"</span>, quote=<span style="color: #FF4700;">""</span>)
+     data <span style="color: #6434A3;">&lt;-</span> read.table(<span style=
+"color: #036A07;">"./data/file.txt"</span>, header=T, sep=<span style=
+"color: #036A07;">"\t"</span>, quote=<span style="color: #036A07;">""</span>)
 </pre>
               </div>
             </dd>
@@ -1515,30 +1969,61 @@ data <span style="color: #6434A3;">&lt;-</span> read.table(<span style=
 
             <li>Use the <code>colClasses</code> argument.
 
-              <p>Quick and dirty way to figure out the classes of each
-              column:</p>
+              <p>Quick and dirty way to figure out the classes of each column
+              (if there aren’t any classes that you want to change from their
+              defaults): read in the first rows, <i>determine the classes from
+              that</i>, and then import the rest of the file.</p>
 
               <div class="org-src-container">
                 <pre class="src src-R">
-initial <span style="color: #6434A3;">&lt;-</span> read.table(<span style=
-"color: #FF4700;">"datatable.txt"</span>, nrows = 100)
-classes <span style="color: #6434A3;">&lt;-</span> sapply(initial, class)
-tabAll <span style="color: #6434A3;">&lt;-</span> read.table(<span style=
-"color: #FF4700;">"datatable.txt"</span>, colClasses = classes)
+  tabSample <span style="color: #6434A3;">&lt;-</span> read.table(<span style=
+"color: #036A07;">"datatable.txt"</span>, nrows=100)
+  classes <span style="color: #6434A3;">&lt;-</span> sapply(tabSample, class)
+  tabAll <span style="color: #6434A3;">&lt;-</span> read.table(<span style=
+"color: #036A07;">"datatable.txt"</span>, colClasses=classes)
+                                        <span style=
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">save time on importing data</span>
 </pre>
               </div>
             </li>
 
             <li>Set <code>nrows</code> helps with memory usage.</li>
           </ul>
+
+          <p>R equivalent of Linux <code>cut</code> (to read only certain
+          columns from a file):</p>
+
+          <div class="org-src-container">
+            <pre class="src src-R">
+whichCols <span style="color: #6434A3;">&lt;-</span> rep(<span style=
+"color: #036A07;">"NULL"</span>, 28)            <span style=
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">assuming 28 colums</span>
+whichCols[c(1,5,28)] <span style="color: #6434A3;">&lt;-</span> <span style=
+"color: #666666;">NA</span>
+df <span style=
+"color: #6434A3;">&lt;-</span> read.table(file, colClasses=whichCols)
+</pre>
+          </div>
+
+          <p>To call some shell script to do the column extraction and then
+          using <code>read.table</code> on its output:</p>
+
+          <div class="org-src-container">
+            <pre class="src src-R">
+df <span style="color: #6434A3;">&lt;-</span> read.table(pipe(<span style=
+"color: #036A07;">"cut -f1,5,28 myFile.txt"</span>))
+</pre>
+          </div>
         </div>
       </div>
 
-      <div id="outline-container-sec-9-4" class="outline-3">
-        <h3 id="sec-9-4"><span class="section-number-3">9.4</span> Writing
+      <div id="outline-container-sec-10-4" class="outline-3">
+        <h3 id="sec-10-4"><span class="section-number-3">10.4</span> Writing
         tabular data files</h3>
 
-        <div class="outline-text-3" id="text-9-4">
+        <div class="outline-text-3" id="text-10-4">
           <dl class="org-dl">
             <dt><code>write.table()</code></dt>
 
@@ -1547,11 +2032,11 @@ tabAll <span style="color: #6434A3;">&lt;-</span> read.table(<span style=
         </div>
       </div>
 
-      <div id="outline-container-sec-9-5" class="outline-3">
-        <h3 id="sec-9-5"><span class="section-number-3">9.5</span> Reading from
-        CSV files</h3>
+      <div id="outline-container-sec-10-5" class="outline-3">
+        <h3 id="sec-10-5"><span class="section-number-3">10.5</span> Reading
+        from CSV files</h3>
 
-        <div class="outline-text-3" id="text-9-5">
+        <div class="outline-text-3" id="text-10-5">
           <dl class="org-dl">
             <dt><code>read.csv(file)</code></dt>
 
@@ -1566,12 +2051,12 @@ tabAll <span style="color: #6434A3;">&lt;-</span> read.table(<span style=
 
               <div class="org-src-container">
                 <pre class="src src-R">
-data <span style="color: #6434A3;">&lt;-</span> read.csv(<span style=
-"color: #FF4700;">"./data/file.csv"</span>)
+     data <span style="color: #6434A3;">&lt;-</span> read.csv(<span style=
+"color: #036A07;">"./data/file.csv"</span>)
 
-read.csv(file.choose())            <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">pick a file</span>
+     read.csv(file.choose())            <span style=
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">pick a file</span>
 </pre>
               </div>
 
@@ -1596,11 +2081,11 @@ read.csv(file.choose())            <span style=
         </div>
       </div>
 
-      <div id="outline-container-sec-9-6" class="outline-3">
-        <h3 id="sec-9-6"><span class="section-number-3">9.6</span> Reading from
-        Excel files</h3>
+      <div id="outline-container-sec-10-6" class="outline-3">
+        <h3 id="sec-10-6"><span class="section-number-3">10.6</span> Reading
+        from Excel files</h3>
 
-        <div class="outline-text-3" id="text-9-6">
+        <div class="outline-text-3" id="text-10-6">
           <dl class="org-dl">
             <dt><code>read.xlsx()</code>, <code>read.xlsx2()</code></dt>
 
@@ -1609,11 +2094,11 @@ read.csv(file.choose())            <span style=
         </div>
       </div>
 
-      <div id="outline-container-sec-9-7" class="outline-3">
-        <h3 id="sec-9-7"><span class="section-number-3">9.7</span> Reading
+      <div id="outline-container-sec-10-7" class="outline-3">
+        <h3 id="sec-10-7"><span class="section-number-3">10.7</span> Reading
         files from the Internet</h3>
 
-        <div class="outline-text-3" id="text-9-7">
+        <div class="outline-text-3" id="text-10-7">
           <dl class="org-dl">
             <dt><code>download.file()</code></dt>
 
@@ -1624,11 +2109,11 @@ read.csv(file.choose())            <span style=
 
               <div class="org-src-container">
                 <pre class="src src-R">
-fileUrl <span style="color: #6434A3;">&lt;-</span> <span style=
-"color: #FF4700;">"http://..."</span>
-download.file(fileUrl, destfile=<span style=
-"color: #FF4700;">"./data/file.csv"</span>, method=<span style=
-"color: #FF4700;">"curl"</span>)
+     fileUrl <span style="color: #6434A3;">&lt;-</span> <span style=
+"color: #036A07;">"http://..."</span>
+     download.file(fileUrl, destfile=<span style=
+"color: #036A07;">"./data/file.csv"</span>, method=<span style=
+"color: #036A07;">"curl"</span>)
 </pre>
               </div>
             </dd>
@@ -1636,11 +2121,11 @@ download.file(fileUrl, destfile=<span style=
         </div>
       </div>
 
-      <div id="outline-container-sec-9-8" class="outline-3">
-        <h3 id="sec-9-8"><span class="section-number-3">9.8</span> Reading
+      <div id="outline-container-sec-10-8" class="outline-3">
+        <h3 id="sec-10-8"><span class="section-number-3">10.8</span> Reading
         files with a complex structure</h3>
 
-        <div class="outline-text-3" id="text-9-8">
+        <div class="outline-text-3" id="text-10-8">
           <dl class="org-dl">
             <dt><code>readLines()</code></dt>
 
@@ -1665,24 +2150,25 @@ download.file(fileUrl, destfile=<span style=
 
               <div class="org-src-container">
                 <pre class="src src-R">
-con <span style="color: #6434A3;">&lt;-</span> url(<span style=
-"color: #FF4700;">"http://scholar.google.com/citations"</span>)
-htmlCode <span style="color: #6434A3;">&lt;-</span> readLines(con)
-close(con)
+     con <span style="color: #6434A3;">&lt;-</span> url(<span style=
+"color: #036A07;">"http://scholar.google.com/citations"</span>)
+     htmlCode <span style="color: #6434A3;">&lt;-</span> readLines(con)
+     close(con)
 
-<span style="color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">get data off webpages</span>
-html3 <span style="color: #6434A3;">&lt;-</span> htmlTreeParse(<span style=
-"color: #FF4700;">"..."</span>)
+     <span style="color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">get data off webpages</span>
+     html3 <span style=
+"color: #6434A3;">&lt;-</span> htmlTreeParse(<span style="color: #036A07;">"..."</span>)
 
-<span style="color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">find value of title tag</span>
-xpathSApply(html3, <span style="color: #FF4700;">"//title"</span>, xmlValue)
+     <span style="color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">find value of title tag</span>
+     xpathSApply(html3, <span style=
+"color: #036A07;">"//title"</span>, xmlValue)
 
-<span style="color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">access parts of the table</span>
-xpathSApply(html3, <span style=
-"color: #FF4700;">"//td[@id='col-citedby']"</span>, xmlValue)
+     <span style="color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">access parts of the table</span>
+     xpathSApply(html3, <span style=
+"color: #036A07;">"//td[@id='col-citedby']"</span>, xmlValue)
 </pre>
               </div>
             </dd>
@@ -1690,22 +2176,22 @@ xpathSApply(html3, <span style=
         </div>
       </div>
 
-      <div id="outline-container-sec-9-9" class="outline-3">
-        <h3 id="sec-9-9"><span class="section-number-3">9.9</span> Reading from
-        SQL Server databases</h3>
+      <div id="outline-container-sec-10-9" class="outline-3">
+        <h3 id="sec-10-9"><span class="section-number-3">10.9</span> Reading
+        from SQL Server databases</h3>
 
-        <div class="outline-text-3" id="text-9-9">
+        <div class="outline-text-3" id="text-10-9">
           <div class="org-src-container">
             <pre class="src src-R">
 <span style="color: #6434A3;">library</span>(RODBC)
-<span style="color: #008200;">## </span><span style=
-"color: #008200; font-style: italic;">con &lt;- odbcConnect("DSN", uid="username")</span>
-<span style="color: #008200;">## </span><span style=
-"color: #008200; font-style: italic;">con &lt;- odbcDriverConnect("driver={SQL Server};server=hostname;database=dbname;trusted_connection=true")</span>
+<span style="color: #4C886B;">## </span><span style=
+"color: #4C886B; font-style: italic;">con &lt;- odbcConnect("DSN", uid="username")</span>
+<span style="color: #4C886B;">## </span><span style=
+"color: #4C886B; font-style: italic;">con &lt;- odbcDriverConnect("driver={SQL Server};server=hostname;database=dbname;trusted_connection=true")</span>
 con <span style="color: #6434A3;">&lt;-</span> odbcDriverConnect(<span style=
-"color: #FF4700;">"driver={SQL Server};server=hostname;database=dbname;uid=username;pwd=password"</span>)
+"color: #036A07;">"driver={SQL Server};server=hostname;database=dbname;uid=username;pwd=password"</span>)
 sql <span style="color: #6434A3;">&lt;-</span> <span style=
-"color: #FF4700;">"SELECT * FROM table"</span>
+"color: #036A07;">"SELECT * FROM table"</span>
 rows <span style="color: #6434A3;">&lt;-</span> sqlQuery(con, sql)
 print(head(rows))
 odbcClose(con)
@@ -1714,11 +2200,11 @@ odbcClose(con)
         </div>
       </div>
 
-      <div id="outline-container-sec-9-10" class="outline-3">
-        <h3 id="sec-9-10"><span class="section-number-3">9.10</span> Saving and
-        transporting objects</h3>
+      <div id="outline-container-sec-10-10" class="outline-3">
+        <h3 id="sec-10-10"><span class="section-number-3">10.10</span> Saving
+        and transporting objects</h3>
 
-        <div class="outline-text-3" id="text-9-10">
+        <div class="outline-text-3" id="text-10-10">
           <p>Textual formats (potentially recoverable in case of
           corruption).</p>
 
@@ -1734,11 +2220,11 @@ odbcClose(con)
         </div>
       </div>
 
-      <div id="outline-container-sec-9-11" class="outline-3">
-        <h3 id="sec-9-11"><span class="section-number-3">9.11</span> Further
+      <div id="outline-container-sec-10-11" class="outline-3">
+        <h3 id="sec-10-11"><span class="section-number-3">10.11</span> Further
         resources</h3>
 
-        <div class="outline-text-3" id="text-9-11">
+        <div class="outline-text-3" id="text-10-11">
           <p>Packages:</p>
 
           <dl class="org-dl">
@@ -1762,17 +2248,17 @@ odbcClose(con)
       </div>
     </div>
 
-    <div id="outline-container-sec-10" class="outline-2">
-      <h2 id="sec-10"><span class="section-number-2">10</span> 12. Useful
+    <div id="outline-container-sec-11" class="outline-2">
+      <h2 id="sec-11"><span class="section-number-2">11</span> 12. Useful
       tricks</h2>
 
-      <div class="outline-text-2" id="text-10"></div>
+      <div class="outline-text-2" id="text-11"></div>
 
-      <div id="outline-container-sec-10-1" class="outline-3">
-        <h3 id="sec-10-1"><span class="section-number-3">10.1</span> Peeking at
+      <div id="outline-container-sec-11-1" class="outline-3">
+        <h3 id="sec-11-1"><span class="section-number-3">11.1</span> Peeking at
         your data</h3>
 
-        <div class="outline-text-3" id="text-10-1">
+        <div class="outline-text-3" id="text-11-1">
           <dl class="org-dl">
             <dt><code>head()</code></dt>
 
@@ -1794,9 +2280,9 @@ odbcClose(con)
 
               <div class="org-src-container">
                 <pre class="src src-R">
-str(.Platform)                     <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">what is the operating system</span>
+     str(.Platform)                     <span style=
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">what is the operating system</span>
 </pre>
               </div>
             </dd>
@@ -1810,17 +2296,17 @@ str(.Platform)                     <span style=
       </div>
     </div>
 
-    <div id="outline-container-sec-11" class="outline-2">
-      <h2 id="sec-11"><span class="section-number-2">11</span> 9. General
+    <div id="outline-container-sec-12" class="outline-2">
+      <h2 id="sec-12"><span class="section-number-2">12</span> 9. General
       statistics</h2>
 
-      <div class="outline-text-2" id="text-11"></div>
+      <div class="outline-text-2" id="text-12"></div>
 
-      <div id="outline-container-sec-11-1" class="outline-3">
-        <h3 id="sec-11-1"><span class="section-number-3">11.1</span>
+      <div id="outline-container-sec-12-1" class="outline-3">
+        <h3 id="sec-12-1"><span class="section-number-3">12.1</span>
         Summarizing your data</h3>
 
-        <div class="outline-text-3" id="text-11-1">
+        <div class="outline-text-3" id="text-12-1">
           <dl class="org-dl">
             <dt><code>range()</code></dt>
 
@@ -1834,11 +2320,11 @@ str(.Platform)                     <span style=
         </div>
       </div>
 
-      <div id="outline-container-sec-11-2" class="outline-3">
-        <h3 id="sec-11-2"><span class="section-number-3">11.2</span> Tabulating
+      <div id="outline-container-sec-12-2" class="outline-3">
+        <h3 id="sec-12-2"><span class="section-number-3">12.2</span> Tabulating
         factors</h3>
 
-        <div class="outline-text-3" id="text-11-2">
+        <div class="outline-text-3" id="text-12-2">
           <dl class="org-dl">
             <dt><code>table(f)</code></dt>
 
@@ -1849,23 +2335,44 @@ str(.Platform)                     <span style=
 
               <div class="org-src-container">
                 <pre class="src src-R">
-unique(dfrm$f)
-length(unique(dfrm$f))             <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">how many unique values</span>
+     unique(dfrm$f)
+     length(unique(dfrm$f))             <span style=
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">how many unique values</span>
 
-table(dfrm$f, useNA=<span style=
-"color: #FF4700;">"ifany"</span>)       <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">number of times each unique value appears</span>
-                                   <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">(show missing values as well)</span>
+     table(dfrm$f, useNA=<span style=
+"color: #036A07;">"ifany"</span>)       <span style=
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">number of times each unique value appears</span>
+                                        <span style=
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">(show missing values as well)</span>
+</pre>
+              </div>
+
+              <p>Relative frequencies:</p>
+
+              <div class="org-src-container">
+                <pre class="src src-R">
+     tbl <span style=
+"color: #6434A3;">&lt;-</span> table(dfrm$f, useNA=<span style=
+"color: #036A07;">"ifany"</span>)
+     tbl / sum(tbl)
 </pre>
               </div>
 
               <p>Use the <code>cut</code> function to calculate tables with
               <i>numeric</i> values.</p>
+
+              <div class="org-src-container">
+                <pre class="src src-R">
+     f <span style=
+"color: #6434A3;">&lt;-</span> cut(dfrm$x, breaks=30)        <span style=
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">use `labels' to give nice names</span>
+     table(f, useNA=<span style="color: #036A07;">"ifany"</span>)
+</pre>
+              </div>
             </dd>
 
             <dt><code>table(f1, f2)</code></dt>
@@ -1875,9 +2382,9 @@ table(dfrm$f, useNA=<span style=
 
               <div class="org-src-container">
                 <pre class="src src-R">
-table(dfrm$f1, dfrm$f2)            <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">look at the relationship between f1 and f2</span>
+     table(dfrm$f1, dfrm$f2)            <span style=
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">look at the relationship between f1 and f2</span>
 </pre>
               </div>
             </dd>
@@ -1885,11 +2392,11 @@ table(dfrm$f1, dfrm$f2)            <span style=
         </div>
       </div>
 
-      <div id="outline-container-sec-11-3" class="outline-3">
-        <h3 id="sec-11-3"><span class="section-number-3">11.3</span> Testing
+      <div id="outline-container-sec-12-3" class="outline-3">
+        <h3 id="sec-12-3"><span class="section-number-3">12.3</span> Testing
         categorical variables for independence</h3>
 
-        <div class="outline-text-3" id="text-11-3">
+        <div class="outline-text-3" id="text-12-3">
           <div class="org-src-container">
             <pre class="src src-R">
 summary(table(f1, f2))
@@ -1902,11 +2409,11 @@ summary(table(f1, f2))
         </div>
       </div>
 
-      <div id="outline-container-sec-11-4" class="outline-3">
-        <h3 id="sec-11-4"><span class="section-number-3">11.4</span>
+      <div id="outline-container-sec-12-4" class="outline-3">
+        <h3 id="sec-12-4"><span class="section-number-3">12.4</span>
         Calculating quantiles (and quartiles) of a dataset</h3>
 
-        <div class="outline-text-3" id="text-11-4">
+        <div class="outline-text-3" id="text-12-4">
           <div class="org-src-container">
             <pre class="src src-R">
 quantile(vec, na.rm=<span style="color: #666666;">TRUE</span>)
@@ -1916,11 +2423,11 @@ quantile(vec, na.rm=<span style="color: #666666;">TRUE</span>)
       </div>
     </div>
 
-    <div id="outline-container-sec-12" class="outline-2">
-      <h2 id="sec-12"><span class="section-number-2">12</span> 6. Data
+    <div id="outline-container-sec-13" class="outline-2">
+      <h2 id="sec-13"><span class="section-number-2">13</span> 6. Data
       transformations</h2>
 
-      <div class="outline-text-2" id="text-12">
+      <div class="outline-text-2" id="text-13">
         <p>(Partial list of) munging operations (= key process)</p>
 
         <ul class="org-ul">
@@ -1940,11 +2447,11 @@ quantile(vec, na.rm=<span style="color: #666666;">TRUE</span>)
         </ul>
       </div>
 
-      <div id="outline-container-sec-12-1" class="outline-3">
-        <h3 id="sec-12-1"><span class="section-number-3">12.1</span> Fixing
+      <div id="outline-container-sec-13-1" class="outline-3">
+        <h3 id="sec-13-1"><span class="section-number-3">13.1</span> Fixing
         variable names</h3>
 
-        <div class="outline-text-3" id="text-12-1">
+        <div class="outline-text-3" id="text-13-1">
           <div class="org-src-container">
             <pre class="src src-R">
 tolower(names(dfrm))
@@ -1955,50 +2462,50 @@ tolower(names(dfrm))
             <pre class="src src-R">
 splitNames <span style=
 "color: #6434A3;">&lt;-</span> strsplit(names(dfrm),<span style=
-"color: #FF4700;">"\\."</span>) <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">split at period in names</span>
+"color: #036A07;">"\\."</span>) <span style=
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">split at period in names</span>
 <span style="color: #006699;">firstElement</span> <span style=
 "color: #6434A3;">&lt;-</span> <span style=
 "color: #0000FF;">function</span>(x){x[1]}       <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">select the 1st component of the vector</span>
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">select the 1st component of the vector</span>
 sapply(splitNames, firstElement)        <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">remove everything after the trailing dot</span>
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">remove everything after the trailing dot</span>
 </pre>
           </div>
 
           <div class="org-src-container">
             <pre class="src src-R">
-gsub(<span style="color: #FF4700;">"_"</span>, <span style=
-"color: #FF4700;">""</span>, names(dfrm))
+gsub(<span style="color: #036A07;">"_"</span>, <span style=
+"color: #036A07;">""</span>, names(dfrm))
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="outline-container-sec-12-2" class="outline-3">
-        <h3 id="sec-12-2"><span class="section-number-3">12.2</span> Creating
+      <div id="outline-container-sec-13-2" class="outline-3">
+        <h3 id="sec-13-2"><span class="section-number-3">13.2</span> Creating
         new variables</h3>
 
-        <div class="outline-text-3" id="text-12-2">
+        <div class="outline-text-3" id="text-13-2">
           <div class="org-src-container">
             <pre class="src src-R">
 dfrm$ranges <span style=
 "color: #6434A3;">&lt;-</span> ranges                   <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">add a variable to the data frame</span>
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">add a variable to the data frame</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="outline-container-sec-12-3" class="outline-3">
-        <h3 id="sec-12-3"><span class="section-number-3">12.3</span> Removing
+      <div id="outline-container-sec-13-3" class="outline-3">
+        <h3 id="sec-13-3"><span class="section-number-3">13.3</span> Removing
         list elements using a condition</h3>
 
-        <div class="outline-text-3" id="text-12-3">
+        <div class="outline-text-3" id="text-13-3">
           <p><b>Subsetting</b> by using 2 types of index:</p>
 
           <ul class="org-ul">
@@ -2012,37 +2519,30 @@ dfrm$ranges <span style=
           <div class="org-src-container">
             <pre class="src src-R">
 u <span style="color: #6434A3;">&lt;-</span> x &gt; <span style=
-"color: #FF4700;">"a"</span>
+"color: #036A07;">"a"</span>
 x[u]                                    <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">get all elements which are greater than "a"</span>
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">get all elements which are greater than "a"</span>
 </pre>
           </div>
 
-          <p>Remove missing values (<code>NA</code>) from a list:</p>
+          <p>Remove missing values (<code>NA</code>) from a <b>list</b>:</p>
 
           <div class="org-src-container">
             <pre class="src src-R">
 missing <span style=
 "color: #6434A3;">&lt;-</span> is.na(x)                     <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">logical vector</span>
-x[!missing]
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">logical vector</span>
+y <span style="color: #6434A3;">&lt;-</span> x[!missing]
+sum(y)                                  <span style=
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">= sum(x, na.rm=TRUE)</span>
 </pre>
           </div>
 
-          <p>Take the subset of all objects (<code>x</code> and <code>y</code>)
-          that has no missing values:</p>
-
-          <div class="org-src-container">
-            <pre class="src src-R">
-bothnonmissing <span style=
-"color: #6434A3;">&lt;-</span> complete.cases(x, y)  <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">logical vector</span>
-x[bothnonmissing]
-</pre>
-          </div>
+          <p>The analogue of <code>is.na</code> for <b>data frames</b> is
+          <code>complete.cases</code>.</p>
 
           <p>Take all the rows of a data frame where <b>all the values are not
           missing</b>:</p>
@@ -2054,6 +2554,19 @@ x[nonmissing, ]
 </pre>
           </div>
 
+          <p>Take the subset of all objects (<code>x</code> and <code>y</code>)
+          that has no missing values:</p>
+
+          <div class="org-src-container">
+            <pre class="src src-R">
+bothnonmissing <span style=
+"color: #6434A3;">&lt;-</span> complete.cases(x, y)  <span style=
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">logical vector</span>
+x[bothnonmissing]
+</pre>
+          </div>
+
           <p>To <b>drop columns by name</b> in a data frame, you can use direct
           indexing (with booleans vectors) and then, simply reassign data:</p>
 
@@ -2061,42 +2574,42 @@ x[nonmissing, ]
             <pre class="src src-R">
 tokeep <span style="color: #6434A3;">&lt;-</span> !names(x) %<span style=
 "color: #0000FF;">in</span>% c(<span style=
-"color: #FF4700;">"remove1"</span>, <span style=
-"color: #FF4700;">"remove2"</span>)
+"color: #036A07;">"remove1"</span>, <span style=
+"color: #036A07;">"remove2"</span>)
 x <span style=
 "color: #6434A3;">&lt;-</span> x[,tokeep]                         <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">or...</span>
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">or...</span>
 x <span style="color: #6434A3;">&lt;-</span> x[,tokeep, drop=<span style=
 "color: #666666;">FALSE</span>]             <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">you will need this option to avoid</span>
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">you will need this option to avoid</span>
                                         <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">the conversion to an atomic vector if</span>
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">the conversion to an atomic vector if</span>
                                         <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">there is only one column left</span>
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">there is only one column left</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="outline-container-sec-12-4" class="outline-3">
-        <h3 id="sec-12-4"><span class="section-number-3">12.4</span> Selecting
+      <div id="outline-container-sec-13-4" class="outline-3">
+        <h3 id="sec-13-4"><span class="section-number-3">13.4</span> Selecting
         rows and columns more easily</h3>
 
-        <div class="outline-text-3" id="text-12-4">
+        <div class="outline-text-3" id="text-13-4">
           <p>Indexing approach.</p>
 
           <div class="org-src-container">
             <pre class="src src-R">
 dfrm[dfrm$var1 &gt; 0 &amp; dfrm$var2 &gt; 0, c(1,2)] <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">subset on var1 and var2</span>
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">subset on var1 and var2</span>
 dfrm[dfrm$var1 &gt; 0 | dfrm$var2 &gt; 0, c(1,2)] <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">subset on var1 or var2</span>
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">subset on var1 or var2</span>
 </pre>
           </div>
 
@@ -2109,20 +2622,23 @@ subset(dfrm, select=c(var1,var2), subset=(var1 &gt; 0 | var2 &gt; 0))
 </pre>
           </div>
 
+          <p>Use the <code>%in%</code> operator to compare a variable to a list
+          of desired values.</p>
+
           <p>Note that you do <i>not</i> quote the column names.</p>
         </div>
       </div>
 
-      <div id="outline-container-sec-12-5" class="outline-3">
-        <h3 id="sec-12-5"><span class="section-number-3">12.5</span> Removing
+      <div id="outline-container-sec-13-5" class="outline-3">
+        <h3 id="sec-13-5"><span class="section-number-3">13.5</span> Removing
         rows that contain NAs from a data frame</h3>
       </div>
 
-      <div id="outline-container-sec-12-6" class="outline-3">
-        <h3 id="sec-12-6"><span class="section-number-3">12.6</span> Removing
+      <div id="outline-container-sec-13-6" class="outline-3">
+        <h3 id="sec-13-6"><span class="section-number-3">13.6</span> Removing
         columns that contain NAs from a data frame</h3>
 
-        <div class="outline-text-3" id="text-12-6">
+        <div class="outline-text-3" id="text-13-6">
           <p>Get rid of any column that has one or more NAs.</p>
 
           <div class="org-src-container">
@@ -2133,11 +2649,11 @@ df <span style="color: #6434A3;">&lt;-</span> df[,colSums(is.na(df))==0]
         </div>
       </div>
 
-      <div id="outline-container-sec-12-7" class="outline-3">
-        <h3 id="sec-12-7"><span class="section-number-3">12.7</span> Merging
+      <div id="outline-container-sec-13-7" class="outline-3">
+        <h3 id="sec-13-7"><span class="section-number-3">13.7</span> Merging
         data frames by commun column</h3>
 
-        <div class="outline-text-3" id="text-12-7">
+        <div class="outline-text-3" id="text-13-7">
           <dl class="org-dl">
             <dt><code>merge(df1, df2, by = "CustomerId")</code></dt>
 
@@ -2169,18 +2685,18 @@ df <span style="color: #6434A3;">&lt;-</span> df[,colSums(is.na(df))==0]
             <pre class="src src-R">
 mergedData <span style=
 "color: #6434A3;">&lt;-</span> merge(df1, df2, by.x=<span style=
-"color: #FF4700;">"id1"</span>, by.y=<span style=
-"color: #FF4700;">"id2"</span>, all=<span style="color: #666666;">TRUE</span>)
+"color: #036A07;">"id1"</span>, by.y=<span style=
+"color: #036A07;">"id2"</span>, all=<span style="color: #666666;">TRUE</span>)
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="outline-container-sec-12-8" class="outline-3">
-        <h3 id="sec-12-8"><span class="section-number-3">12.8</span>
+      <div id="outline-container-sec-13-8" class="outline-3">
+        <h3 id="sec-13-8"><span class="section-number-3">13.8</span>
         Converting</h3>
 
-        <div class="outline-text-3" id="text-12-8">
+        <div class="outline-text-3" id="text-13-8">
           <dl class="org-dl">
             <dt><code>as.*()</code></dt>
 
@@ -2193,7 +2709,7 @@ mergedData <span style=
 
             <dt><code>as.Date("January 2, 2007", "%B %d, %Y")</code></dt>
 
-            <dd>"2007-01-02"</dd>
+            <dd>“2007-01-02”</dd>
 
             <dt><code>as.ts()</code></dt>
 
@@ -2206,12 +2722,12 @@ mergedData <span style=
             <pre class="src src-R">
 dfrm$x <span style=
 "color: #6434A3;">&lt;-</span> as.factor(dfrm$x)             <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">character to factor</span>
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">character to factor</span>
 dfrm$x <span style=
 "color: #6434A3;">&lt;-</span> as.character(dfrm$x)          <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">factor to character</span>
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">factor to character</span>
 </pre>
           </div>
 
@@ -2231,20 +2747,19 @@ x[ind] <span style="color: #6434A3;">&lt;-</span> lapply(x[ind], factor)
         </div>
       </div>
 
-      <div id="outline-container-sec-12-9" class="outline-3">
-        <h3 id="sec-12-9"><span class="section-number-3">12.9</span> Applying a
+      <div id="outline-container-sec-13-9" class="outline-3">
+        <h3 id="sec-13-9"><span class="section-number-3">13.9</span> Applying a
         function to each list element</h3>
 
-        <div class="outline-text-3" id="text-12-9">
+        <div class="outline-text-3" id="text-13-9">
           <p>Alternative (to <code>for</code> <b>loops</b>) to apply a function
           (or summary statistics).</p>
         </div>
 
-        <div id="outline-container-sec-12-9-1" class="outline-4">
-          <h4 id="sec-12-9-1"><span class="section-number-4">12.9.1</span>
-          <code>lapply</code></h4>
+        <div id="outline-container-sec-13-9-1" class="outline-4">
+          <h4 id="sec-13-9-1"><code>lapply</code></h4>
 
-          <div class="outline-text-4" id="text-12-9-1">
+          <div class="outline-text-4" id="text-13-9-1">
             <p><b>Loop over a list</b> and apply a <b>function</b> on each
             element. <i>Always</i> returns a <b>list</b> back (that is, not a
             simplified result).</p>
@@ -2254,21 +2769,22 @@ x[ind] <span style="color: #6434A3;">&lt;-</span> lapply(x[ind], factor)
 
               <li>function <code>FUN</code></li>
 
-              <li>other arguments <code>...</code></li>
+              <li>other arguments you wanna pass to the function
+              <code>...</code></li>
             </ul>
 
             <div class="org-src-container">
               <pre class="src src-R">
-x <span style="color: #6434A3;">&lt;-</span> list(a = 1:5, b = rnorm(10))
+x <span style="color: #6434A3;">&lt;-</span> list(a=1:5, b=rnorm(10))
 lapply(x, mean)
 </pre>
             </div>
 
             <div class="org-src-container">
               <pre class="src src-R">
-lapply(1:4, runif, min = 0, max = 10)   <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">arguments passed through the `...'</span>
+lapply(1:4, runif, min=0, max=10)       <span style=
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">arguments passed through the `...'</span>
 </pre>
             </div>
 
@@ -2276,18 +2792,17 @@ lapply(1:4, runif, min = 0, max = 10)   <span style=
 
             <div class="org-src-container">
               <pre class="src src-R">
-lapply(x, <span style="color: #0000FF;">function</span>(elt) elt[,1])
+lapply(x, <span style="color: #0000FF;">function</span>(x) x[,1])
 </pre>
             </div>
           </div>
         </div>
 
-        <div id="outline-container-sec-12-9-2" class="outline-4">
-          <h4 id="sec-12-9-2"><span class="section-number-4">12.9.2</span>
-          <code>sapply</code></h4>
+        <div id="outline-container-sec-13-9-2" class="outline-4">
+          <h4 id="sec-13-9-2"><code>sapply</code></h4>
 
-          <div class="outline-text-4" id="text-12-9-2">
-            <p>Same as <code>lapply</code>, but tries to "<b>simplify</b>" the
+          <div class="outline-text-4" id="text-13-9-2">
+            <p>Same as <code>lapply</code>, but tries to “<b>simplify</b>” the
             result in a much more compact format (put all the elements into a
             <b>vector</b> or a <b>matrix</b> if that is possible, instead of
             returning a list).</p>
@@ -2296,9 +2811,9 @@ lapply(x, <span style="color: #0000FF;">function</span>(elt) elt[,1])
               <pre class="src src-R">
 sapply(s, <span style=
 "color: #0000FF;">function</span>(x) colMeans(x[, c(<span style=
-"color: #FF4700;">"Ozone"</span>, <span style=
-"color: #FF4700;">"Solar.R"</span>, <span style=
-"color: #FF4700;">"Wind"</span>)]))
+"color: #036A07;">"Ozone"</span>, <span style=
+"color: #036A07;">"Solar.R"</span>, <span style=
+"color: #036A07;">"Wind"</span>)]))
 </pre>
             </div>
 
@@ -2309,9 +2824,9 @@ sapply(s, <span style=
               <pre class="src src-R">
 sapply(s, <span style=
 "color: #0000FF;">function</span>(x) colMeans(x[, c(<span style=
-"color: #FF4700;">"Ozone"</span>, <span style=
-"color: #FF4700;">"Solar.R"</span>, <span style=
-"color: #FF4700;">"Wind"</span>)], na.rm = <span style=
+"color: #036A07;">"Ozone"</span>, <span style=
+"color: #036A07;">"Solar.R"</span>, <span style=
+"color: #036A07;">"Wind"</span>)], na.rm=<span style=
 "color: #666666;">TRUE</span>))
 </pre>
             </div>
@@ -2319,11 +2834,11 @@ sapply(s, <span style=
         </div>
       </div>
 
-      <div id="outline-container-sec-12-10" class="outline-3">
-        <h3 id="sec-12-10"><span class="section-number-3">12.10</span>
+      <div id="outline-container-sec-13-10" class="outline-3">
+        <h3 id="sec-13-10"><span class="section-number-3">13.10</span>
         Splitting a vector into groups</h3>
 
-        <div class="outline-text-3" id="text-12-10">
+        <div class="outline-text-3" id="text-13-10">
           <dl class="org-dl">
             <dt><code>split(x, f)</code></dt>
 
@@ -2335,133 +2850,113 @@ sapply(s, <span style=
               <dl class="org-dl">
                 <dt><code>drop = TRUE</code></dt>
 
-                <dd>Don't keep the empty levels of the factor.</dd>
+                <dd>Don’t keep the empty levels of the factor.</dd>
               </dl>
+
+              <p>Auxiliary function, used in conjunction with functions like
+              <code>lapply</code> or <code>sapply</code> to apply a function to
+              those individual groups.</p>
+
+              <div class="org-src-container">
+                <pre class="src src-R">
+     lapply(split(x, f), mean)
+</pre>
+              </div>
+
+              <p>Like <code>tapply</code>, but without applying the summary
+              statistics.</p>
+
+              <p>Splitting a data frame (or other kinds of lists), and apply an
+              <i>anonymous function</i>:</p>
+
+              <div class="org-src-container">
+                <pre class="src src-R">
+     s <span style=
+"color: #6434A3;">&lt;-</span> split(airquality, airquality$Month) <span style=
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">split according to month</span>
+     lapply(s, <span style=
+"color: #0000FF;">function</span>(x) colMeans(x[, c(<span style=
+"color: #036A07;">"Ozone"</span>, <span style=
+"color: #036A07;">"Solar.R"</span>, <span style=
+"color: #036A07;">"Wind"</span>)])
+</pre>
+              </div>
             </dd>
           </dl>
-
-          <p>Auxiliary function, used in conjunction with functions like
-          <code>lapply</code> or <code>sapply</code> to apply a function to
-          those individual groups.</p>
-
-          <div class="org-src-container">
-            <pre class="src src-R">
-lapply(split(x, f), mean)
-</pre>
-          </div>
-
-          <p>Like <code>tapply</code>, but without applying the summary
-          statistics.</p>
-
-          <p>Splitting a data frame (or other kinds of lists), and apply an
-          <i>anonymous function</i>:</p>
-
-          <div class="org-src-container">
-            <pre class="src src-R">
-s <span style=
-"color: #6434A3;">&lt;-</span> split(airquality, airquality$Month) <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">split according to month</span>
-lapply(s, <span style=
-"color: #0000FF;">function</span>(x) colMeans(x[, c(<span style=
-"color: #FF4700;">"Ozone"</span>, <span style=
-"color: #FF4700;">"Solar.R"</span>, <span style=
-"color: #FF4700;">"Wind"</span>)])
-</pre>
-          </div>
         </div>
       </div>
 
-      <div id="outline-container-sec-12-11" class="outline-3">
-        <h3 id="sec-12-11"><span class="section-number-3">12.11</span> Applying
+      <div id="outline-container-sec-13-11" class="outline-3">
+        <h3 id="sec-13-11"><span class="section-number-3">13.11</span> Applying
         a function to every row/column</h3>
 
-        <div class="outline-text-3" id="text-12-11">
+        <div class="outline-text-3" id="text-13-11">
           <dl class="org-dl">
-            <dt><code>apply</code></dt>
-
-            <dt>(no term)</dt>
+            <dt><code>apply(dfrm, margin, fun, ...)</code></dt>
 
             <dd>
-              Apply a function over the <b>margins</b> of an array
+              Apply a function over the <b>margins</b> of an array.
+
+              <p>Often used to apply a function to the rows or columns of a
+              matrix. Very useful if you wanna take <b>summaries</b> of
+              matrices or higher-dimensional arrays (such as array of
+              matrices).</p>
+
+              <p>MARGIN is an integer vector which indicates which margins
+              should be “retained”:</p>
 
               <ul class="org-ul">
-                <li>Often used to apply a function to the rows or columns of a
-                matrix</li>
+                <li><b>margin 1</b> = apply FUN <b>for each row</b> (dimension
+                1): preserve all the rows, eliminate all columns, get a vector
+                of the number of rows</li>
 
-                <li>Very useful if you wanna take <b>summaries</b> of matrices
-                or higher-dimensional arrays (such as array of matrices)</li>
+                <li><b>margin 2</b> = <b>for each column</b> (dimension 2);
+                first dimension has been eliminated</li>
               </ul>
-            </dd>
 
-            <dt>(no term)</dt>
+              <div class="org-src-container">
+                <pre class="src src-R">
+     x <span style="color: #6434A3;">&lt;-</span> matrix(rnorm(200), 20, 10)
+     apply(x, 2, mean)
+</pre>
+              </div>
 
-            <dd>
-              apply(X, MARGIN, FUN, …)
+              <div class="org-src-container">
+                <pre class="src src-R">
+     x <span style="color: #6434A3;">&lt;-</span> matrix(rnorm(200), 20, 10)
+     apply(x, 1, quantile, probs=c(0.25, 0.75)) <span style=
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">no default value for `probs'</span>
+</pre>
+              </div>
+
+              <p>Shortcut functions (<i>much</i> faster on large matrices):</p>
 
               <ul class="org-ul">
-                <li>X array (= vector which has dimensions attached to it)</li>
+                <li><code>rowSums</code> = <code>apply(x, 1, sum)</code></li>
 
-                <li>MARGIN is an integer vector which indicates which margins
-                should be "retained"</li>
+                <li><code>rowMeans</code> = <code>apply(x, 1, mean)</code></li>
 
-                <li>FUN you want to apply to each of the margins</li>
+                <li><code>colSums</code> = <code>apply(x, 2, sum)</code></li>
 
-                <li>… for other arguments you wanna passed to the function</li>
+                <li><code>colMeans</code> = <code>apply(x, 2, mean)</code></li>
               </ul>
             </dd>
           </dl>
-
-          <div class="org-src-container">
-            <pre class="src src-R">
-x <span style="color: #6434A3;">&lt;-</span> matrix(rnorm(200), 20, 10)
-apply(x, 2, mean)
-</pre>
-          </div>
-
-          <ul class="org-ul">
-            <li>margin 1 = apply FUN for each row (dimension 1); preserve all
-            the rows, eliminate all columns, get a vector of the number of
-            rows</li>
-
-            <li>margin 2 = for each column (dimension 2); first dimension has
-            been eliminated</li>
-
-            <li>Shortcut functions (<i>much</i> faster on large matrices):
-
-              <ul class="org-ul">
-                <li>rowSums = apply(x, 1, sum)</li>
-
-                <li>rowMeans = apply(x, 1, mean)</li>
-
-                <li>colSums = apply(x, 2, sum)</li>
-
-                <li>colMeans = apply(x, 2, mean)</li>
-              </ul>
-            </li>
-          </ul>
-
-          <div class="org-src-container">
-            <pre class="src src-R">
-x <span style="color: #6434A3;">&lt;-</span> matrix(rnorm(200), 20, 10)
-apply(x, 1, quantile, probs = c(0.25, 0.75)) <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">no default value for `probs'</span>
-</pre>
-          </div>
         </div>
       </div>
 
-      <div id="outline-container-sec-12-12" class="outline-3">
-        <h3 id="sec-12-12"><span class="section-number-3">12.12</span> Applying
+      <div id="outline-container-sec-13-12" class="outline-3">
+        <h3 id="sec-13-12"><span class="section-number-3">13.12</span> Applying
         a function to groups of data</h3>
 
-        <div class="outline-text-3" id="text-12-12">
+        <div class="outline-text-3" id="text-13-12">
           <dl class="org-dl">
             <dt><code>tapply(x, index, fun)</code></dt>
 
             <dd>
-              Short for "<b>table apply</b>". Apply a <b>function</b> over
+              Short for “<b>table apply</b>”. Apply a <b>function</b> over
               <b>subsets</b> of a vector:
 
               <ul class="org-ul">
@@ -2470,7 +2965,7 @@ apply(x, 1, quantile, probs = c(0.25, 0.75)) <span style=
 
                 <li>Applies a function to those groups and</li>
 
-                <li>Brings the pieces back together</li>
+                <li>Brings the pieces back together.</li>
               </ul>
 
               <p>Function may be anonymous.</p>
@@ -2478,63 +2973,64 @@ apply(x, 1, quantile, probs = c(0.25, 0.75)) <span style=
               <p><code>Simplify = FALSE</code> to get back a list (instead of
               an array).</p>
 
+              <p><code>tapply</code> is one of the most useful commands you’ll
+              ever need. For example, to calculate statistics of <code>x</code>
+              separately for each group identified in the variable
+              <code>f</code>:</p>
+
               <div class="org-src-container">
                 <pre class="src src-R">
-tapply(x, f, sum, simplify = <span style=
-"color: #666666;">FALSE</span>) <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">= lapply(split(x, f), sum)</span>
-tapply(x, f, mean)
-tapply(x, f, length)
+     tapply(x, f, sum, simplify=<span style=
+"color: #666666;">FALSE</span>)  <span style=
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">= lapply(split(x, f), sum)</span>
+     tapply(x, f, mean)                 <span style=
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">= sapply(split(x, f), mean)</span>
+     tapply(x, f, length)
 </pre>
               </div>
             </dd>
 
             <dt><code>interaction(f1, f2)</code></dt>
 
-            <dd>Combines all the levels of the first factor with all the levels
-            of the second factor.</dd>
+            <dd>
+              Combines all the levels of the first factor with all the levels
+              of the second factor.
+
+              <p>You can also use <code>aggregate</code> to analyze groups
+              defined by more than one categorical variable (e.g., month and
+              year).</p>
+            </dd>
           </dl>
         </div>
       </div>
 
-      <div id="outline-container-sec-12-13" class="outline-3">
-        <h3 id="sec-12-13"><span class="section-number-3">12.13</span> Applying
+      <div id="outline-container-sec-13-13" class="outline-3">
+        <h3 id="sec-13-13"><span class="section-number-3">13.13</span> Applying
         a function to parallel vectors or lists</h3>
 
-        <div class="outline-text-3" id="text-12-13">
+        <div class="outline-text-3" id="text-13-13">
           <dl class="org-dl">
             <dt><code>mapply</code></dt>
 
-            <dt>(no term)</dt>
-
-            <dd>mapply is a multivariate version of <code>lapply</code>:
-            applies a function in parallel over a set of arguments</dd>
-
-            <dt>(no term)</dt>
-
             <dd>
               Apply a <b>function</b> to the elements of <b>multiple lists</b>
-              in parallel
+              in parallel (multivariate version of <code>lapply</code>).
 
-              <ul class="org-ul">
-                <li>For example, apply a function over 2 lists, where the
-                elements of the first list go into one argument of the
-                function, and the elements of the second list go into another
-                argument of the function</li>
-              </ul>
-            </dd>
+              <p>For example, apply a function over 2 lists, where the elements
+              of the first list go into one argument of the function, and the
+              elements of the second list go into another argument of the
+              function</p>
 
-            <dt>(no term)</dt>
-
-            <dd>
-              <b>Vectorizing a function</b> (that doesn't allow for vector
-              arguments)
+              <p><b>Vectorizing a function</b> (that doesn’t allow for vector
+              arguments).</p>
 
               <div class="org-src-container">
                 <pre class="src src-R">
-mapply(rnorm, 1:5, 1:5, 2) <span style="color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">fixed standard deviation</span>
+     mapply(rnorm, 1:3, 1:3, 2)         <span style=
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">fixed standard deviation</span>
 </pre>
               </div>
 
@@ -2542,11 +3038,9 @@ mapply(rnorm, 1:5, 1:5, 2) <span style="color: #008200;"># </span><span style=
 
               <div class="org-src-container">
                 <pre class="src src-R">
-list(rnorm(1, 1, 2),
-     rnorm(2, 2, 2),
-     rnorm(3, 3, 2),
-     rnorm(4, 4, 2),
-     rnorm(5, 5, 2))
+     list(rnorm(1, 1, 2),
+          rnorm(2, 2, 2),
+          rnorm(3, 3, 2))
 </pre>
               </div>
             </dd>
@@ -2554,23 +3048,23 @@ list(rnorm(1, 1, 2),
         </div>
       </div>
 
-      <div id="outline-container-sec-12-14" class="outline-3">
-        <h3 id="sec-12-14"><span class="section-number-3">12.14</span> Checking
+      <div id="outline-container-sec-13-14" class="outline-3">
+        <h3 id="sec-13-14"><span class="section-number-3">13.14</span> Checking
         on and removing inconsistent values</h3>
       </div>
     </div>
 
-    <div id="outline-container-sec-13" class="outline-2">
-      <h2 id="sec-13"><span class="section-number-2">13</span> 7. Strings and
+    <div id="outline-container-sec-14" class="outline-2">
+      <h2 id="sec-14"><span class="section-number-2">14</span> 7. Strings and
       dates</h2>
 
-      <div class="outline-text-2" id="text-13"></div>
+      <div class="outline-text-2" id="text-14"></div>
 
-      <div id="outline-container-sec-13-1" class="outline-3">
-        <h3 id="sec-13-1"><span class="section-number-3">13.1</span> Getting
+      <div id="outline-container-sec-14-1" class="outline-3">
+        <h3 id="sec-14-1"><span class="section-number-3">14.1</span> Getting
         the length of a string</h3>
 
-        <div class="outline-text-3" id="text-13-1">
+        <div class="outline-text-3" id="text-14-1">
           <dl class="org-dl">
             <dt><code>nchar()</code></dt>
 
@@ -2579,11 +3073,11 @@ list(rnorm(1, 1, 2),
         </div>
       </div>
 
-      <div id="outline-container-sec-13-2" class="outline-3">
-        <h3 id="sec-13-2"><span class="section-number-3">13.2</span>
+      <div id="outline-container-sec-14-2" class="outline-3">
+        <h3 id="sec-14-2"><span class="section-number-3">14.2</span>
         Concatenating strings</h3>
 
-        <div class="outline-text-3" id="text-13-2">
+        <div class="outline-text-3" id="text-14-2">
           <dl class="org-dl">
             <dt><code>paste()</code></dt>
 
@@ -2593,11 +3087,11 @@ list(rnorm(1, 1, 2),
         </div>
       </div>
 
-      <div id="outline-container-sec-13-3" class="outline-3">
-        <h3 id="sec-13-3"><span class="section-number-3">13.3</span> Regular
+      <div id="outline-container-sec-14-3" class="outline-3">
+        <h3 id="sec-14-3"><span class="section-number-3">14.3</span> Regular
         expressions</h3>
 
-        <div class="outline-text-3" id="text-13-3">
+        <div class="outline-text-3" id="text-14-3">
           <p>For the moment, we assume pattern matching on <b>ASCII
           strings</b>…</p>
 
@@ -2626,7 +3120,7 @@ list(rnorm(1, 1, 2),
 
             <dt><code>()</code></dt>
 
-            <dd>Subexpressions (alternatives or "remember" matched text).</dd>
+            <dd>Subexpressions (alternatives or “remember” matched text).</dd>
 
             <dt><code>?</code></dt>
 
@@ -2634,7 +3128,7 @@ list(rnorm(1, 1, 2),
 
             <dt>\</dt>
 
-            <dd>"Escape" the metacharacter.</dd>
+            <dd>“Escape” the metacharacter.</dd>
 
             <dt><code>+</code></dt>
 
@@ -2643,16 +3137,16 @@ list(rnorm(1, 1, 2),
             <dt><code>*</code></dt>
 
             <dd>
-              Any number, at least one – it is "greedy" so it always matches
+              Any number, at least one – it is “greedy” so it always matches
               the <i>longest</i> possible string that satisfies the regular
               expression.
 
               <p>The greediness can be turned off with the <code>?</code>
-              metacharacter (make the regex "lazy"), as in:</p>
+              metacharacter (make the regex “lazy”), as in:</p>
 
               <div class="org-src-container">
                 <pre class="src src-R">
-^s(.*?)s$
+     ^s(.*?)s$
 </pre>
               </div>
             </dd>
@@ -2669,22 +3163,22 @@ list(rnorm(1, 1, 2),
 
             <dd>
               Return the <b>indices</b> into the character vector where the
-              regex pattern matches (it won't do anything).
+              regex pattern matches (it won’t do anything).
 
               <div class="org-src-container">
                 <pre class="src src-R">
-i <span style="color: #6434A3;">&lt;-</span> grep(<span style=
-"color: #FF4700;">"regexp"</span>, vector) <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">get a set of indices</span>
-j <span style="color: #6434A3;">&lt;-</span> grep(<span style=
-"color: #FF4700;">"anotherregexp"</span>, vector) <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">get another set of indices</span>
-setdiff(i, j) <span style="color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">substract j elements from i when they are the same</span>
-setdiff(j, i) <span style="color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">different result</span>
+     i <span style="color: #6434A3;">&lt;-</span> grep(<span style=
+"color: #036A07;">"regexp"</span>, vector) <span style=
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">get a set of indices</span>
+     j <span style="color: #6434A3;">&lt;-</span> grep(<span style=
+"color: #036A07;">"anotherregexp"</span>, vector) <span style=
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">get another set of indices</span>
+     setdiff(i, j) <span style="color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">substract j elements from i when they are the same</span>
+     setdiff(j, i) <span style="color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">different result</span>
 </pre>
               </div>
 
@@ -2709,8 +3203,8 @@ setdiff(j, i) <span style="color: #008200;"># </span><span style=
 
               <div class="org-src-container">
                 <pre class="src src-R">
-regexpr(<span style="color: #FF4700;">"..."</span>, string)
-substr(string, start + length - 1)
+     regexpr(<span style="color: #036A07;">"..."</span>, string)
+     substr(string, start + length - 1)
 </pre>
               </div>
 
@@ -2720,16 +3214,16 @@ substr(string, start + length - 1)
 
               <div class="org-src-container">
                 <pre class="src src-R">
-r <span style="color: #6434A3;">&lt;-</span> regexpr(<span style=
-"color: #FF4700;">"..."</span>, string)
-regmatches(string, r)
+     r <span style="color: #6434A3;">&lt;-</span> regexpr(<span style=
+"color: #036A07;">"..."</span>, string)
+     regmatches(string, r)
 </pre>
               </div>
             </dd>
 
             <dt><code>gregexpr</code></dt>
 
-            <dd>Return <b>all of the matches</b> ("global") in a given
+            <dd>Return <b>all of the matches</b> (“global”) in a given
             string.</dd>
 
             <dt><code>sub</code></dt>
@@ -2750,25 +3244,25 @@ regmatches(string, r)
 
               <div class="org-src-container">
                 <pre class="src src-R">
-r <span style="color: #6434A3;">&lt;-</span> regexpr(<span style=
-"color: #FF4700;">"... (.*) ..."</span>, string) <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">find all the date fields</span>
-m <span style="color: #6434A3;">&lt;-</span> regmatches(string, r) <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">parse out</span>
-dates <span style="color: #6434A3;">&lt;-</span> sapply(m, <span style=
+     r <span style="color: #6434A3;">&lt;-</span> regexpr(<span style=
+"color: #036A07;">"... (.*) ..."</span>, string) <span style=
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">find all the date fields</span>
+     m <span style=
+"color: #6434A3;">&lt;-</span> regmatches(string, r)         <span style=
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">parse out</span>
+     dates <span style="color: #6434A3;">&lt;-</span> sapply(m, <span style=
 "color: #0000FF;">function</span> (x) x[2]) <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">extract the 2nd element of each list object</span>
-dates <span style="color: #6434A3;">&lt;-</span> as.Date(dates, <span style=
-"color: #FF4700;">"%B %d, %Y"</span>) <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">convert to date</span>
-hist(dates, <span style="color: #FF4700;">"month"</span>, freq = <span style=
-"color: #666666;">TRUE</span>) <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">aggregate the dates by month and give an histogram</span>
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">extract the 2nd element of each list object</span>
+     dates <span style=
+"color: #6434A3;">&lt;-</span> as.Date(dates, <span style=
+"color: #036A07;">"%B %d, %Y"</span>) <span style=
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">convert to date</span>
+     hist(dates, <span style=
+"color: #036A07;">"month"</span>, freq=<span style="color: #666666;">TRUE</span>)    <span style="color: #4C886B;"># </span><span style="color: #4C886B; font-style: italic;">aggregate the dates by month and give an histogram</span>
 </pre>
               </div>
             </dd>
@@ -2777,16 +3271,16 @@ hist(dates, <span style="color: #FF4700;">"month"</span>, freq = <span style=
       </div>
     </div>
 
-    <div id="outline-container-sec-14" class="outline-2">
-      <h2 id="sec-14"><span class="section-number-2">14</span> 8.
+    <div id="outline-container-sec-15" class="outline-2">
+      <h2 id="sec-15"><span class="section-number-2">15</span> 8.
       Probability</h2>
     </div>
 
-    <div id="outline-container-sec-15" class="outline-2">
-      <h2 id="sec-15"><span class="section-number-2">15</span> 10.
+    <div id="outline-container-sec-16" class="outline-2">
+      <h2 id="sec-16"><span class="section-number-2">16</span> 10.
       Graphics</h2>
 
-      <div class="outline-text-2" id="text-15">
+      <div class="outline-text-2" id="text-16">
         <p>2 systems:</p>
 
         <dl class="org-dl">
@@ -2821,16 +3315,16 @@ hist(dates, <span style="color: #FF4700;">"month"</span>, freq = <span style=
         <p>Behavior:</p>
 
         <ul class="org-ul">
-          <li>Base graphics functions have a "side effect": they plot data
+          <li>Base graphics functions have a “side effect”: they plot data
           directly to the graphics device.</li>
 
           <li>Lattice graphics functions return an object of the class
           <code>trellis</code> (object designed for plotting).
 
-            <p>When you call Lattice functions, even if you don't assign it to
-            a "plot object", the result will be <b>auto-printed</b> (generate
+            <p>When you call Lattice functions, even if you don’t assign it to
+            a “plot object”, the result will be <b>auto-printed</b> (generate
             the plot <b>on the graphics device</b>), so it will look like
-            Lattice functions have a "side effect"</p>
+            Lattice functions have a “side effect”</p>
           </li>
         </ul>
 
@@ -2838,27 +3332,31 @@ hist(dates, <span style="color: #FF4700;">"month"</span>, freq = <span style=
         plot.</p>
       </div>
 
-      <div id="outline-container-sec-15-1" class="outline-3">
-        <h3 id="sec-15-1"><span class="section-number-3">15.1</span> Base
+      <div id="outline-container-sec-16-1" class="outline-3">
+        <h3 id="sec-16-1"><span class="section-number-3">16.1</span> Base
         graphics</h3>
 
-        <div class="outline-text-3" id="text-15-1"></div>
+        <div class="outline-text-3" id="text-16-1"></div>
 
-        <div id="outline-container-sec-15-1-1" class="outline-4">
-          <h4 id="sec-15-1-1"><span class="section-number-4">15.1.1</span> Make
-          a plot</h4>
+        <div id="outline-container-sec-16-1-1" class="outline-4">
+          <h4 id="sec-16-1-1">Make a plot</h4>
 
-          <div class="outline-text-4" id="text-15-1-1">
+          <div class="outline-text-4" id="text-16-1-1">
             <dl class="org-dl">
               <dt><code>plot</code></dt>
 
               <dd>Create a <b>scatter plot</b> (or another type of plot,
               depending on the class of the object being plotted).</dd>
 
+              <dt><code>barplot</code></dt>
+
+              <dd>Create a <b>bar chart</b> (analogue of an histogram for
+              categorical data).</dd>
+
               <dt><code>hist</code></dt>
 
-              <dd>Make an <b>histogram</b> showing the distribution of the
-              numeric vector <code>x</code>.</dd>
+              <dd>Make an <b>histogram</b> showing the <b>distribution</b> of
+              the numeric vector <code>x</code>.</dd>
 
               <dt><code>boxplot</code></dt>
 
@@ -2868,261 +3366,391 @@ hist(dates, <span style="color: #FF4700;">"month"</span>, freq = <span style=
             </dl>
           </div>
 
-          <ol class="org-ol">
-            <li>Create a scatter plot<br />
+          <div id="outline-container-sec-16-1-1-1" class="outline-5">
+            <h5 id="sec-16-1-1-1">Create a scatter plot</h5>
 
-              <div class="outline-text-5" id="text-15-1-1-1">
-                <dl class="org-dl">
-                  <dt><code>plot(x)</code></dt>
+            <div class="outline-text-5" id="text-16-1-1-1">
+              <dl class="org-dl">
+                <dt><code>plot(x)</code></dt>
 
-                  <dd>
-                    Plot the (numeric) data against the index
-                    (<code>1:N</code>).
+                <dd>
+                  Plot the (numeric) data against the index (<code>1:N</code>).
 
-                    <div class="org-src-container">
-                      <pre class="src src-R">
-data(iris)
-plot(sort(iris$Petal.Width),
-     main=<span style="color: #FF4700;">"Distribution of petal widths"</span>,
-     xlab=<span style="color: #FF4700;">"Rank"</span>, ylab=<span style=
-"color: #FF4700;">"Width"</span>, col=as.integer(iris$Species)+1)
+                  <div class="org-src-container">
+                    <pre class="src src-R">
+     data(iris)
+     plot(sort(iris$Petal.Width),
+          main=<span style=
+"color: #036A07;">"Distribution of petal widths"</span>,
+          xlab=<span style="color: #036A07;">"Rank"</span>, ylab=<span style=
+"color: #036A07;">"Width"</span>, col=as.integer(iris$Species)+1)
 </pre>
-                    </div>
+                  </div>
 
-                    <div class="figure">
-                      <p><img src="images/base-scatterplot-sort.png" alt=
-                      "base-scatterplot-sort.png" /></p>
-                    </div>
-                  </dd>
+                  <div class="figure">
+                    <p><img src="images/base-scatterplot-sort.png" alt=
+                    "base-scatterplot-sort.png" /></p>
+                  </div>
+                </dd>
 
-                  <dt><code>plot(x, y)</code></dt>
+                <dt><code>plot(x, y)</code></dt>
 
-                  <dd>
-                    Create a scatter plot of <code>x</code> and <code>y</code>.
+                <dd>
+                  Create a scatter plot of <code>x</code> and <code>y</code>.
 
-                    <div class="org-src-container">
-                      <pre class="src src-R">
-data(iris)
-plot(iris$Petal.Length, iris$Petal.Width,
-     main=<span style="color: #FF4700;">"Petals: Length vs Width"</span>,
-     xlab=<span style="color: #FF4700;">"Length"</span>, ylab=<span style=
-"color: #FF4700;">"Width"</span>, col=as.integer(iris$Species)+1)
+                  <div class="org-src-container">
+                    <pre class="src src-R">
+     data(iris)
+     plot(iris$Petal.Length, iris$Petal.Width,
+          main=<span style="color: #036A07;">"Petals: Length vs Width"</span>,
+          xlab=<span style="color: #036A07;">"Length"</span>, ylab=<span style=
+"color: #036A07;">"Width"</span>, col=as.integer(iris$Species)+1)
 </pre>
-                    </div>
+                  </div>
 
-                    <div class="figure">
-                      <p><img src="images/base-scatterplot.png" alt=
-                      "base-scatterplot.png" /></p>
-                    </div>
-                  </dd>
+                  <div class="figure">
+                    <p><img src="images/base-scatterplot.png" alt=
+                    "base-scatterplot.png" /></p>
+                  </div>
+                </dd>
 
-                  <dt><code>plot(x, y, type = "n")</code></dt>
+                <dt><code>plot(x, y, type = "n")</code></dt>
 
-                  <dd>Set up the plot window, but don't actually plot the data
-                  in there.</dd>
+                <dd>
+                  Set up the plot window, but don’t actually plot the data in
+                  there.
 
-                  <dt><code>plot(dfrm)</code></dt>
+                  <p>Note that you have <code>POSIXct</code> dates in your data
+                  frame… XXX</p>
+                </dd>
 
-                  <dd>
-                    Create <b>multiple scatter plots</b> if your data frame
-                    contains more than 2&nbsp;columns.
+                <dt><code>plot(dfrm)</code></dt>
 
-                    <div class="org-src-container">
-                      <pre class="src src-R">
-data(iris)
-plot(iris[,1:4], main=<span style=
-"color: #FF4700;">"Multiple scatter plots"</span>,
-     col=as.integer(iris$Species)+1)
+                <dd>
+                  Create <b>multiple scatter plots</b> if your data frame
+                  contains more than 2&nbsp;columns.
+
+                  <div class="org-src-container">
+                    <pre class="src src-R">
+     data(iris)
+     plot(iris[,1:4], main=<span style=
+"color: #036A07;">"Multiple scatter plots"</span>,
+          col=as.integer(iris$Species)+1)
 </pre>
-                    </div>
+                  </div>
 
-                    <div class="figure">
-                      <p><img src="images/base-multi-scatterplots.png" alt=
-                      "base-multi-scatterplots.png" /></p>
-                    </div>
+                  <div class="figure">
+                    <p><img src="images/base-multi-scatterplots.png" alt=
+                    "base-multi-scatterplots.png" /></p>
+                  </div>
 
-                    <p>You can see that length and width appear strongly
-                    correlated. You could check the correlation between
-                    features with the <code>cor()</code> function.</p>
+                  <p>You can see that length and width appear strongly
+                  correlated. You could check the correlation between features
+                  with the <code>cor()</code> function.</p>
 
-                    <div class="org-src-container">
-                      <pre class="src src-R">
-data(iris)
-cor(iris[-5])
+                  <div class="org-src-container">
+                    <pre class="src src-R">
+     data(iris)
+     cor(iris[-5])
 </pre>
-                    </div>
+                  </div>
 
-                    <table border="2" cellspacing="0" cellpadding="6" rules=
-                    "groups" frame="hsides">
-                      <colgroup>
-                        <col class="right" />
-                        <col class="right" />
-                        <col class="right" />
-                        <col class="right" />
-                      </colgroup>
+                  <table border="2" cellspacing="0" cellpadding="6" rules=
+                  "groups" frame="hsides">
+                    <colgroup>
+                      <col class="right" />
+                      <col class="right" />
+                      <col class="right" />
+                      <col class="right" />
+                    </colgroup>
 
-                      <tbody>
-                        <tr>
-                          <td class="right">1</td>
+                    <tbody>
+                      <tr>
+                        <td class="right">1</td>
 
-                          <td class="right">-0.117569784133002</td>
+                        <td class="right">-0.117569784133002</td>
 
-                          <td class="right">0.871753775886583</td>
+                        <td class="right">0.871753775886583</td>
 
-                          <td class="right">0.817941126271576</td>
-                        </tr>
+                        <td class="right">0.817941126271576</td>
+                      </tr>
 
-                        <tr>
-                          <td class="right">-0.117569784133002</td>
+                      <tr>
+                        <td class="right">-0.117569784133002</td>
 
-                          <td class="right">1</td>
+                        <td class="right">1</td>
 
-                          <td class="right">-0.42844010433054</td>
+                        <td class="right">-0.42844010433054</td>
 
-                          <td class="right">-0.366125932536439</td>
-                        </tr>
+                        <td class="right">-0.366125932536439</td>
+                      </tr>
 
-                        <tr>
-                          <td class="right">0.871753775886583</td>
+                      <tr>
+                        <td class="right">0.871753775886583</td>
 
-                          <td class="right">-0.42844010433054</td>
+                        <td class="right">-0.42844010433054</td>
 
-                          <td class="right">1</td>
+                        <td class="right">1</td>
 
-                          <td class="right">0.962865431402796</td>
-                        </tr>
+                        <td class="right">0.962865431402796</td>
+                      </tr>
 
-                        <tr>
-                          <td class="right">0.817941126271576</td>
+                      <tr>
+                        <td class="right">0.817941126271576</td>
 
-                          <td class="right">-0.366125932536439</td>
+                        <td class="right">-0.366125932536439</td>
 
-                          <td class="right">0.962865431402796</td>
+                        <td class="right">0.962865431402796</td>
 
-                          <td class="right">1</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </dd>
-                </dl>
-              </div>
-            </li>
+                        <td class="right">1</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </dd>
+              </dl>
+            </div>
+          </div>
 
-            <li>
-              <code>hist</code><br />
+          <div id="outline-container-sec-16-1-1-2" class="outline-5">
+            <h5 id="sec-16-1-1-2"><code>hist</code></h5>
 
-              <div class="outline-text-5" id="text-15-1-1-2">
-                <p>Generic function: you can call it on different types of
-                data. When you call <code>hist</code> on a <code>Date</code>
-                object, it requires an interval ("day" / "week" / "month" /
-                "year") in order to break it up into sequences.</p>
+            <div class="outline-text-5" id="text-16-1-1-2">
+              <p>Histogram (<b>distribution</b> of data, <b>frequency</b> =
+              exact number).</p>
 
-                <div class="org-src-container">
-                  <pre class="src src-R">
+              <p>Generic function: you can call it on different types of data.
+              When you call <code>hist</code> on a <code>Date</code> object, it
+              requires an interval (“day” / “week” / “month” / “year”) in order
+              to break it up into sequences.</p>
+
+              <div class="org-src-container">
+                <pre class="src src-R">
 data(iris)
 hist(iris$Petal.Length, main=<span style=
-"color: #FF4700;">"Histogram"</span>, col = <span style=
-"color: #FF4700;">"lightblue"</span>)
+"color: #036A07;">"Histogram"</span>, col=<span style=
+"color: #036A07;">"lightblue"</span>) <span style=
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">shape of distribution</span>
 </pre>
-                </div>
+              </div>
 
-                <div class="figure">
-                  <p><img src="images/base-hist.png" alt="base-hist.png" /></p>
-                </div>
+              <div class="figure">
+                <p><img src="images/base-hist.png" alt="base-hist.png" /></p>
+              </div>
 
-                <p><code>breaks</code> is key: it specifies the number of
-                categories to plot or the breakpoints for each category.</p>
+              <p><code>breaks</code> is key: it specifies the number of
+              categories to plot or the breakpoints for each category.</p>
 
-                <div class="org-src-container">
-                  <pre class="src src-R">
+              <div class="org-src-container">
+                <pre class="src src-R">
 data(iris)
 hist(iris$Petal.Length, breaks=seq(1,7,by=0.1), main=<span style=
-"color: #FF4700;">"Histogram"</span>, col = <span style=
-"color: #FF4700;">"lightblue"</span>)
+"color: #036A07;">"Histogram"</span>, col=<span style=
+"color: #036A07;">"lightblue"</span>)
+                                        <span style=
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">much more fine-grained distribution</span>
 </pre>
-                </div>
+              </div>
 
-                <div class="figure">
-                  <p><img src="images/base-hist-breaks.png" alt=
-                  "base-hist-breaks.png" /></p>
-                </div>
+              <div class="figure">
+                <p><img src="images/base-hist-breaks.png" alt=
+                "base-hist-breaks.png" /></p>
+              </div>
 
-                <p>Can you explain the peculiar pattern? Graphical
-                representations of data are useful at identifying these sorts
-                of artifacts…</p>
+              <p>Can you explain the peculiar pattern? Graphical
+              representations of data are useful at identifying these sorts of
+              artifacts…</p>
 
-                <div class="org-src-container">
-                  <pre class="src src-R">
+              <p>Report where the distribution is centered:</p>
+
+              <div class="org-src-container">
+                <pre class="src src-R">
+data(iris)
+hist(iris$Petal.Length, breaks=100, main=<span style=
+"color: #036A07;">"Histogram"</span>, col=<span style=
+"color: #036A07;">"lightblue"</span>)
+meanValue <span style="color: #6434A3;">&lt;-</span> mean(iris$Petal.Length)
+lines(rep(meanValue,100), seq(0,100,length=100), col=<span style=
+"color: #036A07;">"red"</span>, lwd=5)
+</pre>
+              </div>
+
+              <div class="figure">
+                <p><img src="images/base-hist-center.png" alt=
+                "base-hist-center.png" /></p>
+              </div>
+
+              <div class="org-src-container">
+                <pre class="src src-R">
 data(iris)
 plot(table(iris$Petal.Length), main=<span style=
-"color: #FF4700;">"Table"</span>, col = <span style=
-"color: #FF4700;">"blue"</span>)
+"color: #036A07;">"Table"</span>, col=<span style=
+"color: #036A07;">"blue"</span>)
 </pre>
-                </div>
-
-                <div class="figure">
-                  <p><img src="images/base-plot-table.png" alt=
-                  "base-plot-table.png" /></p>
-                </div>
-
-                <p>Note – In the table plot, x values with one occurrence (out
-                of thousands) would be visible as one dot in the graphics. They
-                don't in the histogram (as the line, being too small, would be
-                on the x-axis itself).</p>
               </div>
-            </li>
 
-            <li>
-              <code>boxplot</code><br />
+              <div class="figure">
+                <p><img src="images/base-plot-table.png" alt=
+                "base-plot-table.png" /></p>
+              </div>
 
-              <div class="outline-text-5" id="text-15-1-1-3">
-                <p><code>boxplot</code> draws plot summarizing</p>
+              <p>Note – In the table plot, x values with one occurrence (out of
+              thousands) would be visible as one dot in the graphics. They
+              don’t in the histogram (as the line, being too small, would be on
+              the x-axis itself).</p>
 
-                <ul class="org-ul">
-                  <li>Median</li>
+              <ul class="org-ul">
+                <li>Density plot (smoother histogram)
 
-                  <li>Quartiles (Q1, Q3)</li>
+                  <p><b>Density</b> = percentage of observations</p>
 
-                  <li>Outliers — by default, observations more than 1.5 * (Q3 -
-                  Q1) distant from nearest quartile</li>
-                </ul>
+                  <div class="org-src-container">
+                    <pre class="src src-R">
+  dens <span style=
+"color: #6434A3;">&lt;-</span> density(data$var) <span style="color: #4C886B;"># </span><span style="color: #4C886B; font-style: italic;">smooth density function</span>
+  plot(dens,lwd=3,col=<span style="color: #036A07;">"blue"</span>)
+<span style="color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">or: lines(dens,lwd=3,col="blue") after hist plot</span>
+</pre>
+                  </div>
+
+                  <p>Easy to compare multiple distributions:</p>
+
+                  <div class="org-src-container">
+                    <pre class="src src-R">
+  <span style="color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">add another density</span>
+  densMales <span style=
+"color: #6434A3;">&lt;-</span> density(data$var[which(data$sex==1)])
+  lines(densMales,lwd=3,col=<span style="color: #036A07;">"orange"</span>)
+</pre>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div id="outline-container-sec-16-1-1-3" class="outline-5">
+            <h5 id="sec-16-1-1-3"><code>boxplot</code></h5>
+
+            <div class="outline-text-5" id="text-16-1-1-3">
+              <p><code>boxplot</code> draws plot summarizing:</p>
+
+              <ul class="org-ul">
+                <li>Median (wide line)</li>
+
+                <li>Quartiles (Q1, Q3)</li>
+
+                <li>Lowest data still within 1.5 * IQR (= Q3 - Q1) of the lower
+                quartile, and the highest datum still within 1.5 * IQR of the
+                upper quartile</li>
+
+                <li>Outliers — By default, observations more than 1.5 * IQR
+                distant from nearest quartile</li>
+              </ul>
+
+              <div class="org-src-container">
+                <pre class="src src-R">
+data(iris)
+boxplot(iris[,1:4], col=rainbow(4), main=<span style=
+"color: #036A07;">"Boxplot"</span>, ylab=<span style=
+"color: #036A07;">"Appropriate units"</span>)
+</pre>
+              </div>
+
+              <div class="figure">
+                <p><img src="images/base-boxplot.png" alt=
+                "base-boxplot.png" /></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="outline-container-sec-16-1-2" class="outline-4">
+          <h4 id="sec-16-1-2">Add to an existing plot</h4>
+
+          <div class="outline-text-4" id="text-16-1-2">
+            <dl class="org-dl">
+              <dt><code>points</code></dt>
+
+              <dd>
+                <b>Add points to a plot</b> (<code>col</code> for boundary
+                color, <code>bg</code> for fill color, <code>pch</code> for
+                plotting character).
+
+                <p>Plot points <b>in groups separately</b>.</p>
 
                 <div class="org-src-container">
                   <pre class="src src-R">
-data(iris)
-boxplot(iris[,1:4], col=rainbow(4), main=<span style=
-"color: #FF4700;">"Boxplot"</span>, ylab=<span style=
-"color: #FF4700;">"Appropriate units"</span>)
+     data(iris)
+     <span style="color: #6434A3;">attach</span>(iris)
+     plot(Petal.Length, Petal.Width, type=<span style=
+"color: #036A07;">"n"</span>)
+     points(Petal.Length[Species == <span style=
+"color: #036A07;">"setosa"</span>], Petal.Width[Species == <span style=
+"color: #036A07;">"setosa"</span>], col=<span style=
+"color: #036A07;">"red"</span>)
+     points(Petal.Length[Species == <span style=
+"color: #036A07;">"versicolor"</span>], Petal.Width[Species == <span style=
+"color: #036A07;">"versicolor"</span>], col=<span style=
+"color: #036A07;">"green"</span>, pch=19)
+     points(Petal.Length[Species == <span style=
+"color: #036A07;">"virginica"</span>], Petal.Width[Species == <span style=
+"color: #036A07;">"virginica"</span>], col=<span style=
+"color: #036A07;">"blue"</span>, pch=18)
 </pre>
                 </div>
 
                 <div class="figure">
-                  <p><img src="images/base-boxplot.png" alt=
-                  "base-boxplot.png" /></p>
+                  <p><img src="images/base-points-distinguished.png" alt=
+                  "base-points-distinguished.png" /></p>
                 </div>
-              </div>
-            </li>
-          </ol>
-        </div>
 
-        <div id="outline-container-sec-15-1-2" class="outline-4">
-          <h4 id="sec-15-1-2"><span class="section-number-4">15.1.2</span> Add
-          to an existing plot</h4>
+                <div class="org-src-container">
+                  <pre class="src src-R">
+     data(iris)
+     plot(iris$Petal.Length, iris$Petal.Width, col=as.integer(iris$Species)+1)
+</pre>
+                </div>
 
-          <div class="outline-text-4" id="text-15-1-2">
-            <dl class="org-dl">
+                <div class="figure">
+                  <p><img src="images/base-points-distinguished-col.png" alt=
+                  "base-points-distinguished-col.png" /></p>
+                </div>
+
+                <div class="org-src-container">
+                  <pre class="src src-R">
+     data(iris)
+     plot(iris[,3:4], col=c(<span style=
+"color: #036A07;">"red"</span>,<span style=
+"color: #036A07;">"green"</span>,<span style=
+"color: #036A07;">"blue"</span>)[unclass(iris$Species)])
+</pre>
+                </div>
+
+                <div class="figure">
+                  <p><img src=
+                  "images/base-points-distinguished-col-unclass.png" alt=
+                  "base-points-distinguished-col-unclass.png" /></p>
+                </div>
+              </dd>
+
               <dt><code>lines</code></dt>
 
               <dd>
-                Add lines (connect all the dots).
+                <b>Add lines</b> (connect all the dots) <b>to a plot</b>.
 
                 <div class="org-src-container">
                   <pre class="src src-R">
-lines(x, y)                        <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">all lines</span>
+     lines(x, y)                        <span style=
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">all lines</span>
 </pre>
                 </div>
+
+                <p>Even better: option type="b” to plot method for <i>both</i>
+                <b>points and lines</b>.</p>
               </dd>
 
               <dt><code>abline</code></dt>
@@ -3134,79 +3762,18 @@ lines(x, y)                        <span style=
 
                 <div class="org-src-container">
                   <pre class="src src-R">
-data(iris)
-<span style="color: #6434A3;">attach</span>(iris)
-plot(Petal.Length, Petal.Width)
-fit <span style="color: #6434A3;">&lt;-</span> lm(Petal.Width ~ Petal.Length)
-abline(fit, lwd=3, col=<span style="color: #FF4700;">"blue"</span>)
+     data(iris)
+     <span style="color: #6434A3;">attach</span>(iris)
+     plot(Petal.Length, Petal.Width)
+     fit <span style=
+"color: #6434A3;">&lt;-</span> lm(Petal.Width ~ Petal.Length)
+     abline(fit, lwd=3, col=<span style="color: #036A07;">"blue"</span>)
 </pre>
                 </div>
 
                 <div class="figure">
                   <p><img src="images/base-abline.png" alt=
                   "base-abline.png" /></p>
-                </div>
-              </dd>
-
-              <dt><code>points</code></dt>
-
-              <dd>
-                Add points (<code>col</code> for boundary color,
-                <code>bg</code> for fill color, <code>pch</code> for plotting
-                character).
-
-                <p>Plot points <b>in groups separately</b>.</p>
-
-                <div class="org-src-container">
-                  <pre class="src src-R">
-data(iris)
-<span style="color: #6434A3;">attach</span>(iris)
-plot(Petal.Length, Petal.Width, type=<span style="color: #FF4700;">"n"</span>)
-points(Petal.Length[Species == <span style=
-"color: #FF4700;">"setosa"</span>], Petal.Width[Species == <span style=
-"color: #FF4700;">"setosa"</span>], col = <span style=
-"color: #FF4700;">"red"</span>)
-points(Petal.Length[Species == <span style=
-"color: #FF4700;">"versicolor"</span>], Petal.Width[Species == <span style=
-"color: #FF4700;">"versicolor"</span>], col = <span style=
-"color: #FF4700;">"green"</span>, pch = 19)
-points(Petal.Length[Species == <span style=
-"color: #FF4700;">"virginica"</span>], Petal.Width[Species == <span style=
-"color: #FF4700;">"virginica"</span>], col = <span style=
-"color: #FF4700;">"blue"</span>, pch = 18)
-</pre>
-                </div>
-
-                <div class="figure">
-                  <p><img src="images/base-points-distinguished.png" alt=
-                  "base-points-distinguished.png" /></p>
-                </div>
-
-                <div class="org-src-container">
-                  <pre class="src src-R">
-data(iris)
-plot(iris$Petal.Length, iris$Petal.Width, col=as.integer(iris$Species)+1)
-</pre>
-                </div>
-
-                <div class="figure">
-                  <p><img src="images/base-points-distinguished-col.png" alt=
-                  "base-points-distinguished-col.png" /></p>
-                </div>
-
-                <div class="org-src-container">
-                  <pre class="src src-R">
-data(iris)
-plot(iris[,3:4], col=c(<span style="color: #FF4700;">"red"</span>,<span style=
-"color: #FF4700;">"green"</span>,<span style=
-"color: #FF4700;">"blue"</span>)[unclass(iris$Species)])
-</pre>
-                </div>
-
-                <div class="figure">
-                  <p><img src=
-                  "images/base-points-distinguished-col-unclass.png" alt=
-                  "base-points-distinguished-col-unclass.png" /></p>
                 </div>
               </dd>
             </dl>
@@ -3221,7 +3788,7 @@ plot(iris[,3:4], col=c(<span style="color: #FF4700;">"red"</span>,<span style=
 
                 <div class="org-src-container">
                   <pre class="src src-R">
-text(-2, 2, <span style="color: #FF4700;">"Label"</span>)
+     text(-2, 2, <span style="color: #036A07;">"Label"</span>)
 </pre>
                 </div>
               </dd>
@@ -3233,11 +3800,11 @@ text(-2, 2, <span style="color: #FF4700;">"Label"</span>)
 
                 <div class="org-src-container">
                   <pre class="src src-R">
-title(<span style="color: #FF4700;">"plot"</span>)
-plot(x, y, xlab = <span style=
-"color: #FF4700;">"Weight"</span>, ylab = <span style=
-"color: #FF4700;">"Height"</span>, main = <span style=
-"color: #FF4700;">"Scatterplot"</span>)
+     title(<span style="color: #036A07;">"plot"</span>)
+     plot(x, y, xlab=<span style=
+"color: #036A07;">"Weight"</span>, ylab=<span style=
+"color: #036A07;">"Height"</span>, main=<span style=
+"color: #036A07;">"Scatterplot"</span>)
 </pre>
                 </div>
               </dd>
@@ -3247,12 +3814,29 @@ plot(x, y, xlab = <span style=
               <dd>
                 Add text to the margins.
 
+                <div class="org-src-container">
+                  <pre class="src src-R">
+     mtext(<span style=
+"color: #036A07;">"Label on the X-axis"</span>, side=2, line=3, col=<span style="color: #036A07;">"blue"</span>)
+</pre>
+                </div>
+
                 <p>Can be used to add multiline legends.</p>
               </dd>
 
               <dt><code>axis</code></dt>
 
-              <dd><b>Annotate the axis</b> (tick marks, labels).</dd>
+              <dd>
+                <b>Annotate the axis</b> (tick marks, labels).
+
+                <div class="org-src-container">
+                  <pre class="src src-R">
+     axis(side=2, col=<span style=
+"color: #036A07;">"blue"</span>, col.axis=<span style=
+"color: #036A07;">"blue"</span>, las=1)
+</pre>
+                </div>
+              </dd>
 
               <dt><code>legend</code></dt>
 
@@ -3261,8 +3845,8 @@ plot(x, y, xlab = <span style=
 
                 <div class="org-src-container">
                   <pre class="src src-R">
-legend(<span style="color: #FF4700;">"topleft"</span>, legend = <span style=
-"color: #FF4700;">"Data"</span>, pch = 1)
+     legend(<span style="color: #036A07;">"topleft"</span>, legend=<span style=
+"color: #036A07;">"Data"</span>, pch=1)
 </pre>
                 </div>
               </dd>
@@ -3270,11 +3854,10 @@ legend(<span style="color: #FF4700;">"topleft"</span>, legend = <span style=
           </div>
         </div>
 
-        <div id="outline-container-sec-15-1-3" class="outline-4">
-          <h4 id="sec-15-1-3"><span class="section-number-4">15.1.3</span>
-          Changing graphical parameters</h4>
+        <div id="outline-container-sec-16-1-3" class="outline-4">
+          <h4 id="sec-16-1-3">Changing graphical parameters</h4>
 
-          <div class="outline-text-4" id="text-15-1-3">
+          <div class="outline-text-4" id="text-16-1-3">
             <dl class="org-dl">
               <dt><code>par()</code></dt>
 
@@ -3303,9 +3886,9 @@ legend(<span style="color: #FF4700;">"topleft"</span>, legend = <span style=
 
                   <dt><code>las</code></dt>
 
-                  <dd>Orientation of the axis labels on the plot (<code>las =
-                  2</code> will set the tick labels to be perpendicular to the
-                  axis).</dd>
+                  <dd>Orientation of the axis labels on the plot
+                  (<code>las=2</code> will set the tick <b>labels</b> to be
+                  <b>perpendicular</b> to the axis).</dd>
 
                   <dt><code>bg</code></dt>
 
@@ -3319,7 +3902,7 @@ legend(<span style="color: #FF4700;">"topleft"</span>, legend = <span style=
 
                     <div class="org-src-container">
                       <pre class="src src-R">
-par(mar = c(2,2,1,1))
+          par(mar=c(2,2,1,1))
 </pre>
                     </div>
                   </dd>
@@ -3337,11 +3920,11 @@ par(mar = c(2,2,1,1))
 
                     <div class="org-src-container">
                       <pre class="src src-R">
-par(mfrow = c(2,1))           <span style=
-"color: #008200;"># </span><span style=
-"color: #008200; font-style: italic;">2 rows and 1 column</span>
-plot(x, y)
-plot(x, z)
+          par(mfrow=c(2,1))           <span style=
+"color: #4C886B;"># </span><span style=
+"color: #4C886B; font-style: italic;">2 rows and 1 column</span>
+          plot(x, y)
+          plot(x, z)
 </pre>
                     </div>
                   </dd>
@@ -3350,13 +3933,22 @@ plot(x, z)
 
                   <dd>Number of plots per row and per column on the canvas
                   (filled column-wise).</dd>
+
+                  <dt><code>bty</code></dt>
+
+                  <dd>
+                    Type of “box” which is drawn around plots.
+
+                    <p>A value of ="n"= suppresses the box (same as
+                    <code>axes=FALSE</code>).</p>
+                  </dd>
                 </dl>
 
                 <p>Look at the defaults:</p>
 
                 <div class="org-src-container">
                   <pre class="src src-R">
-par(<span style="color: #FF4700;">"lty"</span>)
+     par(<span style="color: #036A07;">"lty"</span>)
 </pre>
                 </div>
               </dd>
@@ -3385,7 +3977,7 @@ par(<span style="color: #FF4700;">"lty"</span>)
 
                   <dt><code>bitmap</code></dt>
 
-                  <dd>If you're running R in a batch mode (you can't use the
+                  <dd>If you’re running R in a batch mode (you can’t use the
                   <code>png</code> and <code>jpeg</code> functions).</dd>
                 </dl>
               </dd>
@@ -3406,27 +3998,94 @@ par(<span style="color: #FF4700;">"lty"</span>)
         </div>
       </div>
 
-      <div id="outline-container-sec-15-2" class="outline-3">
-        <h3 id="sec-15-2"><span class="section-number-3">15.2</span> Lattice
+      <div id="outline-container-sec-16-2" class="outline-3">
+        <h3 id="sec-16-2"><span class="section-number-3">16.2</span> Lattice
         graphics</h3>
       </div>
 
-      <div id="outline-container-sec-15-3" class="outline-3">
-        <h3 id="sec-15-3"><span class="section-number-3">15.3</span>
+      <div id="outline-container-sec-16-3" class="outline-3">
+        <h3 id="sec-16-3"><span class="section-number-3">16.3</span>
         ggplot2</h3>
 
-        <div class="outline-text-3" id="text-15-3">
+        <div class="outline-text-3" id="text-16-3">
           <p>See post of Antoine Lizée in <a href=
           "http://stackoverflow.com/questions/5234117/how-to-drop-columns-by-name-in-a-data-frame">
           http://stackoverflow.com/questions/5234117/how-to-drop-columns-by-name-in-a-data-frame</a>
           for an excellent performance reporting.</p>
         </div>
       </div>
+
+      <div id="outline-container-sec-16-4" class="outline-3">
+        <h3 id="sec-16-4"><span class="section-number-3">16.4</span> Other
+        graphics</h3>
+
+        <div class="outline-text-3" id="text-16-4"></div>
+
+        <div id="outline-container-sec-16-4-1" class="outline-4">
+          <h4 id="sec-16-4-1">Pareto diagrams</h4>
+
+          <div class="outline-text-4" id="text-16-4-1">
+            <div class="org-src-container">
+              <pre class="src src-R">
+<span style="color: #6434A3;">library</span>(qcc)
+data(iris)
+pareto.chart(table(iris[iris$Species==<span style=
+"color: #036A07;">"setosa"</span>,]$Petal.Length))
+</pre>
+            </div>
+
+            <div class="figure">
+              <p><img src="images/qcc-pareto.png" alt="qcc-pareto.png" /></p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div id="outline-container-sec-16" class="outline-2">
-      <h2 id="sec-16"><span class="section-number-2">16</span> 11. Linear
+    <div id="outline-container-sec-17" class="outline-2">
+      <h2 id="sec-17"><span class="section-number-2">17</span> 11. Linear
       regression and ANOVA</h2>
+
+      <div class="outline-text-2" id="text-17">
+        <p><a href=
+        "https://www.zoology.ubc.ca/~schluter/R/fit-model/">https://www.zoology.ubc.ca/~schluter/R/fit-model/</a></p>
+      </div>
+
+      <div id="outline-container-sec-17-1" class="outline-3">
+        <h3 id="sec-17-1"><span class="section-number-3">17.1</span> Regression
+        tree models</h3>
+
+        <div class="outline-text-3" id="text-17-1">
+          <ul class="org-ul">
+            <li>arbres de régression : la variable expliquée est de type
+            numérique et il s’agit de prédire une valeur la plus proche
+            possible de la vraie valeur.</li>
+          </ul>
+
+          <p><a href=
+          "http://www.statmethods.net/advstats/cart.html">http://www.statmethods.net/advstats/cart.html</a></p>
+        </div>
+      </div>
+
+      <div id="outline-container-sec-17-2" class="outline-3">
+        <h3 id="sec-17-2"><span class="section-number-3">17.2</span>
+        Classification tree models</h3>
+
+        <div class="outline-text-3" id="text-17-2">
+          <ul class="org-ul">
+            <li>arbres de classification : la variable expliquée est de type
+            nominale (facteur). A chaque étape du partitionnement, on cherche à
+            réduire l’impureté totale des deux noeuds fils par rapport au noeud
+            père.</li>
+          </ul>
+
+          <div class="org-src-container">
+            <pre class="src src-R">
+rpart
+</pre>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 

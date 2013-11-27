@@ -1,10 +1,11 @@
 #+TITLE:     R quick reference card
 #+AUTHOR:    Fabrice Niessen
 #+EMAIL:     (concat "fniessen" at-sign "pirilampo.org")
-#+Time-stamp: <2013-11-27 Wed 12:08>
+#+Time-stamp: <2013-11-27 Wed 12:15>
 #+DESCRIPTION:
 #+KEYWORDS:
 #+LANGUAGE:  en
+#+OPTIONS:   H:4 num:2
 
 #+PROPERTY:  eval no
 #+PROPERTY:  exports both
@@ -1813,7 +1814,7 @@ boxplot(iris[,1:4], col=rainbow(4), main="Boxplot", ylab="Appropriate units")
 - =mtext= ::
      Add text to the margins.
 
-     #+begin_src R
+     #+begin_src R :eval no
      mtext("Label on the X-axis", side=2, line=3, col="blue")
      #+end_src
 
@@ -1822,7 +1823,7 @@ boxplot(iris[,1:4], col=rainbow(4), main="Boxplot", ylab="Appropriate units")
 - =axis= ::
      *Annotate the axis* (tick marks, labels).
 
-     #+begin_src R
+     #+begin_src R :eval no
      axis(side=2, col="blue", col.axis="blue", las=1)
      #+end_src
 
