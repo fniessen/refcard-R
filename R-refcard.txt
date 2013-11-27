@@ -1,7 +1,7 @@
 #+TITLE:     R quick reference card
 #+AUTHOR:    Fabrice Niessen
 #+EMAIL:     (concat "fniessen" at-sign "pirilampo.org")
-#+Time-stamp: <2013-11-27 Wed 12:15>
+#+Time-stamp: <2013-11-27 Wed 12:17>
 #+DESCRIPTION:
 #+KEYWORDS:
 #+LANGUAGE:  en
@@ -1577,7 +1577,7 @@ You cannot use functions from the base plotting system in a Lattice plot.
 - =plot(x)= ::
      Plot the (numeric) data against the index (=1:N=).
 
-     #+begin_src R :results graphics :file images/base-scatterplot-sort.png
+     #+begin_src R :results graphics :file Rplots/base-scatterplot-sort.png
      data(iris)
      plot(sort(iris$Petal.Width),
           main="Distribution of petal widths",
@@ -1585,12 +1585,12 @@ You cannot use functions from the base plotting system in a Lattice plot.
      #+end_src
 
      #+results:
-     [[file:images/base-scatterplot-sort.png]]
+     [[file:Rplots/base-scatterplot-sort.png]]
 
 - =plot(x, y)= ::
      Create a scatter plot of =x= and =y=.
 
-     #+begin_src R :results graphics :file images/base-scatterplot.png
+     #+begin_src R :results graphics :file Rplots/base-scatterplot.png
      data(iris)
      plot(iris$Petal.Length, iris$Petal.Width,
           main="Petals: Length vs Width",
@@ -1598,7 +1598,7 @@ You cannot use functions from the base plotting system in a Lattice plot.
      #+end_src
 
      #+results:
-     [[file:images/base-scatterplot.png]]
+     [[file:Rplots/base-scatterplot.png]]
 
 - =plot(x, y, type = "n")= ::
      Set up the plot window, but don't actually plot the data in there.
@@ -1609,14 +1609,14 @@ You cannot use functions from the base plotting system in a Lattice plot.
      Create *multiple scatter plots* if your data frame contains more than
      2 columns.
 
-     #+begin_src R :results graphics :file images/base-multi-scatterplots.png
+     #+begin_src R :results graphics :file Rplots/base-multi-scatterplots.png
      data(iris)
      plot(iris[,1:4], main="Multiple scatter plots",
           col=as.integer(iris$Species)+1)
      #+end_src
 
      #+results:
-     [[file:images/base-multi-scatterplots.png]]
+     [[file:Rplots/base-multi-scatterplots.png]]
 
      You can see that length and width appear strongly correlated. You could
      check the correlation between features with the =cor()= function.
@@ -1640,32 +1640,32 @@ Generic function: you can call it on different types of data. When you call
 =hist= on a =Date= object, it requires an interval ("day" / "week" / "month" /
 "year") in order to break it up into sequences.
 
-#+begin_src R :results graphics :file images/base-hist.png
+#+begin_src R :results graphics :file Rplots/base-hist.png
 data(iris)
 hist(iris$Petal.Length, main="Histogram", col="lightblue") # shape of distribution
 #+end_src
 
 #+results:
-[[file:images/base-hist.png]]
+[[file:Rplots/base-hist.png]]
 
 =breaks= is key: it specifies the number of categories to plot or the breakpoints
 for each category.
 
-#+begin_src R :results graphics :file images/base-hist-breaks.png
+#+begin_src R :results graphics :file Rplots/base-hist-breaks.png
 data(iris)
 hist(iris$Petal.Length, breaks=seq(1,7,by=0.1), main="Histogram", col="lightblue")
                                         # much more fine-grained distribution
 #+end_src
 
 #+results:
-[[file:images/base-hist-breaks.png]]
+[[file:Rplots/base-hist-breaks.png]]
 
 Can you explain the peculiar pattern? Graphical representations of data are
 useful at identifying these sorts of artifacts...
 
 Report where the distribution is centered:
 
-#+begin_src R :results graphics :file images/base-hist-center.png
+#+begin_src R :results graphics :file Rplots/base-hist-center.png
 data(iris)
 hist(iris$Petal.Length, breaks=100, main="Histogram", col="lightblue")
 meanValue <- mean(iris$Petal.Length)
@@ -1673,16 +1673,16 @@ lines(rep(meanValue,100), seq(0,100,length=100), col="red", lwd=5)
 #+end_src
 
 #+results:
-[[file:images/base-hist-center.png]]
+[[file:Rplots/base-hist-center.png]]
 
 
-#+begin_src R :results graphics :file images/base-plot-table.png
+#+begin_src R :results graphics :file Rplots/base-plot-table.png
 data(iris)
 plot(table(iris$Petal.Length), main="Table", col="blue")
 #+end_src
 
 #+results:
-[[file:images/base-plot-table.png]]
+[[file:Rplots/base-plot-table.png]]
 
 Note -- In the table plot, x values with one occurrence (out of thousands)
 would be visible as one dot in the graphics. They don't in the histogram (as
@@ -1724,13 +1724,13 @@ the line, being too small, would be on the x-axis itself).
 - Outliers --- By default, observations more than 1.5 * IQR distant from
   nearest quartile
 
-#+begin_src R :results graphics :file images/base-boxplot.png
+#+begin_src R :results graphics :file Rplots/base-boxplot.png
 data(iris)
 boxplot(iris[,1:4], col=rainbow(4), main="Boxplot", ylab="Appropriate units")
 #+end_src
 
 #+results:
-[[file:images/base-boxplot.png]]
+[[file:Rplots/base-boxplot.png]]
 
 *** Add to an existing plot
 
@@ -1740,7 +1740,7 @@ boxplot(iris[,1:4], col=rainbow(4), main="Boxplot", ylab="Appropriate units")
 
      Plot points *in groups separately*.
 
-     #+begin_src R :results graphics :file images/base-points-distinguished.png
+     #+begin_src R :results graphics :file Rplots/base-points-distinguished.png
      data(iris)
      attach(iris)
      plot(Petal.Length, Petal.Width, type="n")
@@ -1750,23 +1750,23 @@ boxplot(iris[,1:4], col=rainbow(4), main="Boxplot", ylab="Appropriate units")
      #+end_src
 
      #+results:
-     [[file:images/base-points-distinguished.png]]
+     [[file:Rplots/base-points-distinguished.png]]
 
-     #+begin_src R :results graphics :file images/base-points-distinguished-col.png
+     #+begin_src R :results graphics :file Rplots/base-points-distinguished-col.png
      data(iris)
      plot(iris$Petal.Length, iris$Petal.Width, col=as.integer(iris$Species)+1)
      #+end_src
 
      #+results:
-     [[file:images/base-points-distinguished-col.png]]
+     [[file:Rplots/base-points-distinguished-col.png]]
 
-     #+begin_src R :results graphics :file images/base-points-distinguished-col-unclass.png
+     #+begin_src R :results graphics :file Rplots/base-points-distinguished-col-unclass.png
      data(iris)
      plot(iris[,3:4], col=c("red","green","blue")[unclass(iris$Species)])
      #+end_src
 
      #+results:
-     [[file:images/base-points-distinguished-col-unclass.png]]
+     [[file:Rplots/base-points-distinguished-col-unclass.png]]
 
 - =lines= ::
      *Add lines* (connect all the dots) *to a plot*.
@@ -1782,7 +1782,7 @@ boxplot(iris[,1:4], col=rainbow(4), main="Boxplot", ylab="Appropriate units")
 
      Plot the *regression line* of a scatter plot.
 
-     #+begin_src R :results graphics :file images/base-abline.png
+     #+begin_src R :results graphics :file Rplots/base-abline.png
      data(iris)
      attach(iris)
      plot(Petal.Length, Petal.Width)
@@ -1791,7 +1791,7 @@ boxplot(iris[,1:4], col=rainbow(4), main="Boxplot", ylab="Appropriate units")
      #+end_src
 
      #+results:
-     [[file:images/base-abline.png]]
+     [[file:Rplots/base-abline.png]]
 
 
 - =text= ::
@@ -1929,14 +1929,14 @@ for an excellent performance reporting.
 
 *** Pareto diagrams
 
-#+begin_src R :results graphics :file images/qcc-pareto.png
+#+begin_src R :results graphics :file Rplots/qcc-pareto.png
 library(qcc)
 data(iris)
 pareto.chart(table(iris[iris$Species=="setosa",]$Petal.Length))
 #+end_src
 
 #+results:
-[[file:images/qcc-pareto.png]]
+[[file:Rplots/qcc-pareto.png]]
 
 * 11. Linear regression and ANOVA
 
