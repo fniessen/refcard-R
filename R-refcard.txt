@@ -1,19 +1,225 @@
 #+TITLE:     R quick reference card
 #+AUTHOR:    Fabrice Niessen
 #+EMAIL:     (concat "fniessen" at-sign "pirilampo.org")
-#+Time-stamp: <2013-10-29 Tue 10:20>
+#+Time-stamp: <2013-11-27 Wed 12:08>
 #+DESCRIPTION:
 #+KEYWORDS:
-#+LANGUAGE:  american
+#+LANGUAGE:  en
 
 #+PROPERTY:  eval no
 #+PROPERTY:  exports both
 #+SETUPFILE: ~/src/org-style/bigblow-local-abs.setup
 
+rank()
+
 * R reference card
 
 Welcome to R reference card. It contains the reference documentation that
 describes how to perform *data analysis* using R.
+
+* Emacs key bindings
+
+** References
+
+See
+- http://ess.r-project.org/refcard.pdf
+- http://www.damtp.cam.ac.uk/user/sje30/ess11/ess-slides.pdf
+
+** Interacting with the ESS process
+
+- =C-c C-z= ::
+     Jump back to script buffer.
+
+** Sending code to the ESS process
+
+Primary process interaction commands:
+
+- =C-RET= ::
+     Send the current *region or line* to the ESS process and *step* to the next
+     line of code.
+
+- =C-M-x= ::
+     Send the current *region or function or paragraph* to the ESS process.
+
+- =C-c C-c= ::
+     Send the current *region or function or paragraph* to the ESS process and
+     *step* to the next line of code.
+
+Ohter evaluation commands:
+
+- =C-c C-n= ::
+     Send the current *line* to the ESS process and *step* to the next line of
+     code.
+
+- =C-c C-r= ::
+     Send the current *region* to the ESS process.
+
+- =C-c C-f= ::
+     Send the current *function* to the ESS process.
+
+- =C-c C-p= ::
+     Send the current *paragraph* (defined as continuous set of lines surrounded
+     by a blank line at top and bottom) to the ESS process.
+
+- =C-c C-b= ::
+     Send the current *buffer* to the ESS process.
+
+** Editing objects and functions
+
+- =C-c C-e C-d= ::
+     *Edit* the code of an *object*.
+
+- =C-c C-l= ::
+     Load a file into the ESS process using =source()=.
+
+** Help
+
+Help at your fingertips:
+
+- =C-c C-d C-e= ::
+     Describe object at point (press =C-e= to cycle).
+
+- =C-c C-d C-a= ::
+     ess-display-help-apropos
+
+- =C-c C-d C-d= ::
+     ess-display-help-on-object
+
+- =C-c C-d C-v= ::
+     ess-display-vignettes
+
+- =C-c C-d C-w= ::
+     ess-help-web-search
+
+- =C-c C-d i= ::
+     ess-display-package-index
+
+- =C-c C-d o= ::
+     ess-display-demos
+
+** Reading help files
+
+- =C-c C-v= ::
+     Display *R help* on an object (which has an help file) *in Emacs*, for example
+     for the function call you're currently writing.
+
+Then:
+
+- =l= ::
+     *Run example* in R help page, *line by line*.
+
+** Completion
+
+*** Completion of function arguments
+
+*ElDoc* support: automatic display of function arguments in the *echo area*.
+
+*** Integration with auto-complete package
+
+Auto-completion of objects and arguments:
+http://www.emacswiki.org/emacs/ESSAuto-complete.
+
+** Developing with ESS
+
+*** ESS tracebug
+
+Tracebug highlighting of errors.
+
+**** Breakpoints
+
+- =C-c C-t C-b= ::
+     Set breakpoint.
+
+- =C-c C-t B= ::
+     Set conditional breakpoint.
+
+- =C-c C-t k= ::
+     Kill breakpoint.
+
+**** General debugging
+
+- =C-c `= ::
+     Show R traceback (display source locations).
+
+- =C-c ~= ::
+     Show call stack (display source locations).
+
+- =C-c C-t C-e= ::
+     Toggle error action (repeat to cycle).
+
+- =C-c C-t C-d= ::
+     Flag for debugging.
+
+- =C-c C-t C-u= ::
+     Unflag for debugging.
+
+- =C-c C-t C-w= ::
+     Use "ess-watch" while debugging to see variables change at each step, or
+     even just at the prompt.
+
+**** Navigation to errors
+
+- =M-g n= ::
+     Next error.
+
+- =M-g p= ::
+     Previous error.
+
+**** Tracebug visual debugger
+
+*** ESS developer
+
+- =C-c C-t C-a= ::
+     Add a package to your development list.
+
+- =C-c C-t C-t= ::
+     Toggle developer mode on and off.
+
+- =C-c C-t l= ::
+     ess-developer-load-package (this one is in ESS dev as yet)
+
+** Emacs general functionality
+
+M-r from comint buffers is worth a wealth IMO.
+
+I would add C-s and C-r to search in the help buffer and M-\ to indent
+
+3) probably the most used command of mine is imenu-anywhere.
+
+   (global-set-key (kbd "C-.") 'imenu-anywhere)
+
+and you will be able to navigate to the definition of the symbol at
+point as long as the other file is open. This is like tag navigation but
+more convenient IMO. Both ido and helm interfaces are available.
+
+6) multiple processes. I think ESS handling of multiple processes is
+pretty unique. Even in emacs realm you don't see this that often.
+
+   C-c C-s ess-switch-process
+
+Other nice tools ( probably not available in other editors):
+
+   C-c C-q + M-x R to quickly restart the process.
+
+   C-c .     	ess-set-style (different indentation under your fingertips)
+
+   C-c C-e i 	ess-install-library
+   C-c C-e l 	ess-load-library
+
+   C-c C-e C-t	ess-build-tags-for-directory (then use M-. to jump to definition)
+   C-c C-e C-w	ess-execute-screen-options
+
+Also the ability to mix in other, general purpose Emacs tools:
+
+paredit-mode to give me good shortcuts to navigate around and manipulate
+parentheses and braces,
+git-gutter-mode to keep tabs on lines I've changed in a file.
+M-/ to complete long words the second type I type them.
+
+1. INDENTATION.
+3. Navigation & execution of code, follow to *R* buffer
+4. In-session function editing. C-c C-e d and C-c C-e C-d can open file
+versions of R functions. C-c C-e l sends same back.
 
 * 0. Overview of R
 
@@ -36,7 +242,7 @@ Some [[http://cran.r-project.org/manuals.html][R manuals]]:
 ?function
 ?dataset
 package ? lattice
-library(help = lattice)
+library(help=lattice)
 #+end_src
 
 - =args(function)= ::
@@ -140,7 +346,12 @@ You may write a script containing R code:
 
 argv <- commandArgs(TRUE)
 x <- as.numeric(argv[1])
+
 # etc.
+
+png("graph.png", 500, 500)
+plot(graph)
+graphics.off()
 #+end_src
 
 * 5. Data structures
@@ -195,7 +406,8 @@ denominator" class).
 
 ** Matrices
 
-*Matrices* are vectors with *2 dimensions* (see =dimension= attribute).
+Matrices are *vectors with 2 dimensions* attached to them (see =dimension=
+attribute).
 
 They are constructed /column-wise/ (vector inserted by column).
 
@@ -213,18 +425,18 @@ print(v)
 
 They can be created by /column-binding/ or /row-binding/.
 
-- =matrix(nrow = x, ncol = y)= ::
+- =matrix(nrow=x, ncol=y)= ::
      Create an empty matrix.
 
 - =cbind()= ::
-     Column-bind.
+     Column-bind (if the row order matches; otherwise, use =merge=).
 
 - =rbind()= ::
      Row-bind.
 
 ** Arrays
 
-Arrays are *n-dimensional* matrices.
+Arrays are *n-dimensional matrices*.
 
 - =array()= ::
      Create an array.
@@ -304,7 +516,7 @@ x %*% y                                 # true matrix multiplication
      Partial matching allowed at the command-line:
 
      #+begin_src R
-     x[["a", exact = FALSE]]            # instead of: x[["aardvark"]]
+     x[["a", exact=FALSE]]              # instead of: x[["aardvark"]]
      #+end_src
 
 - =[= ::
@@ -612,7 +824,7 @@ Types of files:
      + =header=
      + =sep= (defaults to the *space*)
      + =quote=
-     + =colClasses= (class of each column)
+     + =colClasses= (class of each column, also used to *skip columns*)
      + =nrows=
      + =skip= (number of lines to skip from the beginning)
      + =comment.char=
@@ -628,15 +840,33 @@ For *large datasets*:
 
 - Use the =colClasses= argument.
 
-  Quick and dirty way to figure out the classes of each column:
+  Quick and dirty way to figure out the classes of each column (if there aren't
+  any classes that you want to change from their defaults): read in the first
+  rows, /determine the classes from that/, and then import the rest of the file.
 
   #+begin_src R
-  initial <- read.table("datatable.txt", nrows = 100)
-  classes <- sapply(initial, class)
-  tabAll <- read.table("datatable.txt", colClasses = classes)
+  tabSample <- read.table("datatable.txt", nrows=100)
+  classes <- sapply(tabSample, class)
+  tabAll <- read.table("datatable.txt", colClasses=classes)
+                                        # save time on importing data
   #+end_src
 
 - Set =nrows= helps with memory usage.
+
+R equivalent of Linux =cut= (to read only certain columns from a file):
+
+#+begin_src R
+whichCols <- rep("NULL", 28)            # assuming 28 colums
+whichCols[c(1,5,28)] <- NA
+df <- read.table(file, colClasses=whichCols)
+#+end_src
+
+To call some shell script to do the column extraction and then using
+=read.table= on its output:
+
+#+begin_src R
+df <- read.table(pipe("cut -f1,5,28 myFile.txt"))
+#+end_src
 
 ** Writing tabular data files
 
@@ -798,7 +1028,19 @@ Packages:
                                         # (show missing values as well)
      #+end_src
 
+     Relative frequencies:
+
+     #+begin_src R
+     tbl <- table(dfrm$f, useNA="ifany")
+     tbl / sum(tbl)
+     #+end_src
+
      Use the =cut= function to calculate tables with /numeric/ values.
+
+     #+begin_src R
+     f <- cut(dfrm$x, breaks=30)        # use `labels' to give nice names
+     table(f, useNA="ifany")
+     #+end_src
 
 - =table(f1, f2)= ::
      Produce a /contingency table/ (cross-tabulation).
@@ -868,11 +1110,21 @@ u <- x > "a"
 x[u]                                    # get all elements which are greater than "a"
 #+end_src
 
-Remove missing values (=NA=) from a list:
+Remove missing values (=NA=) from a *list*:
 
 #+begin_src R
 missing <- is.na(x)                     # logical vector
-x[!missing]
+y <- x[!missing]
+sum(y)                                  # = sum(x, na.rm=TRUE)
+#+end_src
+
+The analogue of =is.na= for *data frames* is =complete.cases=.
+
+Take all the rows of a data frame where *all the values are not missing*:
+
+#+begin_src R
+nonmissing <- complete.cases(x)
+x[nonmissing, ]
 #+end_src
 
 Take the subset of all objects (=x= and =y=) that has no missing values:
@@ -880,13 +1132,6 @@ Take the subset of all objects (=x= and =y=) that has no missing values:
 #+begin_src R
 bothnonmissing <- complete.cases(x, y)  # logical vector
 x[bothnonmissing]
-#+end_src
-
-Take all the rows of a data frame where *all the values are not missing*:
-
-#+begin_src R
-nonmissing <- complete.cases(x)
-x[nonmissing, ]
 #+end_src
 
 To *drop columns by name* in a data frame, you can use direct indexing (with
@@ -915,6 +1160,8 @@ Using the =subset= function.
 subset(dfrm, select=c(var1,var2), subset=(var1 > 0 & var2 > 0))
 subset(dfrm, select=c(var1,var2), subset=(var1 > 0 | var2 > 0))
 #+end_src
+
+Use the =%in%= operator to compare a variable to a list of desired values.
 
 Note that you do /not/ quote the column names.
 
@@ -995,21 +1242,21 @@ back (that is, not a simplified result).
 
 - (coerced) list =X=
 - function =FUN=
-- other arguments =...=
+- other arguments you wanna pass to the function =...=
 
 #+begin_src R
-x <- list(a = 1:5, b = rnorm(10))
+x <- list(a=1:5, b=rnorm(10))
 lapply(x, mean)
 #+end_src
 
 #+begin_src R
-lapply(1:4, runif, min = 0, max = 10)   # arguments passed through the `...'
+lapply(1:4, runif, min=0, max=10)       # arguments passed through the `...'
 #+end_src
 
 Extract the first column of each matrix of a list:
 
 #+begin_src R
-lapply(x, function(elt) elt[,1])
+lapply(x, function(x) x[,1])
 #+end_src
 
 *** =sapply=
@@ -1026,7 +1273,7 @@ Pass =na.rm= argument to =ColMeans= to remove the missing values before calculat
 the mean.
 
 #+begin_src R
-sapply(s, function(x) colMeans(x[, c("Ozone", "Solar.R", "Wind")], na.rm = TRUE))
+sapply(s, function(x) colMeans(x[, c("Ozone", "Solar.R", "Wind")], na.rm=TRUE))
 #+end_src
 
 ** Splitting a vector into groups
@@ -1039,60 +1286,54 @@ sapply(s, function(x) colMeans(x[, c("Ozone", "Solar.R", "Wind")], na.rm = TRUE)
      + =drop = TRUE= ::
           Don't keep the empty levels of the factor.
 
-Auxiliary function, used in conjunction with functions like =lapply= or =sapply= to
-apply a function to those individual groups.
+     Auxiliary function, used in conjunction with functions like =lapply= or
+     =sapply= to apply a function to those individual groups.
 
-#+begin_src R
-lapply(split(x, f), mean)
-#+end_src
+     #+begin_src R
+     lapply(split(x, f), mean)
+     #+end_src
 
-Like =tapply=, but without applying the summary statistics.
+     Like =tapply=, but without applying the summary statistics.
 
-Splitting a data frame (or other kinds of lists), and apply an /anonymous
-function/:
+     Splitting a data frame (or other kinds of lists), and apply an /anonymous
+     function/:
 
-#+begin_src R
-s <- split(airquality, airquality$Month) # split according to month
-lapply(s, function(x) colMeans(x[, c("Ozone", "Solar.R", "Wind")])
-#+end_src
+     #+begin_src R
+     s <- split(airquality, airquality$Month) # split according to month
+     lapply(s, function(x) colMeans(x[, c("Ozone", "Solar.R", "Wind")])
+     #+end_src
 
 ** Applying a function to every row/column
 
-- =apply= ::
+- =apply(dfrm, margin, fun, ...)= ::
+     Apply a function over the *margins* of an array.
 
-- Apply a function over the *margins* of an array
-  + Often used to apply a function to the rows or columns of a matrix
-  + Very useful if you wanna take *summaries* of matrices or higher-dimensional
-    arrays (such as array of matrices)
+     Often used to apply a function to the rows or columns of a matrix. Very
+     useful if you wanna take *summaries* of matrices or higher-dimensional
+     arrays (such as array of matrices).
 
-- apply(X, MARGIN, FUN, ...)
-  + X array (= vector which has dimensions attached to it)
-  + MARGIN is an integer vector which indicates which margins should be
-    "retained"
-  + FUN you want to apply to each of the margins
-  + ... for other arguments you wanna passed to the function
+     MARGIN is an integer vector which indicates which margins should be
+     "retained":
+     - *margin 1* = apply FUN *for each row* (dimension 1): preserve all the rows,
+       eliminate all columns, get a vector of the number of rows
+     - *margin 2* = *for each column* (dimension 2); first dimension has been
+       eliminated
 
-#+begin_src R
-x <- matrix(rnorm(200), 20, 10)
-apply(x, 2, mean)
-#+end_src
+     #+begin_src R
+     x <- matrix(rnorm(200), 20, 10)
+     apply(x, 2, mean)
+     #+end_src
 
-- margin 1 = apply FUN for each row (dimension 1); preserve all the rows,
-  eliminate all columns, get a vector of the number of rows
+     #+begin_src R
+     x <- matrix(rnorm(200), 20, 10)
+     apply(x, 1, quantile, probs=c(0.25, 0.75)) # no default value for `probs'
+     #+end_src
 
-- margin 2 = for each column (dimension 2); first dimension has been
-  eliminated
-
-- Shortcut functions (/much/ faster on large matrices):
-  + rowSums = apply(x, 1, sum)
-  + rowMeans = apply(x, 1, mean)
-  + colSums = apply(x, 2, sum)
-  + colMeans = apply(x, 2, mean)
-
-#+begin_src R
-x <- matrix(rnorm(200), 20, 10)
-apply(x, 1, quantile, probs = c(0.25, 0.75)) # no default value for `probs'
-#+end_src
+     Shortcut functions (/much/ faster on large matrices):
+     + =rowSums= = =apply(x, 1, sum)=
+     + =rowMeans= = =apply(x, 1, mean)=
+     + =colSums= = =apply(x, 2, sum)=
+     + =colMeans= = =apply(x, 2, mean)=
 
 ** Applying a function to groups of data
 
@@ -1102,15 +1343,19 @@ apply(x, 1, quantile, probs = c(0.25, 0.75)) # no default value for `probs'
      + Splits up a vector into little groups (such as men and women, indicated
        by a *factor*),
      + Applies a function to those groups and
-     + Brings the pieces back together
+     + Brings the pieces back together.
 
      Function may be anonymous.
 
      =Simplify = FALSE= to get back a list (instead of an array).
 
+     =tapply= is one of the most useful commands you'll ever need. For example,
+     to calculate statistics of =x= separately for each group identified in the
+     variable =f=:
+
      #+begin_src R
-     tapply(x, f, sum, simplify = FALSE) # = lapply(split(x, f), sum)
-     tapply(x, f, mean)
+     tapply(x, f, sum, simplify=FALSE)  # = lapply(split(x, f), sum)
+     tapply(x, f, mean)                 # = sapply(split(x, f), mean)
      tapply(x, f, length)
      #+end_src
 
@@ -1118,34 +1363,32 @@ apply(x, 1, quantile, probs = c(0.25, 0.75)) # no default value for `probs'
      Combines all the levels of the first factor with all the levels of the
      second factor.
 
+     You can also use =aggregate= to analyze groups defined by more than one
+     categorical variable (e.g., month and year).
+
 ** Applying a function to parallel vectors or lists
 
 - =mapply= ::
+     Apply a *function* to the elements of *multiple lists* in parallel
+     (multivariate version of =lapply=).
 
-- mapply is a multivariate version of =lapply=: applies a function in parallel
-  over a set of arguments
+     For example, apply a function over 2 lists, where the elements of the
+     first list go into one argument of the function, and the elements of the
+     second list go into another argument of the function
 
-- Apply a *function* to the elements of *multiple lists* in parallel
+     *Vectorizing a function* (that doesn't allow for vector arguments).
 
-  + For example, apply a function over 2 lists, where the elements of the
-    first list go into one argument of the function, and the elements of the
-    second list go into another argument of the function
+     #+begin_src R
+     mapply(rnorm, 1:3, 1:3, 2)         # fixed standard deviation
+     #+end_src
 
-- *Vectorizing a function* (that doesn't allow for vector arguments)
+     is the same as
 
-  #+begin_src R
-  mapply(rnorm, 1:5, 1:5, 2) # fixed standard deviation
-  #+end_src
-
-  is the same as
-
-  #+begin_src R
-  list(rnorm(1, 1, 2),
-       rnorm(2, 2, 2),
-       rnorm(3, 3, 2),
-       rnorm(4, 4, 2),
-       rnorm(5, 5, 2))
-  #+end_src
+     #+begin_src R
+     list(rnorm(1, 1, 2),
+          rnorm(2, 2, 2),
+          rnorm(3, 3, 2))
+     #+end_src
 
 ** Checking on and removing inconsistent values
 
@@ -1265,10 +1508,10 @@ These functions can take vector arguments.
 
      #+begin_src R
      r <- regexpr("... (.*) ...", string) # find all the date fields
-     m <- regmatches(string, r) # parse out
+     m <- regmatches(string, r)         # parse out
      dates <- sapply(m, function (x) x[2]) # extract the 2nd element of each list object
      dates <- as.Date(dates, "%B %d, %Y") # convert to date
-     hist(dates, "month", freq = TRUE) # aggregate the dates by month and give an histogram
+     hist(dates, "month", freq=TRUE)    # aggregate the dates by month and give an histogram
      #+end_src
 
 * 8. Probability
@@ -1318,8 +1561,11 @@ You cannot use functions from the base plotting system in a Lattice plot.
      Create a *scatter plot* (or another type of plot, depending on the class of
      the object being plotted).
 
+- =barplot= ::
+     Create a *bar chart* (analogue of an histogram for categorical data).
+
 - =hist= ::
-     Make an *histogram* showing the distribution of the numeric vector =x=.
+     Make an *histogram* showing the *distribution* of the numeric vector =x=.
 
 - =boxplot= ::
      Create a box plot of the =y= variable by the grouping variable =x= (usually a
@@ -1356,6 +1602,8 @@ You cannot use functions from the base plotting system in a Lattice plot.
 - =plot(x, y, type = "n")= ::
      Set up the plot window, but don't actually plot the data in there.
 
+     Note that you have =POSIXct= dates in your data frame... XXX
+
 - =plot(dfrm)= ::
      Create *multiple scatter plots* if your data frame contains more than
      2 columns.
@@ -1385,13 +1633,15 @@ You cannot use functions from the base plotting system in a Lattice plot.
 
 **** =hist=
 
+Histogram (*distribution* of data, *frequency* = exact number).
+
 Generic function: you can call it on different types of data. When you call
 =hist= on a =Date= object, it requires an interval ("day" / "week" / "month" /
 "year") in order to break it up into sequences.
 
 #+begin_src R :results graphics :file images/base-hist.png
 data(iris)
-hist(iris$Petal.Length, main="Histogram", col = "lightblue")
+hist(iris$Petal.Length, main="Histogram", col="lightblue") # shape of distribution
 #+end_src
 
 #+results:
@@ -1402,7 +1652,8 @@ for each category.
 
 #+begin_src R :results graphics :file images/base-hist-breaks.png
 data(iris)
-hist(iris$Petal.Length, breaks=seq(1,7,by=0.1), main="Histogram", col = "lightblue")
+hist(iris$Petal.Length, breaks=seq(1,7,by=0.1), main="Histogram", col="lightblue")
+                                        # much more fine-grained distribution
 #+end_src
 
 #+results:
@@ -1411,9 +1662,22 @@ hist(iris$Petal.Length, breaks=seq(1,7,by=0.1), main="Histogram", col = "lightbl
 Can you explain the peculiar pattern? Graphical representations of data are
 useful at identifying these sorts of artifacts...
 
+Report where the distribution is centered:
+
+#+begin_src R :results graphics :file images/base-hist-center.png
+data(iris)
+hist(iris$Petal.Length, breaks=100, main="Histogram", col="lightblue")
+meanValue <- mean(iris$Petal.Length)
+lines(rep(meanValue,100), seq(0,100,length=100), col="red", lwd=5)
+#+end_src
+
+#+results:
+[[file:images/base-hist-center.png]]
+
+
 #+begin_src R :results graphics :file images/base-plot-table.png
 data(iris)
-plot(table(iris$Petal.Length), main="Table", col = "blue")
+plot(table(iris$Petal.Length), main="Table", col="blue")
 #+end_src
 
 #+results:
@@ -1423,12 +1687,40 @@ Note -- In the table plot, x values with one occurrence (out of thousands)
 would be visible as one dot in the graphics. They don't in the histogram (as
 the line, being too small, would be on the x-axis itself).
 
+- Density plot (smoother histogram)
+
+  *Density* = percentage of observations
+
+  #+begin_src R
+  dens <- density(data$var) # smooth density function
+  plot(dens,lwd=3,col="blue")
+# or: lines(dens,lwd=3,col="blue") after hist plot
+  #+end_src
+
+  #+results:
+
+  Easy to compare multiple distributions:
+
+  #+begin_src R
+  # add another density
+  densMales <- density(data$var[which(data$sex==1)])
+  lines(densMales,lwd=3,col="orange")
+  #+end_src
+
+  #+results:
+
 **** =boxplot=
 
-=boxplot= draws plot summarizing
-- Median
+=boxplot= draws plot summarizing:
+
+- Median (wide line)
+
 - Quartiles (Q1, Q3)
-- Outliers --- by default, observations more than 1.5 * (Q3 - Q1) distant from
+
+- Lowest data still within 1.5 * IQR (= Q3 - Q1) of the lower quartile, and the
+  highest datum still within 1.5 * IQR of the upper quartile
+
+- Outliers --- By default, observations more than 1.5 * IQR distant from
   nearest quartile
 
 #+begin_src R :results graphics :file images/base-boxplot.png
@@ -1441,32 +1733,9 @@ boxplot(iris[,1:4], col=rainbow(4), main="Boxplot", ylab="Appropriate units")
 
 *** Add to an existing plot
 
-- =lines= ::
-     Add lines (connect all the dots).
-
-     #+begin_src R :eval no
-     lines(x, y)                        # all lines
-     #+end_src
-
-- =abline= ::
-     Add a straight line.
-
-     Plot the *regression line* of a scatter plot.
-
-     #+begin_src R :results graphics :file images/base-abline.png
-     data(iris)
-     attach(iris)
-     plot(Petal.Length, Petal.Width)
-     fit <- lm(Petal.Width ~ Petal.Length)
-     abline(fit, lwd=3, col="blue")
-     #+end_src
-
-     #+results:
-     [[file:images/base-abline.png]]
-
 - =points= ::
-     Add points (=col= for boundary color, =bg= for fill color, =pch= for plotting
-     character).
+     *Add points to a plot* (=col= for boundary color, =bg= for fill color, =pch= for
+     plotting character).
 
      Plot points *in groups separately*.
 
@@ -1474,9 +1743,9 @@ boxplot(iris[,1:4], col=rainbow(4), main="Boxplot", ylab="Appropriate units")
      data(iris)
      attach(iris)
      plot(Petal.Length, Petal.Width, type="n")
-     points(Petal.Length[Species == "setosa"], Petal.Width[Species == "setosa"], col = "red")
-     points(Petal.Length[Species == "versicolor"], Petal.Width[Species == "versicolor"], col = "green", pch = 19)
-     points(Petal.Length[Species == "virginica"], Petal.Width[Species == "virginica"], col = "blue", pch = 18)
+     points(Petal.Length[Species == "setosa"], Petal.Width[Species == "setosa"], col="red")
+     points(Petal.Length[Species == "versicolor"], Petal.Width[Species == "versicolor"], col="green", pch=19)
+     points(Petal.Length[Species == "virginica"], Petal.Width[Species == "virginica"], col="blue", pch=18)
      #+end_src
 
      #+results:
@@ -1498,6 +1767,31 @@ boxplot(iris[,1:4], col=rainbow(4), main="Boxplot", ylab="Appropriate units")
      #+results:
      [[file:images/base-points-distinguished-col-unclass.png]]
 
+- =lines= ::
+     *Add lines* (connect all the dots) *to a plot*.
+
+     #+begin_src R :eval no
+     lines(x, y)                        # all lines
+     #+end_src
+
+     Even better: option type="b" to plot method for /both/ *points and lines*.
+
+- =abline= ::
+     Add a straight line.
+
+     Plot the *regression line* of a scatter plot.
+
+     #+begin_src R :results graphics :file images/base-abline.png
+     data(iris)
+     attach(iris)
+     plot(Petal.Length, Petal.Width)
+     fit <- lm(Petal.Width ~ Petal.Length)
+     abline(fit, lwd=3, col="blue")
+     #+end_src
+
+     #+results:
+     [[file:images/base-abline.png]]
+
 
 - =text= ::
      Add text labels (inside the plot region).
@@ -1513,22 +1807,30 @@ boxplot(iris[,1:4], col=rainbow(4), main="Boxplot", ylab="Appropriate units")
 
      #+begin_src R :eval no
      title("plot")
-     plot(x, y, xlab = "Weight", ylab = "Height", main = "Scatterplot")
+     plot(x, y, xlab="Weight", ylab="Height", main="Scatterplot")
      #+end_src
 
 - =mtext= ::
      Add text to the margins.
+
+     #+begin_src R
+     mtext("Label on the X-axis", side=2, line=3, col="blue")
+     #+end_src
 
      Can be used to add multiline legends.
 
 - =axis= ::
      *Annotate the axis* (tick marks, labels).
 
+     #+begin_src R
+     axis(side=2, col="blue", col.axis="blue", las=1)
+     #+end_src
+
 - =legend= ::
      Add a legend.
 
      #+begin_src R :eval no
-     legend("topleft", legend = "Data", pch = 1)
+     legend("topleft", legend="Data", pch=1)
      #+end_src
 
 *** Changing graphical parameters
@@ -1551,8 +1853,8 @@ boxplot(iris[,1:4], col=rainbow(4), main="Boxplot", ylab="Appropriate units")
           Plotting color.
 
      + =las= ::
-          Orientation of the axis labels on the plot (=las = 2= will set the tick
-          labels to be perpendicular to the axis).
+          Orientation of the axis labels on the plot (=las=2= will set the tick
+          *labels* to be *perpendicular* to the axis).
 
      + =bg= ::
           Background color (default: =transparent=).
@@ -1561,7 +1863,7 @@ boxplot(iris[,1:4], col=rainbow(4), main="Boxplot", ylab="Appropriate units")
           Margin size (vector of 4 numbers, 1 per side).
 
           #+begin_src R :eval no
-          par(mar = c(2,2,1,1))
+          par(mar=c(2,2,1,1))
           #+end_src
 
      + =oma= ::
@@ -1573,7 +1875,7 @@ boxplot(iris[,1:4], col=rainbow(4), main="Boxplot", ylab="Appropriate units")
           row-wise).
 
           #+begin_src R :eval no
-          par(mfrow = c(2,1))           # 2 rows and 1 column
+          par(mfrow=c(2,1))           # 2 rows and 1 column
           plot(x, y)
           plot(x, z)
           #+end_src
@@ -1581,6 +1883,11 @@ boxplot(iris[,1:4], col=rainbow(4), main="Boxplot", ylab="Appropriate units")
      + =mfcol= ::
           Number of plots per row and per column on the canvas (filled
           column-wise).
+
+     + =bty= ::
+          Type of "box" which is drawn around plots.
+
+          A value of ="n"= suppresses the box (same as =axes=FALSE=).
 
      Look at the defaults:
 
@@ -1617,4 +1924,36 @@ See post of Antoine Lizée in
 http://stackoverflow.com/questions/5234117/how-to-drop-columns-by-name-in-a-data-frame
 for an excellent performance reporting.
 
+** Other graphics
+
+*** Pareto diagrams
+
+#+begin_src R :results graphics :file images/qcc-pareto.png
+library(qcc)
+data(iris)
+pareto.chart(table(iris[iris$Species=="setosa",]$Petal.Length))
+#+end_src
+
+#+results:
+[[file:images/qcc-pareto.png]]
+
 * 11. Linear regression and ANOVA
+
+https://www.zoology.ubc.ca/~schluter/R/fit-model/
+
+** Regression tree models
+
+- arbres de régression : la variable expliquée est de type numérique et il
+  s'agit de prédire une valeur la plus proche possible de la vraie valeur.
+
+http://www.statmethods.net/advstats/cart.html
+
+** Classification tree models
+
+- arbres de classification : la variable expliquée est de type nominale
+  (facteur). A chaque étape du partitionnement, on cherche à réduire l'impureté
+  totale des deux noeuds fils par rapport au noeud père.
+
+#+begin_src R
+rpart
+#+end_src
