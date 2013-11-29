@@ -1,7 +1,7 @@
 #+TITLE:     R quick reference card
 #+AUTHOR:    Fabrice Niessen
 #+EMAIL:     (concat "fniessen" at-sign "pirilampo.org")
-#+Time-stamp: <2013-11-27 Wed 12:17>
+#+Time-stamp: <2013-11-29 Fri 09:40>
 #+DESCRIPTION:
 #+KEYWORDS:
 #+LANGUAGE:  en
@@ -18,6 +18,20 @@ rank()
 Welcome to R reference card. It contains the reference documentation that
 describes how to perform *data analysis* using R.
 
+* Style
+
+- [[http://cran.r-project.org/doc/manuals/R-ints.html#R-coding-standards][R Internals manual, section 8. "R Coding Standards"]]
+
+- [[http://adv-r.had.co.nz/Style.html][R coding style guide]]
+
+- [[https://docs.google.com/document/d/1esDVxyWvH8AsX-VJa-8oqWaHLs4stGlIbk8kLc5VlII/edit?pli=1][R Coding Conventions]]
+
+- [[http://google-styleguide.googlecode.com/svn/trunk/Rguide.xml][Google's R Style Guide]]
+
+  =variable.name= (preferred, =variableName= accepted)
+  =FunctionName=
+  =kConstantName=
+
 * Emacs key bindings
 
 ** References
@@ -28,7 +42,7 @@ See
 
 ** Interacting with the ESS process
 
-- =C-c C-z= ::
+- =C-c C-z= :: XXX
      Jump back to script buffer.
 
 ** Sending code to the ESS process
@@ -50,7 +64,7 @@ Ohter evaluation commands:
 
 - =C-c C-n= ::
      Send the current *line* to the ESS process and *step* to the next line of
-     code.
+     code, skipping comments.
 
 - =C-c C-r= ::
      Send the current *region* to the ESS process.
@@ -316,9 +330,9 @@ library(help=lattice)
 ** Defining a function
 
 #+begin_src R
-myfunction <- function(x) {
-    y <- norm(100)
-    mean(y)
+MyFunction <- function(x) {
+  y <- norm(100)
+  mean(y)
 }
 #+end_src
 
@@ -416,7 +430,7 @@ They can be created from vectors by adding a dimension attribute:
 
 #+begin_src R :eval yes
 v <- 1:10
-dim(v) <- c(2,5)
+dim(v) <- c(2, 5)
 print(v)
 #+end_src
 
@@ -510,7 +524,7 @@ x %*% y                                 # true matrix multiplication
      Can extract nested elements of a list:
 
      #+begin_src R
-     x[[1]][[3]]                        # same as: x[[c(1,3)]]
+     x[[1]][[3]]                        # same as: x[[c(1, 3)]]
                                         # third element of the first element
      #+end_src
 
@@ -527,13 +541,13 @@ x %*% y                                 # true matrix multiplication
      Extract multiple elements of a list:
 
      #+begin_src R
-     x[c(1,3)]
+     x[c(1, 3)]
      #+end_src
 
      Remove the first column:
 
      #+begin_src R
-     df[,-1]
+     df[, -1]
      #+end_src
 
 ** Selecting list elements or data frame columns by name (subsetting)
@@ -559,8 +573,8 @@ x %*% y                                 # true matrix multiplication
 Matrices can be subsetted with =(row, col)= type indices.
 
 Indices can also be missing:
-- =x[i,]= :: Row i.
-- =x[,j]= :: Column j.
+- =x[i, ]= :: Row i.
+- =x[, j]= :: Column j.
 
 By default,
 
@@ -579,10 +593,10 @@ For command-line interactive work, the =*apply= functions are more useful.
 ** Conditional statements
 
 #+begin_src R
-if (<condition>) {
-    ## do something
+if (condition) {
+  ## do something
 } else {
-    ## do something else
+  ## do something else
 }
 #+end_src
 
@@ -590,9 +604,9 @@ Here, the entire =if/else= construct is all about assigning a value to =y=:
 
 #+begin_src R
 y <- if(x > 3) {                        # x must be a scalar here, not a vector
-    10
+  10
 } else {
-    0
+  0
 }
 #+end_src
 
@@ -600,11 +614,11 @@ y <- if(x > 3) {                        # x must be a scalar here, not a vector
 
 #+begin_src R
 for (i in 1:10) {                       # successive values from a sequence or vector
-    ## do something
+  ## do something
 }
 
 for (letter in x) {                     # take elements from the vector
-    ## do something
+  ## do something
 }
 #+end_src
 
@@ -622,7 +636,7 @@ for (letter in x) {                     # take elements from the vector
 
 #+begin_src R
 while (z >= 3 && z <= 10) {             # conditions are always evaluated from left to right
-    ## do something
+  ## do something
 }
 #+end_src
 
@@ -630,10 +644,10 @@ Initiate an infinite loop:
 
 #+begin_src R
 repeat {
-    ## do something
-    if(<condition>) {
-        break                           # only way to exit a repeat loop
-    }
+  ## do something
+  if(<condition>) {
+    break                               # only way to exit a repeat loop
+  }
 }
 #+end_src
 
@@ -653,11 +667,12 @@ it's allowed to run.
 
 - Functions are R objects of class =function=
 
-#+begin_src R
-f <- function(<arguments>) {
+  #+begin_src R
+  MyFunction <- function(arguments) {
+    # Function documentation.
     ## do something
-}
-#+end_src
+  }
+  #+end_src
 
 - Functions can be *passed as arguments to other functions*
 
@@ -766,11 +781,11 @@ f <- function(<arguments>) {
 
   #+begin_src R
   make.power <- function(n) {           # "constructor" function
-      pow <- function(x) {
-          x^n                           # n is a free variable (not defined
+    pow <- function(x) {
+      x^n                               # n is a free variable (not defined
                                         # inside pow)
-      }
-      pow                               # return function as return value
+    }
+    pow                                 # return function as return value
   }
   #+end_src
 
@@ -848,7 +863,7 @@ For *large datasets*:
   #+begin_src R
   tabSample <- read.table("datatable.txt", nrows=100)
   classes <- sapply(tabSample, class)
-  tabAll <- read.table("datatable.txt", colClasses=classes)
+  tabAll <- read.table("datatanble.txt", colClasses=classes)
                                         # save time on importing data
   #+end_src
 
@@ -858,7 +873,7 @@ R equivalent of Linux =cut= (to read only certain columns from a file):
 
 #+begin_src R
 whichCols <- rep("NULL", 28)            # assuming 28 colums
-whichCols[c(1,5,28)] <- NA
+whichCols[c(1, 5, 28)] <- NA
 df <- read.table(file, colClasses=whichCols)
 #+end_src
 
@@ -1012,6 +1027,13 @@ Packages:
      Give the min and the max (vector of length 2) of the observations (vector
      of numbers).
 
+     Useful to give the *extremes of a range to the =xlim= and =ylim= arguments* of
+     an axis.
+
+     #+begin_src R
+     yrange <- range(c(x1, x2, x3))
+     #+end_src
+
 - =summary()= ::
      Produce a summary of the object.
 
@@ -1083,7 +1105,7 @@ tolower(names(dfrm))
 #+end_src
 
 #+begin_src R
-splitNames <- strsplit(names(dfrm),"\\.") # split at period in names
+splitNames <- strsplit(names(dfrm), "\\.") # split at period in names
 firstElement <- function(x){x[1]}       # select the 1st component of the vector
 sapply(splitNames, firstElement)        # remove everything after the trailing dot
 #+end_src
@@ -1140,8 +1162,8 @@ booleans vectors) and then, simply reassign data:
 
 #+begin_src R
 tokeep <- !names(x) %in% c("remove1", "remove2")
-x <- x[,tokeep]                         # or...
-x <- x[,tokeep, drop=FALSE]             # you will need this option to avoid
+x <- x[, tokeep]                        # or...
+x <- x[, tokeep, drop=FALSE]            # you will need this option to avoid
                                         # the conversion to an atomic vector if
                                         # there is only one column left
 #+end_src
@@ -1151,15 +1173,15 @@ x <- x[,tokeep, drop=FALSE]             # you will need this option to avoid
 Indexing approach.
 
 #+begin_src R
-dfrm[dfrm$var1 > 0 & dfrm$var2 > 0, c(1,2)] # subset on var1 and var2
-dfrm[dfrm$var1 > 0 | dfrm$var2 > 0, c(1,2)] # subset on var1 or var2
+dfrm[dfrm$var1 > 0 & dfrm$var2 > 0, c(1, 2)] # subset on var1 and var2
+dfrm[dfrm$var1 > 0 | dfrm$var2 > 0, c(1, 2)] # subset on var1 or var2
 #+end_src
 
 Using the =subset= function.
 
 #+begin_src R
-subset(dfrm, select=c(var1,var2), subset=(var1 > 0 & var2 > 0))
-subset(dfrm, select=c(var1,var2), subset=(var1 > 0 | var2 > 0))
+subset(dfrm, select=c(var1, var2), subset=(var1 > 0 & var2 > 0))
+subset(dfrm, select=c(var1, var2), subset=(var1 > 0 | var2 > 0))
 #+end_src
 
 Use the =%in%= operator to compare a variable to a list of desired values.
@@ -1173,7 +1195,7 @@ Note that you do /not/ quote the column names.
 Get rid of any column that has one or more NAs.
 
 #+begin_src R
-df <- df[,colSums(is.na(df))==0]
+df <- df[, colSums(is.na(df))==0]
 #+end_src
 
 ** Merging data frames by commun column
@@ -1257,7 +1279,7 @@ lapply(1:4, runif, min=0, max=10)       # arguments passed through the `...'
 Extract the first column of each matrix of a list:
 
 #+begin_src R
-lapply(x, function(x) x[,1])
+lapply(x, function(x) x[, 1])
 #+end_src
 
 *** =sapply=
@@ -1502,6 +1524,10 @@ These functions can take vector arguments.
 - =gsub= ::
      Replace *all of the matches* with another string.
 
+     #+begin_src R
+     names(data)[i] <- gsub("-", ".", names(data)[i])
+     #+end_src
+
 - =regexec= ::
      Give the indices (list) for parenthesized sub-expressions.
 
@@ -1569,8 +1595,8 @@ You cannot use functions from the base plotting system in a Lattice plot.
      Make an *histogram* showing the *distribution* of the numeric vector =x=.
 
 - =boxplot= ::
-     Create a box plot of the =y= variable by the grouping variable =x= (usually a
-     =factor=).
+     Create a box-and-whisker plot of the =y= variable by the grouping variable =x=
+     (usually a =factor=).
 
 **** Create a scatter plot
 
@@ -1611,7 +1637,7 @@ You cannot use functions from the base plotting system in a Lattice plot.
 
      #+begin_src R :results graphics :file Rplots/base-multi-scatterplots.png
      data(iris)
-     plot(iris[,1:4], main="Multiple scatter plots",
+     plot(iris[, 1:4], main="Multiple scatter plots",
           col=as.integer(iris$Species)+1)
      #+end_src
 
@@ -1653,7 +1679,7 @@ for each category.
 
 #+begin_src R :results graphics :file Rplots/base-hist-breaks.png
 data(iris)
-hist(iris$Petal.Length, breaks=seq(1,7,by=0.1), main="Histogram", col="lightblue")
+hist(iris$Petal.Length, breaks=seq(1, 7, by=0.1), main="Histogram", col="lightblue")
                                         # much more fine-grained distribution
 #+end_src
 
@@ -1669,7 +1695,7 @@ Report where the distribution is centered:
 data(iris)
 hist(iris$Petal.Length, breaks=100, main="Histogram", col="lightblue")
 meanValue <- mean(iris$Petal.Length)
-lines(rep(meanValue,100), seq(0,100,length=100), col="red", lwd=5)
+lines(rep(meanValue, 100), seq(0, 100, length=100), col="red", lwd=5)
 #+end_src
 
 #+results:
@@ -1694,8 +1720,8 @@ the line, being too small, would be on the x-axis itself).
 
   #+begin_src R
   dens <- density(data$var) # smooth density function
-  plot(dens,lwd=3,col="blue")
-# or: lines(dens,lwd=3,col="blue") after hist plot
+  plot(dens, lwd=3, col="blue")
+# or: lines(dens, lwd=3, col="blue") after hist plot
   #+end_src
 
   #+results:
@@ -1705,7 +1731,7 @@ the line, being too small, would be on the x-axis itself).
   #+begin_src R
   # add another density
   densMales <- density(data$var[which(data$sex==1)])
-  lines(densMales,lwd=3,col="orange")
+  lines(densMales, lwd=3, col="orange")
   #+end_src
 
   #+results:
@@ -1726,7 +1752,7 @@ the line, being too small, would be on the x-axis itself).
 
 #+begin_src R :results graphics :file Rplots/base-boxplot.png
 data(iris)
-boxplot(iris[,1:4], col=rainbow(4), main="Boxplot", ylab="Appropriate units")
+boxplot(iris[, 1:4], col=rainbow(4), main="Boxplot", ylab="Appropriate units")
 #+end_src
 
 #+results:
@@ -1762,7 +1788,7 @@ boxplot(iris[,1:4], col=rainbow(4), main="Boxplot", ylab="Appropriate units")
 
      #+begin_src R :results graphics :file Rplots/base-points-distinguished-col-unclass.png
      data(iris)
-     plot(iris[,3:4], col=c("red","green","blue")[unclass(iris$Species)])
+     plot(iris[, 3:4], col=c("red", "green", "blue")[unclass(iris$Species)])
      #+end_src
 
      #+results:
@@ -1864,7 +1890,7 @@ boxplot(iris[,1:4], col=rainbow(4), main="Boxplot", ylab="Appropriate units")
           Margin size (vector of 4 numbers, 1 per side).
 
           #+begin_src R :eval no
-          par(mar=c(2,2,1,1))
+          par(mar=c(2, 2, 1, 1))
           #+end_src
 
      + =oma= ::
@@ -1876,7 +1902,7 @@ boxplot(iris[,1:4], col=rainbow(4), main="Boxplot", ylab="Appropriate units")
           row-wise).
 
           #+begin_src R :eval no
-          par(mfrow=c(2,1))           # 2 rows and 1 column
+          par(mfrow=c(2, 1))            # 2 rows and 1 column
           plot(x, y)
           plot(x, z)
           #+end_src
@@ -1932,7 +1958,7 @@ for an excellent performance reporting.
 #+begin_src R :results graphics :file Rplots/qcc-pareto.png
 library(qcc)
 data(iris)
-pareto.chart(table(iris[iris$Species=="setosa",]$Petal.Length))
+pareto.chart(table(iris[iris$Species=="setosa", ]$Petal.Length))
 #+end_src
 
 #+results:
