@@ -1,7 +1,7 @@
 #+TITLE:     R quick reference card
 #+AUTHOR:    Fabrice Niessen
 #+EMAIL:     (concat "fniessen" at-sign "pirilampo.org")
-#+Time-stamp: <2013-11-29 Fri 09:40>
+#+Time-stamp: <2014-01-08 Wed 11:23>
 #+DESCRIPTION:
 #+KEYWORDS:
 #+LANGUAGE:  en
@@ -26,13 +26,18 @@ describes how to perform *data analysis* using R.
 
 - [[https://docs.google.com/document/d/1esDVxyWvH8AsX-VJa-8oqWaHLs4stGlIbk8kLc5VlII/edit?pli=1][R Coding Conventions]]
 
-- [[http://google-styleguide.googlecode.com/svn/trunk/Rguide.xml][Google's R Style Guide]]
+- [[http://google-styleguide.googlecode.com/svn/trunk/Rguide.xml][Google R Style Guide]]
 
-  =variable.name= (preferred, =variableName= accepted)
-  =FunctionName=
+  =variable.name= (preferred, =variableName= accepted) \\
+  =FunctionName= \\
   =kConstantName=
 
 * Emacs key bindings
+
+Most of the shortcuts are actually mnemonic and hierarchical:
+- =C-c C-d= for =doc-map=,
+- =C-c C-e= for =extra-map=,
+- =C-c C-t= for =dev-map= which includes mostly [t]racebug.
 
 ** References
 
@@ -40,12 +45,16 @@ See
 - http://ess.r-project.org/refcard.pdf
 - http://www.damtp.cam.ac.uk/user/sje30/ess11/ess-slides.pdf
 
-** Interacting with the ESS process
+** Interacting with the iESS process
 
-- =C-c C-z= :: XXX
-     Jump back to script buffer.
+- =C-c C-z= ::
+     Switch to (most recent) *script buffer*.
 
-** Sending code to the ESS process
+- =C-u C-u C-y= ::
+     Yank cleaned commands (from saved region): remove all prompts and command
+     output, leaving only the commands.
+
+** Sending code to the iESS process
 
 Primary process interaction commands:
 
@@ -59,6 +68,9 @@ Primary process interaction commands:
 - =C-c C-c= ::
      Send the current *region or function or paragraph* to the ESS process and
      *step* to the next line of code.
+
+     If you group R statements into tasks, send the whole task to the R
+     process without selecting anything.
 
 Ohter evaluation commands:
 
@@ -82,10 +94,14 @@ Ohter evaluation commands:
 ** Editing objects and functions
 
 - =C-c C-e C-d= ::
-     *Edit* the code of an *object*.
+     *Edit* the code of an *object* (such as the function =lm=). Emacs opens a buffer
+     called =<user-login-name>.<object>.R=.
 
 - =C-c C-l= ::
-     Load a file into the ESS process using =source()=.
+     *(Re-)Load a file* into the ESS process using =source()=.
+
+- =C-c C-z= ::
+     Switch to the iESS process buffer.
 
 ** Help
 
@@ -416,6 +432,10 @@ denominator" class).
 
 - =names()= ::
      Show or give a name to each *element* of a vector.
+
+     #+begin_src R
+     names(df) <- tolower(names(df))
+     #+end_src
 
 - =length()= ::
 
@@ -845,10 +865,11 @@ Types of files:
      + =skip= (number of lines to skip from the beginning)
      + =comment.char=
      + =stringsAsFactors= (defaults to =TRUE=)
+     + =text= to *feed your data text representation* directly to =read.table=
 
-     #+begin_src R
-     data <- read.table("./data/file.txt", header=T, sep="\t", quote="")
-     #+end_src
+  #+begin_src R
+  data <- read.table("./data/file.txt", header=T, sep="\t", quote="")
+  #+end_src
 
 For *large datasets*:
 
@@ -895,6 +916,7 @@ df <- read.table(pipe("cut -f1,5,28 myFile.txt"))
      Read data from CSV file, create data frame.
      + =header= (defaults to =TRUE=)
      + =separator= (defaults to *comma*)
+     + =na.strings= ("NULL", defaults to "NA")
 
      #+begin_src R
      data <- read.csv("./data/file.csv")
@@ -1072,6 +1094,9 @@ Packages:
      table(dfrm$f1, dfrm$f2)            # look at the relationship between f1 and f2
      #+end_src
 
+- =ftable(f)= ::
+     3-dimensional contingency table.
+
 ** Testing categorical variables for independence
 
 #+begin_src R
@@ -1218,7 +1243,7 @@ df <- df[, colSums(is.na(df))==0]
 Merge data sets.
 
 #+begin_src R
-mergedData <- merge(df1, df2, by.x="id1", by.y="id2", all=TRUE)
+merged.data <- merge(df1, df2, by.x="id1", by.y="id2", all=TRUE)
 #+end_src
 
 ** Converting
@@ -1657,6 +1682,11 @@ You cannot use functions from the base plotting system in a Lattice plot.
      | -0.117569784133002 |                  1 | -0.42844010433054 | -0.366125932536439 |
      |  0.871753775886583 |  -0.42844010433054 |                 1 |  0.962865431402796 |
      |  0.817941126271576 | -0.366125932536439 | 0.962865431402796 |                  1 |
+
+**** TODO =barplot=
+
+See http://onertipaday.blogspot.be/2007/05/barplots-of-two-sets.html for
+barplot with figures above the bars.
 
 **** =hist=
 
