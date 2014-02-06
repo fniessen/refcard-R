@@ -1,7 +1,7 @@
 #+TITLE:     R quick reference card
 #+AUTHOR:    Fabrice Niessen
 #+EMAIL:     (concat "fniessen" at-sign "pirilampo.org")
-#+Time-stamp: <2014-01-08 Wed 11:23>
+#+Time-stamp: <2014-02-06 Thu 11:43>
 #+DESCRIPTION:
 #+KEYWORDS:
 #+LANGUAGE:  en
@@ -9,7 +9,7 @@
 
 #+PROPERTY:  eval no
 #+PROPERTY:  exports both
-#+SETUPFILE: ~/src/org-style/bigblow-local-abs.setup
+#+SETUPFILE: ~/src/org-style/setup/bigblow-pirilampo.setup
 
 rank()
 
