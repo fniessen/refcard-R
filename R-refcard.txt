@@ -1,7 +1,7 @@
 #+TITLE:     R quick reference card
 #+AUTHOR:    Fabrice Niessen
 #+EMAIL:     (concat "fniessen" at-sign "pirilampo.org")
-#+Time-stamp: <2014-02-06 Thu 11:43>
+#+Time-stamp: <2014-03-28 Fri 15:40>
 #+DESCRIPTION:
 #+KEYWORDS:
 #+LANGUAGE:  en
@@ -10,8 +10,6 @@
 #+PROPERTY:  eval no
 #+PROPERTY:  exports both
 #+SETUPFILE: ~/src/org-style/setup/bigblow-pirilampo.setup
-
-rank()
 
 * R reference card
 
@@ -448,7 +446,9 @@ They are constructed /column-wise/ (vector inserted by column).
 
 They can be created from vectors by adding a dimension attribute:
 
-#+begin_src R :eval yes
+# XXX Emacs infloops during export when :eval is set to yes
+
+#+begin_src R :eval no
 v <- 1:10
 dim(v) <- c(2, 5)
 print(v)
@@ -460,7 +460,7 @@ print(v)
 
 They can be created by /column-binding/ or /row-binding/.
 
-- =matrix(nrow=x, ncol=y)= ::
+- matrix(nrow=x, ncol=y) ::
      Create an empty matrix.
 
 - =cbind()= ::
@@ -1800,9 +1800,12 @@ boxplot(iris[, 1:4], col=rainbow(4), main="Boxplot", ylab="Appropriate units")
      data(iris)
      attach(iris)
      plot(Petal.Length, Petal.Width, type="n")
-     points(Petal.Length[Species == "setosa"], Petal.Width[Species == "setosa"], col="red")
-     points(Petal.Length[Species == "versicolor"], Petal.Width[Species == "versicolor"], col="green", pch=19)
-     points(Petal.Length[Species == "virginica"], Petal.Width[Species == "virginica"], col="blue", pch=18)
+     points(Petal.Length[Species == "setosa"], Petal.Width[Species == "setosa"],
+            col="red")
+     points(Petal.Length[Species == "versicolor"], Petal.Width[Species == "versicolor"],
+            col="green", pch=19)
+     points(Petal.Length[Species == "virginica"], Petal.Width[Species == "virginica"],
+            col="blue", pch=18)
      #+end_src
 
      #+results:
