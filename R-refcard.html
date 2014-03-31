@@ -1012,7 +1012,7 @@ rm(list=ls())                      <span style=
 
         <div class="outline-text-3" id="text-6-7">
           <dl class="org-dl">
-            <dt>==</dt>
+            <dt><code>==</code></dt>
 
             <dd>Compare.</dd>
 
@@ -1794,7 +1794,8 @@ y <span style="color: #D0372D;">&lt;-</span> <span style=
             <li>Arguments to functions are evaluated <i>lazily</i> (only when
             needed to be evaluated</li>
 
-            <li>The =…= argument indicates a variable number of arguments
+            <li>The <code>...</code> argument indicates a variable number of
+            arguments
 
               <ul class="org-ul">
                 <li>Used when extending a function and you don’t want to copy
@@ -1806,8 +1807,8 @@ y <span style="color: #D0372D;">&lt;-</span> <span style=
                 <li>Used when the number of arguments cannot be known in
                 advance (see <code>paste</code> function)</li>
 
-                <li>Any argument that appears <i>after</i> the =…= must be
-                named explicitly and cannot be partially matched</li>
+                <li>Any argument that appears <i>after</i> the <code>...</code>
+                must be named explicitly and cannot be partially matched</li>
               </ul>
             </li>
           </ul>
@@ -1825,8 +1826,8 @@ y <span style="color: #D0372D;">&lt;-</span> <span style=
             symbol/value pairs) to bind the appropriate value to a symbol:
 
               <ul class="org-ul">
-                <li>Search the global environment =.GlobalEnv= (always the
-                first)</li>
+                <li>Search the global environment <code>.GlobalEnv</code>
+                (always the first)</li>
 
                 <li>Search the namespaces of each of the packages on the search
                 list
@@ -2168,7 +2169,7 @@ read.csv(file.choose())            <span style=
               <ul class="org-ul">
                 <li><code>header</code> (defaults to <code>TRUE</code>)</li>
 
-                <li><code>separator</code> (defaults to =;=)</li>
+                <li><code>separator</code> (defaults to <code>;</code>)</li>
               </ul>
             </dd>
           </dl>
@@ -2877,7 +2878,8 @@ x[ind] <span style="color: #D0372D;">&lt;-</span> lapply(x[ind], factor)
 
               <li>function <code>FUN</code></li>
 
-              <li>other arguments you wanna pass to the function =…=</li>
+              <li>other arguments you wanna pass to the function
+              <code>...</code></li>
             </ul>
 
             <div class="org-src-container">
@@ -3217,7 +3219,7 @@ list(rnorm(1, 1, 2),
 
             <dd>Character classes.</dd>
 
-            <dt>=.=</dt>
+            <dt><code>.</code></dt>
 
             <dd>Any character.</dd>
 
@@ -3229,7 +3231,7 @@ list(rnorm(1, 1, 2),
 
             <dd>Subexpressions (alternatives or “remember” matched text).</dd>
 
-            <dt>=?=</dt>
+            <dt><code>?</code></dt>
 
             <dd>Optional.</dd>
 
@@ -3248,8 +3250,8 @@ list(rnorm(1, 1, 2),
               the <i>longest</i> possible string that satisfies the regular
               expression.
 
-              <p>The greediness can be turned off with the =?= metacharacter
-              (make the regex “lazy”), as in:</p>
+              <p>The greediness can be turned off with the <code>?</code>
+              metacharacter (make the regex “lazy”), as in:</p>
 
               <div class="org-src-container">
                 <pre class="src src-R">
@@ -3875,8 +3877,8 @@ lines(x, y)                        <span style=
 </pre>
                 </div>
 
-                <p>Even better: option type="b” to plot method for <i>both</i>
-                <b>points and lines</b>.</p>
+                <p>Even better: option <code>type="b"</code> to plot method for
+                <i>both</i> <b>points and lines</b>.</p>
               </dd>
 
               <dt><code>abline</code></dt>
@@ -4062,7 +4064,7 @@ plot(x, z)
                   <dd>
                     Type of “box” which is drawn around plots.
 
-                    <p>A value of ="n"= suppresses the box (same as
+                    <p>A value of <code>"n"</code> suppresses the box (same as
                     <code>axes=FALSE</code>).</p>
                   </dd>
                 </dl>
@@ -4076,7 +4078,7 @@ par(<span style="color: #036A07;">"lty"</span>)
                 </div>
               </dd>
 
-              <dt>=?Devices=</dt>
+              <dt><code>?Devices</code></dt>
 
               <dd>
                 List graphical devices.

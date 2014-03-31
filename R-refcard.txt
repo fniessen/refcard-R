@@ -1,7 +1,7 @@
 #+TITLE:     R quick reference card
 #+AUTHOR:    Fabrice Niessen
 #+EMAIL:     (concat "fniessen" at-sign "pirilampo.org")
-#+Time-stamp: <2014-03-28 Fri 15:40>
+#+Time-stamp: <2014-03-31 Mon 16:32>
 #+DESCRIPTION:
 #+KEYWORDS:
 #+LANGUAGE:  en
@@ -26,16 +26,16 @@ describes how to perform *data analysis* using R.
 
 - [[http://google-styleguide.googlecode.com/svn/trunk/Rguide.xml][Google R Style Guide]]
 
-  =variable.name= (preferred, =variableName= accepted) \\
-  =FunctionName= \\
-  =kConstantName=
+  ~variable.name~ (preferred, ~variableName~ accepted) \\
+  ~FunctionName~ \\
+  ~kConstantName~
 
 * Emacs key bindings
 
 Most of the shortcuts are actually mnemonic and hierarchical:
-- =C-c C-d= for =doc-map=,
-- =C-c C-e= for =extra-map=,
-- =C-c C-t= for =dev-map= which includes mostly [t]racebug.
+- ~C-c C-d~ for ~doc-map~,
+- ~C-c C-e~ for ~extra-map~,
+- ~C-c C-t~ for ~dev-map~ which includes mostly [t]racebug.
 
 ** References
 
@@ -45,10 +45,10 @@ See
 
 ** Interacting with the iESS process
 
-- =C-c C-z= ::
+- ~C-c C-z~ ::
      Switch to (most recent) *script buffer*.
 
-- =C-u C-u C-y= ::
+- ~C-u C-u C-y~ ::
      Yank cleaned commands (from saved region): remove all prompts and command
      output, leaving only the commands.
 
@@ -56,14 +56,14 @@ See
 
 Primary process interaction commands:
 
-- =C-RET= ::
+- ~C-RET~ ::
      Send the current *region or line* to the ESS process and *step* to the next
      line of code.
 
-- =C-M-x= ::
+- ~C-M-x~ ::
      Send the current *region or function or paragraph* to the ESS process.
 
-- =C-c C-c= ::
+- ~C-c C-c~ ::
      Send the current *region or function or paragraph* to the ESS process and
      *step* to the next line of code.
 
@@ -72,69 +72,69 @@ Primary process interaction commands:
 
 Ohter evaluation commands:
 
-- =C-c C-n= ::
+- ~C-c C-n~ ::
      Send the current *line* to the ESS process and *step* to the next line of
      code, skipping comments.
 
-- =C-c C-r= ::
+- ~C-c C-r~ ::
      Send the current *region* to the ESS process.
 
-- =C-c C-f= ::
+- ~C-c C-f~ ::
      Send the current *function* to the ESS process.
 
-- =C-c C-p= ::
+- ~C-c C-p~ ::
      Send the current *paragraph* (defined as continuous set of lines surrounded
      by a blank line at top and bottom) to the ESS process.
 
-- =C-c C-b= ::
+- ~C-c C-b~ ::
      Send the current *buffer* to the ESS process.
 
 ** Editing objects and functions
 
-- =C-c C-e C-d= ::
-     *Edit* the code of an *object* (such as the function =lm=). Emacs opens a buffer
-     called =<user-login-name>.<object>.R=.
+- ~C-c C-e C-d~ ::
+     *Edit* the code of an *object* (such as the function ~lm~). Emacs opens a buffer
+     called ~<user-login-name>.<object>.R~.
 
-- =C-c C-l= ::
-     *(Re-)Load a file* into the ESS process using =source()=.
+- ~C-c C-l~ ::
+     *(Re-)Load a file* into the ESS process using ~source()~.
 
-- =C-c C-z= ::
+- ~C-c C-z~ ::
      Switch to the iESS process buffer.
 
 ** Help
 
 Help at your fingertips:
 
-- =C-c C-d C-e= ::
-     Describe object at point (press =C-e= to cycle).
+- ~C-c C-d C-e~ ::
+     Describe object at point (press ~C-e~ to cycle).
 
-- =C-c C-d C-a= ::
+- ~C-c C-d C-a~ ::
      ess-display-help-apropos
 
-- =C-c C-d C-d= ::
+- ~C-c C-d C-d~ ::
      ess-display-help-on-object
 
-- =C-c C-d C-v= ::
+- ~C-c C-d C-v~ ::
      ess-display-vignettes
 
-- =C-c C-d C-w= ::
+- ~C-c C-d C-w~ ::
      ess-help-web-search
 
-- =C-c C-d i= ::
+- ~C-c C-d i~ ::
      ess-display-package-index
 
-- =C-c C-d o= ::
+- ~C-c C-d o~ ::
      ess-display-demos
 
 ** Reading help files
 
-- =C-c C-v= ::
+- ~C-c C-v~ ::
      Display *R help* on an object (which has an help file) *in Emacs*, for example
      for the function call you're currently writing.
 
 Then:
 
-- =l= ::
+- ~l~ ::
      *Run example* in R help page, *line by line*.
 
 ** Completion
@@ -156,55 +156,55 @@ Tracebug highlighting of errors.
 
 **** Breakpoints
 
-- =C-c C-t C-b= ::
+- ~C-c C-t C-b~ ::
      Set breakpoint.
 
-- =C-c C-t B= ::
+- ~C-c C-t B~ ::
      Set conditional breakpoint.
 
-- =C-c C-t k= ::
+- ~C-c C-t k~ ::
      Kill breakpoint.
 
 **** General debugging
 
-- =C-c `= ::
+- ~C-c `~ ::
      Show R traceback (display source locations).
 
-- =C-c ~= ::
+- ~C-c ~~ ::
      Show call stack (display source locations).
 
-- =C-c C-t C-e= ::
+- ~C-c C-t C-e~ ::
      Toggle error action (repeat to cycle).
 
-- =C-c C-t C-d= ::
+- ~C-c C-t C-d~ ::
      Flag for debugging.
 
-- =C-c C-t C-u= ::
+- ~C-c C-t C-u~ ::
      Unflag for debugging.
 
-- =C-c C-t C-w= ::
+- ~C-c C-t C-w~ ::
      Use "ess-watch" while debugging to see variables change at each step, or
      even just at the prompt.
 
 **** Navigation to errors
 
-- =M-g n= ::
+- ~M-g n~ ::
      Next error.
 
-- =M-g p= ::
+- ~M-g p~ ::
      Previous error.
 
 **** Tracebug visual debugger
 
 *** ESS developer
 
-- =C-c C-t C-a= ::
+- ~C-c C-t C-a~ ::
      Add a package to your development list.
 
-- =C-c C-t C-t= ::
+- ~C-c C-t C-t~ ::
      Toggle developer mode on and off.
 
-- =C-c C-t l= ::
+- ~C-c C-t l~ ::
      ess-developer-load-package (this one is in ESS dev as yet)
 
 ** Emacs general functionality
@@ -253,9 +253,9 @@ versions of R functions. C-c C-e l sends same back.
 * 0. Overview of R
 
 R system that you download from [[http://cran.r-project.org/][CRAN]]:
-- =base= package
-- Familiar packages (=utils=, =datasets=, ...)
-- Recommended packages (=lattice=, ...)
+- ~base~ package
+- Familiar packages (~utils~, ~datasets~, ...)
+- Recommended packages (~lattice~, ...)
 - 4,000 other packages
 
 [[http://cran.r-project.org/doc/contrib/Short-refcard.pdf][R Reference Card]]
@@ -274,7 +274,7 @@ package ? lattice
 library(help=lattice)
 #+end_src
 
-- =args(function)= ::
+- ~args(function)~ ::
      Look at the arguments of a FUNCTION.
 
 - Google
@@ -285,26 +285,26 @@ library(help=lattice)
 
 ** Print something
 
-- =print(object)= ::
+- ~print(object)~ ::
      Explicitly print out an object.
 
-- =cat()= ::
+- ~cat()~ ::
      Concatenate together a set of strings and prints out the concatanated
      string (to a file or to the console).
 
 ** Setting variables
 
-- =<-= ::
+- ~<-~ ::
      Assign a value to a variable.
 
 ** Listing variables
 
-- =ls()=, =ls.str()= ::
+- ~ls()~, ~ls.str()~ ::
      Show objects in my workspace.
 
 ** Deleting variables
 
-- =rm()= ::
+- ~rm()~ ::
      Remove objects from your workspace.
 
      #+begin_src R
@@ -313,32 +313,32 @@ library(help=lattice)
 
 ** Computing basic statistics
 
-- =mean()= ::
+- ~mean()~ ::
      Take the mean.
 
-- =median()= ::
+- ~median()~ ::
      Take the median.
 
-- =cor()= ::
+- ~cor()~ ::
      Correlation function.
 
 ** Creating sequences
 
-- =n:m= ::
-     Create an *sequence of* integers from =n= to =m= (=n= < =m= or =n= > =m=).
+- ~n:m~ ::
+     Create an *sequence of* integers from ~n~ to ~m~ (~n~ < ~m~ or ~n~ > ~m~).
 
-- =seq(from, to, len)= ::
-     Create a *sequence of* =len= equally spaced fractional numbers.
+- ~seq(from, to, len)~ ::
+     Create a *sequence of* ~len~ equally spaced fractional numbers.
 
-- =rep(x, times)= ::
+- ~rep(x, times)~ ::
      Create a series of repeated values.
 
 ** Operators
 
-- == ::
+- ~==~ ::
      Compare.
 
-- =%in%= ::
+- ~%in%~ ::
      Test membership.
 
 ** Defining a function
@@ -352,7 +352,7 @@ MyFunction <- function(x) {
 
 * 3. Navigating the software
 
-- =library(package)= ::
+- ~library(package)~ ::
      Load PACKAGE.
 
      #+begin_src R
@@ -360,10 +360,10 @@ MyFunction <- function(x) {
      airquality
      #+end_src
 
-- =data(dataset)= ::
+- ~data(dataset)~ ::
      Load DATASET.
 
-- =source("file.R")= ::
+- ~source("file.R")~ ::
      Evaluate R code file.
 
 ** Running a batch script
@@ -401,16 +401,16 @@ What is data?
 
 | Class     | Example                     |
 |-----------+-----------------------------|
-| =logical=   | =TRUE= / =FALSE=                |
-| =integer=   | =1L= (with explicit =L= suffix) |
-| =numeric=   | =0.5= or =1= (/real/ numbers)     |
-| =complex=   | =1+0i=                        |
-| =character= | "hello" (= lowest class)    |
+| ~logical~   | ~TRUE~ / ~FALSE~                |
+| ~integer~   | ~1L~ (with explicit ~L~ suffix) |
+| ~numeric~   | ~0.5~ or ~1~ (/real/ numbers)     |
+| ~complex~   | ~1+0i~                        |
+| ~character~ | "hello" (= lowest class)    |
 
-- =class()= ::
+- ~class()~ ::
      Show the class of the object.
 
-- =unclass(vector)= ::
+- ~unclass(vector)~ ::
      Strip out the class (see factors).
 
 ** Vectors
@@ -421,25 +421,25 @@ When objects of different classes are mixed in a vector, /coercion/ occurs behin
 the scene so that every element is of the same class (the "lowest common
 denominator" class).
 
-- =c()= ::
+- ~c()~ ::
      Create a vector of objects (that is, *concatenate* or combine things
      together).
 
-- =vector(class, length)= ::
+- ~vector(class, length)~ ::
      Create an empty vector.
 
-- =names()= ::
+- ~names()~ ::
      Show or give a name to each *element* of a vector.
 
      #+begin_src R
      names(df) <- tolower(names(df))
      #+end_src
 
-- =length()= ::
+- ~length()~ ::
 
 ** Matrices
 
-Matrices are *vectors with 2 dimensions* attached to them (see =dimension=
+Matrices are *vectors with 2 dimensions* attached to them (see ~dimension~
 attribute).
 
 They are constructed /column-wise/ (vector inserted by column).
@@ -463,17 +463,17 @@ They can be created by /column-binding/ or /row-binding/.
 - matrix(nrow=x, ncol=y) ::
      Create an empty matrix.
 
-- =cbind()= ::
-     Column-bind (if the row order matches; otherwise, use =merge=).
+- ~cbind()~ ::
+     Column-bind (if the row order matches; otherwise, use ~merge~).
 
-- =rbind()= ::
+- ~rbind()~ ::
      Row-bind.
 
 ** Arrays
 
 Arrays are *n-dimensional matrices*.
 
-- =array()= ::
+- ~array()~ ::
      Create an array.
 
 ** Lists
@@ -482,7 +482,7 @@ Arrays are *n-dimensional matrices*.
 
 The indexes of the elements of a list have double brackets around them.
 
-- =list()= ::
+- ~list()~ ::
      Construct a list.
 
 ** Factors
@@ -493,10 +493,10 @@ self-describing codes for /labels/ (such as "male" and "female", or "low",
 
 Unordered or ordered.
 
-- =factor(character vector)= ::
+- ~factor(character vector)~ ::
      Create a factor variable (with levels by alphabetical order).
 
-- =levels(x)= ::
+- ~levels(x)~ ::
      Return the value of the levels.
 
 ** Data frames
@@ -506,17 +506,17 @@ different class: special type of list (of columns) where every element has the
 same length.
 
 - Row = observation, column = variable
-- Special attribute =row.names= (every row has a name, or defaults to a
+- Special attribute ~row.names~ (every row has a name, or defaults to a
   sequence of integers)
-- Most often created by calling =read.table()= or =read.csv()=
+- Most often created by calling ~read.table()~ or ~read.csv()~
 
-- =data.frame()= ::
+- ~data.frame()~ ::
      Create a data frame.
 
-- =data.matrix()= ::
+- ~data.matrix()~ ::
      Convert a data frame to a /numeric/ matrix (forced *coercion*!).
 
-- =names()= ::
+- ~names()~ ::
      Tell the names of each *column* included in the data frame.
 
 ** Vectorized operations (recycling rule)
@@ -536,7 +536,7 @@ x %*% y                                 # true matrix multiplication
 
 ** Selecting list elements or data frame columns by position (subsetting)
 
-- =[[= ::
+- ~[[~ ::
      Extract a *single element* of a list (or a single column of a data frame).
 
      Can be used with /computed/ indices.
@@ -554,7 +554,7 @@ x %*% y                                 # true matrix multiplication
      x[["a", exact=FALSE]]              # instead of: x[["aardvark"]]
      #+end_src
 
-- =[= ::
+- ~[~ ::
      Return an object of the *same class* as the original: a list of elements (or
      a data frame built from multiple columns).
 
@@ -572,7 +572,7 @@ x %*% y                                 # true matrix multiplication
 
 ** Selecting list elements or data frame columns by name (subsetting)
 
-- =$= ::
+- ~$~ ::
      Extract a single element of a list (or a single column of a data frame)
      *by name*: you don't have to remember where the element is in the list.
 
@@ -590,11 +590,11 @@ x %*% y                                 # true matrix multiplication
 
 ** Selecting data frame columns by position (subsetting)
 
-Matrices can be subsetted with =(row, col)= type indices.
+Matrices can be subsetted with ~(row, col)~ type indices.
 
 Indices can also be missing:
-- =x[i, ]= :: Row i.
-- =x[, j]= :: Column j.
+- ~x[i, ]~ :: Row i.
+- ~x[, j]~ :: Column j.
 
 By default,
 
@@ -603,12 +603,12 @@ By default,
 
 - a single column or a single row is retrieved as a vector, not as a matrix.
 
-This can be turned off by setting =drop = FALSE= (don't drop the dimension).
+This can be turned off by setting ~drop = FALSE~ (don't drop the dimension).
 
 * Control structures
 
 Control structures mentioned here are primarily useful for writing programs.
-For command-line interactive work, the =*apply= functions are more useful.
+For command-line interactive work, the ~*apply~ functions are more useful.
 
 ** Conditional statements
 
@@ -620,7 +620,7 @@ if (condition) {
 }
 #+end_src
 
-Here, the entire =if/else= construct is all about assigning a value to =y=:
+Here, the entire ~if/else~ construct is all about assigning a value to ~y~:
 
 #+begin_src R
 y <- if(x > 3) {                        # x must be a scalar here, not a vector
@@ -671,21 +671,21 @@ repeat {
 }
 #+end_src
 
-- =break= ::
+- ~break~ ::
      Break the iteration of a loop.
 
-- =next= ::
+- ~next~ ::
      Skip an iteration of a loop.
 
-- =return= ::
+- ~return~ ::
      Exit an entire function and return a given value.
 
-Better to use a =for= loop with an hard limit on the number of iterations that
+Better to use a ~for~ loop with an hard limit on the number of iterations that
 it's allowed to run.
 
 * Writing functions
 
-- Functions are R objects of class =function=
+- Functions are R objects of class ~function~
 
   #+begin_src R
   MyFunction <- function(arguments) {
@@ -714,7 +714,7 @@ it's allowed to run.
 
 - The /formal arguments/ are the arguments included in the function definition
 
-- =formals()= returns a list of all the formal arguments of a function
+- ~formals()~ returns a list of all the formal arguments of a function
 
 - Arguments can be matched *positionally* or *by name*
 
@@ -734,33 +734,33 @@ it's allowed to run.
   2. Check for a partial match
   3. Check for a positional match
 
-- When defining a function, you can also set an argument value to =NULL= (there
+- When defining a function, you can also set an argument value to ~NULL~ (there
   is nothing there)
 
 - Arguments to functions are evaluated /lazily/ (only when needed to be
   evaluated
 
-- The =...= argument indicates a variable number of arguments
+- The ~...~ argument indicates a variable number of arguments
 
   + Used when extending a function and you don't want to copy the entire
     argument list of the original function
 
-  + Used by generic functions (such as =mean=) so that extra arguments can be
+  + Used by generic functions (such as ~mean~) so that extra arguments can be
     passed to methods
 
-  + Used when the number of arguments cannot be known in advance (see =paste=
+  + Used when the number of arguments cannot be known in advance (see ~paste~
     function)
 
-  + Any argument that appears /after/ the =...= must be named explicitly and
+  + Any argument that appears /after/ the ~...~ must be named explicitly and
     cannot be partially matched
 
 ** Scoping rules for R
 
-- R searches through the /search list/ (a series of =environments=, an environment
+- R searches through the /search list/ (a series of ~environments~, an environment
   being a collection of symbol/value pairs) to bind the appropriate value to a
   symbol:
 
-  + Search the global environment =.GlobalEnv= (always the first)
+  + Search the global environment ~.GlobalEnv~ (always the first)
 
   + Search the namespaces of each of the packages on the search list
 
@@ -768,7 +768,7 @@ it's allowed to run.
     search()                            # find the search list
     #+end_src
 
-  + Search the =base= package (always the last element)
+  + Search the ~base~ package (always the last element)
 
 - Last loaded package gets put in position 2 of the search list and
   everything else gets shifted
@@ -777,7 +777,7 @@ it's allowed to run.
 
 - R uses *lexical* (or /static/) *scoping* (instead of /dynamic scoping/): /the value
   of free variables are searched for in the environment in which the function/
-  /was/ *defined* (until the empty environment, after the =base= package)
+  /was/ *defined* (until the empty environment, after the ~base~ package)
 
   + With *dynamic* scoping, the value of free variables is looked up in the
     environment from which the function was *called* (/calling environment/ =
@@ -835,14 +835,14 @@ Types of files:
 
 ** Getting the current working directory
 
-- =getwd()= ::
+- ~getwd()~ ::
      Figure out what your *working directory* is.
 
 ** Creating, opening and closing connections
 
-- =file()= ::
-     + =description= is the name of the file
-     + =open= is a code (read-only, write, append)
+- ~file()~ ::
+     + ~description~ is the name of the file
+     + ~open~ is a code (read-only, write, append)
 
      #+begin_src R
      con <- file("./data/cameras.csv", "r")
@@ -852,20 +852,20 @@ Types of files:
 
 ** Reading tabular data files
 
-- =read.table(file)= ::
+- ~read.table(file)~ ::
      Read tabular data file, create data frame.
 
      Important arguments:
-     + =file=
-     + =header=
-     + =sep= (defaults to the *space*)
-     + =quote=
-     + =colClasses= (class of each column, also used to *skip columns*)
-     + =nrows=
-     + =skip= (number of lines to skip from the beginning)
-     + =comment.char=
-     + =stringsAsFactors= (defaults to =TRUE=)
-     + =text= to *feed your data text representation* directly to =read.table=
+     + ~file~
+     + ~header~
+     + ~sep~ (defaults to the *space*)
+     + ~quote~
+     + ~colClasses~ (class of each column, also used to *skip columns*)
+     + ~nrows~
+     + ~skip~ (number of lines to skip from the beginning)
+     + ~comment.char~
+     + ~stringsAsFactors~ (defaults to ~TRUE~)
+     + ~text~ to *feed your data text representation* directly to ~read.table~
 
   #+begin_src R
   data <- read.table("./data/file.txt", header=T, sep="\t", quote="")
@@ -873,9 +873,9 @@ Types of files:
 
 For *large datasets*:
 
-- Set =comment.char= = "" if there are no comments in your file.
+- Set ~comment.char~ = "" if there are no comments in your file.
 
-- Use the =colClasses= argument.
+- Use the ~colClasses~ argument.
 
   Quick and dirty way to figure out the classes of each column (if there aren't
   any classes that you want to change from their defaults): read in the first
@@ -888,9 +888,9 @@ For *large datasets*:
                                         # save time on importing data
   #+end_src
 
-- Set =nrows= helps with memory usage.
+- Set ~nrows~ helps with memory usage.
 
-R equivalent of Linux =cut= (to read only certain columns from a file):
+R equivalent of Linux ~cut~ (to read only certain columns from a file):
 
 #+begin_src R
 whichCols <- rep("NULL", 28)            # assuming 28 colums
@@ -899,7 +899,7 @@ df <- read.table(file, colClasses=whichCols)
 #+end_src
 
 To call some shell script to do the column extraction and then using
-=read.table= on its output:
+~read.table~ on its output:
 
 #+begin_src R
 df <- read.table(pipe("cut -f1,5,28 myFile.txt"))
@@ -907,16 +907,16 @@ df <- read.table(pipe("cut -f1,5,28 myFile.txt"))
 
 ** Writing tabular data files
 
-- =write.table()= ::
+- ~write.table()~ ::
      Write data.
 
 ** Reading from CSV files
 
-- =read.csv(file)= ::
+- ~read.csv(file)~ ::
      Read data from CSV file, create data frame.
-     + =header= (defaults to =TRUE=)
-     + =separator= (defaults to *comma*)
-     + =na.strings= ("NULL", defaults to "NA")
+     + ~header~ (defaults to ~TRUE~)
+     + ~separator~ (defaults to *comma*)
+     + ~na.strings~ ("NULL", defaults to "NA")
 
      #+begin_src R
      data <- read.csv("./data/file.csv")
@@ -924,23 +924,23 @@ df <- read.table(pipe("cut -f1,5,28 myFile.txt"))
      read.csv(file.choose())            # pick a file
      #+end_src
 
-     It calls =read.table= with some default values. To look at them, just look
-     at the code of =read.csv= by typing =read.csv= and hitting <enter> at your R
+     It calls ~read.table~ with some default values. To look at them, just look
+     at the code of ~read.csv~ by typing ~read.csv~ and hitting <enter> at your R
      command line).
 
-- =read.csv2(file)= ::
+- ~read.csv2(file)~ ::
      Read data from CSV file, create data frame.
-     + =header= (defaults to =TRUE=)
-     + =separator= (defaults to =;=)
+     + ~header~ (defaults to ~TRUE~)
+     + ~separator~ (defaults to ~;~)
 
 ** Reading from Excel files
 
-- =read.xlsx()=, =read.xlsx2()= ::
+- ~read.xlsx()~, ~read.xlsx2()~ ::
      Read Excel files.
 
 ** Reading files from the Internet
 
-- =download.file()= ::
+- ~download.file()~ ::
      Download a file from the Internet.
 
      Be sure to record when you downloaded.
@@ -952,14 +952,14 @@ df <- read.table(pipe("cut -f1,5,28 myFile.txt"))
 
 ** Reading files with a complex structure
 
-- =readLines()= ::
+- ~readLines()~ ::
      Read lines of text from a connection.
 
      /Connections/ can be made to:
-     - =file= (most common)
-     - =gzfile=, file compressed with =gzip=
-     - =bzfile=, file compressed with =bzip2=
-     - =url=
+     - ~file~ (most common)
+     - ~gzfile~, file compressed with ~gzip~
+     - ~bzfile~, file compressed with ~bzip2~
+     - ~url~
 
      *Remember to close connections*.
 
@@ -995,42 +995,42 @@ odbcClose(con)
 
 Textual formats (potentially recoverable in case of corruption).
 
-- =dput()= ::
+- ~dput()~ ::
      Deparse a single R object.
 
-- =dump()= ::
+- ~dump()~ ::
      Can be used on multiple R objects.
 
 ** Further resources
 
 Packages:
 
-- =httr= ::
+- ~httr~ ::
      For working with HTTP connections.
 
-- =RMySQL= ::
+- ~RMySQL~ ::
      For interfacing with mySQL.
 
-- =bigmemory= ::
+- ~bigmemory~ ::
      For handling data larger than RAM.
 
-- =foreign= ::
+- ~foreign~ ::
      For getting data into R from SAS, SPSS, Octave, etc.
 
 * 12. Useful tricks
 
 ** Peeking at your data
 
-- =head()= ::
+- ~head()~ ::
      Look at the first 6 rows.
 
-- =tail()= ::
+- ~tail()~ ::
      Look at the last 6 rows.
 
-- =str()= ::
+- ~str()~ ::
      /Compactly/ display the internal *structure* (*classes*, etc.) of an object.
 
-     Alternative to =summary()=.
+     Alternative to ~summary()~.
 
      When applied to functions, show the *arguments*.
 
@@ -1038,30 +1038,30 @@ Packages:
      str(.Platform)                     # what is the operating system
      #+end_src
 
-- =attributes()= ::
+- ~attributes()~ ::
      Access (set or modify) the (list of) attributes of an object.
 
 * 9. General statistics
 
 ** Summarizing your data
 
-- =range()= ::
+- ~range()~ ::
      Give the min and the max (vector of length 2) of the observations (vector
      of numbers).
 
-     Useful to give the *extremes of a range to the =xlim= and =ylim= arguments* of
+     Useful to give the *extremes of a range to the ~xlim~ and ~ylim~ arguments* of
      an axis.
 
      #+begin_src R
      yrange <- range(c(x1, x2, x3))
      #+end_src
 
-- =summary()= ::
+- ~summary()~ ::
      Produce a summary of the object.
 
 ** Tabulating factors
 
-- =table(f)= ::
+- ~table(f)~ ::
      *Count* the number of observations in each /level/ (only works on /factors/).
      Give a *frequency* of how many levels there are.
 
@@ -1080,21 +1080,21 @@ Packages:
      tbl / sum(tbl)
      #+end_src
 
-     Use the =cut= function to calculate tables with /numeric/ values.
+     Use the ~cut~ function to calculate tables with /numeric/ values.
 
      #+begin_src R
      f <- cut(dfrm$x, breaks=30)        # use `labels' to give nice names
      table(f, useNA="ifany")
      #+end_src
 
-- =table(f1, f2)= ::
+- ~table(f1, f2)~ ::
      Produce a /contingency table/ (cross-tabulation).
 
      #+begin_src R
      table(dfrm$f1, dfrm$f2)            # look at the relationship between f1 and f2
      #+end_src
 
-- =ftable(f)= ::
+- ~ftable(f)~ ::
      3-dimensional contingency table.
 
 ** Testing categorical variables for independence
@@ -1148,8 +1148,8 @@ dfrm$ranges <- ranges                   # add a variable to the data frame
 ** Removing list elements using a condition
 
 *Subsetting* by using 2 types of index:
-- a numeric vector (=x[2]=, =x[1:4]=)
-- a *logical vector* (=x[x > "a"]=)
+- a numeric vector (~x[2]~, ~x[1:4]~)
+- a *logical vector* (~x[x > "a"]~)
 
 Create a logical vector:
 
@@ -1158,7 +1158,7 @@ u <- x > "a"
 x[u]                                    # get all elements which are greater than "a"
 #+end_src
 
-Remove missing values (=NA=) from a *list*:
+Remove missing values (~NA~) from a *list*:
 
 #+begin_src R
 missing <- is.na(x)                     # logical vector
@@ -1166,7 +1166,7 @@ y <- x[!missing]
 sum(y)                                  # = sum(x, na.rm=TRUE)
 #+end_src
 
-The analogue of =is.na= for *data frames* is =complete.cases=.
+The analogue of ~is.na~ for *data frames* is ~complete.cases~.
 
 Take all the rows of a data frame where *all the values are not missing*:
 
@@ -1175,7 +1175,7 @@ nonmissing <- complete.cases(x)
 x[nonmissing, ]
 #+end_src
 
-Take the subset of all objects (=x= and =y=) that has no missing values:
+Take the subset of all objects (~x~ and ~y~) that has no missing values:
 
 #+begin_src R
 bothnonmissing <- complete.cases(x, y)  # logical vector
@@ -1202,14 +1202,14 @@ dfrm[dfrm$var1 > 0 & dfrm$var2 > 0, c(1, 2)] # subset on var1 and var2
 dfrm[dfrm$var1 > 0 | dfrm$var2 > 0, c(1, 2)] # subset on var1 or var2
 #+end_src
 
-Using the =subset= function.
+Using the ~subset~ function.
 
 #+begin_src R
 subset(dfrm, select=c(var1, var2), subset=(var1 > 0 & var2 > 0))
 subset(dfrm, select=c(var1, var2), subset=(var1 > 0 | var2 > 0))
 #+end_src
 
-Use the =%in%= operator to compare a variable to a list of desired values.
+Use the ~%in%~ operator to compare a variable to a list of desired values.
 
 Note that you do /not/ quote the column names.
 
@@ -1225,19 +1225,19 @@ df <- df[, colSums(is.na(df))==0]
 
 ** Merging data frames by commun column
 
-- =merge(df1, df2, by = "CustomerId")= ::
+- ~merge(df1, df2, by = "CustomerId")~ ::
      *Inner* join.
 
-- =merge(df1, df2, by = "CustomerId", all = TRUE)= ::
+- ~merge(df1, df2, by = "CustomerId", all = TRUE)~ ::
      *Full outer* join (all records from both tables).
 
-- =merge(df1, df2, by = "CustomerId", all.x = TRUE)= ::
+- ~merge(df1, df2, by = "CustomerId", all.x = TRUE)~ ::
      *Left* outer join.
 
-- =merge(df1, df2, by = "CustomerId", all.y = TRUE)= ::
+- ~merge(df1, df2, by = "CustomerId", all.y = TRUE)~ ::
      *Right* outer join.
 
-- =merge(df1, df2, by = NULL)= ::
+- ~merge(df1, df2, by = NULL)~ ::
      *Cross* join.
 
 Merge data sets.
@@ -1248,16 +1248,16 @@ merged.data <- merge(df1, df2, by.x="id1", by.y="id2", all=TRUE)
 
 ** Converting
 
-- =as.*()= ::
+- ~as.*()~ ::
      Explicitly coerce from one class to another.
 
-- =as.numeric()= ::
-     Coerce the (=character=) column to be =numeric=.
+- ~as.numeric()~ ::
+     Coerce the (~character~) column to be ~numeric~.
 
-- =as.Date("January 2, 2007", "%B %d, %Y")= ::
+- ~as.Date("January 2, 2007", "%B %d, %Y")~ ::
      "2007-01-02"
 
-- =as.ts()= ::
+- ~as.ts()~ ::
      Convert to a time series object.
 
 You can always convert variables between types.
@@ -1281,16 +1281,16 @@ x[ind] <- lapply(x[ind], factor)
 
 ** Applying a function to each list element
 
-Alternative (to =for= *loops*) to apply a function (or summary statistics).
+Alternative (to ~for~ *loops*) to apply a function (or summary statistics).
 
-*** =lapply=
+*** ~lapply~
 
 *Loop over a list* and apply a *function* on each element. /Always/ returns a *list*
 back (that is, not a simplified result).
 
-- (coerced) list =X=
-- function =FUN=
-- other arguments you wanna pass to the function =...=
+- (coerced) list ~X~
+- function ~FUN~
+- other arguments you wanna pass to the function ~...~
 
 #+begin_src R
 x <- list(a=1:5, b=rnorm(10))
@@ -1307,9 +1307,9 @@ Extract the first column of each matrix of a list:
 lapply(x, function(x) x[, 1])
 #+end_src
 
-*** =sapply=
+*** ~sapply~
 
-Same as =lapply=, but tries to "*simplify*" the result in a much more compact
+Same as ~lapply~, but tries to "*simplify*" the result in a much more compact
 format (put all the elements into a *vector* or a *matrix* if that is possible,
 instead of returning a list).
 
@@ -1317,7 +1317,7 @@ instead of returning a list).
 sapply(s, function(x) colMeans(x[, c("Ozone", "Solar.R", "Wind")]))
 #+end_src
 
-Pass =na.rm= argument to =ColMeans= to remove the missing values before calculating
+Pass ~na.rm~ argument to ~ColMeans~ to remove the missing values before calculating
 the mean.
 
 #+begin_src R
@@ -1326,22 +1326,22 @@ sapply(s, function(x) colMeans(x[, c("Ozone", "Solar.R", "Wind")], na.rm=TRUE))
 
 ** Splitting a vector into groups
 
-- =split(x, f)= ::
+- ~split(x, f)~ ::
      Take a vector, and *split* it into subpieces (the number of groups
      identified by the levels of a *factor* variable). Always return a *list* (of
      lists?) back.
 
-     + =drop = TRUE= ::
+     + ~drop = TRUE~ ::
           Don't keep the empty levels of the factor.
 
-     Auxiliary function, used in conjunction with functions like =lapply= or
-     =sapply= to apply a function to those individual groups.
+     Auxiliary function, used in conjunction with functions like ~lapply~ or
+     ~sapply~ to apply a function to those individual groups.
 
      #+begin_src R
      lapply(split(x, f), mean)
      #+end_src
 
-     Like =tapply=, but without applying the summary statistics.
+     Like ~tapply~, but without applying the summary statistics.
 
      Splitting a data frame (or other kinds of lists), and apply an /anonymous
      function/:
@@ -1353,7 +1353,7 @@ sapply(s, function(x) colMeans(x[, c("Ozone", "Solar.R", "Wind")], na.rm=TRUE))
 
 ** Applying a function to every row/column
 
-- =apply(dfrm, margin, fun, ...)= ::
+- ~apply(dfrm, margin, fun, ...)~ ::
      Apply a function over the *margins* of an array.
 
      Often used to apply a function to the rows or columns of a matrix. Very
@@ -1378,14 +1378,14 @@ sapply(s, function(x) colMeans(x[, c("Ozone", "Solar.R", "Wind")], na.rm=TRUE))
      #+end_src
 
      Shortcut functions (/much/ faster on large matrices):
-     + =rowSums= = =apply(x, 1, sum)=
-     + =rowMeans= = =apply(x, 1, mean)=
-     + =colSums= = =apply(x, 2, sum)=
-     + =colMeans= = =apply(x, 2, mean)=
+     + ~rowSums~ = ~apply(x, 1, sum)~
+     + ~rowMeans~ = ~apply(x, 1, mean)~
+     + ~colSums~ = ~apply(x, 2, sum)~
+     + ~colMeans~ = ~apply(x, 2, mean)~
 
 ** Applying a function to groups of data
 
-- =tapply(x, index, fun)= ::
+- ~tapply(x, index, fun)~ ::
      Short for "*table apply*".
      Apply a *function* over *subsets* of a vector:
      + Splits up a vector into little groups (such as men and women, indicated
@@ -1395,11 +1395,11 @@ sapply(s, function(x) colMeans(x[, c("Ozone", "Solar.R", "Wind")], na.rm=TRUE))
 
      Function may be anonymous.
 
-     =Simplify = FALSE= to get back a list (instead of an array).
+     ~Simplify = FALSE~ to get back a list (instead of an array).
 
-     =tapply= is one of the most useful commands you'll ever need. For example,
-     to calculate statistics of =x= separately for each group identified in the
-     variable =f=:
+     ~tapply~ is one of the most useful commands you'll ever need. For example,
+     to calculate statistics of ~x~ separately for each group identified in the
+     variable ~f~:
 
      #+begin_src R
      tapply(x, f, sum, simplify=FALSE)  # = lapply(split(x, f), sum)
@@ -1407,18 +1407,18 @@ sapply(s, function(x) colMeans(x[, c("Ozone", "Solar.R", "Wind")], na.rm=TRUE))
      tapply(x, f, length)
      #+end_src
 
-- =interaction(f1, f2)= ::
+- ~interaction(f1, f2)~ ::
      Combines all the levels of the first factor with all the levels of the
      second factor.
 
-     You can also use =aggregate= to analyze groups defined by more than one
+     You can also use ~aggregate~ to analyze groups defined by more than one
      categorical variable (e.g., month and year).
 
 ** Applying a function to parallel vectors or lists
 
-- =mapply= ::
+- ~mapply~ ::
      Apply a *function* to the elements of *multiple lists* in parallel
-     (multivariate version of =lapply=).
+     (multivariate version of ~lapply~).
 
      For example, apply a function over 2 lists, where the elements of the
      first list go into one argument of the function, and the elements of the
@@ -1444,12 +1444,12 @@ sapply(s, function(x) colMeans(x[, c("Ozone", "Solar.R", "Wind")], na.rm=TRUE))
 
 ** Getting the length of a string
 
-- =nchar()= ::
+- ~nchar()~ ::
      Get the length of a string.
 
 ** Concatenating strings
 
-- =paste()= ::
+- ~paste()~ ::
      *Concatenate* a set of *strings together* to create one string or a vector of
      strings.
 
@@ -1459,50 +1459,50 @@ For the moment, we assume pattern matching on *ASCII strings*...
 
 Metacharacters:
 
-- =^= ::
+- ~^~ ::
      Start of a line (or negation of a character class).
 
-- =$= ::
+- ~$~ ::
      End of a line.
 
-- =[]= ::
+- ~[]~ ::
      Character classes.
 
-- =.= ::
+- ~.~ ::
      Any character.
 
-- =|= ::
+- ~|~ ::
      Or.
 
-- =()= ::
+- ~()~ ::
      Subexpressions (alternatives or "remember" matched text).
 
-- =?= ::
+- ~?~ ::
      Optional.
 
 - \ ::
      "Escape" the metacharacter.
 
-- =+= ::
+- ~+~ ::
      Any number, including none.
 
-- =*= ::
+- ~*~ ::
      Any number, at least one -- it is "greedy" so it always matches the
      /longest/ possible string that satisfies the regular expression.
 
-     The greediness can be turned off with the =?= metacharacter (make the regex
+     The greediness can be turned off with the ~?~ metacharacter (make the regex
      "lazy"), as in:
 
      #+begin_src R
      ^s(.*?)s$
      #+end_src
 
-- ={}= ::
+- ~{}~ ::
      Interval quantifiers (minimum, maximum).
 
 These functions can take vector arguments.
 
-- =grep= ::
+- ~grep~ ::
      Return the *indices* into the character vector where the regex pattern
      matches (it won't do anything).
 
@@ -1513,47 +1513,47 @@ These functions can take vector arguments.
      setdiff(j, i) # different result
      #+end_src
 
-     Setting =value = TRUE= returns the *actual elements* of the character vector
+     Setting ~value = TRUE~ returns the *actual elements* of the character vector
      that match.
 
-- =grepl= ::
-     Return a *logical vector* (=TRUE= / =FALSE=) indicating which element matches
+- ~grepl~ ::
+     Return a *logical vector* (~TRUE~ / ~FALSE~) indicating which element matches
      (used for /subsetting/).
 
-- =regexpr= ::
+- ~regexpr~ ::
      Return the indices (integer vector) of the string *where the first match
      begins* and the length of the match.
 
-     If I want to see what the match is, use =substr=:
+     If I want to see what the match is, use ~substr~:
 
      #+begin_src R
      regexpr("...", string)
      substr(string, start + length - 1)
      #+end_src
 
-     Useful in conjunction with =regmatches= which extracts the matches in the
-     strings without having you to use =substr=.
+     Useful in conjunction with ~regmatches~ which extracts the matches in the
+     strings without having you to use ~substr~.
 
      #+begin_src R
      r <- regexpr("...", string)
      regmatches(string, r)
      #+end_src
 
-- =gregexpr= ::
+- ~gregexpr~ ::
      Return *all of the matches* ("global") in a given string.
 
-- =sub= ::
+- ~sub~ ::
      Replace *the first match* with another string (used to strip out stuff by
      replacing the match with nothing).
 
-- =gsub= ::
+- ~gsub~ ::
      Replace *all of the matches* with another string.
 
      #+begin_src R
      names(data)[i] <- gsub("-", ".", names(data)[i])
      #+end_src
 
-- =regexec= ::
+- ~regexec~ ::
      Give the indices (list) for parenthesized sub-expressions.
 
      If I want to see what the submatch is:
@@ -1575,7 +1575,7 @@ These functions can take vector arguments.
 
 2 systems:
 
-- =base= ::
+- ~base~ ::
      Graphics are constructed piecemeal by *different function calls*;
      you can add things one by one:
      - annotate (some of the points in) the plot,
@@ -1585,7 +1585,7 @@ These functions can take vector arguments.
      - add some colors,
      - add a legend.
 
-- =lattice= ::
+- ~lattice~ ::
      Graphics are constructed via a single function call: all options have to
      be specified at once (advantage: that allows R to calculate the necessary
      spacings, margins and font sizes).
@@ -1595,7 +1595,7 @@ Behavior:
 - Base graphics functions have a "side effect": they plot data directly to
   the graphics device.
 
-- Lattice graphics functions return an object of the class =trellis= (object
+- Lattice graphics functions return an object of the class ~trellis~ (object
   designed for plotting).
 
   When you call Lattice functions, even if you don't assign it to a "plot
@@ -1609,24 +1609,24 @@ You cannot use functions from the base plotting system in a Lattice plot.
 
 *** Make a plot
 
-- =plot= ::
+- ~plot~ ::
      Create a *scatter plot* (or another type of plot, depending on the class of
      the object being plotted).
 
-- =barplot= ::
+- ~barplot~ ::
      Create a *bar chart* (analogue of an histogram for categorical data).
 
-- =hist= ::
-     Make an *histogram* showing the *distribution* of the numeric vector =x=.
+- ~hist~ ::
+     Make an *histogram* showing the *distribution* of the numeric vector ~x~.
 
-- =boxplot= ::
-     Create a box-and-whisker plot of the =y= variable by the grouping variable =x=
-     (usually a =factor=).
+- ~boxplot~ ::
+     Create a box-and-whisker plot of the ~y~ variable by the grouping variable ~x~
+     (usually a ~factor~).
 
 **** Create a scatter plot
 
-- =plot(x)= ::
-     Plot the (numeric) data against the index (=1:N=).
+- ~plot(x)~ ::
+     Plot the (numeric) data against the index (~1:N~).
 
      #+begin_src R :results graphics :file Rplots/base-scatterplot-sort.png
      data(iris)
@@ -1638,8 +1638,8 @@ You cannot use functions from the base plotting system in a Lattice plot.
      #+results:
      [[file:Rplots/base-scatterplot-sort.png]]
 
-- =plot(x, y)= ::
-     Create a scatter plot of =x= and =y=.
+- ~plot(x, y)~ ::
+     Create a scatter plot of ~x~ and ~y~.
 
      #+begin_src R :results graphics :file Rplots/base-scatterplot.png
      data(iris)
@@ -1651,12 +1651,12 @@ You cannot use functions from the base plotting system in a Lattice plot.
      #+results:
      [[file:Rplots/base-scatterplot.png]]
 
-- =plot(x, y, type = "n")= ::
+- ~plot(x, y, type = "n")~ ::
      Set up the plot window, but don't actually plot the data in there.
 
-     Note that you have =POSIXct= dates in your data frame... XXX
+     Note that you have ~POSIXct~ dates in your data frame... XXX
 
-- =plot(dfrm)= ::
+- ~plot(dfrm)~ ::
      Create *multiple scatter plots* if your data frame contains more than
      2 columns.
 
@@ -1670,7 +1670,7 @@ You cannot use functions from the base plotting system in a Lattice plot.
      [[file:Rplots/base-multi-scatterplots.png]]
 
      You can see that length and width appear strongly correlated. You could
-     check the correlation between features with the =cor()= function.
+     check the correlation between features with the ~cor()~ function.
 
      #+begin_src R
      data(iris)
@@ -1683,17 +1683,17 @@ You cannot use functions from the base plotting system in a Lattice plot.
      |  0.871753775886583 |  -0.42844010433054 |                 1 |  0.962865431402796 |
      |  0.817941126271576 | -0.366125932536439 | 0.962865431402796 |                  1 |
 
-**** TODO =barplot=
+**** TODO ~barplot~
 
 See http://onertipaday.blogspot.be/2007/05/barplots-of-two-sets.html for
 barplot with figures above the bars.
 
-**** =hist=
+**** ~hist~
 
 Histogram (*distribution* of data, *frequency* = exact number).
 
 Generic function: you can call it on different types of data. When you call
-=hist= on a =Date= object, it requires an interval ("day" / "week" / "month" /
+~hist~ on a ~Date~ object, it requires an interval ("day" / "week" / "month" /
 "year") in order to break it up into sequences.
 
 #+begin_src R :results graphics :file Rplots/base-hist.png
@@ -1704,7 +1704,7 @@ hist(iris$Petal.Length, main="Histogram", col="lightblue") # shape of distributi
 #+results:
 [[file:Rplots/base-hist.png]]
 
-=breaks= is key: it specifies the number of categories to plot or the breakpoints
+~breaks~ is key: it specifies the number of categories to plot or the breakpoints
 for each category.
 
 #+begin_src R :results graphics :file Rplots/base-hist-breaks.png
@@ -1766,9 +1766,9 @@ the line, being too small, would be on the x-axis itself).
 
   #+results:
 
-**** =boxplot=
+**** ~boxplot~
 
-=boxplot= draws plot summarizing:
+~boxplot~ draws plot summarizing:
 
 - Median (wide line)
 
@@ -1790,8 +1790,8 @@ boxplot(iris[, 1:4], col=rainbow(4), main="Boxplot", ylab="Appropriate units")
 
 *** Add to an existing plot
 
-- =points= ::
-     *Add points to a plot* (=col= for boundary color, =bg= for fill color, =pch= for
+- ~points~ ::
+     *Add points to a plot* (~col~ for boundary color, ~bg~ for fill color, ~pch~ for
      plotting character).
 
      Plot points *in groups separately*.
@@ -1827,16 +1827,16 @@ boxplot(iris[, 1:4], col=rainbow(4), main="Boxplot", ylab="Appropriate units")
      #+results:
      [[file:Rplots/base-points-distinguished-col-unclass.png]]
 
-- =lines= ::
+- ~lines~ ::
      *Add lines* (connect all the dots) *to a plot*.
 
      #+begin_src R :eval no
      lines(x, y)                        # all lines
      #+end_src
 
-     Even better: option type="b" to plot method for /both/ *points and lines*.
+     Even better: option ~type="b"~ to plot method for /both/ *points and lines*.
 
-- =abline= ::
+- ~abline~ ::
      Add a straight line.
 
      Plot the *regression line* of a scatter plot.
@@ -1853,7 +1853,7 @@ boxplot(iris[, 1:4], col=rainbow(4), main="Boxplot", ylab="Appropriate units")
      [[file:Rplots/base-abline.png]]
 
 
-- =text= ::
+- ~text~ ::
      Add text labels (inside the plot region).
 
      Could be used to label datapoints.
@@ -1862,7 +1862,7 @@ boxplot(iris[, 1:4], col=rainbow(4), main="Boxplot", ylab="Appropriate units")
      text(-2, 2, "Label")
      #+end_src
 
-- =title= ::
+- ~title~ ::
      Add a title (or axis labels, subtitle, ...).
 
      #+begin_src R :eval no
@@ -1870,7 +1870,7 @@ boxplot(iris[, 1:4], col=rainbow(4), main="Boxplot", ylab="Appropriate units")
      plot(x, y, xlab="Weight", ylab="Height", main="Scatterplot")
      #+end_src
 
-- =mtext= ::
+- ~mtext~ ::
      Add text to the margins.
 
      #+begin_src R :eval no
@@ -1879,14 +1879,14 @@ boxplot(iris[, 1:4], col=rainbow(4), main="Boxplot", ylab="Appropriate units")
 
      Can be used to add multiline legends.
 
-- =axis= ::
+- ~axis~ ::
      *Annotate the axis* (tick marks, labels).
 
      #+begin_src R :eval no
      axis(side=2, col="blue", col.axis="blue", las=1)
      #+end_src
 
-- =legend= ::
+- ~legend~ ::
      Add a legend.
 
      #+begin_src R :eval no
@@ -1895,42 +1895,42 @@ boxplot(iris[, 1:4], col=rainbow(4), main="Boxplot", ylab="Appropriate units")
 
 *** Changing graphical parameters
 
-- =par()= ::
+- ~par()~ ::
      control *all the graphing parameters* that you can specify (/defaults/ for all
      plots in a session, which can be overridden as arguments to specific
      plotting functions).
 
-     + =pch= ::
+     + ~pch~ ::
           *Plotting character* (default: open circle symbol).
 
-     + =lty= ::
-          Line type (default: =solid= line).
+     + ~lty~ ::
+          Line type (default: ~solid~ line).
 
-     + =lwd= ::
+     + ~lwd~ ::
           Line width.
 
-     + =col= ::
+     + ~col~ ::
           Plotting color.
 
-     + =las= ::
-          Orientation of the axis labels on the plot (=las=2= will set the tick
+     + ~las~ ::
+          Orientation of the axis labels on the plot (~las=2~ will set the tick
           *labels* to be *perpendicular* to the axis).
 
-     + =bg= ::
-          Background color (default: =transparent=).
+     + ~bg~ ::
+          Background color (default: ~transparent~).
 
-     + =mar= ::
+     + ~mar~ ::
           Margin size (vector of 4 numbers, 1 per side).
 
           #+begin_src R :eval no
           par(mar=c(2, 2, 1, 1))
           #+end_src
 
-     + =oma= ::
+     + ~oma~ ::
           Outer margin size (relevant if you have more than one plot per
           canvas).
 
-     + =mfrow= ::
+     + ~mfrow~ ::
           Number of *plots per row and per column* on the canvas (filled
           row-wise).
 
@@ -1940,14 +1940,14 @@ boxplot(iris[, 1:4], col=rainbow(4), main="Boxplot", ylab="Appropriate units")
           plot(x, z)
           #+end_src
 
-     + =mfcol= ::
+     + ~mfcol~ ::
           Number of plots per row and per column on the canvas (filled
           column-wise).
 
-     + =bty= ::
+     + ~bty~ ::
           Type of "box" which is drawn around plots.
 
-          A value of ="n"= suppresses the box (same as =axes=FALSE=).
+          A value of ~"n"~ suppresses the box (same as ~axes=FALSE~).
 
      Look at the defaults:
 
@@ -1955,26 +1955,26 @@ boxplot(iris[, 1:4], col=rainbow(4), main="Boxplot", ylab="Appropriate units")
      par("lty")
      #+end_src
 
-- =?Devices= ::
+- ~?Devices~ ::
      List graphical devices.
 
-     + =pdf= ::
+     + ~pdf~ ::
           Vector format (very, very large for a graphic with *2 million points*
           on it: specify information for every single object on the plot).
 
-     + =png= ::
+     + ~png~ ::
           Bitmapped format (specify information for pixels), losless
           *compression*, but *does not resize well*.
 
-     + =jpeg= ::
+     + ~jpeg~ ::
           Lossy compression.
 
-     + =bitmap= ::
-          If you're running R in a batch mode (you can't use the =png= and =jpeg=
+     + ~bitmap~ ::
+          If you're running R in a batch mode (you can't use the ~png~ and ~jpeg~
           functions).
 
 - Copy the plot to another device
-  + =dev.copy2pdf= :: copy a plot to PDF
+  + ~dev.copy2pdf~ :: copy a plot to PDF
 
 ** Lattice graphics
 
