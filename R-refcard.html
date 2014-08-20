@@ -1,4 +1,4 @@
-<!-- <xml version="1.0"> -->
+<!-- <xml version="1.0" encoding="utf-8"> -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
@@ -48,7 +48,7 @@
         <ul>
           <li><a href="#sec-1">1. R reference card</a></li>
 
-          <li><a href="#sec-2">2. Style</a></li>
+          <li><a href="#sec-2">2. Coding style</a></li>
 
           <li>
             <a href="#sec-3">3. Emacs key bindings</a>
@@ -334,7 +334,7 @@
                       plot</a></li>
 
                       <li><a href="#sec-17-1-1-2"><span class=
-                      "todo TODO">TODO</span> <code>barplot</code></a></li>
+                      "todo nilTODO">TODO</span> <code>barplot</code></a></li>
 
                       <li><a href="#sec-17-1-1-3"><code>hist</code></a></li>
 
@@ -387,25 +387,31 @@
     </div>
 
     <div id="outline-container-sec-2" class="outline-2">
-      <h2 id="sec-2"><span class="section-number-2">2</span> Style</h2>
+      <h2 id="sec-2"><span class="section-number-2">2</span> Coding style</h2>
 
       <div class="outline-text-2" id="text-2">
         <ul class="org-ul">
-          <li><a href=
-          "http://cran.r-project.org/doc/manuals/R-ints.html#R-coding-standards">
-          R Internals manual, section 8. “R Coding Standards”</a></li>
-
-          <li><a href="http://adv-r.had.co.nz/Style.html">R coding style
-          guide</a></li>
-
-          <li><a href=
-          "https://docs.google.com/document/d/1esDVxyWvH8AsX-VJa-8oqWaHLs4stGlIbk8kLc5VlII/edit?pli=1">
-          R Coding Conventions</a></li>
+          <li>
+            <p><a href=
+            "http://cran.r-project.org/doc/manuals/R-ints.html#R-coding-standards">
+            R Internals manual, section 8. “R Coding Standards”</a></p>
+          </li>
 
           <li>
-            <a href=
+            <p><a href="http://adv-r.had.co.nz/Style.html">R coding style
+            guide</a></p>
+          </li>
+
+          <li>
+            <p><a href=
+            "https://docs.google.com/document/d/1esDVxyWvH8AsX-VJa-8oqWaHLs4stGlIbk8kLc5VlII/edit?pli=1">
+            R Coding Conventions</a></p>
+          </li>
+
+          <li>
+            <p><a href=
             "http://google-styleguide.googlecode.com/svn/trunk/Rguide.xml">Google
-            R Style Guide</a>
+            R Style Guide</a></p>
 
             <p><code>variable.name</code> (preferred, <code>variableName</code>
             accepted)<br />
@@ -478,19 +484,23 @@
           <dl class="org-dl">
             <dt><code>C-RET</code></dt>
 
-            <dd>Send the current <b>region or line</b> to the ESS process and
-            <b>step</b> to the next line of code.</dd>
+            <dd>
+              <p>Send the current <b>region or line</b> to the ESS process and
+              <b>step</b> to the next line of code.</p>
+            </dd>
 
             <dt><code>C-M-x</code></dt>
 
-            <dd>Send the current <b>region or function or paragraph</b> to the
-            ESS process.</dd>
+            <dd>
+              <p>Send the current <b>region or function or paragraph</b> to the
+              ESS process.</p>
+            </dd>
 
             <dt><code>C-c C-c</code></dt>
 
             <dd>
-              Send the current <b>region or function or paragraph</b> to the
-              ESS process and <b>step</b> to the next line of code.
+              <p>Send the current <b>region or function or paragraph</b> to the
+              ESS process and <b>step</b> to the next line of code.</p>
 
               <p>If you group R statements into tasks, send the whole task to
               the R process without selecting anything.</p>
@@ -716,6 +726,16 @@
 
                 <dd>Previous error.</dd>
               </dl>
+
+              <p>The arrow in the left fringe is an indicator of the beginning
+              of the last evaluation. It helps when you eval a region from a
+              script buffer and an error occurs in one of the earlier lines.
+              You can then quickly pinpoint the first error in <code>*R*</code>
+              buffer by searching for this arrow.</p>
+
+              <p>Error navigation in <code>*R*</code> buffer (<code>M-g
+              n</code>, <code>M-g p</code>) works within the region between
+              this arrow and end of the buffer.</p>
             </div>
           </div>
 
@@ -757,7 +777,8 @@
           indent</p>
 
           <ol class="org-ol">
-            <li>probably the most used command of mine is imenu-anywhere.
+            <li>
+              <p>probably the most used command of mine is imenu-anywhere.</p>
 
               <p>(global-set-key (kbd “C-.”) ‘imenu-anywhere)</p>
             </li>
@@ -859,10 +880,10 @@
       <div class="outline-text-2" id="text-5">
         <div class="org-src-container">
           <pre class="src src-R">
-?<span style="color: #0000FF;">function</span>
+?<span class="org-keyword">function</span>
 ?dataset
 package ? lattice
-<span style="color: #D0372D;">library</span>(help=lattice)
+<span class="org-constant">library</span>(help=lattice)
 </pre>
         </div>
 
@@ -870,21 +891,19 @@ package ? lattice
           <dt><code>args(function)</code></dt>
 
           <dd>Look at the arguments of a FUNCTION.</dd>
-
-          <dt>(no term)</dt>
-
-          <dd>Google</dd>
-
-          <dt>(no term)</dt>
-
-          <dd><a href="mailto:r-help@r-project.org">R general mailing
-          list</a></dd>
-
-          <dt>(no term)</dt>
-
-          <dd><a href="http://stackoverflow.com/questions/tagged/r">Stack
-          Overflow</a></dd>
         </dl>
+
+        <p>Other ways:</p>
+
+        <ul class="org-ul">
+          <li><a href="http://www.google.com/">Google</a></li>
+
+          <li><a href="mailto:r-help@r-project.org">R general mailing
+          list</a></li>
+
+          <li><a href="http://stackoverflow.com/questions/tagged/r">Stack
+          Overflow</a></li>
+        </ul>
       </div>
     </div>
 
@@ -907,7 +926,7 @@ package ? lattice
             <dt><code>cat()</code></dt>
 
             <dd>Concatenate together a set of strings and prints out the
-            concatanated string (to a file or to the console).</dd>
+            concatenated string (to a file or to the console).</dd>
           </dl>
         </div>
       </div>
@@ -947,13 +966,13 @@ package ? lattice
             <dt><code>rm()</code></dt>
 
             <dd>
-              Remove objects from your workspace.
+              <p>Remove objects from your workspace.</p>
 
               <div class="org-src-container">
                 <pre class="src src-R">
-rm(list=ls())                      <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">remove everything from the workspace</span>
+rm(list=ls())                      <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">remove everything from the workspace</span>
 </pre>
               </div>
             </dd>
@@ -1030,10 +1049,9 @@ rm(list=ls())                      <span style=
         <div class="outline-text-3" id="text-6-8">
           <div class="org-src-container">
             <pre class="src src-R">
-<span style="color: #006699;">MyFunction</span> <span style=
-"color: #D0372D;">&lt;-</span> <span style=
-"color: #0000FF;">function</span>(x) {
-  y <span style="color: #D0372D;">&lt;-</span> norm(100)
+<span class="org-function-name">MyFunction</span> <span class=
+"org-constant">&lt;-</span> <span class="org-keyword">function</span>(x) {
+  y <span class="org-constant">&lt;-</span> norm(100)
   mean(y)
 }
 </pre>
@@ -1051,11 +1069,11 @@ rm(list=ls())                      <span style=
           <dt><code>library(package)</code></dt>
 
           <dd>
-            Load PACKAGE.
+            <p>Load PACKAGE.</p>
 
             <div class="org-src-container">
               <pre class="src src-R">
-<span style="color: #D0372D;">library</span>(datasets)
+<span class="org-constant">library</span>(datasets)
 airquality
 </pre>
             </div>
@@ -1063,11 +1081,15 @@ airquality
 
           <dt><code>data(dataset)</code></dt>
 
-          <dd>Load DATASET.</dd>
+          <dd>
+            <p>Load DATASET.</p>
+          </dd>
 
           <dt><code>source("file.R")</code></dt>
 
-          <dd>Evaluate R code file.</dd>
+          <dd>
+            <p>Evaluate R code file.</p>
+          </dd>
         </dl>
       </div>
 
@@ -1080,21 +1102,20 @@ airquality
 
           <div class="org-src-container">
             <pre class="src src-sh">
-<span style="color: #8D8D84;">#</span><span style=
-"color: #8D8D84; font-style: italic;">!/usr/bin/</span><span style=
-"color: #0000FF;">env</span><span style=
-"color: #8D8D84; font-style: italic;"> Rscript</span>
+<span class="org-comment-delimiter">#</span><span class=
+"org-comment">!/usr/bin/</span><span class="org-keyword">env</span><span class=
+"org-comment"> Rscript</span>
 
 argv &lt;- commandArgs(TRUE)
 x &lt;- as.numeric(argv[1])
 
-<span style="color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">etc.</span>
+<span class="org-comment-delimiter"># </span><span class=
+"org-comment">etc.</span>
 
-<span style="color: #006699;">png</span>(<span style=
-"color: #036A07;">"graph.png"</span>, 500, 500)
-<span style="color: #006699;">plot</span>(graph)
-<span style="color: #006699;">graphics.off</span>()
+<span class="org-function-name">png</span>(<span class=
+"org-string">"graph.png"</span>, 500, 500)
+<span class="org-function-name">plot</span>(graph)
+<span class="org-function-name">graphics.off</span>()
 </pre>
           </div>
         </div>
@@ -1111,12 +1132,14 @@ x &lt;- as.numeric(argv[1])
         <dl class="org-dl">
           <dt>Population</dt>
 
-          <dd>Set of items.</dd>
+          <dd>
+            <p>Set of items.</p>
+          </dd>
 
           <dt>Variable</dt>
 
           <dd>
-            Measurement or characteristic.
+            <p>Measurement or characteristic.</p>
 
             <dl class="org-dl">
               <dt>Qualitative</dt>
@@ -1204,21 +1227,25 @@ x &lt;- as.numeric(argv[1])
           <dl class="org-dl">
             <dt><code>c()</code></dt>
 
-            <dd>Create a vector of objects (that is, <b>concatenate</b> or
-            combine things together).</dd>
+            <dd>
+              <p>Create a vector of objects (that is, <b>concatenate</b> or
+              combine things together).</p>
+            </dd>
 
             <dt><code>vector(class, length)</code></dt>
 
-            <dd>Create an empty vector.</dd>
+            <dd>
+              <p>Create an empty vector.</p>
+            </dd>
 
             <dt><code>names()</code></dt>
 
             <dd>
-              Show or give a name to each <b>element</b> of a vector.
+              <p>Show or give a name to each <b>element</b> of a vector.</p>
 
               <div class="org-src-container">
                 <pre class="src src-R">
-names(df) <span style="color: #D0372D;">&lt;-</span> tolower(names(df))
+names(df) <span class="org-constant">&lt;-</span> tolower(names(df))
 </pre>
               </div>
             </dd>
@@ -1244,8 +1271,8 @@ names(df) <span style="color: #D0372D;">&lt;-</span> tolower(names(df))
 
           <div class="org-src-container">
             <pre class="src src-R">
-v <span style="color: #D0372D;">&lt;-</span> 1:10
-dim(v) <span style="color: #D0372D;">&lt;-</span> c(2, 5)
+v <span class="org-constant">&lt;-</span> 1:10
+dim(v) <span class="org-constant">&lt;-</span> c(2, 5)
 print(v)
 </pre>
           </div>
@@ -1291,7 +1318,7 @@ print(v)
           <i>row-binding</i>.</p>
 
           <dl class="org-dl">
-            <dt>matrix(nrow=x, ncol=y)</dt>
+            <dt><code>matrix(nrow=x, ncol=y)</code></dt>
 
             <dd>Create an empty matrix.</dd>
 
@@ -1402,9 +1429,9 @@ print(v)
 
           <div class="org-src-container">
             <pre class="src src-R">
-x + y                                   <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">element-wise addition</span>
+x + y                                   <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">element-wise addition</span>
 </pre>
           </div>
 
@@ -1412,12 +1439,12 @@ x + y                                   <span style=
 
           <div class="org-src-container">
             <pre class="src src-R">
-x * y                                   <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">element-wise multiplication</span>
-x %*% y                                 <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">true matrix multiplication</span>
+x * y                                   <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">element-wise multiplication</span>
+x %*% y                                 <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">true matrix multiplication</span>
 </pre>
           </div>
         </div>
@@ -1432,8 +1459,8 @@ x %*% y                                 <span style=
             <dt><code>[[</code></dt>
 
             <dd>
-              Extract a <b>single element</b> of a list (or a single column of
-              a data frame).
+              <p>Extract a <b>single element</b> of a list (or a single column
+              of a data frame).</p>
 
               <p>Can be used with <i>computed</i> indices.</p>
 
@@ -1441,12 +1468,12 @@ x %*% y                                 <span style=
 
               <div class="org-src-container">
                 <pre class="src src-R">
-x[[1]][[3]]                        <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">same as: x[[c(1, 3)]]</span>
-                                   <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">third element of the first element</span>
+x[[1]][[3]]                        <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">same as: x[[c(1, 3)]]</span>
+                                   <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">third element of the first element</span>
 </pre>
               </div>
 
@@ -1454,10 +1481,10 @@ x[[1]][[3]]                        <span style=
 
               <div class="org-src-container">
                 <pre class="src src-R">
-x[[<span style="color: #036A07;">"a"</span>, exact=<span style=
-"color: #6434A3;">FALSE</span>]]              <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">instead of: x[["aardvark"]]</span>
+x[[<span class="org-string">"a"</span>, exact=<span class=
+"org-type">FALSE</span>]]              <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">instead of: x[["aardvark"]]</span>
 </pre>
               </div>
             </dd>
@@ -1465,8 +1492,9 @@ x[[<span style="color: #036A07;">"a"</span>, exact=<span style=
             <dt><code>[</code></dt>
 
             <dd>
-              Return an object of the <b>same class</b> as the original: a list
-              of elements (or a data frame built from multiple columns).
+              <p>Return an object of the <b>same class</b> as the original: a
+              list of elements (or a data frame built from multiple
+              columns).</p>
 
               <p>Extract multiple elements of a list:</p>
 
@@ -1497,15 +1525,15 @@ df[, -1]
             <dt><code>$</code></dt>
 
             <dd>
-              Extract a single element of a list (or a single column of a data
-              frame) <b>by name</b>: you don’t have to remember where the
-              element is in the list.
+              <p>Extract a single element of a list (or a single column of a
+              data frame) <b>by name</b>: you don’t have to remember where the
+              element is in the list.</p>
 
               <div class="org-src-container">
                 <pre class="src src-R">
-x$bar                              <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">same as x[["bar"]]</span>
+x$bar                              <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">same as x[["bar"]]</span>
 </pre>
               </div>
 
@@ -1515,9 +1543,9 @@ x$bar                              <span style=
 
               <div class="org-src-container">
                 <pre class="src src-R">
-x$a                                <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">instead of: x$aardvark</span>
+x$a                                <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">instead of: x$aardvark</span>
 </pre>
               </div>
             </dd>
@@ -1578,12 +1606,12 @@ x$a                                <span style=
         <div class="outline-text-3" id="text-9-1">
           <div class="org-src-container">
             <pre class="src src-R">
-<span style="color: #0000FF;">if</span> (condition) {
-  <span style="color: #8D8D84;">## </span><span style=
-"color: #8D8D84; font-style: italic;">do something</span>
-} <span style="color: #0000FF;">else</span> {
-  <span style="color: #8D8D84;">## </span><span style=
-"color: #8D8D84; font-style: italic;">do something else</span>
+<span class="org-keyword">if</span> (condition) {
+  <span class="org-comment-delimiter">## </span><span class=
+"org-comment">do something</span>
+} <span class="org-keyword">else</span> {
+  <span class="org-comment-delimiter">## </span><span class=
+"org-comment">do something else</span>
 }
 </pre>
           </div>
@@ -1593,12 +1621,12 @@ x$a                                <span style=
 
           <div class="org-src-container">
             <pre class="src src-R">
-y <span style="color: #D0372D;">&lt;-</span> <span style=
-"color: #0000FF;">if</span>(x &gt; 3) {                        <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">x must be a scalar here, not a vector</span>
+y <span class="org-constant">&lt;-</span> <span class=
+"org-keyword">if</span>(x &gt; 3) {                        <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">x must be a scalar here, not a vector</span>
   10
-} <span style="color: #0000FF;">else</span> {
+} <span class="org-keyword">else</span> {
   0
 }
 </pre>
@@ -1612,50 +1640,54 @@ y <span style="color: #D0372D;">&lt;-</span> <span style=
         <div class="outline-text-3" id="text-9-2">
           <div class="org-src-container">
             <pre class="src src-R">
-<span style="color: #0000FF;">for</span> (i <span style=
-"color: #0000FF;">in</span> 1:10) {                       <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">successive values from a sequence or vector</span>
-  <span style="color: #8D8D84;">## </span><span style=
-"color: #8D8D84; font-style: italic;">do something</span>
+<span class="org-keyword">for</span> (i <span class=
+"org-keyword">in</span> 1:10) {                       <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">successive values from a sequence or</span>
+                                        <span class=
+"org-comment-delimiter"># </span><span class="org-comment">vector</span>
+  <span class="org-comment-delimiter">## </span><span class=
+"org-comment">do something</span>
 }
 
-<span style="color: #0000FF;">for</span> (letter <span style=
-"color: #0000FF;">in</span> x) {                     <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">take elements from the vector</span>
-  <span style="color: #8D8D84;">## </span><span style=
-"color: #8D8D84; font-style: italic;">do something</span>
+<span class="org-keyword">for</span> (letter <span class=
+"org-keyword">in</span> x) {                     <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">take elements from the vector</span>
+  <span class="org-comment-delimiter">## </span><span class=
+"org-comment">do something</span>
 }
 </pre>
           </div>
 
           <dl class="org-dl">
-            <dt>seq_along(vector)</dt>
+            <dt><code>seq_along(vector)</code></dt>
 
             <dd>Create an integer sequence that’s equal to the <b>length of the
             input vector</b>.</dd>
 
-            <dt>seq_len(integer)</dt>
+            <dt><code>seq_len(integer)</code></dt>
 
             <dd>Create an integer sequence that’s as long as the integer in
             input.</dd>
 
-            <dt>nrow(dataset)</dt>
+            <dt><code>nrow(dataset)</code></dt>
 
             <dd>Tell the number of rows.</dd>
 
-            <dt>ncol(dataset)</dt>
+            <dt><code>ncol(dataset)</code></dt>
 
             <dd>Tell the number of columns.</dd>
           </dl>
 
           <div class="org-src-container">
             <pre class="src src-R">
-<span style=
-"color: #0000FF;">while</span> (z &gt;= 3 &amp;&amp; z &lt;= 10) {             <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">conditions are always evaluated from left to right</span>
-  <span style="color: #8D8D84;">## </span><span style=
-"color: #8D8D84; font-style: italic;">do something</span>
+<span class=
+"org-keyword">while</span> (z &gt;= 3 &amp;&amp; z &lt;= 10) {             <span class="org-comment-delimiter"># </span><span class="org-comment">conditions are always evaluated from</span>
+                                        <span class=
+"org-comment-delimiter"># </span><span class="org-comment">left to right</span>
+  <span class="org-comment-delimiter">## </span><span class=
+"org-comment">do something</span>
 }
 </pre>
           </div>
@@ -1664,14 +1696,14 @@ y <span style="color: #D0372D;">&lt;-</span> <span style=
 
           <div class="org-src-container">
             <pre class="src src-R">
-<span style="color: #0000FF;">repeat</span> {
-  <span style="color: #8D8D84;">## </span><span style=
-"color: #8D8D84; font-style: italic;">do something</span>
-  <span style="color: #0000FF;">if</span>(&lt;condition&gt;) {
-    <span style=
-"color: #0000FF;">break</span>                               <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">only way to exit a repeat loop</span>
+<span class="org-keyword">repeat</span> {
+  <span class="org-comment-delimiter">## </span><span class=
+"org-comment">do something</span>
+  <span class="org-keyword">if</span>(&lt;condition&gt;) {
+    <span class=
+"org-keyword">break</span>                               <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">only way to exit a repeat loop</span>
   }
 }
 </pre>
@@ -1703,32 +1735,41 @@ y <span style="color: #D0372D;">&lt;-</span> <span style=
 
       <div class="outline-text-2" id="text-10">
         <ul class="org-ul">
-          <li>Functions are R objects of class <code>function</code>
+          <li>
+            <p>Functions are R objects of class <code>function</code></p>
 
             <div class="org-src-container">
               <pre class="src src-R">
-<span style="color: #006699;">MyFunction</span> <span style=
-"color: #D0372D;">&lt;-</span> <span style=
-"color: #0000FF;">function</span>(arguments) {
-  <span style="color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">Function documentation.</span>
-  <span style="color: #8D8D84;">## </span><span style=
-"color: #8D8D84; font-style: italic;">do something</span>
+<span class="org-function-name">MyFunction</span> <span class=
+"org-constant">&lt;-</span> <span class=
+"org-keyword">function</span>(arguments) {
+  <span class="org-comment-delimiter"># </span><span class=
+"org-comment">Function documentation.</span>
+  <span class="org-comment-delimiter">## </span><span class=
+"org-comment">do something</span>
 }
 </pre>
             </div>
           </li>
 
-          <li>Functions can be <b>passed as arguments to other
-          functions</b></li>
+          <li>
+            <p>Functions can be <b>passed as arguments to other
+            functions</b></p>
+          </li>
 
-          <li>Functions can be nested, so that you can define a function inside
-          of another function (implications: see <b>lexical scoping</b>)</li>
+          <li>
+            <p>Functions can be nested, so that you can define a function
+            inside of another function (implications: see <b>lexical
+            scoping</b>)</p>
+          </li>
 
-          <li>The return value of a function is the last expression in the
-          function body to be evaluated</li>
+          <li>
+            <p>The return value of a function is the last expression in the
+            function body to be evaluated</p>
+          </li>
 
-          <li>3 types of…
+          <li>
+            <p>3 types of…</p>
 
             <ul class="org-ul">
               <li>formal argument</li>
@@ -1747,17 +1788,25 @@ y <span style="color: #D0372D;">&lt;-</span> <span style=
 
         <div class="outline-text-3" id="text-10-1">
           <ul class="org-ul">
-            <li><i>Named arguments</i> can potentially have <i>default
-            values</i> (useful: not every function call makes use of all the
-            formal arguments; some can be <i>missing</i>)</li>
+            <li>
+              <p><i>Named arguments</i> can potentially have <i>default
+              values</i> (useful: not every function call makes use of all the
+              formal arguments; some can be <i>missing</i>)</p>
+            </li>
 
-            <li>The <i>formal arguments</i> are the arguments included in the
-            function definition</li>
+            <li>
+              <p>The <i>formal arguments</i> are the arguments included in the
+              function definition</p>
+            </li>
 
-            <li><code>formals()</code> returns a list of all the formal
-            arguments of a function</li>
+            <li>
+              <p><code>formals()</code> returns a list of all the formal
+              arguments of a function</p>
+            </li>
 
-            <li>Arguments can be matched <b>positionally</b> or <b>by name</b>
+            <li>
+              <p>Arguments can be matched <b>positionally</b> or <b>by
+              name</b></p>
 
               <ul class="org-ul">
                 <li>When an argument is matched by name, it is “taken out” of
@@ -1767,17 +1816,19 @@ y <span style="color: #D0372D;">&lt;-</span> <span style=
               </ul>
             </li>
 
-            <li>Named arguments help when:
+            <li>
+              <p>Named arguments help when:</p>
 
               <ul class="org-ul">
-                <li>you want to use the defaults for evererything except for an
+                <li>you want to use the defaults for everything except for an
                 argument near the end of the list</li>
 
                 <li>you can’t remember the position of the argument</li>
               </ul>
             </li>
 
-            <li>Function arguments can also be partially <i>matched</i>
+            <li>
+              <p>Function arguments can also be partially <i>matched</i></p>
 
               <ol class="org-ol">
                 <li>Check for an exact match</li>
@@ -1788,14 +1839,19 @@ y <span style="color: #D0372D;">&lt;-</span> <span style=
               </ol>
             </li>
 
-            <li>When defining a function, you can also set an argument value to
-            <code>NULL</code> (there is nothing there)</li>
+            <li>
+              <p>When defining a function, you can also set an argument value
+              to <code>NULL</code> (there is nothing there)</p>
+            </li>
 
-            <li>Arguments to functions are evaluated <i>lazily</i> (only when
-            needed to be evaluated</li>
+            <li>
+              <p>Arguments to functions are evaluated <i>lazily</i> (only when
+              needed to be evaluated</p>
+            </li>
 
-            <li>The <code>...</code> argument indicates a variable number of
-            arguments
+            <li>
+              <p>The <code>...</code> argument indicates a variable number of
+              arguments</p>
 
               <ul class="org-ul">
                 <li>Used when extending a function and you don’t want to copy
@@ -1821,41 +1877,53 @@ y <span style="color: #D0372D;">&lt;-</span> <span style=
 
         <div class="outline-text-3" id="text-10-2">
           <ul class="org-ul">
-            <li>R searches through the <i>search list</i> (a series of
-            <code>environments</code>, an environment being a collection of
-            symbol/value pairs) to bind the appropriate value to a symbol:
+            <li>
+              <p>R searches through the <i>search list</i> (a series of
+              <code>environments</code>, an environment being a collection of
+              symbol/value pairs) to bind the appropriate value to a
+              symbol:</p>
 
               <ul class="org-ul">
-                <li>Search the global environment <code>.GlobalEnv</code>
-                (always the first)</li>
+                <li>
+                  <p>Search the global environment <code>.GlobalEnv</code>
+                  (always the first)</p>
+                </li>
 
-                <li>Search the namespaces of each of the packages on the search
-                list
+                <li>
+                  <p>Search the namespaces of each of the packages on the
+                  search list</p>
 
                   <div class="org-src-container">
                     <pre class="src src-R">
-search()                            <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">find the search list</span>
+search()                            <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">find the search list</span>
 </pre>
                   </div>
                 </li>
 
-                <li>Search the <code>base</code> package (always the last
-                element)</li>
+                <li>
+                  <p>Search the <code>base</code> package (always the last
+                  element)</p>
+                </li>
               </ul>
             </li>
 
-            <li>Last loaded package gets put in position 2 of the search list
-            and everything else gets shifted</li>
+            <li>
+              <p>Last loaded package gets put in position 2 of the search list
+              and everything else gets shifted</p>
+            </li>
 
-            <li>Separate namespaces for functions and non-function objects</li>
+            <li>
+              <p>Separate namespaces for functions and non-function objects</p>
+            </li>
 
-            <li>R uses <b>lexical</b> (or <i>static</i>) <b>scoping</b>
-            (instead of <i>dynamic scoping</i>): <i>the value of free variables
-            are searched for in the environment in which the function</i>
-            <i>was</i> <b>defined</b> (until the empty environment, after the
-            <code>base</code> package)
+            <li>
+              <p>R uses <b>lexical</b> (or <i>static</i>) <b>scoping</b>
+              (instead of <i>dynamic scoping</i>): <i>the value of free
+              variables are searched for in the environment in which the
+              function</i> <i>was</i> <b>defined</b> (until the empty
+              environment, after the <code>base</code> package)</p>
 
               <ul class="org-ul">
                 <li>With <b>dynamic</b> scoping, the value of free variables is
@@ -1873,37 +1941,40 @@ search()                            <span style=
               </ul>
             </li>
 
-            <li>Every environment has one parent environment (next thing down
-            on the search list); it is possible for an environment to have
-            mulitple “children”</li>
+            <li>
+              <p>Every environment has one parent environment (next thing down
+              on the search list); it is possible for an environment to have
+              mulitple “children”</p>
+            </li>
 
-            <li>A function + an environment = a (<i>function</i>)
-            <i>closure</i></li>
+            <li>
+              <p>A function + an environment = a (<i>function</i>)
+              <i>closure</i></p>
+            </li>
 
-            <li>In R (unlike C), you can have functions defined <i>inside other
-            functions</i> – in this case, the environment in which a function
-            is defined is the body of another function!
+            <li>
+              <p>In R (unlike C), you can have functions defined <i>inside
+              other functions</i> – in this case, the environment in which a
+              function is defined is the body of another function!</p>
 
               <div class="org-src-container">
                 <pre class="src src-R">
-<span style="color: #006699;">make.power</span> <span style=
-"color: #D0372D;">&lt;-</span> <span style=
-"color: #0000FF;">function</span>(n) {           <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">"constructor" function</span>
-  <span style="color: #006699;">pow</span> <span style=
-"color: #D0372D;">&lt;-</span> <span style=
-"color: #0000FF;">function</span>(x) {
-    x^n                               <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">n is a free variable (not defined</span>
-                                      <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">inside pow)</span>
+<span class="org-function-name">make.power</span> <span class=
+"org-constant">&lt;-</span> <span class=
+"org-keyword">function</span>(n) {           <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">"constructor" function</span>
+  <span class="org-function-name">pow</span> <span class=
+"org-constant">&lt;-</span> <span class="org-keyword">function</span>(x) {
+    x^n                               <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">n is a free variable (not defined</span>
+                                      <span class=
+"org-comment-delimiter"># </span><span class="org-comment">inside pow)</span>
   }
-  pow                                 <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">return function as return value</span>
+  pow                                 <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">return function as return value</span>
 }
 </pre>
               </div>
@@ -1912,28 +1983,29 @@ search()                            <span style=
 
               <div class="org-src-container">
                 <pre class="src src-R">
-cube <span style="color: #D0372D;">&lt;-</span> make.power(3)
-square <span style="color: #D0372D;">&lt;-</span> make.power(2)
+cube <span class="org-constant">&lt;-</span> make.power(3)
+square <span class="org-constant">&lt;-</span> make.power(2)
 </pre>
               </div>
             </li>
 
-            <li>Functions:
+            <li>
+              <p>Functions:</p>
 
               <dl class="org-dl">
-                <dt>environment(f)</dt>
+                <dt><code>environment(f)</code></dt>
 
-                <dt>parent.env(environment)</dt>
+                <dt><code>parent.env(environment)</code></dt>
 
-                <dd>next thing down on the search list</dd>
+                <dd>Next thing down on the search list</dd>
 
-                <dt>ls(environment)</dt>
+                <dt><code>ls(environment)</code></dt>
 
-                <dd>list all the variables in the environment</dd>
+                <dd>List all the variables in the environment</dd>
 
-                <dt>get(object, environment)</dt>
+                <dt><code>get(object, environment)</code></dt>
 
-                <dd>get the value of an object inside an environment</dd>
+                <dd>Get the value of an object inside an environment</dd>
               </dl>
             </li>
           </ul>
@@ -1993,10 +2065,9 @@ square <span style="color: #D0372D;">&lt;-</span> make.power(2)
 
               <div class="org-src-container">
                 <pre class="src src-R">
-con <span style="color: #D0372D;">&lt;-</span> file(<span style=
-"color: #036A07;">"./data/cameras.csv"</span>, <span style=
-"color: #036A07;">"r"</span>)
-cameraData <span style="color: #D0372D;">&lt;-</span> read.csv(con)
+con <span class="org-constant">&lt;-</span> file(<span class=
+"org-string">"./data/cameras.csv"</span>, <span class="org-string">"r"</span>)
+cameraData <span class="org-constant">&lt;-</span> read.csv(con)
 close(con)
 </pre>
               </div>
@@ -2014,7 +2085,7 @@ close(con)
             <dt><code>read.table(file)</code></dt>
 
             <dd>
-              Read tabular data file, create data frame.
+              <p>Read tabular data file, create data frame.</p>
 
               <p>Important arguments:</p>
 
@@ -2046,9 +2117,9 @@ close(con)
 
               <div class="org-src-container">
                 <pre class="src src-R">
-data <span style="color: #D0372D;">&lt;-</span> read.table(<span style=
-"color: #036A07;">"./data/file.txt"</span>, header=T, sep=<span style=
-"color: #036A07;">"\t"</span>, quote=<span style="color: #036A07;">""</span>)
+data <span class="org-constant">&lt;-</span> read.table(<span class=
+"org-string">"./data/file.txt"</span>, header=T, sep=<span class=
+"org-string">"\t"</span>, quote=<span class="org-string">""</span>)
 </pre>
               </div>
             </dd>
@@ -2057,10 +2128,13 @@ data <span style="color: #D0372D;">&lt;-</span> read.table(<span style=
           <p>For <b>large datasets</b>:</p>
 
           <ul class="org-ul">
-            <li>Set <code>comment.char</code> = "" if there are no comments in
-            your file.</li>
+            <li>
+              <p>Set <code>comment.char</code> = "" if there are no comments in
+              your file.</p>
+            </li>
 
-            <li>Use the <code>colClasses</code> argument.
+            <li>
+              <p>Use the <code>colClasses</code> argument.</p>
 
               <p>Quick and dirty way to figure out the classes of each column
               (if there aren’t any classes that you want to change from their
@@ -2069,19 +2143,21 @@ data <span style="color: #D0372D;">&lt;-</span> read.table(<span style=
 
               <div class="org-src-container">
                 <pre class="src src-R">
-tabSample <span style="color: #D0372D;">&lt;-</span> read.table(<span style=
-"color: #036A07;">"datatable.txt"</span>, nrows=100)
-classes <span style="color: #D0372D;">&lt;-</span> sapply(tabSample, class)
-tabAll <span style="color: #D0372D;">&lt;-</span> read.table(<span style=
-"color: #036A07;">"datatanble.txt"</span>, colClasses=classes)
-                                      <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">save time on importing data</span>
+tabSample <span class="org-constant">&lt;-</span> read.table(<span class=
+"org-string">"datatable.txt"</span>, nrows=100)
+classes <span class="org-constant">&lt;-</span> sapply(tabSample, class)
+tabAll <span class="org-constant">&lt;-</span> read.table(<span class=
+"org-string">"datatanble.txt"</span>, colClasses=classes)
+                                      <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">save time on importing data</span>
 </pre>
               </div>
             </li>
 
-            <li>Set <code>nrows</code> helps with memory usage.</li>
+            <li>
+              <p>Set <code>nrows</code> helps with memory usage.</p>
+            </li>
           </ul>
 
           <p>R equivalent of Linux <code>cut</code> (to read only certain
@@ -2089,14 +2165,14 @@ tabAll <span style="color: #D0372D;">&lt;-</span> read.table(<span style=
 
           <div class="org-src-container">
             <pre class="src src-R">
-whichCols <span style="color: #D0372D;">&lt;-</span> rep(<span style=
-"color: #036A07;">"NULL"</span>, 28)            <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">assuming 28 colums</span>
-whichCols[c(1, 5, 28)] <span style="color: #D0372D;">&lt;-</span> <span style=
-"color: #6434A3;">NA</span>
-df <span style=
-"color: #D0372D;">&lt;-</span> read.table(file, colClasses=whichCols)
+whichCols <span class="org-constant">&lt;-</span> rep(<span class=
+"org-string">"NULL"</span>, 28)            <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">assuming 28 colums</span>
+whichCols[c(1, 5, 28)] <span class="org-constant">&lt;-</span> <span class=
+"org-type">NA</span>
+df <span class=
+"org-constant">&lt;-</span> read.table(file, colClasses=whichCols)
 </pre>
           </div>
 
@@ -2105,8 +2181,8 @@ df <span style=
 
           <div class="org-src-container">
             <pre class="src src-R">
-df <span style="color: #D0372D;">&lt;-</span> read.table(pipe(<span style=
-"color: #036A07;">"cut -f1,5,28 myFile.txt"</span>))
+df <span class="org-constant">&lt;-</span> read.table(pipe(<span class=
+"org-string">"cut -f1,5,28 myFile.txt"</span>))
 </pre>
           </div>
         </div>
@@ -2134,7 +2210,7 @@ df <span style="color: #D0372D;">&lt;-</span> read.table(pipe(<span style=
             <dt><code>read.csv(file)</code></dt>
 
             <dd>
-              Read data from CSV file, create data frame.
+              <p>Read data from CSV file, create data frame.</p>
 
               <ul class="org-ul">
                 <li><code>header</code> (defaults to <code>TRUE</code>)</li>
@@ -2146,12 +2222,11 @@ df <span style="color: #D0372D;">&lt;-</span> read.table(pipe(<span style=
 
               <div class="org-src-container">
                 <pre class="src src-R">
-data <span style="color: #D0372D;">&lt;-</span> read.csv(<span style=
-"color: #036A07;">"./data/file.csv"</span>)
+data <span class="org-constant">&lt;-</span> read.csv(<span class=
+"org-string">"./data/file.csv"</span>)
 
-read.csv(file.choose())            <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">pick a file</span>
+read.csv(file.choose())            <span class=
+"org-comment-delimiter"># </span><span class="org-comment">pick a file</span>
 </pre>
               </div>
 
@@ -2164,7 +2239,7 @@ read.csv(file.choose())            <span style=
             <dt><code>read.csv2(file)</code></dt>
 
             <dd>
-              Read data from CSV file, create data frame.
+              <p>Read data from CSV file, create data frame.</p>
 
               <ul class="org-ul">
                 <li><code>header</code> (defaults to <code>TRUE</code>)</li>
@@ -2198,17 +2273,17 @@ read.csv(file.choose())            <span style=
             <dt><code>download.file()</code></dt>
 
             <dd>
-              Download a file from the Internet.
+              <p>Download a file from the Internet.</p>
 
-              <p>Be sure to record when you downloaded.</p>
+              <p>Be sure to record when you downloaded it.</p>
 
               <div class="org-src-container">
                 <pre class="src src-R">
-fileUrl <span style="color: #D0372D;">&lt;-</span> <span style=
-"color: #036A07;">"http://..."</span>
-download.file(fileUrl, destfile=<span style=
-"color: #036A07;">"./data/file.csv"</span>, method=<span style=
-"color: #036A07;">"curl"</span>)
+fileUrl <span class="org-constant">&lt;-</span> <span class=
+"org-string">"http://..."</span>
+download.file(fileUrl, destfile=<span class=
+"org-string">"./data/file.csv"</span>, method=<span class=
+"org-string">"curl"</span>)
 </pre>
               </div>
             </dd>
@@ -2225,7 +2300,7 @@ download.file(fileUrl, destfile=<span style=
             <dt><code>readLines()</code></dt>
 
             <dd>
-              Read lines of text from a connection.
+              <p>Read lines of text from a connection.</p>
 
               <p><i>Connections</i> can be made to:</p>
 
@@ -2245,24 +2320,24 @@ download.file(fileUrl, destfile=<span style=
 
               <div class="org-src-container">
                 <pre class="src src-R">
-con <span style="color: #D0372D;">&lt;-</span> url(<span style=
-"color: #036A07;">"http://scholar.google.com/citations"</span>)
-htmlCode <span style="color: #D0372D;">&lt;-</span> readLines(con)
+con <span class="org-constant">&lt;-</span> url(<span class=
+"org-string">"http://scholar.google.com/citations"</span>)
+htmlCode <span class="org-constant">&lt;-</span> readLines(con)
 close(con)
 
-<span style="color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">get data off webpages</span>
-html3 <span style="color: #D0372D;">&lt;-</span> htmlTreeParse(<span style=
-"color: #036A07;">"..."</span>)
+<span class="org-comment-delimiter"># </span><span class=
+"org-comment">get data off webpages</span>
+html3 <span class="org-constant">&lt;-</span> htmlTreeParse(<span class=
+"org-string">"..."</span>)
 
-<span style="color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">find value of title tag</span>
-xpathSApply(html3, <span style="color: #036A07;">"//title"</span>, xmlValue)
+<span class="org-comment-delimiter"># </span><span class=
+"org-comment">find value of title tag</span>
+xpathSApply(html3, <span class="org-string">"//title"</span>, xmlValue)
 
-<span style="color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">access parts of the table</span>
-xpathSApply(html3, <span style=
-"color: #036A07;">"//td[@id='col-citedby']"</span>, xmlValue)
+<span class="org-comment-delimiter"># </span><span class=
+"org-comment">access parts of the table</span>
+xpathSApply(html3, <span class=
+"org-string">"//td[@id='col-citedby']"</span>, xmlValue)
 </pre>
               </div>
             </dd>
@@ -2277,16 +2352,16 @@ xpathSApply(html3, <span style=
         <div class="outline-text-3" id="text-11-9">
           <div class="org-src-container">
             <pre class="src src-R">
-<span style="color: #D0372D;">library</span>(RODBC)
-<span style="color: #8D8D84;">## </span><span style=
-"color: #8D8D84; font-style: italic;">con &lt;- odbcConnect("DSN", uid="username")</span>
-<span style="color: #8D8D84;">## </span><span style=
-"color: #8D8D84; font-style: italic;">con &lt;- odbcDriverConnect("driver={SQL Server};server=hostname;database=dbname;trusted_connection=true")</span>
-con <span style="color: #D0372D;">&lt;-</span> odbcDriverConnect(<span style=
-"color: #036A07;">"driver={SQL Server};server=hostname;database=dbname;uid=username;pwd=password"</span>)
-sql <span style="color: #D0372D;">&lt;-</span> <span style=
-"color: #036A07;">"SELECT * FROM table"</span>
-rows <span style="color: #D0372D;">&lt;-</span> sqlQuery(con, sql)
+<span class="org-constant">library</span>(RODBC)
+<span class="org-comment-delimiter">## </span><span class=
+"org-comment">con &lt;- odbcConnect("DSN", uid="username")</span>
+<span class="org-comment-delimiter">## </span><span class=
+"org-comment">con &lt;- odbcDriverConnect("driver={SQL Server};server=hostname;database=dbname;trusted_connection=true")</span>
+con <span class="org-constant">&lt;-</span> odbcDriverConnect(<span class=
+"org-string">"driver={SQL Server};server=hostname;database=dbname;uid=username;pwd=password"</span>)
+sql <span class="org-constant">&lt;-</span> <span class=
+"org-string">"SELECT * FROM table"</span>
+rows <span class="org-constant">&lt;-</span> sqlQuery(con, sql)
 print(head(rows))
 odbcClose(con)
 </pre>
@@ -2356,17 +2431,21 @@ odbcClose(con)
           <dl class="org-dl">
             <dt><code>head()</code></dt>
 
-            <dd>Look at the first 6 rows.</dd>
+            <dd>
+              <p>Look at the first 6 rows.</p>
+            </dd>
 
             <dt><code>tail()</code></dt>
 
-            <dd>Look at the last 6 rows.</dd>
+            <dd>
+              <p>Look at the last 6 rows.</p>
+            </dd>
 
             <dt><code>str()</code></dt>
 
             <dd>
-              <i>Compactly</i> display the internal <b>structure</b>
-              (<b>classes</b>, etc.) of an object.
+              <p><i>Compactly</i> display the internal <b>structure</b>
+              (<b>classes</b>, etc.) of an object.</p>
 
               <p>Alternative to <code>summary()</code>.</p>
 
@@ -2374,17 +2453,19 @@ odbcClose(con)
 
               <div class="org-src-container">
                 <pre class="src src-R">
-str(.Platform)                     <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">what is the operating system</span>
+str(.Platform)                     <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">what is the operating system</span>
 </pre>
               </div>
             </dd>
 
             <dt><code>attributes()</code></dt>
 
-            <dd>Access (set or modify) the (list of) attributes of an
-            object.</dd>
+            <dd>
+              <p>Access (set or modify) the (list of) attributes of an
+              object.</p>
+            </dd>
           </dl>
         </div>
       </div>
@@ -2405,8 +2486,8 @@ str(.Platform)                     <span style=
             <dt><code>range()</code></dt>
 
             <dd>
-              Give the min and the max (vector of length 2) of the observations
-              (vector of numbers).
+              <p>Give the min and the max (vector of length 2) of the
+              observations (vector of numbers).</p>
 
               <p>Useful to give the <b>extremes of a range to the
               <code>xlim</code> and <code>ylim</code> arguments</b> of an
@@ -2414,14 +2495,16 @@ str(.Platform)                     <span style=
 
               <div class="org-src-container">
                 <pre class="src src-R">
-yrange <span style="color: #D0372D;">&lt;-</span> range(c(x1, x2, x3))
+yrange <span class="org-constant">&lt;-</span> range(c(x1, x2, x3))
 </pre>
               </div>
             </dd>
 
             <dt><code>summary()</code></dt>
 
-            <dd>Produce a summary of the object.</dd>
+            <dd>
+              <p>Produce a summary of the object.</p>
+            </dd>
           </dl>
         </div>
       </div>
@@ -2435,24 +2518,23 @@ yrange <span style="color: #D0372D;">&lt;-</span> range(c(x1, x2, x3))
             <dt><code>table(f)</code></dt>
 
             <dd>
-              <b>Count</b> the number of observations in each <i>level</i>
+              <p><b>Count</b> the number of observations in each <i>level</i>
               (only works on <i>factors</i>). Give a <b>frequency</b> of how
-              many levels there are.
+              many levels there are.</p>
 
               <div class="org-src-container">
                 <pre class="src src-R">
 unique(dfrm$f)
-length(unique(dfrm$f))             <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">how many unique values</span>
+length(unique(dfrm$f))             <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">how many unique values</span>
 
-table(dfrm$f, useNA=<span style=
-"color: #036A07;">"ifany"</span>)       <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">number of times each unique value appears</span>
-                                   <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">(show missing values as well)</span>
+table(dfrm$f, useNA=<span class="org-string">"ifany"</span>)       <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">number of times each unique value</span>
+                                   <span class=
+"org-comment-delimiter">#  </span><span class=
+"org-comment">appears (show missing values as well)</span>
 </pre>
               </div>
 
@@ -2460,8 +2542,8 @@ table(dfrm$f, useNA=<span style=
 
               <div class="org-src-container">
                 <pre class="src src-R">
-tbl <span style="color: #D0372D;">&lt;-</span> table(dfrm$f, useNA=<span style=
-"color: #036A07;">"ifany"</span>)
+tbl <span class="org-constant">&lt;-</span> table(dfrm$f, useNA=<span class=
+"org-string">"ifany"</span>)
 tbl / sum(tbl)
 </pre>
               </div>
@@ -2471,11 +2553,11 @@ tbl / sum(tbl)
 
               <div class="org-src-container">
                 <pre class="src src-R">
-f <span style=
-"color: #D0372D;">&lt;-</span> cut(dfrm$x, breaks=30)        <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">use `labels' to give nice names</span>
-table(f, useNA=<span style="color: #036A07;">"ifany"</span>)
+f <span class=
+"org-constant">&lt;-</span> cut(dfrm$x, breaks=30)        <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">use `labels' to give nice names</span>
+table(f, useNA=<span class="org-string">"ifany"</span>)
 </pre>
               </div>
             </dd>
@@ -2483,20 +2565,24 @@ table(f, useNA=<span style="color: #036A07;">"ifany"</span>)
             <dt><code>table(f1, f2)</code></dt>
 
             <dd>
-              Produce a <i>contingency table</i> (cross-tabulation).
+              <p>Produce a <i>contingency table</i> (cross-tabulation).</p>
 
               <div class="org-src-container">
                 <pre class="src src-R">
-table(dfrm$f1, dfrm$f2)            <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">look at the relationship between f1 and f2</span>
+table(dfrm$f1, dfrm$f2)            <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">look at the relationship between f1</span>
+                                   <span class=
+"org-comment-delimiter"># </span><span class="org-comment">and f2</span>
 </pre>
               </div>
             </dd>
 
             <dt><code>ftable(f)</code></dt>
 
-            <dd>3-dimensional contingency table.</dd>
+            <dd>
+              <p>3-dimensional contingency table.</p>
+            </dd>
           </dl>
         </div>
       </div>
@@ -2525,7 +2611,7 @@ summary(table(f1, f2))
         <div class="outline-text-3" id="text-13-4">
           <div class="org-src-container">
             <pre class="src src-R">
-quantile(vec, na.rm=<span style="color: #6434A3;">TRUE</span>)
+quantile(vec, na.rm=<span class="org-type">TRUE</span>)
 </pre>
           </div>
         </div>
@@ -2569,26 +2655,28 @@ tolower(names(dfrm))
 
           <div class="org-src-container">
             <pre class="src src-R">
-splitNames <span style=
-"color: #D0372D;">&lt;-</span> strsplit(names(dfrm), <span style=
-"color: #036A07;">"\\."</span>) <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">split at period in names</span>
-<span style="color: #006699;">firstElement</span> <span style=
-"color: #D0372D;">&lt;-</span> <span style=
-"color: #0000FF;">function</span>(x){x[1]}       <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">select the 1st component of the vector</span>
-sapply(splitNames, firstElement)        <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">remove everything after the trailing dot</span>
+splitNames <span class=
+"org-constant">&lt;-</span> strsplit(names(dfrm), <span class=
+"org-string">"\\."</span>) <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">split at period in names</span>
+<span class="org-function-name">firstElement</span> <span class=
+"org-constant">&lt;-</span> <span class=
+"org-keyword">function</span>(x){x[1]}       <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">select the 1st component of the vector</span>
+sapply(splitNames, firstElement)        <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">remove everything after the trailing</span>
+                                        <span class=
+"org-comment-delimiter"># </span><span class="org-comment">dot</span>
 </pre>
           </div>
 
           <div class="org-src-container">
             <pre class="src src-R">
-gsub(<span style="color: #036A07;">"_"</span>, <span style=
-"color: #036A07;">""</span>, names(dfrm))
+gsub(<span class="org-string">"_"</span>, <span class=
+"org-string">""</span>, names(dfrm))
 </pre>
           </div>
         </div>
@@ -2601,10 +2689,10 @@ gsub(<span style="color: #036A07;">"_"</span>, <span style=
         <div class="outline-text-3" id="text-14-2">
           <div class="org-src-container">
             <pre class="src src-R">
-dfrm$ranges <span style=
-"color: #D0372D;">&lt;-</span> ranges                   <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">add a variable to the data frame</span>
+dfrm$ranges <span class=
+"org-constant">&lt;-</span> ranges                   <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">add a variable to the data frame</span>
 </pre>
           </div>
         </div>
@@ -2627,11 +2715,13 @@ dfrm$ranges <span style=
 
           <div class="org-src-container">
             <pre class="src src-R">
-u <span style="color: #D0372D;">&lt;-</span> x &gt; <span style=
-"color: #036A07;">"a"</span>
-x[u]                                    <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">get all elements which are greater than "a"</span>
+u <span class="org-constant">&lt;-</span> x &gt; <span class=
+"org-string">"a"</span>
+x[u]                                    <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">get all elements which are greater</span>
+                                        <span class=
+"org-comment-delimiter"># </span><span class="org-comment">than "a"</span>
 </pre>
           </div>
 
@@ -2639,14 +2729,14 @@ x[u]                                    <span style=
 
           <div class="org-src-container">
             <pre class="src src-R">
-missing <span style=
-"color: #D0372D;">&lt;-</span> is.na(x)                     <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">logical vector</span>
-y <span style="color: #D0372D;">&lt;-</span> x[!missing]
-sum(y)                                  <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">= sum(x, na.rm=TRUE)</span>
+missing <span class=
+"org-constant">&lt;-</span> is.na(x)                     <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">logical vector</span>
+y <span class="org-constant">&lt;-</span> x[!missing]
+sum(y)                                  <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">= sum(x, na.rm=TRUE)</span>
 </pre>
           </div>
 
@@ -2658,7 +2748,7 @@ sum(y)                                  <span style=
 
           <div class="org-src-container">
             <pre class="src src-R">
-nonmissing <span style="color: #D0372D;">&lt;-</span> complete.cases(x)
+nonmissing <span class="org-constant">&lt;-</span> complete.cases(x)
 x[nonmissing, ]
 </pre>
           </div>
@@ -2668,10 +2758,10 @@ x[nonmissing, ]
 
           <div class="org-src-container">
             <pre class="src src-R">
-bothnonmissing <span style=
-"color: #D0372D;">&lt;-</span> complete.cases(x, y)  <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">logical vector</span>
+bothnonmissing <span class=
+"org-constant">&lt;-</span> complete.cases(x, y)  <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">logical vector</span>
 x[bothnonmissing]
 </pre>
           </div>
@@ -2681,24 +2771,22 @@ x[bothnonmissing]
 
           <div class="org-src-container">
             <pre class="src src-R">
-tokeep <span style="color: #D0372D;">&lt;-</span> !names(x) %<span style=
-"color: #0000FF;">in</span>% c(<span style=
-"color: #036A07;">"remove1"</span>, <span style=
-"color: #036A07;">"remove2"</span>)
-x <span style=
-"color: #D0372D;">&lt;-</span> x[, tokeep]                        <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">or...</span>
-x <span style="color: #D0372D;">&lt;-</span> x[, tokeep, drop=<span style=
-"color: #6434A3;">FALSE</span>]            <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">you will need this option to avoid</span>
-                                        <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">the conversion to an atomic vector if</span>
-                                        <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">there is only one column left</span>
+tokeep <span class="org-constant">&lt;-</span> !names(x) %<span class=
+"org-keyword">in</span>% c(<span class=
+"org-string">"remove1"</span>, <span class="org-string">"remove2"</span>)
+x <span class=
+"org-constant">&lt;-</span> x[, tokeep]                        <span class=
+"org-comment-delimiter"># </span><span class="org-comment">or...</span>
+x <span class="org-constant">&lt;-</span> x[, tokeep, drop=<span class=
+"org-type">FALSE</span>]            <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">you will need this option to avoid the</span>
+                                        <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">conversion to an atomic vector if</span>
+                                        <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">there is only one column left</span>
 </pre>
           </div>
         </div>
@@ -2713,12 +2801,12 @@ x <span style="color: #D0372D;">&lt;-</span> x[, tokeep, drop=<span style=
 
           <div class="org-src-container">
             <pre class="src src-R">
-dfrm[dfrm$var1 &gt; 0 &amp; dfrm$var2 &gt; 0, c(1, 2)] <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">subset on var1 and var2</span>
-dfrm[dfrm$var1 &gt; 0 | dfrm$var2 &gt; 0, c(1, 2)] <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">subset on var1 or var2</span>
+dfrm[dfrm$var1 &gt; 0 &amp; dfrm$var2 &gt; 0, c(1, 2)] <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">subset on var1 and var2</span>
+dfrm[dfrm$var1 &gt; 0 | dfrm$var2 &gt; 0, c(1, 2)] <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">subset on var1 or var2</span>
 </pre>
           </div>
 
@@ -2752,7 +2840,7 @@ subset(dfrm, select=c(var1, var2), subset=(var1 &gt; 0 | var2 &gt; 0))
 
           <div class="org-src-container">
             <pre class="src src-R">
-df <span style="color: #D0372D;">&lt;-</span> df[, colSums(is.na(df))==0]
+df <span class="org-constant">&lt;-</span> df[, colSums(is.na(df))==0]
 </pre>
           </div>
         </div>
@@ -2792,10 +2880,10 @@ df <span style="color: #D0372D;">&lt;-</span> df[, colSums(is.na(df))==0]
 
           <div class="org-src-container">
             <pre class="src src-R">
-merged.data <span style=
-"color: #D0372D;">&lt;-</span> merge(df1, df2, by.x=<span style=
-"color: #036A07;">"id1"</span>, by.y=<span style=
-"color: #036A07;">"id2"</span>, all=<span style="color: #6434A3;">TRUE</span>)
+merged.data <span class=
+"org-constant">&lt;-</span> merge(df1, df2, by.x=<span class=
+"org-string">"id1"</span>, by.y=<span class=
+"org-string">"id2"</span>, all=<span class="org-type">TRUE</span>)
 </pre>
           </div>
         </div>
@@ -2829,14 +2917,14 @@ merged.data <span style=
 
           <div class="org-src-container">
             <pre class="src src-R">
-dfrm$x <span style=
-"color: #D0372D;">&lt;-</span> as.factor(dfrm$x)             <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">character to factor</span>
-dfrm$x <span style=
-"color: #D0372D;">&lt;-</span> as.character(dfrm$x)          <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">factor to character</span>
+dfrm$x <span class=
+"org-constant">&lt;-</span> as.factor(dfrm$x)             <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">character to factor</span>
+dfrm$x <span class=
+"org-constant">&lt;-</span> as.character(dfrm$x)          <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">factor to character</span>
 </pre>
           </div>
 
@@ -2849,8 +2937,8 @@ dfrm$x <span style=
 
           <div class="org-src-container">
             <pre class="src src-R">
-ind <span style="color: #D0372D;">&lt;-</span> sapply(x, is.character)
-x[ind] <span style="color: #D0372D;">&lt;-</span> lapply(x[ind], factor)
+ind <span class="org-constant">&lt;-</span> sapply(x, is.character)
+x[ind] <span class="org-constant">&lt;-</span> lapply(x[ind], factor)
 </pre>
           </div>
         </div>
@@ -2884,16 +2972,16 @@ x[ind] <span style="color: #D0372D;">&lt;-</span> lapply(x[ind], factor)
 
             <div class="org-src-container">
               <pre class="src src-R">
-x <span style="color: #D0372D;">&lt;-</span> list(a=1:5, b=rnorm(10))
+x <span class="org-constant">&lt;-</span> list(a=1:5, b=rnorm(10))
 lapply(x, mean)
 </pre>
             </div>
 
             <div class="org-src-container">
               <pre class="src src-R">
-lapply(1:4, runif, min=0, max=10)       <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">arguments passed through the `...'</span>
+lapply(1:4, runif, min=0, max=10)       <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">arguments passed through the `...'</span>
 </pre>
             </div>
 
@@ -2901,7 +2989,7 @@ lapply(1:4, runif, min=0, max=10)       <span style=
 
             <div class="org-src-container">
               <pre class="src src-R">
-lapply(x, <span style="color: #0000FF;">function</span>(x) x[, 1])
+lapply(x, <span class="org-keyword">function</span>(x) x[, 1])
 </pre>
             </div>
           </div>
@@ -2918,11 +3006,10 @@ lapply(x, <span style="color: #0000FF;">function</span>(x) x[, 1])
 
             <div class="org-src-container">
               <pre class="src src-R">
-sapply(s, <span style=
-"color: #0000FF;">function</span>(x) colMeans(x[, c(<span style=
-"color: #036A07;">"Ozone"</span>, <span style=
-"color: #036A07;">"Solar.R"</span>, <span style=
-"color: #036A07;">"Wind"</span>)]))
+sapply(s, <span class=
+"org-keyword">function</span>(x) colMeans(x[, c(<span class=
+"org-string">"Ozone"</span>, <span class=
+"org-string">"Solar.R"</span>, <span class="org-string">"Wind"</span>)]))
 </pre>
             </div>
 
@@ -2931,12 +3018,11 @@ sapply(s, <span style=
 
             <div class="org-src-container">
               <pre class="src src-R">
-sapply(s, <span style=
-"color: #0000FF;">function</span>(x) colMeans(x[, c(<span style=
-"color: #036A07;">"Ozone"</span>, <span style=
-"color: #036A07;">"Solar.R"</span>, <span style=
-"color: #036A07;">"Wind"</span>)], na.rm=<span style=
-"color: #6434A3;">TRUE</span>))
+sapply(s, <span class=
+"org-keyword">function</span>(x) colMeans(x[, c(<span class=
+"org-string">"Ozone"</span>, <span class=
+"org-string">"Solar.R"</span>, <span class=
+"org-string">"Wind"</span>)], na.rm=<span class="org-type">TRUE</span>))
 </pre>
             </div>
           </div>
@@ -2952,9 +3038,9 @@ sapply(s, <span style=
             <dt><code>split(x, f)</code></dt>
 
             <dd>
-              Take a vector, and <b>split</b> it into subpieces (the number of
-              groups identified by the levels of a <b>factor</b> variable).
-              Always return a <b>list</b> (of lists?) back.
+              <p>Take a vector, and <b>split</b> it into subpieces (the number
+              of groups identified by the levels of a <b>factor</b> variable).
+              Always return a <b>list</b> (of lists?) back.</p>
 
               <dl class="org-dl">
                 <dt><code>drop = TRUE</code></dt>
@@ -2980,15 +3066,14 @@ lapply(split(x, f), mean)
 
               <div class="org-src-container">
                 <pre class="src src-R">
-s <span style=
-"color: #D0372D;">&lt;-</span> split(airquality, airquality$Month) <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">split according to month</span>
-lapply(s, <span style=
-"color: #0000FF;">function</span>(x) colMeans(x[, c(<span style=
-"color: #036A07;">"Ozone"</span>, <span style=
-"color: #036A07;">"Solar.R"</span>, <span style=
-"color: #036A07;">"Wind"</span>)])
+s <span class=
+"org-constant">&lt;-</span> split(airquality, airquality$Month) <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">split according to month</span>
+lapply(s, <span class=
+"org-keyword">function</span>(x) colMeans(x[, c(<span class=
+"org-string">"Ozone"</span>, <span class=
+"org-string">"Solar.R"</span>, <span class="org-string">"Wind"</span>)])
 </pre>
               </div>
             </dd>
@@ -3005,7 +3090,7 @@ lapply(s, <span style=
             <dt><code>apply(dfrm, margin, fun, ...)</code></dt>
 
             <dd>
-              Apply a function over the <b>margins</b> of an array.
+              <p>Apply a function over the <b>margins</b> of an array.</p>
 
               <p>Often used to apply a function to the rows or columns of a
               matrix. Very useful if you wanna take <b>summaries</b> of
@@ -3026,17 +3111,17 @@ lapply(s, <span style=
 
               <div class="org-src-container">
                 <pre class="src src-R">
-x <span style="color: #D0372D;">&lt;-</span> matrix(rnorm(200), 20, 10)
+x <span class="org-constant">&lt;-</span> matrix(rnorm(200), 20, 10)
 apply(x, 2, mean)
 </pre>
               </div>
 
               <div class="org-src-container">
                 <pre class="src src-R">
-x <span style="color: #D0372D;">&lt;-</span> matrix(rnorm(200), 20, 10)
-apply(x, 1, quantile, probs=c(0.25, 0.75)) <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">no default value for `probs'</span>
+x <span class="org-constant">&lt;-</span> matrix(rnorm(200), 20, 10)
+apply(x, 1, quantile, probs=c(0.25, 0.75)) <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">no default value for `probs'</span>
 </pre>
               </div>
 
@@ -3065,8 +3150,8 @@ apply(x, 1, quantile, probs=c(0.25, 0.75)) <span style=
             <dt><code>tapply(x, index, fun)</code></dt>
 
             <dd>
-              Short for “<b>table apply</b>”. Apply a <b>function</b> over
-              <b>subsets</b> of a vector:
+              <p>Short for “<b>table apply</b>”. Apply a <b>function</b> over
+              <b>subsets</b> of a vector:</p>
 
               <ul class="org-ul">
                 <li>Splits up a vector into little groups (such as men and
@@ -3089,13 +3174,12 @@ apply(x, 1, quantile, probs=c(0.25, 0.75)) <span style=
 
               <div class="org-src-container">
                 <pre class="src src-R">
-tapply(x, f, sum, simplify=<span style=
-"color: #6434A3;">FALSE</span>)  <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">= lapply(split(x, f), sum)</span>
-tapply(x, f, mean)                 <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">= sapply(split(x, f), mean)</span>
+tapply(x, f, sum, simplify=<span class="org-type">FALSE</span>)  <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">= lapply(split(x, f), sum)</span>
+tapply(x, f, mean)                 <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">= sapply(split(x, f), mean)</span>
 tapply(x, f, length)
 </pre>
               </div>
@@ -3104,8 +3188,8 @@ tapply(x, f, length)
             <dt><code>interaction(f1, f2)</code></dt>
 
             <dd>
-              Combines all the levels of the first factor with all the levels
-              of the second factor.
+              <p>Combines all the levels of the first factor with all the
+              levels of the second factor.</p>
 
               <p>You can also use <code>aggregate</code> to analyze groups
               defined by more than one categorical variable (e.g., month and
@@ -3124,8 +3208,9 @@ tapply(x, f, length)
             <dt><code>mapply</code></dt>
 
             <dd>
-              Apply a <b>function</b> to the elements of <b>multiple lists</b>
-              in parallel (multivariate version of <code>lapply</code>).
+              <p>Apply a <b>function</b> to the elements of <b>multiple
+              lists</b> in parallel (multivariate version of
+              <code>lapply</code>).</p>
 
               <p>For example, apply a function over 2 lists, where the elements
               of the first list go into one argument of the function, and the
@@ -3137,9 +3222,9 @@ tapply(x, f, length)
 
               <div class="org-src-container">
                 <pre class="src src-R">
-mapply(rnorm, 1:3, 1:3, 2)         <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">fixed standard deviation</span>
+mapply(rnorm, 1:3, 1:3, 2)         <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">fixed standard deviation</span>
 </pre>
               </div>
 
@@ -3209,46 +3294,64 @@ list(rnorm(1, 1, 2),
           <dl class="org-dl">
             <dt><code>^</code></dt>
 
-            <dd>Start of a line (or negation of a character class).</dd>
+            <dd>
+              <p>Start of a line (or negation of a character class).</p>
+            </dd>
 
             <dt><code>$</code></dt>
 
-            <dd>End of a line.</dd>
+            <dd>
+              <p>End of a line.</p>
+            </dd>
 
             <dt><code>[]</code></dt>
 
-            <dd>Character classes.</dd>
+            <dd>
+              <p>Character classes.</p>
+            </dd>
 
             <dt><code>.</code></dt>
 
-            <dd>Any character.</dd>
+            <dd>
+              <p>Any character.</p>
+            </dd>
 
             <dt><code>|</code></dt>
 
-            <dd>Or.</dd>
+            <dd>
+              <p>Or.</p>
+            </dd>
 
             <dt><code>()</code></dt>
 
-            <dd>Subexpressions (alternatives or “remember” matched text).</dd>
+            <dd>
+              <p>Subexpressions (alternatives or “remember” matched text).</p>
+            </dd>
 
             <dt><code>?</code></dt>
 
-            <dd>Optional.</dd>
+            <dd>
+              <p>Optional.</p>
+            </dd>
 
             <dt>\</dt>
 
-            <dd>“Escape” the metacharacter.</dd>
+            <dd>
+              <p>“Escape” the metacharacter.</p>
+            </dd>
 
             <dt><code>+</code></dt>
 
-            <dd>Any number, including none.</dd>
+            <dd>
+              <p>Any number, including none.</p>
+            </dd>
 
             <dt><code>*</code></dt>
 
             <dd>
-              Any number, at least one – it is “greedy” so it always matches
+              <p>Any number, at least one – it is “greedy” so it always matches
               the <i>longest</i> possible string that satisfies the regular
-              expression.
+              expression.</p>
 
               <p>The greediness can be turned off with the <code>?</code>
               metacharacter (make the regex “lazy”), as in:</p>
@@ -3262,7 +3365,9 @@ list(rnorm(1, 1, 2),
 
             <dt><code>{}</code></dt>
 
-            <dd>Interval quantifiers (minimum, maximum).</dd>
+            <dd>
+              <p>Interval quantifiers (minimum, maximum).</p>
+            </dd>
           </dl>
 
           <p>These functions can take vector arguments.</p>
@@ -3271,23 +3376,23 @@ list(rnorm(1, 1, 2),
             <dt><code>grep</code></dt>
 
             <dd>
-              Return the <b>indices</b> into the character vector where the
-              regex pattern matches (it won’t do anything).
+              <p>Return the <b>indices</b> into the character vector where the
+              regex pattern matches (it won’t do anything).</p>
 
               <div class="org-src-container">
                 <pre class="src src-R">
-i <span style="color: #D0372D;">&lt;-</span> grep(<span style=
-"color: #036A07;">"regexp"</span>, vector) <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">get a set of indices</span>
-j <span style="color: #D0372D;">&lt;-</span> grep(<span style=
-"color: #036A07;">"anotherregexp"</span>, vector) <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">get another set of indices</span>
-setdiff(i, j) <span style="color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">substract j elements from i when they are the same</span>
-setdiff(j, i) <span style="color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">different result</span>
+i <span class="org-constant">&lt;-</span> grep(<span class=
+"org-string">"regexp"</span>, vector) <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">get a set of indices</span>
+j <span class="org-constant">&lt;-</span> grep(<span class=
+"org-string">"anotherregexp"</span>, vector) <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">get another set of indices</span>
+setdiff(i, j) <span class="org-comment-delimiter"># </span><span class=
+"org-comment">substract j elements from i when they are the same</span>
+setdiff(j, i) <span class="org-comment-delimiter"># </span><span class=
+"org-comment">different result</span>
 </pre>
               </div>
 
@@ -3297,22 +3402,24 @@ setdiff(j, i) <span style="color: #8D8D84;"># </span><span style=
 
             <dt><code>grepl</code></dt>
 
-            <dd>Return a <b>logical vector</b> (<code>TRUE</code> /
-            <code>FALSE</code>) indicating which element matches (used for
-            <i>subsetting</i>).</dd>
+            <dd>
+              <p>Return a <b>logical vector</b> (<code>TRUE</code> /
+              <code>FALSE</code>) indicating which element matches (used for
+              <i>subsetting</i>).</p>
+            </dd>
 
             <dt><code>regexpr</code></dt>
 
             <dd>
-              Return the indices (integer vector) of the string <b>where the
-              first match begins</b> and the length of the match.
+              <p>Return the indices (integer vector) of the string <b>where the
+              first match begins</b> and the length of the match.</p>
 
               <p>If I want to see what the match is, use
               <code>substr</code>:</p>
 
               <div class="org-src-container">
                 <pre class="src src-R">
-regexpr(<span style="color: #036A07;">"..."</span>, string)
+regexpr(<span class="org-string">"..."</span>, string)
 substr(string, start + length - 1)
 </pre>
               </div>
@@ -3323,8 +3430,8 @@ substr(string, start + length - 1)
 
               <div class="org-src-container">
                 <pre class="src src-R">
-r <span style="color: #D0372D;">&lt;-</span> regexpr(<span style=
-"color: #036A07;">"..."</span>, string)
+r <span class="org-constant">&lt;-</span> regexpr(<span class=
+"org-string">"..."</span>, string)
 regmatches(string, r)
 </pre>
               </div>
@@ -3332,24 +3439,27 @@ regmatches(string, r)
 
             <dt><code>gregexpr</code></dt>
 
-            <dd>Return <b>all of the matches</b> (“global”) in a given
-            string.</dd>
+            <dd>
+              <p>Return <b>all of the matches</b> (“global”) in a given
+              string.</p>
+            </dd>
 
             <dt><code>sub</code></dt>
 
-            <dd>Replace <b>the first match</b> with another string (used to
-            strip out stuff by replacing the match with nothing).</dd>
+            <dd>
+              <p>Replace <b>the first match</b> with another string (used to
+              strip out stuff by replacing the match with nothing).</p>
+            </dd>
 
             <dt><code>gsub</code></dt>
 
             <dd>
-              Replace <b>all of the matches</b> with another string.
+              <p>Replace <b>all of the matches</b> with another string.</p>
 
               <div class="org-src-container">
                 <pre class="src src-R">
-names(data)[i] <span style="color: #D0372D;">&lt;-</span> gsub(<span style=
-"color: #036A07;">"-"</span>, <span style=
-"color: #036A07;">"."</span>, names(data)[i])
+names(data)[i] <span class="org-constant">&lt;-</span> gsub(<span class=
+"org-string">"-"</span>, <span class="org-string">"."</span>, names(data)[i])
 </pre>
               </div>
             </dd>
@@ -3357,32 +3467,31 @@ names(data)[i] <span style="color: #D0372D;">&lt;-</span> gsub(<span style=
             <dt><code>regexec</code></dt>
 
             <dd>
-              Give the indices (list) for parenthesized sub-expressions.
+              <p>Give the indices (list) for parenthesized sub-expressions.</p>
 
               <p>If I want to see what the submatch is:</p>
 
               <div class="org-src-container">
                 <pre class="src src-R">
-r <span style="color: #D0372D;">&lt;-</span> regexpr(<span style=
-"color: #036A07;">"... (.*) ..."</span>, string) <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">find all the date fields</span>
-m <span style=
-"color: #D0372D;">&lt;-</span> regmatches(string, r)         <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">parse out</span>
-dates <span style="color: #D0372D;">&lt;-</span> sapply(m, <span style=
-"color: #0000FF;">function</span> (x) x[2]) <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">extract the 2nd element of each list object</span>
-dates <span style="color: #D0372D;">&lt;-</span> as.Date(dates, <span style=
-"color: #036A07;">"%B %d, %Y"</span>) <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">convert to date</span>
-hist(dates, <span style="color: #036A07;">"month"</span>, freq=<span style=
-"color: #6434A3;">TRUE</span>)    <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">aggregate the dates by month and give an histogram</span>
+r <span class="org-constant">&lt;-</span> regexpr(<span class=
+"org-string">"... (.*) ..."</span>, string) <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">find all the date fields</span>
+m <span class=
+"org-constant">&lt;-</span> regmatches(string, r)         <span class=
+"org-comment-delimiter"># </span><span class="org-comment">parse out</span>
+dates <span class="org-constant">&lt;-</span> sapply(m, <span class=
+"org-keyword">function</span> (x) x[2]) <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">extract the 2nd element of each list object</span>
+dates <span class="org-constant">&lt;-</span> as.Date(dates, <span class=
+"org-string">"%B %d, %Y"</span>) <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">convert to date</span>
+hist(dates, <span class="org-string">"month"</span>, freq=<span class=
+"org-type">TRUE</span>)    <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">aggregate the dates by month and give an histogram</span>
 </pre>
               </div>
             </dd>
@@ -3407,8 +3516,8 @@ hist(dates, <span style="color: #036A07;">"month"</span>, freq=<span style=
           <dt><code>base</code></dt>
 
           <dd>
-            Graphics are constructed piecemeal by <b>different function
-            calls</b>; you can add things one by one:
+            <p>Graphics are constructed piecemeal by <b>different function
+            calls</b>; you can add things one by one:</p>
 
             <ul class="org-ul">
               <li>annotate (some of the points in) the plot,</li>
@@ -3427,19 +3536,24 @@ hist(dates, <span style="color: #036A07;">"month"</span>, freq=<span style=
 
           <dt><code>lattice</code></dt>
 
-          <dd>Graphics are constructed via a single function call: all options
-          have to be specified at once (advantage: that allows R to calculate
-          the necessary spacings, margins and font sizes).</dd>
+          <dd>
+            <p>Graphics are constructed via a single function call: all options
+            have to be specified at once (advantage: that allows R to calculate
+            the necessary spacings, margins and font sizes).</p>
+          </dd>
         </dl>
 
         <p>Behavior:</p>
 
         <ul class="org-ul">
-          <li>Base graphics functions have a “side effect”: they plot data
-          directly to the graphics device.</li>
+          <li>
+            <p>Base graphics functions have a “side effect”: they plot data
+            directly to the graphics device.</p>
+          </li>
 
-          <li>Lattice graphics functions return an object of the class
-          <code>trellis</code> (object designed for plotting).
+          <li>
+            <p>Lattice graphics functions return an object of the class
+            <code>trellis</code> (object designed for plotting).</p>
 
             <p>When you call Lattice functions, even if you don’t assign it to
             a “plot object”, the result will be <b>auto-printed</b> (generate
@@ -3494,15 +3608,16 @@ hist(dates, <span style="color: #036A07;">"month"</span>, freq=<span style=
                 <dt><code>plot(x)</code></dt>
 
                 <dd>
-                  Plot the (numeric) data against the index (<code>1:N</code>).
+                  <p>Plot the (numeric) data against the index
+                  (<code>1:N</code>).</p>
 
                   <div class="org-src-container">
                     <pre class="src src-R">
 data(iris)
 plot(sort(iris$Petal.Width),
-     main=<span style="color: #036A07;">"Distribution of petal widths"</span>,
-     xlab=<span style="color: #036A07;">"Rank"</span>, ylab=<span style=
-"color: #036A07;">"Width"</span>, col=as.integer(iris$Species)+1)
+     main=<span class="org-string">"Distribution of petal widths"</span>,
+     xlab=<span class="org-string">"Rank"</span>, ylab=<span class=
+"org-string">"Width"</span>, col=as.integer(iris$Species)+1)
 </pre>
                   </div>
 
@@ -3515,15 +3630,16 @@ plot(sort(iris$Petal.Width),
                 <dt><code>plot(x, y)</code></dt>
 
                 <dd>
-                  Create a scatter plot of <code>x</code> and <code>y</code>.
+                  <p>Create a scatter plot of <code>x</code> and
+                  <code>y</code>.</p>
 
                   <div class="org-src-container">
                     <pre class="src src-R">
 data(iris)
 plot(iris$Petal.Length, iris$Petal.Width,
-     main=<span style="color: #036A07;">"Petals: Length vs Width"</span>,
-     xlab=<span style="color: #036A07;">"Length"</span>, ylab=<span style=
-"color: #036A07;">"Width"</span>, col=as.integer(iris$Species)+1)
+     main=<span class="org-string">"Petals: Length vs Width"</span>,
+     xlab=<span class="org-string">"Length"</span>, ylab=<span class=
+"org-string">"Width"</span>, col=as.integer(iris$Species)+1)
 </pre>
                   </div>
 
@@ -3536,8 +3652,8 @@ plot(iris$Petal.Length, iris$Petal.Width,
                 <dt><code>plot(x, y, type = "n")</code></dt>
 
                 <dd>
-                  Set up the plot window, but don’t actually plot the data in
-                  there.
+                  <p>Set up the plot window, but don’t actually plot the data
+                  in there.</p>
 
                   <p>Note that you have <code>POSIXct</code> dates in your data
                   frame… XXX</p>
@@ -3546,14 +3662,14 @@ plot(iris$Petal.Length, iris$Petal.Width,
                 <dt><code>plot(dfrm)</code></dt>
 
                 <dd>
-                  Create <b>multiple scatter plots</b> if your data frame
-                  contains more than 2&nbsp;columns.
+                  <p>Create <b>multiple scatter plots</b> if your data frame
+                  contains more than 2&nbsp;columns.</p>
 
                   <div class="org-src-container">
                     <pre class="src src-R">
 data(iris)
-plot(iris[, 1:4], main=<span style=
-"color: #036A07;">"Multiple scatter plots"</span>,
+plot(iris[, 1:4], main=<span class=
+"org-string">"Multiple scatter plots"</span>,
      col=as.integer(iris$Species)+1)
 </pre>
                   </div>
@@ -3563,7 +3679,7 @@ plot(iris[, 1:4], main=<span style=
                     "base-multi-scatterplots.png" /></p>
                   </div>
 
-                  <p>You can see that length and width appear strongly
+                  <p>You can see that petal length and width appear strongly
                   correlated. You could check the correlation between features
                   with the <code>cor()</code> function.</p>
 
@@ -3657,11 +3773,11 @@ cor(iris[-5])
               <div class="org-src-container">
                 <pre class="src src-R">
 data(iris)
-hist(iris$Petal.Length, main=<span style=
-"color: #036A07;">"Histogram"</span>, col=<span style=
-"color: #036A07;">"lightblue"</span>) <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">shape of distribution</span>
+hist(iris$Petal.Length, main=<span class=
+"org-string">"Histogram"</span>, col=<span class=
+"org-string">"lightblue"</span>) <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">shape of distribution</span>
 </pre>
               </div>
 
@@ -3675,12 +3791,12 @@ hist(iris$Petal.Length, main=<span style=
               <div class="org-src-container">
                 <pre class="src src-R">
 data(iris)
-hist(iris$Petal.Length, breaks=seq(1, 7, by=0.1), main=<span style=
-"color: #036A07;">"Histogram"</span>, col=<span style=
-"color: #036A07;">"lightblue"</span>)
-                                        <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">much more fine-grained distribution</span>
+hist(iris$Petal.Length, breaks=seq(1, 7, by=0.1), main=<span class=
+"org-string">"Histogram"</span>, col=<span class=
+"org-string">"lightblue"</span>)
+                                        <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">much more fine-grained distribution</span>
 </pre>
               </div>
 
@@ -3698,12 +3814,12 @@ hist(iris$Petal.Length, breaks=seq(1, 7, by=0.1), main=<span style=
               <div class="org-src-container">
                 <pre class="src src-R">
 data(iris)
-hist(iris$Petal.Length, breaks=100, main=<span style=
-"color: #036A07;">"Histogram"</span>, col=<span style=
-"color: #036A07;">"lightblue"</span>)
-meanValue <span style="color: #D0372D;">&lt;-</span> mean(iris$Petal.Length)
-lines(rep(meanValue, 100), seq(0, 100, length=100), col=<span style=
-"color: #036A07;">"red"</span>, lwd=5)
+hist(iris$Petal.Length, breaks=100, main=<span class=
+"org-string">"Histogram"</span>, col=<span class=
+"org-string">"lightblue"</span>)
+meanValue <span class="org-constant">&lt;-</span> mean(iris$Petal.Length)
+lines(rep(meanValue, 100), seq(0, 100, length=100), col=<span class=
+"org-string">"red"</span>, lwd=5)
 </pre>
               </div>
 
@@ -3715,9 +3831,8 @@ lines(rep(meanValue, 100), seq(0, 100, length=100), col=<span style=
               <div class="org-src-container">
                 <pre class="src src-R">
 data(iris)
-plot(table(iris$Petal.Length), main=<span style=
-"color: #036A07;">"Table"</span>, col=<span style=
-"color: #036A07;">"blue"</span>)
+plot(table(iris$Petal.Length), main=<span class=
+"org-string">"Table"</span>, col=<span class="org-string">"blue"</span>)
 </pre>
               </div>
 
@@ -3732,17 +3847,19 @@ plot(table(iris$Petal.Length), main=<span style=
               the x-axis itself).</p>
 
               <ul class="org-ul">
-                <li>Density plot (smoother histogram)
+                <li>
+                  <p>Density plot (smoother histogram)</p>
 
                   <p><b>Density</b> = percentage of observations</p>
 
                   <div class="org-src-container">
                     <pre class="src src-R">
-  dens <span style=
-"color: #D0372D;">&lt;-</span> density(data$var) <span style="color: #8D8D84;"># </span><span style="color: #8D8D84; font-style: italic;">smooth density function</span>
-  plot(dens, lwd=3, col=<span style="color: #036A07;">"blue"</span>)
-<span style="color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">or: lines(dens, lwd=3, col="blue") after hist plot</span>
+  dens <span class="org-constant">&lt;-</span> density(data$var) <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">smooth density function</span>
+  plot(dens, lwd=3, col=<span class="org-string">"blue"</span>)
+<span class="org-comment-delimiter"># </span><span class=
+"org-comment">or: lines(dens, lwd=3, col="blue") after hist plot</span>
 </pre>
                   </div>
 
@@ -3750,11 +3867,11 @@ plot(table(iris$Petal.Length), main=<span style=
 
                   <div class="org-src-container">
                     <pre class="src src-R">
-<span style="color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">add another density</span>
-densMales <span style=
-"color: #D0372D;">&lt;-</span> density(data$var[which(data$sex==1)])
-lines(densMales, lwd=3, col=<span style="color: #036A07;">"orange"</span>)
+<span class="org-comment-delimiter"># </span><span class=
+"org-comment">add another density</span>
+densMales <span class=
+"org-constant">&lt;-</span> density(data$var[which(data$sex==1)])
+lines(densMales, lwd=3, col=<span class="org-string">"orange"</span>)
 </pre>
                   </div>
                 </li>
@@ -3784,9 +3901,9 @@ lines(densMales, lwd=3, col=<span style="color: #036A07;">"orange"</span>)
               <div class="org-src-container">
                 <pre class="src src-R">
 data(iris)
-boxplot(iris[, 1:4], col=rainbow(4), main=<span style=
-"color: #036A07;">"Boxplot"</span>, ylab=<span style=
-"color: #036A07;">"Appropriate units"</span>)
+boxplot(iris[, 1:4], col=rainbow(4), main=<span class=
+"org-string">"Boxplot"</span>, ylab=<span class=
+"org-string">"Appropriate units"</span>)
 </pre>
               </div>
 
@@ -3806,29 +3923,29 @@ boxplot(iris[, 1:4], col=rainbow(4), main=<span style=
               <dt><code>points</code></dt>
 
               <dd>
-                <b>Add points to a plot</b> (<code>col</code> for boundary
+                <p><b>Add points to a plot</b> (<code>col</code> for boundary
                 color, <code>bg</code> for fill color, <code>pch</code> for
-                plotting character).
+                plotting character).</p>
 
                 <p>Plot points <b>in groups separately</b>.</p>
 
                 <div class="org-src-container">
                   <pre class="src src-R">
 data(iris)
-<span style="color: #D0372D;">attach</span>(iris)
-plot(Petal.Length, Petal.Width, type=<span style="color: #036A07;">"n"</span>)
-points(Petal.Length[Species == <span style=
-"color: #036A07;">"setosa"</span>], Petal.Width[Species == <span style=
-"color: #036A07;">"setosa"</span>],
-       col=<span style="color: #036A07;">"red"</span>)
-points(Petal.Length[Species == <span style=
-"color: #036A07;">"versicolor"</span>], Petal.Width[Species == <span style=
-"color: #036A07;">"versicolor"</span>],
-       col=<span style="color: #036A07;">"green"</span>, pch=19)
-points(Petal.Length[Species == <span style=
-"color: #036A07;">"virginica"</span>], Petal.Width[Species == <span style=
-"color: #036A07;">"virginica"</span>],
-       col=<span style="color: #036A07;">"blue"</span>, pch=18)
+<span class="org-constant">attach</span>(iris)
+plot(Petal.Length, Petal.Width, type=<span class="org-string">"n"</span>)
+points(Petal.Length[Species == <span class=
+"org-string">"setosa"</span>], Petal.Width[Species == <span class=
+"org-string">"setosa"</span>],
+       col=<span class="org-string">"red"</span>)
+points(Petal.Length[Species == <span class=
+"org-string">"versicolor"</span>], Petal.Width[Species == <span class=
+"org-string">"versicolor"</span>],
+       col=<span class="org-string">"green"</span>, pch=19)
+points(Petal.Length[Species == <span class=
+"org-string">"virginica"</span>], Petal.Width[Species == <span class=
+"org-string">"virginica"</span>],
+       col=<span class="org-string">"blue"</span>, pch=18)
 </pre>
                 </div>
 
@@ -3852,8 +3969,9 @@ plot(iris$Petal.Length, iris$Petal.Width, col=as.integer(iris$Species)+1)
                 <div class="org-src-container">
                   <pre class="src src-R">
 data(iris)
-plot(iris[, 3:4], col=c(<span style=
-"color: #036A07;">"red"</span>, <span style="color: #036A07;">"green"</span>, <span style="color: #036A07;">"blue"</span>)[unclass(iris$Species)])
+plot(iris[, 3:4], col=c(<span class="org-string">"red"</span>, <span class=
+"org-string">"green"</span>, <span class=
+"org-string">"blue"</span>)[unclass(iris$Species)])
 </pre>
                 </div>
 
@@ -3867,13 +3985,13 @@ plot(iris[, 3:4], col=c(<span style=
               <dt><code>lines</code></dt>
 
               <dd>
-                <b>Add lines</b> (connect all the dots) <b>to a plot</b>.
+                <p><b>Add lines</b> (connect all the dots) <b>to a
+                plot</b>.</p>
 
                 <div class="org-src-container">
                   <pre class="src src-R">
-lines(x, y)                        <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">all lines</span>
+lines(x, y)                        <span class=
+"org-comment-delimiter"># </span><span class="org-comment">all lines</span>
 </pre>
                 </div>
 
@@ -3884,17 +4002,17 @@ lines(x, y)                        <span style=
               <dt><code>abline</code></dt>
 
               <dd>
-                Add a straight line.
+                <p>Add a straight line.</p>
 
                 <p>Plot the <b>regression line</b> of a scatter plot.</p>
 
                 <div class="org-src-container">
                   <pre class="src src-R">
 data(iris)
-<span style="color: #D0372D;">attach</span>(iris)
+<span class="org-constant">attach</span>(iris)
 plot(Petal.Length, Petal.Width)
-fit <span style="color: #D0372D;">&lt;-</span> lm(Petal.Width ~ Petal.Length)
-abline(fit, lwd=3, col=<span style="color: #036A07;">"blue"</span>)
+fit <span class="org-constant">&lt;-</span> lm(Petal.Width ~ Petal.Length)
+abline(fit, lwd=3, col=<span class="org-string">"blue"</span>)
 </pre>
                 </div>
 
@@ -3909,13 +4027,13 @@ abline(fit, lwd=3, col=<span style="color: #036A07;">"blue"</span>)
               <dt><code>text</code></dt>
 
               <dd>
-                Add text labels (inside the plot region).
+                <p>Add text labels (inside the plot region).</p>
 
                 <p>Could be used to label datapoints.</p>
 
                 <div class="org-src-container">
                   <pre class="src src-R">
-text(-2, 2, <span style="color: #036A07;">"Label"</span>)
+text(-2, 2, <span class="org-string">"Label"</span>)
 </pre>
                 </div>
               </dd>
@@ -3923,13 +4041,14 @@ text(-2, 2, <span style="color: #036A07;">"Label"</span>)
               <dt><code>title</code></dt>
 
               <dd>
-                Add a title (or axis labels, subtitle, …).
+                <p>Add a title (or axis labels, subtitle, …).</p>
 
                 <div class="org-src-container">
                   <pre class="src src-R">
-title(<span style="color: #036A07;">"plot"</span>)
-plot(x, y, xlab=<span style=
-"color: #036A07;">"Weight"</span>, ylab=<span style="color: #036A07;">"Height"</span>, main=<span style="color: #036A07;">"Scatterplot"</span>)
+title(<span class="org-string">"plot"</span>)
+plot(x, y, xlab=<span class="org-string">"Weight"</span>, ylab=<span class=
+"org-string">"Height"</span>, main=<span class=
+"org-string">"Scatterplot"</span>)
 </pre>
                 </div>
               </dd>
@@ -3937,12 +4056,13 @@ plot(x, y, xlab=<span style=
               <dt><code>mtext</code></dt>
 
               <dd>
-                Add text to the margins.
+                <p>Add <b>text to the margins</b>.</p>
 
                 <div class="org-src-container">
                   <pre class="src src-R">
-mtext(<span style=
-"color: #036A07;">"Label on the X-axis"</span>, side=2, line=3, col=<span style="color: #036A07;">"blue"</span>)
+mtext(<span class=
+"org-string">"Label on the X-axis"</span>, side=2, line=3, col=<span class=
+"org-string">"blue"</span>)
 </pre>
                 </div>
 
@@ -3952,13 +4072,12 @@ mtext(<span style=
               <dt><code>axis</code></dt>
 
               <dd>
-                <b>Annotate the axis</b> (tick marks, labels).
+                <p><b>Annotate the axis</b> (tick marks, labels).</p>
 
                 <div class="org-src-container">
                   <pre class="src src-R">
-axis(side=2, col=<span style=
-"color: #036A07;">"blue"</span>, col.axis=<span style=
-"color: #036A07;">"blue"</span>, las=1)
+axis(side=2, col=<span class="org-string">"blue"</span>, col.axis=<span class=
+"org-string">"blue"</span>, las=1)
 </pre>
                 </div>
               </dd>
@@ -3966,12 +4085,12 @@ axis(side=2, col=<span style=
               <dt><code>legend</code></dt>
 
               <dd>
-                Add a legend.
+                <p>Add a legend.</p>
 
                 <div class="org-src-container">
                   <pre class="src src-R">
-legend(<span style="color: #036A07;">"topleft"</span>, legend=<span style=
-"color: #036A07;">"Data"</span>, pch=1)
+legend(<span class="org-string">"topleft"</span>, legend=<span class=
+"org-string">"Data"</span>, pch=1)
 </pre>
                 </div>
               </dd>
@@ -3987,43 +4106,55 @@ legend(<span style="color: #036A07;">"topleft"</span>, legend=<span style=
               <dt><code>par()</code></dt>
 
               <dd>
-                control <b>all the graphing parameters</b> that you can specify
-                (<i>defaults</i> for all plots in a session, which can be
-                overridden as arguments to specific plotting functions).
+                <p>control <b>all the graphing parameters</b> that you can
+                specify (<i>defaults</i> for all plots in a session, which can
+                be overridden as arguments to specific plotting functions).</p>
 
                 <dl class="org-dl">
                   <dt><code>pch</code></dt>
 
-                  <dd><b>Plotting character</b> (default: open circle
-                  symbol).</dd>
+                  <dd>
+                    <p><b>Plotting character</b> (default: open circle
+                    symbol).</p>
+                  </dd>
 
                   <dt><code>lty</code></dt>
 
-                  <dd>Line type (default: <code>solid</code> line).</dd>
+                  <dd>
+                    <p>Line type (default: <code>solid</code> line).</p>
+                  </dd>
 
                   <dt><code>lwd</code></dt>
 
-                  <dd>Line width.</dd>
+                  <dd>
+                    <p>Line width.</p>
+                  </dd>
 
                   <dt><code>col</code></dt>
 
-                  <dd>Plotting color.</dd>
+                  <dd>
+                    <p>Plotting color.</p>
+                  </dd>
 
                   <dt><code>las</code></dt>
 
-                  <dd>Orientation of the axis labels on the plot
-                  (<code>las=2</code> will set the tick <b>labels</b> to be
-                  <b>perpendicular</b> to the axis).</dd>
+                  <dd>
+                    <p>Orientation of the axis labels on the plot
+                    (<code>las=2</code> will set the tick <b>labels</b> to be
+                    <b>perpendicular</b> to the axis).</p>
+                  </dd>
 
                   <dt><code>bg</code></dt>
 
-                  <dd>Background color (default:
-                  <code>transparent</code>).</dd>
+                  <dd>
+                    <p>Background color (default:
+                    <code>transparent</code>).</p>
+                  </dd>
 
                   <dt><code>mar</code></dt>
 
                   <dd>
-                    Margin size (vector of 4 numbers, 1 per side).
+                    <p>Margin size (vector of 4 numbers, 1 per side).</p>
 
                     <div class="org-src-container">
                       <pre class="src src-R">
@@ -4034,20 +4165,22 @@ par(mar=c(2, 2, 1, 1))
 
                   <dt><code>oma</code></dt>
 
-                  <dd>Outer margin size (relevant if you have more than one
-                  plot per canvas).</dd>
+                  <dd>
+                    <p>Outer margin size (relevant if you have more than one
+                    plot per canvas).</p>
+                  </dd>
 
                   <dt><code>mfrow</code></dt>
 
                   <dd>
-                    Number of <b>plots per row and per column</b> on the canvas
-                    (filled row-wise).
+                    <p>Number of <b>plots per row and per column</b> on the
+                    canvas (filled row-wise).</p>
 
                     <div class="org-src-container">
                       <pre class="src src-R">
-par(mfrow=c(2, 1))            <span style=
-"color: #8D8D84;"># </span><span style=
-"color: #8D8D84; font-style: italic;">2 rows and 1 column</span>
+par(mfrow=c(2, 1))            <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">2 rows and 1 column</span>
 plot(x, y)
 plot(x, z)
 </pre>
@@ -4056,13 +4189,15 @@ plot(x, z)
 
                   <dt><code>mfcol</code></dt>
 
-                  <dd>Number of plots per row and per column on the canvas
-                  (filled column-wise).</dd>
+                  <dd>
+                    <p>Number of plots per row and per column on the canvas
+                    (filled column-wise).</p>
+                  </dd>
 
                   <dt><code>bty</code></dt>
 
                   <dd>
-                    Type of “box” which is drawn around plots.
+                    <p>Type of “box” which is drawn around plots.</p>
 
                     <p>A value of <code>"n"</code> suppresses the box (same as
                     <code>axes=FALSE</code>).</p>
@@ -4073,7 +4208,7 @@ plot(x, z)
 
                 <div class="org-src-container">
                   <pre class="src src-R">
-par(<span style="color: #036A07;">"lty"</span>)
+par(<span class="org-string">"lty"</span>)
 </pre>
                 </div>
               </dd>
@@ -4081,7 +4216,7 @@ par(<span style="color: #036A07;">"lty"</span>)
               <dt><code>?Devices</code></dt>
 
               <dd>
-                List graphical devices.
+                <p>List graphical devices.</p>
 
                 <dl class="org-dl">
                   <dt><code>pdf</code></dt>
@@ -4093,7 +4228,7 @@ par(<span style="color: #036A07;">"lty"</span>)
                   <dt><code>png</code></dt>
 
                   <dd>Bitmapped format (specify information for pixels),
-                  losless <b>compression</b>, but <b>does not resize
+                  lossless <b>compression</b>, but <b>does not resize
                   well</b>.</dd>
 
                   <dt><code>jpeg</code></dt>
@@ -4110,7 +4245,7 @@ par(<span style="color: #036A07;">"lty"</span>)
               <dt>(no term)</dt>
 
               <dd>
-                Copy the plot to another device
+                <p>Copy the plot to another device</p>
 
                 <dl class="org-dl">
                   <dt><code>dev.copy2pdf</code></dt>
@@ -4137,6 +4272,18 @@ par(<span style="color: #036A07;">"lty"</span>)
           "http://stackoverflow.com/questions/5234117/how-to-drop-columns-by-name-in-a-data-frame">
           http://stackoverflow.com/questions/5234117/how-to-drop-columns-by-name-in-a-data-frame</a>
           for an excellent performance reporting.</p>
+
+          <div class="org-src-container">
+            <pre class="src src-R">
+<span class="org-constant">library</span>(ggplot2)
+summary(cars)
+qplot(speed, dist, data=cars) + geom_smooth()
+</pre>
+          </div>
+
+          <div class="figure">
+            <p><img src="Rplots/ggplot2.png" alt="ggplot2.png" /></p>
+          </div>
         </div>
       </div>
 
@@ -4152,10 +4299,12 @@ par(<span style="color: #036A07;">"lty"</span>)
           <div class="outline-text-4" id="text-17-4-1">
             <div class="org-src-container">
               <pre class="src src-R">
-<span style="color: #D0372D;">library</span>(qcc)
+<span class="org-comment-delimiter">## </span><span class=
+"org-comment">install.packages("qcc")</span>
+<span class="org-constant">library</span>(qcc)
 data(iris)
-pareto.chart(table(iris[iris$Species==<span style=
-"color: #036A07;">"setosa"</span>, ]$Petal.Length))
+pareto.chart(table(iris[iris$Species==<span class=
+"org-string">"setosa"</span>, ]$Petal.Length))
 </pre>
             </div>
 

@@ -1,13 +1,13 @@
 #+TITLE:     R quick reference card
 #+AUTHOR:    Fabrice Niessen
 #+EMAIL:     (concat "fniessen" at-sign "pirilampo.org")
-#+Time-stamp: <2014-03-31 Mon 16:32>
+#+Time-stamp: <2014-08-20 Wed 11:21>
 #+DESCRIPTION:
 #+KEYWORDS:
 #+LANGUAGE:  en
 #+OPTIONS:   H:4 num:2
 
-#+PROPERTY:  eval no
+#+PROPERTY:  eval never
 #+PROPERTY:  exports both
 #+SETUPFILE: ~/src/org-style/setup/bigblow-pirilampo.setup
 
@@ -16,7 +16,7 @@
 Welcome to R reference card. It contains the reference documentation that
 describes how to perform *data analysis* using R.
 
-* Style
+* Coding style
 
 - [[http://cran.r-project.org/doc/manuals/R-ints.html#R-coding-standards][R Internals manual, section 8. "R Coding Standards"]]
 
@@ -67,14 +67,14 @@ Primary process interaction commands:
      Send the current *region or function or paragraph* to the ESS process and
      *step* to the next line of code.
 
-     If you group R statements into tasks, send the whole task to the R
-     process without selecting anything.
+     If you group R statements into tasks, send the whole task to the R process
+     without selecting anything.
 
 Ohter evaluation commands:
 
 - ~C-c C-n~ ::
-     Send the current *line* to the ESS process and *step* to the next line of
-     code, skipping comments.
+     Send the current *line* to the ESS process and *step* to the next line of code,
+     skipping comments.
 
 - ~C-c C-r~ ::
      Send the current *region* to the ESS process.
@@ -194,6 +194,14 @@ Tracebug highlighting of errors.
 - ~M-g p~ ::
      Previous error.
 
+The arrow in the left fringe is an indicator of the beginning of the last
+evaluation.  It helps when you eval a region from a script buffer and an error
+occurs in one of the earlier lines.  You can then quickly pinpoint the first
+error in ~*R*~ buffer by searching for this arrow.
+
+Error navigation in ~*R*~ buffer (~M-g n~, ~M-g p~) works within the region between
+this arrow and end of the buffer.
+
 **** Tracebug visual debugger
 
 *** ESS developer
@@ -217,9 +225,9 @@ I would add C-s and C-r to search in the help buffer and M-\ to indent
 
    (global-set-key (kbd "C-.") 'imenu-anywhere)
 
-and you will be able to navigate to the definition of the symbol at
-point as long as the other file is open. This is like tag navigation but
-more convenient IMO. Both ido and helm interfaces are available.
+and you will be able to navigate to the definition of the symbol at point as
+long as the other file is open. This is like tag navigation but more convenient
+IMO. Both ido and helm interfaces are available.
 
 6) multiple processes. I think ESS handling of multiple processes is
 pretty unique. Even in emacs realm you don't see this that often.
@@ -277,7 +285,8 @@ library(help=lattice)
 - ~args(function)~ ::
      Look at the arguments of a FUNCTION.
 
-- Google
+Other ways:
+- [[http://www.google.com/][Google]]
 - [[mailto:r-help@r-project.org][R general mailing list]]
 - [[http://stackoverflow.com/questions/tagged/r][Stack Overflow]]
 
@@ -289,7 +298,7 @@ library(help=lattice)
      Explicitly print out an object.
 
 - ~cat()~ ::
-     Concatenate together a set of strings and prints out the concatanated
+     Concatenate together a set of strings and prints out the concatenated
      string (to a file or to the console).
 
 ** Setting variables
@@ -460,7 +469,7 @@ print(v)
 
 They can be created by /column-binding/ or /row-binding/.
 
-- matrix(nrow=x, ncol=y) ::
+- ~matrix(nrow=x, ncol=y)~ ::
      Create an empty matrix.
 
 - ~cbind()~ ::
@@ -501,13 +510,13 @@ Unordered or ordered.
 
 ** Data frames
 
-*Data frames* are used to store tabular data where each column can be of a
-different class: special type of list (of columns) where every element has the
+*Data frames* are used to store tabular data where each column can be of
+a different class: special type of list (of columns) where every element has the
 same length.
 
 - Row = observation, column = variable
-- Special attribute ~row.names~ (every row has a name, or defaults to a
-  sequence of integers)
+- Special attribute ~row.names~ (every row has a name, or defaults to a sequence
+  of integers)
 - Most often created by calling ~read.table()~ or ~read.csv()~
 
 - ~data.frame()~ ::
@@ -573,8 +582,8 @@ x %*% y                                 # true matrix multiplication
 ** Selecting list elements or data frame columns by name (subsetting)
 
 - ~$~ ::
-     Extract a single element of a list (or a single column of a data frame)
-     *by name*: you don't have to remember where the element is in the list.
+     Extract a single element of a list (or a single column of a data frame) *by
+     name*: you don't have to remember where the element is in the list.
 
      #+begin_src R
      x$bar                              # same as x[["bar"]]
@@ -633,7 +642,8 @@ y <- if(x > 3) {                        # x must be a scalar here, not a vector
 ** Loops
 
 #+begin_src R
-for (i in 1:10) {                       # successive values from a sequence or vector
+for (i in 1:10) {                       # successive values from a sequence or
+                                        # vector
   ## do something
 }
 
@@ -642,20 +652,21 @@ for (letter in x) {                     # take elements from the vector
 }
 #+end_src
 
-- seq_along(vector) ::
+- ~seq_along(vector)~ ::
      Create an integer sequence that's equal to the *length of the input vector*.
 
-- seq_len(integer) ::
+- ~seq_len(integer)~ ::
      Create an integer sequence that's as long as the integer in input.
 
-- nrow(dataset) ::
+- ~nrow(dataset)~ ::
      Tell the number of rows.
 
-- ncol(dataset) ::
+- ~ncol(dataset)~ ::
      Tell the number of columns.
 
 #+begin_src R
-while (z >= 3 && z <= 10) {             # conditions are always evaluated from left to right
+while (z >= 3 && z <= 10) {             # conditions are always evaluated from
+                                        # left to right
   ## do something
 }
 #+end_src
@@ -696,11 +707,11 @@ it's allowed to run.
 
 - Functions can be *passed as arguments to other functions*
 
-- Functions can be nested, so that you can define a function inside of
-  another function (implications: see *lexical scoping*)
+- Functions can be nested, so that you can define a function inside of another
+  function (implications: see *lexical scoping*)
 
-- The return value of a function is the last expression in the function body
-  to be evaluated
+- The return value of a function is the last expression in the function body to
+  be evaluated
 
 - 3 types of...
   + formal argument
@@ -718,14 +729,14 @@ it's allowed to run.
 
 - Arguments can be matched *positionally* or *by name*
 
-  + When an argument is matched by name, it is "taken out" of the argument
-    list and the remaining unnamed arguments are matched in the order that
-    they are listed in the function definition
+  + When an argument is matched by name, it is "taken out" of the argument list
+    and the remaining unnamed arguments are matched in the order that they are
+    listed in the function definition
 
 - Named arguments help when:
 
-  + you want to use the defaults for evererything except for an argument near
-    the end of the list
+  + you want to use the defaults for everything except for an argument near the
+    end of the list
 
   + you can't remember the position of the argument
 
@@ -737,8 +748,7 @@ it's allowed to run.
 - When defining a function, you can also set an argument value to ~NULL~ (there
   is nothing there)
 
-- Arguments to functions are evaluated /lazily/ (only when needed to be
-  evaluated
+- Arguments to functions are evaluated /lazily/ (only when needed to be evaluated
 
 - The ~...~ argument indicates a variable number of arguments
 
@@ -751,14 +761,14 @@ it's allowed to run.
   + Used when the number of arguments cannot be known in advance (see ~paste~
     function)
 
-  + Any argument that appears /after/ the ~...~ must be named explicitly and
-    cannot be partially matched
+  + Any argument that appears /after/ the ~...~ must be named explicitly and cannot
+    be partially matched
 
 ** Scoping rules for R
 
 - R searches through the /search list/ (a series of ~environments~, an environment
-  being a collection of symbol/value pairs) to bind the appropriate value to a
-  symbol:
+  being a collection of symbol/value pairs) to bind the appropriate value to
+  a symbol:
 
   + Search the global environment ~.GlobalEnv~ (always the first)
 
@@ -770,25 +780,24 @@ it's allowed to run.
 
   + Search the ~base~ package (always the last element)
 
-- Last loaded package gets put in position 2 of the search list and
-  everything else gets shifted
+- Last loaded package gets put in position 2 of the search list and everything
+  else gets shifted
 
 - Separate namespaces for functions and non-function objects
 
-- R uses *lexical* (or /static/) *scoping* (instead of /dynamic scoping/): /the value
-  of free variables are searched for in the environment in which the function/
-  /was/ *defined* (until the empty environment, after the ~base~ package)
+- R uses *lexical* (or /static/) *scoping* (instead of /dynamic scoping/): /the value of
+  free variables are searched for in the environment in which the function/ /was/
+  *defined* (until the empty environment, after the ~base~ package)
 
   + With *dynamic* scoping, the value of free variables is looked up in the
-    environment from which the function was *called* (/calling environment/ =
-    /parent frame/) -- see slide 24 of "Scoping Rules for R" for a comparative
-    example
+    environment from which the function was *called* (/calling environment/ = /parent
+    frame/) -- see slide 24 of "Scoping Rules for R" for a comparative example
 
-  + Other languages that support lexical scoping: Scheme, Perl, Python,
-    Common Lisp
+  + Other languages that support lexical scoping: Scheme, Perl, Python, Common
+    Lisp
 
-  + Consequences: all objects must be stored in memory, and all functions
-    must carry a *pointer to their respective defining environment*
+  + Consequences: all objects must be stored in memory, and all functions must
+    carry a *pointer to their respective defining environment*
 
 - Every environment has one parent environment (next thing down on the search
   list); it is possible for an environment to have mulitple "children"
@@ -817,11 +826,17 @@ it's allowed to run.
   #+end_src
 
 - Functions:
-  + environment(f) ::
-  + parent.env(environment) :: next thing down on the search list
-  + ls(environment) :: list all the variables in the environment
-  + get(object, environment) :: get the value of an object inside an
-       environment
+
+  + ~environment(f)~ ::
+
+  + ~parent.env(environment)~ ::
+       Next thing down on the search list
+
+  + ~ls(environment)~ ::
+       List all the variables in the environment
+
+  + ~get(object, environment)~ ::
+       Get the value of an object inside an environment
 
 * 4. Input and output
 
@@ -924,9 +939,9 @@ df <- read.table(pipe("cut -f1,5,28 myFile.txt"))
      read.csv(file.choose())            # pick a file
      #+end_src
 
-     It calls ~read.table~ with some default values. To look at them, just look
-     at the code of ~read.csv~ by typing ~read.csv~ and hitting <enter> at your R
-     command line).
+     It calls ~read.table~ with some default values. To look at them, just look at
+     the code of ~read.csv~ by typing ~read.csv~ and hitting <enter> at your
+     R command line).
 
 - ~read.csv2(file)~ ::
      Read data from CSV file, create data frame.
@@ -943,7 +958,7 @@ df <- read.table(pipe("cut -f1,5,28 myFile.txt"))
 - ~download.file()~ ::
      Download a file from the Internet.
 
-     Be sure to record when you downloaded.
+     Be sure to record when you downloaded it.
 
      #+begin_src R
      fileUrl <- "http://..."
@@ -1049,8 +1064,8 @@ Packages:
      Give the min and the max (vector of length 2) of the observations (vector
      of numbers).
 
-     Useful to give the *extremes of a range to the ~xlim~ and ~ylim~ arguments* of
-     an axis.
+     Useful to give the *extremes of a range to the ~xlim~ and ~ylim~ arguments* of an
+     axis.
 
      #+begin_src R
      yrange <- range(c(x1, x2, x3))
@@ -1069,8 +1084,8 @@ Packages:
      unique(dfrm$f)
      length(unique(dfrm$f))             # how many unique values
 
-     table(dfrm$f, useNA="ifany")       # number of times each unique value appears
-                                        # (show missing values as well)
+     table(dfrm$f, useNA="ifany")       # number of times each unique value
+                                        #  appears (show missing values as well)
      #+end_src
 
      Relative frequencies:
@@ -1091,7 +1106,8 @@ Packages:
      Produce a /contingency table/ (cross-tabulation).
 
      #+begin_src R
-     table(dfrm$f1, dfrm$f2)            # look at the relationship between f1 and f2
+     table(dfrm$f1, dfrm$f2)            # look at the relationship between f1
+                                        # and f2
      #+end_src
 
 - ~ftable(f)~ ::
@@ -1132,7 +1148,8 @@ tolower(names(dfrm))
 #+begin_src R
 splitNames <- strsplit(names(dfrm), "\\.") # split at period in names
 firstElement <- function(x){x[1]}       # select the 1st component of the vector
-sapply(splitNames, firstElement)        # remove everything after the trailing dot
+sapply(splitNames, firstElement)        # remove everything after the trailing
+                                        # dot
 #+end_src
 
 #+begin_src R
@@ -1155,7 +1172,8 @@ Create a logical vector:
 
 #+begin_src R
 u <- x > "a"
-x[u]                                    # get all elements which are greater than "a"
+x[u]                                    # get all elements which are greater
+                                        # than "a"
 #+end_src
 
 Remove missing values (~NA~) from a *list*:
@@ -1188,8 +1206,8 @@ booleans vectors) and then, simply reassign data:
 #+begin_src R
 tokeep <- !names(x) %in% c("remove1", "remove2")
 x <- x[, tokeep]                        # or...
-x <- x[, tokeep, drop=FALSE]            # you will need this option to avoid
-                                        # the conversion to an atomic vector if
+x <- x[, tokeep, drop=FALSE]            # you will need this option to avoid the
+                                        # conversion to an atomic vector if
                                         # there is only one column left
 #+end_src
 
@@ -1309,9 +1327,9 @@ lapply(x, function(x) x[, 1])
 
 *** ~sapply~
 
-Same as ~lapply~, but tries to "*simplify*" the result in a much more compact
-format (put all the elements into a *vector* or a *matrix* if that is possible,
-instead of returning a list).
+Same as ~lapply~, but tries to "*simplify*" the result in a much more compact format
+(put all the elements into a *vector* or a *matrix* if that is possible, instead of
+returning a list).
 
 #+begin_src R
 sapply(s, function(x) colMeans(x[, c("Ozone", "Solar.R", "Wind")]))
@@ -1327,9 +1345,8 @@ sapply(s, function(x) colMeans(x[, c("Ozone", "Solar.R", "Wind")], na.rm=TRUE))
 ** Splitting a vector into groups
 
 - ~split(x, f)~ ::
-     Take a vector, and *split* it into subpieces (the number of groups
-     identified by the levels of a *factor* variable). Always return a *list* (of
-     lists?) back.
+     Take a vector, and *split* it into subpieces (the number of groups identified
+     by the levels of a *factor* variable). Always return a *list* (of lists?) back.
 
      + ~drop = TRUE~ ::
           Don't keep the empty levels of the factor.
@@ -1357,8 +1374,8 @@ sapply(s, function(x) colMeans(x[, c("Ozone", "Solar.R", "Wind")], na.rm=TRUE))
      Apply a function over the *margins* of an array.
 
      Often used to apply a function to the rows or columns of a matrix. Very
-     useful if you wanna take *summaries* of matrices or higher-dimensional
-     arrays (such as array of matrices).
+     useful if you wanna take *summaries* of matrices or higher-dimensional arrays
+     (such as array of matrices).
 
      MARGIN is an integer vector which indicates which margins should be
      "retained":
@@ -1397,8 +1414,8 @@ sapply(s, function(x) colMeans(x[, c("Ozone", "Solar.R", "Wind")], na.rm=TRUE))
 
      ~Simplify = FALSE~ to get back a list (instead of an array).
 
-     ~tapply~ is one of the most useful commands you'll ever need. For example,
-     to calculate statistics of ~x~ separately for each group identified in the
+     ~tapply~ is one of the most useful commands you'll ever need. For example, to
+     calculate statistics of ~x~ separately for each group identified in the
      variable ~f~:
 
      #+begin_src R
@@ -1420,9 +1437,9 @@ sapply(s, function(x) colMeans(x[, c("Ozone", "Solar.R", "Wind")], na.rm=TRUE))
      Apply a *function* to the elements of *multiple lists* in parallel
      (multivariate version of ~lapply~).
 
-     For example, apply a function over 2 lists, where the elements of the
-     first list go into one argument of the function, and the elements of the
-     second list go into another argument of the function
+     For example, apply a function over 2 lists, where the elements of the first
+     list go into one argument of the function, and the elements of the second
+     list go into another argument of the function
 
      *Vectorizing a function* (that doesn't allow for vector arguments).
 
@@ -1487,8 +1504,8 @@ Metacharacters:
      Any number, including none.
 
 - ~*~ ::
-     Any number, at least one -- it is "greedy" so it always matches the
-     /longest/ possible string that satisfies the regular expression.
+     Any number, at least one -- it is "greedy" so it always matches the /longest/
+     possible string that satisfies the regular expression.
 
      The greediness can be turned off with the ~?~ metacharacter (make the regex
      "lazy"), as in:
@@ -1586,22 +1603,21 @@ These functions can take vector arguments.
      - add a legend.
 
 - ~lattice~ ::
-     Graphics are constructed via a single function call: all options have to
-     be specified at once (advantage: that allows R to calculate the necessary
+     Graphics are constructed via a single function call: all options have to be
+     specified at once (advantage: that allows R to calculate the necessary
      spacings, margins and font sizes).
 
 Behavior:
 
-- Base graphics functions have a "side effect": they plot data directly to
-  the graphics device.
+- Base graphics functions have a "side effect": they plot data directly to the
+  graphics device.
 
 - Lattice graphics functions return an object of the class ~trellis~ (object
   designed for plotting).
 
   When you call Lattice functions, even if you don't assign it to a "plot
-  object", the result will be *auto-printed* (generate the plot *on the
-  graphics device*), so it will look like Lattice functions have a "side
-  effect"
+  object", the result will be *auto-printed* (generate the plot *on the graphics
+  device*), so it will look like Lattice functions have a "side effect"
 
 You cannot use functions from the base plotting system in a Lattice plot.
 
@@ -1669,8 +1685,8 @@ You cannot use functions from the base plotting system in a Lattice plot.
      #+results:
      [[file:Rplots/base-multi-scatterplots.png]]
 
-     You can see that length and width appear strongly correlated. You could
-     check the correlation between features with the ~cor()~ function.
+     You can see that petal length and width appear strongly correlated. You
+     could check the correlation between features with the ~cor()~ function.
 
      #+begin_src R
      data(iris)
@@ -1692,9 +1708,9 @@ barplot with figures above the bars.
 
 Histogram (*distribution* of data, *frequency* = exact number).
 
-Generic function: you can call it on different types of data. When you call
-~hist~ on a ~Date~ object, it requires an interval ("day" / "week" / "month" /
-"year") in order to break it up into sequences.
+Generic function: you can call it on different types of data. When you call ~hist~
+on a ~Date~ object, it requires an interval ("day" / "week" / "month" / "year") in
+order to break it up into sequences.
 
 #+begin_src R :results graphics :file Rplots/base-hist.png
 data(iris)
@@ -1740,9 +1756,9 @@ plot(table(iris$Petal.Length), main="Table", col="blue")
 #+results:
 [[file:Rplots/base-plot-table.png]]
 
-Note -- In the table plot, x values with one occurrence (out of thousands)
-would be visible as one dot in the graphics. They don't in the histogram (as
-the line, being too small, would be on the x-axis itself).
+Note -- In the table plot, x values with one occurrence (out of thousands) would
+be visible as one dot in the graphics. They don't in the histogram (as the line,
+being too small, would be on the x-axis itself).
 
 - Density plot (smoother histogram)
 
@@ -1777,8 +1793,8 @@ the line, being too small, would be on the x-axis itself).
 - Lowest data still within 1.5 * IQR (= Q3 - Q1) of the lower quartile, and the
   highest datum still within 1.5 * IQR of the upper quartile
 
-- Outliers --- By default, observations more than 1.5 * IQR distant from
-  nearest quartile
+- Outliers --- By default, observations more than 1.5 * IQR distant from nearest
+  quartile
 
 #+begin_src R :results graphics :file Rplots/base-boxplot.png
 data(iris)
@@ -1871,7 +1887,7 @@ boxplot(iris[, 1:4], col=rainbow(4), main="Boxplot", ylab="Appropriate units")
      #+end_src
 
 - ~mtext~ ::
-     Add text to the margins.
+     Add *text to the margins*.
 
      #+begin_src R :eval no
      mtext("Label on the X-axis", side=2, line=3, col="blue")
@@ -1959,11 +1975,11 @@ boxplot(iris[, 1:4], col=rainbow(4), main="Boxplot", ylab="Appropriate units")
      List graphical devices.
 
      + ~pdf~ ::
-          Vector format (very, very large for a graphic with *2 million points*
-          on it: specify information for every single object on the plot).
+          Vector format (very, very large for a graphic with *2 million points* on
+          it: specify information for every single object on the plot).
 
      + ~png~ ::
-          Bitmapped format (specify information for pixels), losless
+          Bitmapped format (specify information for pixels), lossless
           *compression*, but *does not resize well*.
 
      + ~jpeg~ ::
@@ -1984,11 +2000,21 @@ See post of Antoine Lizée in
 http://stackoverflow.com/questions/5234117/how-to-drop-columns-by-name-in-a-data-frame
 for an excellent performance reporting.
 
+#+begin_src R :results graphics :file Rplots/ggplot2.png
+library(ggplot2)
+summary(cars)
+qplot(speed, dist, data=cars) + geom_smooth()
+#+end_src
+
+#+results:
+[[file:Rplots/ggplot2.png]]
+
 ** Other graphics
 
 *** Pareto diagrams
 
 #+begin_src R :results graphics :file Rplots/qcc-pareto.png
+## install.packages("qcc")
 library(qcc)
 data(iris)
 pareto.chart(table(iris[iris$Species=="setosa", ]$Petal.Length))
