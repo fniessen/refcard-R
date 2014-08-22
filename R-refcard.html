@@ -51,7 +51,7 @@
           <li><a href="#sec-2">2. Coding style</a></li>
 
           <li>
-            <a href="#sec-3">3. Emacs key bindings</a>
+            <a href="#sec-3">3. Emacs Speaks Statistics (ESS) key bindings</a>
 
             <ul>
               <li><a href="#sec-3-1">3.1. References</a></li>
@@ -73,10 +73,7 @@
                 <a href="#sec-3-7">3.7. Completion</a>
 
                 <ul>
-                  <li><a href="#sec-3-7-1">Completion of function
-                  arguments</a></li>
-
-                  <li><a href="#sec-3-7-2">Integration with auto-complete
+                  <li><a href="#sec-3-7-1">Integration with auto-complete
                   package</a></li>
                 </ul>
               </li>
@@ -91,11 +88,13 @@
                     <ul>
                       <li><a href="#sec-3-8-1-1">Breakpoints</a></li>
 
-                      <li><a href="#sec-3-8-1-2">General debugging</a></li>
+                      <li><a href="#sec-3-8-1-2">Debugging</a></li>
 
-                      <li><a href="#sec-3-8-1-3">Navigation to errors</a></li>
+                      <li><a href="#sec-3-8-1-3">Interactive debugging</a></li>
 
-                      <li><a href="#sec-3-8-1-4">Tracebug visual
+                      <li><a href="#sec-3-8-1-4">Navigation to errors</a></li>
+
+                      <li><a href="#sec-3-8-1-5">Tracebug visual
                       debugger</a></li>
                     </ul>
                   </li>
@@ -104,7 +103,16 @@
                 </ul>
               </li>
 
-              <li><a href="#sec-3-9">3.9. Emacs general functionality</a></li>
+              <li>
+                <a href="#sec-3-9">3.9. Other ESS features and tools</a>
+
+                <ul>
+                  <li><a href="#sec-3-9-1">ElDoc</a></li>
+                </ul>
+              </li>
+
+              <li><a href="#sec-3-10">3.10. Emacs general
+              functionality</a></li>
             </ul>
           </li>
 
@@ -423,8 +431,8 @@
     </div>
 
     <div id="outline-container-sec-3" class="outline-2">
-      <h2 id="sec-3"><span class="section-number-2">3</span> Emacs key
-      bindings</h2>
+      <h2 id="sec-3"><span class="section-number-2">3</span> Emacs Speaks
+      Statistics (ESS) key bindings</h2>
 
       <div class="outline-text-2" id="text-3">
         <p>Most of the shortcuts are actually mnemonic and hierarchical:</p>
@@ -464,12 +472,12 @@
           <dl class="org-dl">
             <dt><code>C-c C-z</code></dt>
 
-            <dd>Switch to (most recent) <b>script buffer</b>.</dd>
+            <dd><b>Switch to</b> the (most recent) <b>script buffer</b>.</dd>
 
             <dt><code>C-u C-u C-y</code></dt>
 
-            <dd>Yank cleaned commands (from saved region): remove all prompts
-            and command output, leaving only the commands.</dd>
+            <dd>Paste <b>cleaned commands</b> (from saved region): remove all
+            prompts and command output, leaving only the commands.</dd>
           </dl>
         </div>
       </div>
@@ -482,56 +490,58 @@
           <p>Primary process interaction commands:</p>
 
           <dl class="org-dl">
-            <dt><code>C-RET</code></dt>
-
-            <dd>
-              <p>Send the current <b>region or line</b> to the ESS process and
-              <b>step</b> to the next line of code.</p>
-            </dd>
-
             <dt><code>C-M-x</code></dt>
 
             <dd>
-              <p>Send the current <b>region or function or paragraph</b> to the
-              ESS process.</p>
+              <p><b>Send</b> the current <b>region or function or paragraph</b>
+              to the ESS process.</p>
             </dd>
 
             <dt><code>C-c C-c</code></dt>
 
             <dd>
-              <p>Send the current <b>region or function or paragraph</b> to the
-              ESS process and <b>step</b> to the next line of code.</p>
+              <p><b>Send</b> the current <b>region or function or paragraph</b>
+              (defined as continuous set of lines surrounded by a blank line at
+              top and bottom) to the ESS process <b>and step</b> to the next
+              line of code, skipping comments.</p>
 
               <p>If you group R statements into tasks, send the whole task to
               the R process without selecting anything.</p>
             </dd>
+
+            <dt><code>C-RET</code></dt>
+
+            <dd>
+              <p><b>Send</b> the current <b>region or line</b> to the ESS
+              process <b>and step</b> to the next line of code.</p>
+            </dd>
           </dl>
 
-          <p>Ohter evaluation commands:</p>
+          <p>Other evaluation commands:</p>
 
           <dl class="org-dl">
-            <dt><code>C-c C-n</code></dt>
+            <dt><code>C-c C-b</code></dt>
 
-            <dd>Send the current <b>line</b> to the ESS process and <b>step</b>
-            to the next line of code, skipping comments.</dd>
+            <dd><b>Send</b> the current <b>buffer</b> to the ESS process.</dd>
 
             <dt><code>C-c C-r</code></dt>
 
-            <dd>Send the current <b>region</b> to the ESS process.</dd>
+            <dd><b>Send</b> the current <b>region</b> to the ESS process.</dd>
 
             <dt><code>C-c C-f</code></dt>
 
-            <dd>Send the current <b>function</b> to the ESS process.</dd>
+            <dd><b>Send</b> the current <b>function</b> to the ESS
+            process.</dd>
 
             <dt><code>C-c C-p</code></dt>
 
-            <dd>Send the current <b>paragraph</b> (defined as continuous set of
-            lines surrounded by a blank line at top and bottom) to the ESS
-            process.</dd>
+            <dd><b>Send</b> the current <b>paragraph</b> to the ESS process
+            <b>and step</b> to the next line of code.</dd>
 
-            <dt><code>C-c C-b</code></dt>
+            <dt><code>C-c C-n</code></dt>
 
-            <dd>Send the current <b>buffer</b> to the ESS process.</dd>
+            <dd><b>Send</b> the current <b>line</b> to the ESS process <b>and
+            step</b> to the next line of code.</dd>
           </dl>
         </div>
       </div>
@@ -555,7 +565,8 @@
 
             <dt><code>C-c C-z</code></dt>
 
-            <dd>Switch to the iESS process buffer.</dd>
+            <dd><b>Switch to</b> the associated <b>iESS process
+            buffer</b>.</dd>
           </dl>
         </div>
       </div>
@@ -569,8 +580,8 @@
           <dl class="org-dl">
             <dt><code>C-c C-d C-e</code></dt>
 
-            <dd>Describe object at point (press <code>C-e</code> to
-            cycle).</dd>
+            <dd><b>Describe object at point</b> (repeat <code>C-e</code> or
+            <code>e</code> to cycle).</dd>
 
             <dt><code>C-c C-d C-a</code></dt>
 
@@ -629,18 +640,9 @@
         <div class="outline-text-3" id="text-3-7"></div>
 
         <div id="outline-container-sec-3-7-1" class="outline-4">
-          <h4 id="sec-3-7-1">Completion of function arguments</h4>
+          <h4 id="sec-3-7-1">Integration with auto-complete package</h4>
 
           <div class="outline-text-4" id="text-3-7-1">
-            <p><b>ElDoc</b> support: automatic display of function arguments in
-            the <b>echo area</b>.</p>
-          </div>
-        </div>
-
-        <div id="outline-container-sec-3-7-2" class="outline-4">
-          <h4 id="sec-3-7-2">Integration with auto-complete package</h4>
-
-          <div class="outline-text-4" id="text-3-7-2">
             <p>Auto-completion of objects and arguments: <a href=
             "http://www.emacswiki.org/emacs/ESSAuto-complete">http://www.emacswiki.org/emacs/ESSAuto-complete</a>.</p>
           </div>
@@ -665,82 +667,173 @@
 
             <div class="outline-text-5" id="text-3-8-1-1">
               <dl class="org-dl">
-                <dt><code>C-c C-t C-b</code></dt>
+                <dt><code>C-c C-t b</code></dt>
 
-                <dd>Set breakpoint.</dd>
+                <dd>Set breakpoint (repeat to cycle through the breakpoint
+                types: <code>browser</code> and <code>recover</code>).</dd>
 
                 <dt><code>C-c C-t B</code></dt>
 
                 <dd>Set conditional breakpoint.</dd>
 
+                <dt><code>C-c C-t l</code></dt>
+
+                <dd>Set logger breakpoint.</dd>
+
+                <dt><code>C-c C-t o</code></dt>
+
+                <dd>Toggle the active/commented state of the breakpoint.</dd>
+
                 <dt><code>C-c C-t k</code></dt>
 
                 <dd>Kill breakpoint.</dd>
+
+                <dt><code>C-c C-t K</code></dt>
+
+                <dd>Kill all breakpoints.</dd>
+
+                <dt><code>C-c C-t n</code></dt>
+
+                <dd>Go to next breakpoint.</dd>
+
+                <dt><code>C-c C-t p</code></dt>
+
+                <dd>Go to previous breakpoint.</dd>
               </dl>
+
+              <p>(<code>C-</code> prefixed equivalents are also defined)</p>
             </div>
           </div>
 
           <div id="outline-container-sec-3-8-1-2" class="outline-5">
-            <h5 id="sec-3-8-1-2">General debugging</h5>
+            <h5 id="sec-3-8-1-2">Debugging</h5>
 
             <div class="outline-text-5" id="text-3-8-1-2">
               <dl class="org-dl">
-                <dt><code>C-c `</code></dt>
+                <dt><code>C-c C-t `</code> (also on <code>C-c `</code>)</dt>
 
-                <dd>Show R traceback (display source locations).</dd>
+                <dd>
+                  <p>Show traceback buffer (display source locations).</p>
+                </dd>
 
-                <dt><code>C-c ~</code></dt>
+                <dt><code>C-c C-t ~</code> (also on <code>C-c ~</code>)</dt>
 
-                <dd>Show call stack (display source locations).</dd>
+                <dd>
+                  <p>Show call stack (display source locations).</p>
+                </dd>
 
-                <dt><code>C-c C-t C-e</code></dt>
+                <dt><code>C-c C-t e</code></dt>
 
-                <dd>Toggle error action (repeat to cycle).</dd>
+                <dd>
+                  <p>Toggle <b>on-error action</b> (repeat to cycle):</p>
 
-                <dt><code>C-c C-t C-d</code></dt>
+                  <ul class="org-ul">
+                    <li><code>NONE</code> (“-” in the mode line)</li>
 
-                <dd>Flag for debugging.</dd>
+                    <li><code>RECOVER</code> (“r” in the mode line)</li>
 
-                <dt><code>C-c C-t C-u</code></dt>
+                    <li><code>TRACEBACK</code> (“t” in the mode line)</li>
+                  </ul>
+                </dd>
 
-                <dd>Unflag for debugging.</dd>
+                <dt><code>C-c C-t d</code></dt>
 
-                <dt><code>C-c C-t C-w</code></dt>
+                <dd>
+                  <p>Flag for debugging.</p>
+                </dd>
 
-                <dd>Use “ess-watch” while debugging to see variables change at
-                each step, or even just at the prompt.</dd>
+                <dt><code>C-c C-t u</code></dt>
+
+                <dd>
+                  <p>Unflag for debugging.</p>
+                </dd>
+
+                <dt><code>C-c C-t w</code></dt>
+
+                <dd>
+                  <p>Use <code>ess-watch</code> while debugging to see
+                  variables change at each step, or even just at the
+                  prompt.</p>
+                </dd>
               </dl>
+
+              <p>(<code>C-</code> prefixed equivalents are also defined)</p>
             </div>
           </div>
 
           <div id="outline-container-sec-3-8-1-3" class="outline-5">
-            <h5 id="sec-3-8-1-3">Navigation to errors</h5>
+            <h5 id="sec-3-8-1-3">Interactive debugging</h5>
 
             <div class="outline-text-5" id="text-3-8-1-3">
               <dl class="org-dl">
-                <dt><code>M-g n</code></dt>
+                <dt><code>M-C</code></dt>
 
-                <dd>Next error.</dd>
+                <dd>Continue</dd>
 
-                <dt><code>M-g p</code></dt>
+                <dt><code>C-M-S-c</code></dt>
 
-                <dd>Previous error.</dd>
+                <dd>Continue multi</dd>
+
+                <dt><code>M-N</code></dt>
+
+                <dd>Next step</dd>
+
+                <dt><code>C-M-S-n</code></dt>
+
+                <dd>Next step multi</dd>
+
+                <dt><code>M-U</code></dt>
+
+                <dd>Up frame</dd>
+
+                <dt><code>M-Q</code></dt>
+
+                <dd>Quit debugging</dd>
               </dl>
-
-              <p>The arrow in the left fringe is an indicator of the beginning
-              of the last evaluation. It helps when you eval a region from a
-              script buffer and an error occurs in one of the earlier lines.
-              You can then quickly pinpoint the first error in <code>*R*</code>
-              buffer by searching for this arrow.</p>
-
-              <p>Error navigation in <code>*R*</code> buffer (<code>M-g
-              n</code>, <code>M-g p</code>) works within the region between
-              this arrow and end of the buffer.</p>
             </div>
           </div>
 
           <div id="outline-container-sec-3-8-1-4" class="outline-5">
-            <h5 id="sec-3-8-1-4">Tracebug visual debugger</h5>
+            <h5 id="sec-3-8-1-4">Navigation to errors</h5>
+
+            <div class="outline-text-5" id="text-3-8-1-4">
+              <div class="org-src-container">
+                <pre class="src src-R">
+<span class="org-constant">source</span>(file = <span class=
+"org-string">"missing-file.R"</span>)
+list(a=22, b=343)
+^
+protocol <span class="org-constant">&lt;-</span> <span class=
+"org-type">NULL</span>
+paste(<span class="org-string">"{**"</span>, })
+<span class="org-keyword">stop</span>(<span class=
+"org-string">"Test error"</span>)
+</pre>
+              </div>
+
+              <p>The arrow in the left fringe of the iESS buffer is an
+              indicator of the <b>beginning of the last evaluation</b>. It
+              helps you to quickly pinpoint the first error (often the most
+              relevant one) in the <code>*R*</code> buffer by searching for
+              this arrow.</p>
+
+              <p>Error navigation in the <code>*R*</code> buffer is limited to
+              the region between this arrow and the end of the buffer.</p>
+
+              <dl class="org-dl">
+                <dt><code>M-g n</code> (<code>M-x next-error</code>)</dt>
+
+                <dd>Next error.</dd>
+
+                <dt><code>M-g p</code> (<code>M-x previous-error</code>)</dt>
+
+                <dd>Previous error.</dd>
+              </dl>
+            </div>
+          </div>
+
+          <div id="outline-container-sec-3-8-1-5" class="outline-5">
+            <h5 id="sec-3-8-1-5">Tracebug visual debugger</h5>
           </div>
         </div>
 
@@ -767,11 +860,28 @@
       </div>
 
       <div id="outline-container-sec-3-9" class="outline-3">
-        <h3 id="sec-3-9"><span class="section-number-3">3.9</span> Emacs
+        <h3 id="sec-3-9"><span class="section-number-3">3.9</span> Other ESS
+        features and tools</h3>
+
+        <div class="outline-text-3" id="text-3-9"></div>
+
+        <div id="outline-container-sec-3-9-1" class="outline-4">
+          <h4 id="sec-3-9-1">ElDoc</h4>
+
+          <div class="outline-text-4" id="text-3-9-1">
+            <p><b>ElDoc</b> support: automatic display of function arguments in
+            the <b>echo area</b>.</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="outline-container-sec-3-10" class="outline-3">
+        <h3 id="sec-3-10"><span class="section-number-3">3.10</span> Emacs
         general functionality</h3>
 
-        <div class="outline-text-3" id="text-3-9">
-          <p>M-r from comint buffers is worth a wealth IMO.</p>
+        <div class="outline-text-3" id="text-3-10">
+          <p>M-r (comint-history-isearch-backward-regexp) from comint buffers
+          is worth a wealth IMO.</p>
 
           <p>I would add C-s and C-r to search in the help buffer and M-\ to
           indent</p>
@@ -2352,6 +2462,8 @@ xpathSApply(html3, <span class=
         <div class="outline-text-3" id="text-11-9">
           <div class="org-src-container">
             <pre class="src src-R">
+<span class="org-comment-delimiter">## </span><span class=
+"org-comment">install.packages("RODBC")</span>
 <span class="org-constant">library</span>(RODBC)
 <span class="org-comment-delimiter">## </span><span class=
 "org-comment">con &lt;- odbcConnect("DSN", uid="username")</span>
@@ -2359,10 +2471,13 @@ xpathSApply(html3, <span class=
 "org-comment">con &lt;- odbcDriverConnect("driver={SQL Server};server=hostname;database=dbname;trusted_connection=true")</span>
 con <span class="org-constant">&lt;-</span> odbcDriverConnect(<span class=
 "org-string">"driver={SQL Server};server=hostname;database=dbname;uid=username;pwd=password"</span>)
-sql <span class="org-constant">&lt;-</span> <span class=
-"org-string">"SELECT * FROM table"</span>
-rows <span class="org-constant">&lt;-</span> sqlQuery(con, sql)
-print(head(rows))
+sql <span class="org-constant">&lt;-</span>
+ <span class="org-string">"SELECT *</span>
+<span class="org-string">  FROM table"</span>
+<span class="org-comment-delimiter">## </span><span class=
+"org-comment">sql &lt;- gsub("\n"," ",sql)            # maybe needed for long multiline string?</span>
+df <span class="org-constant">&lt;-</span> sqlQuery(con, sql)
+print(head(df))
 odbcClose(con)
 </pre>
           </div>
@@ -3275,8 +3390,23 @@ list(rnorm(1, 1, 2),
           <dl class="org-dl">
             <dt><code>paste()</code></dt>
 
-            <dd><b>Concatenate</b> a set of <b>strings together</b> to create
-            one string or a vector of strings.</dd>
+            <dd>
+              <p><b>Concatenate</b> a set of <b>strings together</b> to create
+              one string or a vector of strings.</p>
+
+              <p>Convert a vector to a string:</p>
+
+              <div class="org-src-container">
+                <pre class="src src-R">
+paste(c(<span class="org-string">"This"</span>, <span class=
+"org-string">"is"</span>, <span class="org-string">"one"</span>, <span class=
+"org-string">"sentence."</span>), collapse=<span class="org-string">" "</span>)
+</pre>
+              </div>
+              <pre class="example">
+This is one sentence.
+</pre>
+            </dd>
           </dl>
         </div>
       </div>

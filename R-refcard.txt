@@ -1,7 +1,6 @@
 #+TITLE:     R quick reference card
 #+AUTHOR:    Fabrice Niessen
 #+EMAIL:     (concat "fniessen" at-sign "pirilampo.org")
-#+Time-stamp: <2014-08-20 Wed 11:21>
 #+DESCRIPTION:
 #+KEYWORDS:
 #+LANGUAGE:  en
@@ -30,9 +29,10 @@ describes how to perform *data analysis* using R.
   ~FunctionName~ \\
   ~kConstantName~
 
-* Emacs key bindings
+* Emacs Speaks Statistics (ESS) key bindings
 
 Most of the shortcuts are actually mnemonic and hierarchical:
+
 - ~C-c C-d~ for ~doc-map~,
 - ~C-c C-e~ for ~extra-map~,
 - ~C-c C-t~ for ~dev-map~ which includes mostly [t]racebug.
@@ -46,48 +46,48 @@ See
 ** Interacting with the iESS process
 
 - ~C-c C-z~ ::
-     Switch to (most recent) *script buffer*.
+     *Switch to* the (most recent) *script buffer*.
 
 - ~C-u C-u C-y~ ::
-     Yank cleaned commands (from saved region): remove all prompts and command
+     Paste *cleaned commands* (from saved region): remove all prompts and command
      output, leaving only the commands.
 
 ** Sending code to the iESS process
 
 Primary process interaction commands:
 
-- ~C-RET~ ::
-     Send the current *region or line* to the ESS process and *step* to the next
-     line of code.
-
 - ~C-M-x~ ::
-     Send the current *region or function or paragraph* to the ESS process.
+     *Send* the current *region or function or paragraph* to the ESS process.
 
 - ~C-c C-c~ ::
-     Send the current *region or function or paragraph* to the ESS process and
-     *step* to the next line of code.
+     *Send* the current *region or function or paragraph* (defined as continuous set
+     of lines surrounded by a blank line at top and bottom) to the ESS process
+     *and step* to the next line of code, skipping comments.
 
      If you group R statements into tasks, send the whole task to the R process
      without selecting anything.
 
-Ohter evaluation commands:
+- ~C-RET~ ::
+     *Send* the current *region or line* to the ESS process *and step* to the next
+     line of code.
 
-- ~C-c C-n~ ::
-     Send the current *line* to the ESS process and *step* to the next line of code,
-     skipping comments.
-
-- ~C-c C-r~ ::
-     Send the current *region* to the ESS process.
-
-- ~C-c C-f~ ::
-     Send the current *function* to the ESS process.
-
-- ~C-c C-p~ ::
-     Send the current *paragraph* (defined as continuous set of lines surrounded
-     by a blank line at top and bottom) to the ESS process.
+Other evaluation commands:
 
 - ~C-c C-b~ ::
-     Send the current *buffer* to the ESS process.
+     *Send* the current *buffer* to the ESS process.
+
+- ~C-c C-r~ ::
+     *Send* the current *region* to the ESS process.
+
+- ~C-c C-f~ ::
+     *Send* the current *function* to the ESS process.
+
+- ~C-c C-p~ ::
+     *Send* the current *paragraph* to the ESS process *and step* to the next line of
+     code.
+
+- ~C-c C-n~ ::
+     *Send* the current *line* to the ESS process *and step* to the next line of code.
 
 ** Editing objects and functions
 
@@ -99,14 +99,14 @@ Ohter evaluation commands:
      *(Re-)Load a file* into the ESS process using ~source()~.
 
 - ~C-c C-z~ ::
-     Switch to the iESS process buffer.
+     *Switch to* the associated *iESS process buffer*.
 
 ** Help
 
 Help at your fingertips:
 
 - ~C-c C-d C-e~ ::
-     Describe object at point (press ~C-e~ to cycle).
+     *Describe object at point* (repeat ~C-e~ or ~e~ to cycle).
 
 - ~C-c C-d C-a~ ::
      ess-display-help-apropos
@@ -139,10 +139,6 @@ Then:
 
 ** Completion
 
-*** Completion of function arguments
-
-*ElDoc* support: automatic display of function arguments in the *echo area*.
-
 *** Integration with auto-complete package
 
 Auto-completion of objects and arguments:
@@ -156,51 +152,101 @@ Tracebug highlighting of errors.
 
 **** Breakpoints
 
-- ~C-c C-t C-b~ ::
-     Set breakpoint.
+- ~C-c C-t b~ ::
+     Set breakpoint (repeat to cycle through the breakpoint types: ~browser~ and ~recover~).
 
 - ~C-c C-t B~ ::
      Set conditional breakpoint.
 
+- ~C-c C-t l~ ::
+     Set logger breakpoint.
+
+- ~C-c C-t o~ ::
+     Toggle the active/commented state of the breakpoint.
+
 - ~C-c C-t k~ ::
      Kill breakpoint.
 
-**** General debugging
+- ~C-c C-t K~ ::
+     Kill all breakpoints.
 
-- ~C-c `~ ::
-     Show R traceback (display source locations).
+- ~C-c C-t n~ ::
+     Go to next breakpoint.
 
-- ~C-c ~~ ::
+- ~C-c C-t p~ ::
+     Go to previous breakpoint.
+
+(~C-~ prefixed equivalents are also defined)
+
+**** Debugging
+
+- ~C-c C-t `~ (also on ~C-c `~) ::
+     Show traceback buffer (display source locations).
+
+- ~C-c C-t ~~ (also on ~C-c ~~) ::
      Show call stack (display source locations).
 
-- ~C-c C-t C-e~ ::
-     Toggle error action (repeat to cycle).
+- ~C-c C-t e~ ::
+     Toggle *on-error action* (repeat to cycle):
+     + ~NONE~ ("-" in the mode line)
+     + ~RECOVER~ ("r" in the mode line)
+     + ~TRACEBACK~ ("t" in the mode line)
 
-- ~C-c C-t C-d~ ::
+- ~C-c C-t d~ ::
      Flag for debugging.
 
-- ~C-c C-t C-u~ ::
+- ~C-c C-t u~ ::
      Unflag for debugging.
 
-- ~C-c C-t C-w~ ::
-     Use "ess-watch" while debugging to see variables change at each step, or
-     even just at the prompt.
+- ~C-c C-t w~ ::
+     Use ~ess-watch~ while debugging to see variables change at each step, or even
+     just at the prompt.
+
+(~C-~ prefixed equivalents are also defined)
+
+**** Interactive debugging
+
+- ~M-C~ ::
+     Continue
+
+- ~C-M-S-c~ ::
+     Continue multi
+
+- ~M-N~ ::
+     Next step
+
+- ~C-M-S-n~ ::
+     Next step multi
+
+- ~M-U~ ::
+     Up frame
+
+- ~M-Q~ ::
+     Quit debugging
 
 **** Navigation to errors
 
-- ~M-g n~ ::
+#+begin_src R
+source(file = "missing-file.R")
+list(a=22, b=343)
+^
+protocol <- NULL
+paste("{**", })
+stop("Test error")
+#+end_src
+
+The arrow in the left fringe of the iESS buffer is an indicator of the *beginning
+of the last evaluation*.  It helps you to quickly pinpoint the first error (often
+the most relevant one) in the ~*R*~ buffer by searching for this arrow.
+
+Error navigation in the ~*R*~ buffer is limited to the region between this arrow
+and the end of the buffer.
+
+- ~M-g n~ (~M-x next-error~) ::
      Next error.
 
-- ~M-g p~ ::
+- ~M-g p~ (~M-x previous-error~) ::
      Previous error.
-
-The arrow in the left fringe is an indicator of the beginning of the last
-evaluation.  It helps when you eval a region from a script buffer and an error
-occurs in one of the earlier lines.  You can then quickly pinpoint the first
-error in ~*R*~ buffer by searching for this arrow.
-
-Error navigation in ~*R*~ buffer (~M-g n~, ~M-g p~) works within the region between
-this arrow and end of the buffer.
 
 **** Tracebug visual debugger
 
@@ -215,9 +261,16 @@ this arrow and end of the buffer.
 - ~C-c C-t l~ ::
      ess-developer-load-package (this one is in ESS dev as yet)
 
+** Other ESS features and tools
+
+*** ElDoc
+
+*ElDoc* support: automatic display of function arguments in the *echo area*.
+
 ** Emacs general functionality
 
-M-r from comint buffers is worth a wealth IMO.
+M-r (comint-history-isearch-backward-regexp) from comint buffers is worth
+a wealth IMO.
 
 I would add C-s and C-r to search in the help buffer and M-\ to indent
 
@@ -996,13 +1049,17 @@ df <- read.table(pipe("cut -f1,5,28 myFile.txt"))
 ** Reading from SQL Server databases
 
 #+begin_src R
+## install.packages("RODBC")
 library(RODBC)
 ## con <- odbcConnect("DSN", uid="username")
 ## con <- odbcDriverConnect("driver={SQL Server};server=hostname;database=dbname;trusted_connection=true")
 con <- odbcDriverConnect("driver={SQL Server};server=hostname;database=dbname;uid=username;pwd=password")
-sql <- "SELECT * FROM table"
-rows <- sqlQuery(con, sql)
-print(head(rows))
+sql <-
+ "SELECT *
+  FROM table"
+## sql <- gsub("\n"," ",sql)            # maybe needed for long multiline string?
+df <- sqlQuery(con, sql)
+print(head(df))
 odbcClose(con)
 #+end_src
 
@@ -1469,6 +1526,15 @@ sapply(s, function(x) colMeans(x[, c("Ozone", "Solar.R", "Wind")], na.rm=TRUE))
 - ~paste()~ ::
      *Concatenate* a set of *strings together* to create one string or a vector of
      strings.
+
+     Convert a vector to a string:
+
+     #+begin_src R
+     paste(c("This", "is", "one", "sentence."), collapse=" ")
+     #+end_src
+
+     #+results:
+     : This is one sentence.
 
 ** Regular expressions
 
