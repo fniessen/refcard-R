@@ -43,14 +43,32 @@ See
 - http://ess.r-project.org/refcard.pdf
 - http://www.damtp.cam.ac.uk/user/sje30/ess11/ess-slides.pdf
 
-** Interacting with the iESS process
+** Interacting with the ESS process
+
+*** Command History
+
+- ~M-r~ ::
+     Search for a regular expression backward in input history using Isearch.
+
+     This is worth a wealth...
+
+*** Hot keys for common commands
+
+ESS handling of *multiple processes* is pretty unique.
+
+- ~C-c C-s~ ::
+     ess-switch-process
+
+- ~C-c C-q~ ::
+     Issue a ~quit()~ command to the inferior process, additionally also cleaning
+     up (killing all the temporary buffers).
+
+     Press ~C-c C-q~ + ~M-x R~ to quickly restart the process.
+
+*** Other commands provided by inferior-ESS
 
 - ~C-c C-z~ ::
      *Switch to* the (most recent) *script buffer*.
-
-- ~C-u C-u C-y~ ::
-     Paste *cleaned commands* (from saved region): remove all prompts and command
-     output, leaving only the commands.
 
 ** Sending code to the iESS process
 
@@ -89,42 +107,61 @@ Other evaluation commands:
 - ~C-c C-n~ ::
      *Send* the current *line* to the ESS process *and step* to the next line of code.
 
+** Manipulating saved transcript files
+
+- ~C-u C-u C-y~ ::
+     *Paste cleaned commands* (from a region copied with ~M-w~) into a new R buffer
+     or at the prompt: remove all prompts and command output, leaving only the
+     commands.
+
+     This is handy if you paste code from iESS, mail buffers or pdf documents.
+
 ** Editing objects and functions
+
+*** Creating or modifying objects
+
+In-session function editing.
 
 - ~C-c C-e C-d~ ::
      *Edit* the code of an *object* (such as the function ~lm~). Emacs opens a buffer
      called ~<user-login-name>.<object>.R~.
 
+~C-c C-e d~ and ~C-c C-e C-d~ can open file versions of R functions. ~C-c C-e l~ sends
+same back.
+
+Other nice tools ( probably not available in other editors):
+
+- ~C-c C-e i~	ess-install-library
+- ~C-c C-e l~	ess-load-library
+- ~C-c C-e C-w~	ess-execute-screen-options
+
+*** Loading source files into the ESS process
+
 - ~C-c C-l~ ::
      *(Re-)Load a file* into the ESS process using ~source()~.
+
+     This usually works better than ~C-c C-c~ for reporting parsing errors /with
+     a trace/.
+
+*** Commands for motion, completion and more
 
 - ~C-c C-z~ ::
      *Switch to* the associated *iESS process buffer*.
 
-** Help
+**** Tags Tables
 
-Help at your fingertips:
+- ~C-c C-e C-t~ ::
+     Build tag tables.
 
-- ~C-c C-d C-e~ ::
-     *Describe object at point* (repeat ~C-e~ or ~e~ to cycle).
+     After building tags, use ~M-.~ to *jump to* function and objects *definitions*.
 
-- ~C-c C-d C-a~ ::
-     ess-display-help-apropos
+Probably the most used command of mine is imenu-anywhere.
 
-- ~C-c C-d C-d~ ::
-     ess-display-help-on-object
+   (global-set-key (kbd "C-.") 'imenu-anywhere)
 
-- ~C-c C-d C-v~ ::
-     ess-display-vignettes
-
-- ~C-c C-d C-w~ ::
-     ess-help-web-search
-
-- ~C-c C-d i~ ::
-     ess-display-package-index
-
-- ~C-c C-d o~ ::
-     ess-display-demos
+and you will be able to navigate to the definition of the symbol at point as
+long as the other file is open. This is like tag navigation but more convenient
+IMO. Both ido and helm interfaces are available.
 
 ** Reading help files
 
@@ -259,7 +296,7 @@ and the end of the buffer.
      Toggle developer mode on and off.
 
 - ~C-c C-t l~ ::
-     ess-developer-load-package (this one is in ESS dev as yet)
+     ess-developer-load-package (this one is in ESS dev as yet).
 
 ** Other ESS features and tools
 
@@ -267,49 +304,44 @@ and the end of the buffer.
 
 *ElDoc* support: automatic display of function arguments in the *echo area*.
 
-** Emacs general functionality
+*** Help
 
-M-r (comint-history-isearch-backward-regexp) from comint buffers is worth
-a wealth IMO.
+Help at your fingertips:
+
+- ~C-c C-d C-d~ ::
+     Display documentation for object.
+
+- ~C-c C-d C-a~ ::
+     Create an Apropos buffer with a linked list of apropos topics.
+
+- ~C-c C-d i~ ::
+     Display index of package.
+
+- ~C-c C-d C-v~ ::
+     Display vignettes.
+
+- ~C-c C-d C-e~ ::
+     *Describe object at point* (repeat ~C-e~ or ~e~ to cycle through the list of
+     commands).
+
+- ~C-c C-d o~ ::
+     Create an Demos buffer with a linked list of available demos.
+
+- ~C-c C-d C-w~ ::
+     Search the web for documentation.
+
+** Other Emacs features and tools
 
 I would add C-s and C-r to search in the help buffer and M-\ to indent
-
-3) probably the most used command of mine is imenu-anywhere.
-
-   (global-set-key (kbd "C-.") 'imenu-anywhere)
-
-and you will be able to navigate to the definition of the symbol at point as
-long as the other file is open. This is like tag navigation but more convenient
-IMO. Both ido and helm interfaces are available.
-
-6) multiple processes. I think ESS handling of multiple processes is
-pretty unique. Even in emacs realm you don't see this that often.
-
-   C-c C-s ess-switch-process
-
-Other nice tools ( probably not available in other editors):
-
-   C-c C-q + M-x R to quickly restart the process.
-
-   C-c .     	ess-set-style (different indentation under your fingertips)
-
-   C-c C-e i 	ess-install-library
-   C-c C-e l 	ess-load-library
-
-   C-c C-e C-t	ess-build-tags-for-directory (then use M-. to jump to definition)
-   C-c C-e C-w	ess-execute-screen-options
 
 Also the ability to mix in other, general purpose Emacs tools:
 
 paredit-mode to give me good shortcuts to navigate around and manipulate
 parentheses and braces,
-git-gutter-mode to keep tabs on lines I've changed in a file.
-M-/ to complete long words the second type I type them.
 
-1. INDENTATION.
-3. Navigation & execution of code, follow to *R* buffer
-4. In-session function editing. C-c C-e d and C-c C-e C-d can open file
-versions of R functions. C-c C-e l sends same back.
+git-gutter-mode to keep tabs on lines I've changed in a file.
+
+M-/ to complete long words the second time I type them.
 
 * 0. Overview of R
 
