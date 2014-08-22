@@ -457,6 +457,14 @@
             accepted)<br />
             <code>FunctionName</code><br />
             <code>kConstantName</code></p>
+
+            <p>Place spaces around all binary operators (=, +, -, &lt;-,
+            etc.).<br />
+            Exception: Spaces around =’s are optional when passing parameters
+            in a function call.</p>
+
+            <p>Do not place a space before a comma, but always place one after
+            a comma.</p>
           </li>
         </ul>
       </div>
@@ -636,7 +644,7 @@
               <code>M-w</code>) into a new R buffer or at the prompt: remove
               all prompts and command output, leaving only the commands.</p>
 
-              <p>This is handy if you paste code from iESS, mail buffers or pdf
+              <p>This is handy if you paste code from iESS, mail buffers or PDF
               documents.</p>
             </dd>
           </dl>
@@ -1028,7 +1036,9 @@ paste(<span class="org-string">"{**"</span>, })
               <dt><code>C-c C-d C-e</code></dt>
 
               <dd><b>Describe object at point</b> (repeat <code>C-e</code> or
-              <code>e</code> to cycle through the list of commands).</dd>
+              <code>e</code> to cycle through the list of commands:
+              <code>str()</code>, <code>htsummary()</code>,
+              <code>summary()</code>).</dd>
 
               <dt><code>C-c C-d o</code></dt>
 
@@ -3075,7 +3085,7 @@ subset(dfrm, select=c(var1, var2), subset=(var1 &gt; 0 | var2 &gt; 0))
 
           <div class="org-src-container">
             <pre class="src src-R">
-df <span class="org-constant">&lt;-</span> df[, colSums(is.na(df))==0]
+df <span class="org-constant">&lt;-</span> df[, colSums(is.na(df)) == 0]
 </pre>
           </div>
         </div>
@@ -3087,28 +3097,21 @@ df <span class="org-constant">&lt;-</span> df[, colSums(is.na(df))==0]
 
         <div class="outline-text-3" id="text-14-7">
           <dl class="org-dl">
-            <dt><code>merge(df1, df2, by = "CustomerId")</code></dt>
+            <dt><code>merge(df1, df2, by="CustomerId")</code></dt>
 
-            <dd><b>Inner</b> join.</dd>
+            <dd>Natural join (special case of <b>inner</b> join).</dd>
 
-            <dt><code>merge(df1, df2, by = "CustomerId", all =
-            TRUE)</code></dt>
+            <dt><code>merge(df1, df2, by="CustomerId", all.x=TRUE)</code></dt>
 
-            <dd><b>Full outer</b> join (all records from both tables).</dd>
+            <dd><b>Left</b> (outer) join.</dd>
 
-            <dt><code>merge(df1, df2, by = "CustomerId", all.x =
-            TRUE)</code></dt>
+            <dt><code>merge(df1, df2, by="CustomerId", all.y=TRUE)</code></dt>
 
-            <dd><b>Left</b> outer join.</dd>
+            <dd><b>Right</b> (outer) join.</dd>
 
-            <dt><code>merge(df1, df2, by = "CustomerId", all.y =
-            TRUE)</code></dt>
+            <dt><code>merge(df1, df2, by="CustomerId", all=TRUE)</code></dt>
 
-            <dd><b>Right</b> outer join.</dd>
-
-            <dt><code>merge(df1, df2, by = NULL)</code></dt>
-
-            <dd><b>Cross</b> join.</dd>
+            <dd><b>(Full) outer</b> join (all records from both tables).</dd>
           </dl>
 
           <p>Merge data sets.</p>

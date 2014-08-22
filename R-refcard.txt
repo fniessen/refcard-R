@@ -29,6 +29,12 @@ describes how to perform *data analysis* using R.
   ~FunctionName~ \\
   ~kConstantName~
 
+  Place spaces around all binary operators (=, +, -, <-, etc.). \\
+  Exception: Spaces around ='s are optional when passing parameters in
+  a function call.
+
+  Do not place a space before a comma, but always place one after a comma.
+
 * Emacs Speaks Statistics (ESS) key bindings
 
 Most of the shortcuts are actually mnemonic and hierarchical:
@@ -114,7 +120,7 @@ Other evaluation commands:
      or at the prompt: remove all prompts and command output, leaving only the
      commands.
 
-     This is handy if you paste code from iESS, mail buffers or pdf documents.
+     This is handy if you paste code from iESS, mail buffers or PDF documents.
 
 ** Editing objects and functions
 
@@ -322,7 +328,7 @@ Help at your fingertips:
 
 - ~C-c C-d C-e~ ::
      *Describe object at point* (repeat ~C-e~ or ~e~ to cycle through the list of
-     commands).
+     commands: ~str()~, ~htsummary()~, ~summary()~).
 
 - ~C-c C-d o~ ::
      Create an Demos buffer with a linked list of available demos.
@@ -1327,25 +1333,22 @@ Note that you do /not/ quote the column names.
 Get rid of any column that has one or more NAs.
 
 #+begin_src R
-df <- df[, colSums(is.na(df))==0]
+df <- df[, colSums(is.na(df)) == 0]
 #+end_src
 
 ** Merging data frames by commun column
 
-- ~merge(df1, df2, by = "CustomerId")~ ::
-     *Inner* join.
+- ~merge(df1, df2, by="CustomerId")~ ::
+     Natural join (special case of *inner* join).
 
-- ~merge(df1, df2, by = "CustomerId", all = TRUE)~ ::
-     *Full outer* join (all records from both tables).
+- ~merge(df1, df2, by="CustomerId", all.x=TRUE)~ ::
+     *Left* (outer) join.
 
-- ~merge(df1, df2, by = "CustomerId", all.x = TRUE)~ ::
-     *Left* outer join.
+- ~merge(df1, df2, by="CustomerId", all.y=TRUE)~ ::
+     *Right* (outer) join.
 
-- ~merge(df1, df2, by = "CustomerId", all.y = TRUE)~ ::
-     *Right* outer join.
-
-- ~merge(df1, df2, by = NULL)~ ::
-     *Cross* join.
+- ~merge(df1, df2, by="CustomerId", all=TRUE)~ ::
+     *(Full) outer* join (all records from both tables).
 
 Merge data sets.
 
