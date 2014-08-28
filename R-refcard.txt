@@ -54,7 +54,8 @@ See
 *** Command History
 
 - ~M-r~ ::
-     Search for a regular expression backward in input history using Isearch.
+     Search for a regular expression backward in the command history (using
+     Isearch).
 
      This is worth a wealth...
 
@@ -66,10 +67,11 @@ ESS handling of *multiple processes* is pretty unique.
      ess-switch-process
 
 - ~C-c C-q~ ::
-     Issue a ~quit()~ command to the inferior process, additionally also cleaning
-     up (killing all the temporary buffers).
+     Issue a ~q()~ command to the inferior process, and kill all the temporary
+     buffers.
 
-     Press ~C-c C-q~ + ~M-x R~ to quickly restart the process.
+     Press ~C-c C-q~ + ~M-x R~ to quickly restart the R console (without restarting
+     the editor).
 
 *** Other commands provided by inferior-ESS
 
@@ -171,14 +173,34 @@ IMO. Both ido and helm interfaces are available.
 
 ** Reading help files
 
-- ~C-c C-v~ ::
+Help at your fingertips:
+
+- ~C-c C-d C-d~ (or ~C-c C-v~) ::
      Display *R help* on an object (which has an help file) *in Emacs*, for example
      for the function call you're currently writing.
 
-Then:
+     Same as typing ~?<object>~ in the iESS buffer.
 
-- ~l~ ::
-     *Run example* in R help page, *line by line*.
+     Then Press ~l~ to *run example* in R help page, *line by line*.
+
+- ~C-c C-d C-a~ ::
+     Create an Apropos buffer with a linked list of apropos topics.
+
+- ~C-c C-d i~ ::
+     Display index of package.
+
+- ~C-c C-d C-v~ ::
+     Display vignettes.
+
+- ~C-c C-d C-e~ ::
+     *Describe object at point* (repeat ~C-e~ or ~e~ to cycle through the list of
+     commands: ~str()~, ~htsummary()~, ~summary()~).
+
+- ~C-c C-d o~ ::
+     Create an Demos buffer with a linked list of available demos.
+
+- ~C-c C-d C-w~ ::
+     Search the web for documentation.
 
 ** Completion
 
@@ -309,32 +331,6 @@ and the end of the buffer.
 *** ElDoc
 
 *ElDoc* support: automatic display of function arguments in the *echo area*.
-
-*** Help
-
-Help at your fingertips:
-
-- ~C-c C-d C-d~ ::
-     Display documentation for object.
-
-- ~C-c C-d C-a~ ::
-     Create an Apropos buffer with a linked list of apropos topics.
-
-- ~C-c C-d i~ ::
-     Display index of package.
-
-- ~C-c C-d C-v~ ::
-     Display vignettes.
-
-- ~C-c C-d C-e~ ::
-     *Describe object at point* (repeat ~C-e~ or ~e~ to cycle through the list of
-     commands: ~str()~, ~htsummary()~, ~summary()~).
-
-- ~C-c C-d o~ ::
-     Create an Demos buffer with a linked list of available demos.
-
-- ~C-c C-d C-w~ ::
-     Search the web for documentation.
 
 ** Other Emacs features and tools
 
