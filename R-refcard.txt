@@ -1097,9 +1097,9 @@ library(RODBC)
 channel <- odbcDriverConnect("driver={SQL Server};server=hostname;database=dbname;uid=username;pwd=password")
 
 # Check that connection is working.
-if (channel == -1)
+if (channel == -1) {
   stop("Error establishing an ODBC connection.")
-else
+} else
   odbcGetInfo(channel)
 
 sql <-
