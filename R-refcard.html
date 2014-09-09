@@ -308,35 +308,38 @@
               <li><a href="#sec-14-6">14.6. Removing columns that contain NAs
               from a data frame</a></li>
 
-              <li><a href="#sec-14-7">14.7. Merging data frames by commun
+              <li><a href="#sec-14-7">14.7. Merging data frames by common
               column</a></li>
 
-              <li><a href="#sec-14-8">14.8. Converting</a></li>
+              <li><a href="#sec-14-8">14.8. Convert a list of data frames into
+              one data frame</a></li>
+
+              <li><a href="#sec-14-9">14.9. Converting</a></li>
 
               <li>
-                <a href="#sec-14-9">14.9. Applying a function to each list
+                <a href="#sec-14-10">14.10. Applying a function to each list
                 element</a>
 
                 <ul>
-                  <li><a href="#sec-14-9-1"><code>lapply</code></a></li>
+                  <li><a href="#sec-14-10-1"><code>lapply</code></a></li>
 
-                  <li><a href="#sec-14-9-2"><code>sapply</code></a></li>
+                  <li><a href="#sec-14-10-2"><code>sapply</code></a></li>
                 </ul>
               </li>
 
-              <li><a href="#sec-14-10">14.10. Splitting a vector into
+              <li><a href="#sec-14-11">14.11. Splitting a vector into
               groups</a></li>
 
-              <li><a href="#sec-14-11">14.11. Applying a function to every
+              <li><a href="#sec-14-12">14.12. Applying a function to every
               row/column</a></li>
 
-              <li><a href="#sec-14-12">14.12. Applying a function to groups of
+              <li><a href="#sec-14-13">14.13. Applying a function to groups of
               data</a></li>
 
-              <li><a href="#sec-14-13">14.13. Applying a function to parallel
+              <li><a href="#sec-14-14">14.14. Applying a function to parallel
               vectors or lists</a></li>
 
-              <li><a href="#sec-14-14">14.14. Checking on and removing
+              <li><a href="#sec-14-15">14.15. Checking on and removing
               inconsistent values</a></li>
             </ul>
           </li>
@@ -377,6 +380,8 @@
                       <li><a href="#sec-17-1-1-3"><code>hist</code></a></li>
 
                       <li><a href="#sec-17-1-1-4"><code>boxplot</code></a></li>
+
+                      <li><a href="#sec-17-1-1-5">violinplot</a></li>
                     </ul>
                   </li>
 
@@ -410,6 +415,8 @@
               <li><a href="#sec-18-2">18.2. Classification tree models</a></li>
             </ul>
           </li>
+
+          <li><a href="#sec-19">19. Debugging</a></li>
         </ul>
       </div>
     </div>
@@ -419,8 +426,8 @@
       card</h2>
 
       <div class="outline-text-2" id="text-1">
-        <p>Welcome to R reference card. It contains the reference documentation
-        that describes how to perform <b>data analysis</b> using R.</p>
+        Welcome to R reference card. It contains the reference documentation
+        that describes how to perform <b>data analysis</b> using R.
       </div>
     </div>
 
@@ -429,22 +436,16 @@
 
       <div class="outline-text-2" id="text-2">
         <ul class="org-ul">
-          <li>
-            <p><a href=
-            "http://cran.r-project.org/doc/manuals/R-ints.html#R-coding-standards">
-            R Internals manual, section 8. “R Coding Standards”</a></p>
-          </li>
+          <li><a href=
+          "http://cran.r-project.org/doc/manuals/R-ints.html#R-coding-standards">
+          R Internals manual, section 8. “R Coding Standards”</a></li>
 
-          <li>
-            <p><a href="http://adv-r.had.co.nz/Style.html">R coding style
-            guide</a></p>
-          </li>
+          <li><a href="http://adv-r.had.co.nz/Style.html">R coding style
+          guide</a></li>
 
-          <li>
-            <p><a href=
-            "https://docs.google.com/document/d/1esDVxyWvH8AsX-VJa-8oqWaHLs4stGlIbk8kLc5VlII/edit?pli=1">
-            R Coding Conventions</a></p>
-          </li>
+          <li><a href=
+          "https://docs.google.com/document/d/1esDVxyWvH8AsX-VJa-8oqWaHLs4stGlIbk8kLc5VlII/edit?pli=1">
+          R Coding Conventions</a></li>
 
           <li>
             <p><a href=
@@ -473,7 +474,7 @@
       Statistics (ESS) key bindings</h2>
 
       <div class="outline-text-2" id="text-3">
-        <p>Most of the shortcuts are actually mnemonic and hierarchical:</p>
+        Most of the shortcuts are actually mnemonic and hierarchical:
 
         <ul class="org-ul">
           <li><code>C-c C-d</code> for <code>doc-map</code>,</li>
@@ -490,7 +491,7 @@
         References</h3>
 
         <div class="outline-text-3" id="text-3-1">
-          <p>See</p>
+          See
 
           <ul class="org-ul">
             <li><a href=
@@ -529,14 +530,12 @@
           <h4 id="sec-3-2-2">Hot keys for common commands</h4>
 
           <div class="outline-text-4" id="text-3-2-2">
-            <p>ESS handling of <b>multiple processes</b> is pretty unique.</p>
+            ESS handling of <b>multiple processes</b> is pretty unique.
 
             <dl class="org-dl">
               <dt><code>C-c C-s</code></dt>
 
-              <dd>
-                <p>ess-switch-process</p>
-              </dd>
+              <dd>ess-switch-process</dd>
 
               <dt><code>C-c C-q</code></dt>
 
@@ -574,10 +573,8 @@
           <dl class="org-dl">
             <dt><code>C-M-x</code></dt>
 
-            <dd>
-              <p><b>Send</b> the current <b>region or function or paragraph</b>
-              to the ESS process.</p>
-            </dd>
+            <dd><b>Send</b> the current <b>region or function or paragraph</b>
+            to the ESS process.</dd>
 
             <dt><code>C-c C-c</code></dt>
 
@@ -593,10 +590,8 @@
 
             <dt><code>C-RET</code></dt>
 
-            <dd>
-              <p><b>Send</b> the current <b>region or line</b> to the ESS
-              process <b>and step</b> to the next line of code.</p>
-            </dd>
+            <dd><b>Send</b> the current <b>region or line</b> to the ESS
+            process <b>and step</b> to the next line of code.</dd>
           </dl>
 
           <p>Other evaluation commands:</p>
@@ -747,7 +742,7 @@
         files</h3>
 
         <div class="outline-text-3" id="text-3-6">
-          <p>Help at your fingertips:</p>
+          Help at your fingertips:
 
           <dl class="org-dl">
             <dt><code>C-c C-d C-d</code> (or <code>C-c C-v</code>)</dt>
@@ -766,44 +761,42 @@
 
             <dt><code>C-c C-d C-a</code></dt>
 
-            <dd>
-              <p>Create an Apropos buffer with a linked list of apropos
-              topics.</p>
-            </dd>
+            <dd>Create an Apropos buffer with a linked list of apropos
+            topics.</dd>
 
             <dt><code>C-c C-d i</code></dt>
 
-            <dd>
-              <p>Display index of package.</p>
-            </dd>
+            <dd>Display index of package.</dd>
 
             <dt><code>C-c C-d C-v</code></dt>
 
-            <dd>
-              <p>Display vignettes.</p>
-            </dd>
+            <dd>Display vignettes.</dd>
 
             <dt><code>C-c C-d C-e</code></dt>
 
             <dd>
-              <p><b>Describe object at point</b> (repeat <code>C-e</code> or
-              <code>e</code> to cycle through the list of commands:
-              <code>str()</code>, <code>htsummary()</code>,
-              <code>summary()</code>).</p>
+              <p><b>Describe object at point</b>.</p>
+
+              <p>Repeat <code>C-e</code> to cycle through the list of
+              commands:</p>
+
+              <ul class="org-ul">
+                <li><code>str()</code>,</li>
+
+                <li><code>htsummary()</code>,</li>
+
+                <li><code>summary()</code>.</li>
+              </ul>
             </dd>
 
             <dt><code>C-c C-d o</code></dt>
 
-            <dd>
-              <p>Create an Demos buffer with a linked list of available
-              demos.</p>
-            </dd>
+            <dd>Create an Demos buffer with a linked list of available
+            demos.</dd>
 
             <dt><code>C-c C-d C-w</code></dt>
 
-            <dd>
-              <p>Search the web for documentation.</p>
-            </dd>
+            <dd>Search the web for documentation.</dd>
           </dl>
         </div>
       </div>
@@ -818,8 +811,8 @@
           <h4 id="sec-3-7-1">Integration with auto-complete package</h4>
 
           <div class="outline-text-4" id="text-3-7-1">
-            <p>Auto-completion of objects and arguments: <a href=
-            "http://www.emacswiki.org/emacs/ESSAuto-complete">http://www.emacswiki.org/emacs/ESSAuto-complete</a>.</p>
+            Auto-completion of objects and arguments: <a href=
+            "http://www.emacswiki.org/emacs/ESSAuto-complete">http://www.emacswiki.org/emacs/ESSAuto-complete</a>.
           </div>
         </div>
       </div>
@@ -834,7 +827,7 @@
           <h4 id="sec-3-8-1">ESS tracebug</h4>
 
           <div class="outline-text-4" id="text-3-8-1">
-            <p>Tracebug highlighting of errors.</p>
+            Tracebug highlighting of errors.
           </div>
 
           <div id="outline-container-sec-3-8-1-1" class="outline-5">
@@ -887,20 +880,16 @@
               <dl class="org-dl">
                 <dt><code>C-c C-t `</code> (also on <code>C-c `</code>)</dt>
 
-                <dd>
-                  <p>Show traceback buffer (display source locations).</p>
-                </dd>
+                <dd>Show traceback buffer (display source locations).</dd>
 
                 <dt><code>C-c C-t ~</code> (also on <code>C-c ~</code>)</dt>
 
-                <dd>
-                  <p>Show call stack (display source locations).</p>
-                </dd>
+                <dd>Show call stack (display source locations).</dd>
 
                 <dt><code>C-c C-t e</code></dt>
 
                 <dd>
-                  <p>Toggle <b>on-error action</b> (repeat to cycle):</p>
+                  Toggle <b>on-error action</b> (repeat to cycle):
 
                   <ul class="org-ul">
                     <li><code>NONE</code> (“-” in the mode line)</li>
@@ -913,23 +902,16 @@
 
                 <dt><code>C-c C-t d</code></dt>
 
-                <dd>
-                  <p>Flag for debugging.</p>
-                </dd>
+                <dd>Flag for debugging.</dd>
 
                 <dt><code>C-c C-t u</code></dt>
 
-                <dd>
-                  <p>Unflag for debugging.</p>
-                </dd>
+                <dd>Unflag for debugging.</dd>
 
                 <dt><code>C-c C-t w</code></dt>
 
-                <dd>
-                  <p>Use <code>ess-watch</code> while debugging to see
-                  variables change at each step, or even just at the
-                  prompt.</p>
-                </dd>
+                <dd>Use <code>ess-watch</code> while debugging to see variables
+                change at each step, or even just at the prompt.</dd>
               </dl>
 
               <p>(<code>C-</code> prefixed equivalents are also defined)</p>
@@ -1044,8 +1026,8 @@ paste(<span class="org-string">"{**"</span>, })
           <h4 id="sec-3-9-1">ElDoc</h4>
 
           <div class="outline-text-4" id="text-3-9-1">
-            <p><b>ElDoc</b> support: automatic display of function arguments in
-            the <b>echo area</b>.</p>
+            <b>ElDoc</b> support: automatic display of function arguments in
+            the <b>echo area</b>.
           </div>
         </div>
       </div>
@@ -1318,15 +1300,11 @@ airquality
 
           <dt><code>data(dataset)</code></dt>
 
-          <dd>
-            <p>Load DATASET.</p>
-          </dd>
+          <dd>Load DATASET.</dd>
 
           <dt><code>source("file.R")</code></dt>
 
-          <dd>
-            <p>Evaluate R code file.</p>
-          </dd>
+          <dd>Evaluate R code file.</dd>
         </dl>
       </div>
 
@@ -1369,14 +1347,12 @@ x &lt;- as.numeric(argv[1])
         <dl class="org-dl">
           <dt>Population</dt>
 
-          <dd>
-            <p>Set of items.</p>
-          </dd>
+          <dd>Set of items.</dd>
 
           <dt>Variable</dt>
 
           <dd>
-            <p>Measurement or characteristic.</p>
+            Measurement or characteristic.
 
             <dl class="org-dl">
               <dt>Qualitative</dt>
@@ -1464,16 +1440,12 @@ x &lt;- as.numeric(argv[1])
           <dl class="org-dl">
             <dt><code>c()</code></dt>
 
-            <dd>
-              <p>Create a vector of objects (that is, <b>concatenate</b> or
-              combine things together).</p>
-            </dd>
+            <dd>Create a vector of objects (that is, <b>concatenate</b> or
+            combine things together).</dd>
 
             <dt><code>vector(class, length)</code></dt>
 
-            <dd>
-              <p>Create an empty vector.</p>
-            </dd>
+            <dd>Create an empty vector.</dd>
 
             <dt><code>names()</code></dt>
 
@@ -1575,7 +1547,7 @@ print(v)
         <h3 id="sec-8-3"><span class="section-number-3">8.3</span> Arrays</h3>
 
         <div class="outline-text-3" id="text-8-3">
-          <p>Arrays are <b>n-dimensional matrices</b>.</p>
+          Arrays are <b>n-dimensional matrices</b>.
 
           <dl class="org-dl">
             <dt><code>array()</code></dt>
@@ -1632,9 +1604,9 @@ print(v)
         frames</h3>
 
         <div class="outline-text-3" id="text-8-6">
-          <p><b>Data frames</b> are used to store tabular data where each
-          column can be of a different class: special type of list (of columns)
-          where every element has the same length.</p>
+          <b>Data frames</b> are used to store tabular data where each column
+          can be of a different class: special type of list (of columns) where
+          every element has the same length.
 
           <ul class="org-ul">
             <li>Row = observation, column = variable</li>
@@ -1831,9 +1803,9 @@ x$a                                <span class=
       structures</h2>
 
       <div class="outline-text-2" id="text-9">
-        <p>Control structures mentioned here are primarily useful for writing
+        Control structures mentioned here are primarily useful for writing
         programs. For command-line interactive work, the <code>*apply</code>
-        functions are more useful.</p>
+        functions are more useful.
       </div>
 
       <div id="outline-container-sec-9-1" class="outline-3">
@@ -1989,24 +1961,16 @@ y <span class="org-constant">&lt;-</span> <span class=
             </div>
           </li>
 
-          <li>
-            <p>Functions can be <b>passed as arguments to other
-            functions</b></p>
-          </li>
+          <li>Functions can be <b>passed as arguments to other
+          functions</b></li>
 
-          <li>
-            <p>Functions can be nested, so that you can define a function
-            inside of another function (implications: see <b>lexical
-            scoping</b>)</p>
-          </li>
+          <li>Functions can be nested, so that you can define a function inside
+          of another function (implications: see <b>lexical scoping</b>)</li>
 
-          <li>
-            <p>The return value of a function is the last expression in the
-            function body to be evaluated</p>
-          </li>
+          <li>The return value of a function is the last expression in the
+          function body to be evaluated</li>
 
-          <li>
-            <p>3 types of…</p>
+          <li>3 types of…
 
             <ul class="org-ul">
               <li>formal argument</li>
@@ -2025,25 +1989,17 @@ y <span class="org-constant">&lt;-</span> <span class=
 
         <div class="outline-text-3" id="text-10-1">
           <ul class="org-ul">
-            <li>
-              <p><i>Named arguments</i> can potentially have <i>default
-              values</i> (useful: not every function call makes use of all the
-              formal arguments; some can be <i>missing</i>)</p>
-            </li>
+            <li><i>Named arguments</i> can potentially have <i>default
+            values</i> (useful: not every function call makes use of all the
+            formal arguments; some can be <i>missing</i>)</li>
 
-            <li>
-              <p>The <i>formal arguments</i> are the arguments included in the
-              function definition</p>
-            </li>
+            <li>The <i>formal arguments</i> are the arguments included in the
+            function definition</li>
 
-            <li>
-              <p><code>formals()</code> returns a list of all the formal
-              arguments of a function</p>
-            </li>
+            <li><code>formals()</code> returns a list of all the formal
+            arguments of a function</li>
 
-            <li>
-              <p>Arguments can be matched <b>positionally</b> or <b>by
-              name</b></p>
+            <li>Arguments can be matched <b>positionally</b> or <b>by name</b>
 
               <ul class="org-ul">
                 <li>When an argument is matched by name, it is “taken out” of
@@ -2053,8 +2009,7 @@ y <span class="org-constant">&lt;-</span> <span class=
               </ul>
             </li>
 
-            <li>
-              <p>Named arguments help when:</p>
+            <li>Named arguments help when:
 
               <ul class="org-ul">
                 <li>you want to use the defaults for everything except for an
@@ -2064,8 +2019,7 @@ y <span class="org-constant">&lt;-</span> <span class=
               </ul>
             </li>
 
-            <li>
-              <p>Function arguments can also be partially <i>matched</i></p>
+            <li>Function arguments can also be partially <i>matched</i>
 
               <ol class="org-ol">
                 <li>Check for an exact match</li>
@@ -2076,19 +2030,14 @@ y <span class="org-constant">&lt;-</span> <span class=
               </ol>
             </li>
 
-            <li>
-              <p>When defining a function, you can also set an argument value
-              to <code>NULL</code> (there is nothing there)</p>
-            </li>
+            <li>When defining a function, you can also set an argument value to
+            <code>NULL</code> (there is nothing there)</li>
 
-            <li>
-              <p>Arguments to functions are evaluated <i>lazily</i> (only when
-              needed to be evaluated</p>
-            </li>
+            <li>Arguments to functions are evaluated <i>lazily</i> (only when
+            needed to be evaluated</li>
 
-            <li>
-              <p>The <code>...</code> argument indicates a variable number of
-              arguments</p>
+            <li>The <code>...</code> argument indicates a variable number of
+            arguments
 
               <ul class="org-ul">
                 <li>Used when extending a function and you don’t want to copy
@@ -2114,17 +2063,13 @@ y <span class="org-constant">&lt;-</span> <span class=
 
         <div class="outline-text-3" id="text-10-2">
           <ul class="org-ul">
-            <li>
-              <p>R searches through the <i>search list</i> (a series of
-              <code>environments</code>, an environment being a collection of
-              symbol/value pairs) to bind the appropriate value to a
-              symbol:</p>
+            <li>R searches through the <i>search list</i> (a series of
+            <code>environments</code>, an environment being a collection of
+            symbol/value pairs) to bind the appropriate value to a symbol:
 
               <ul class="org-ul">
-                <li>
-                  <p>Search the global environment <code>.GlobalEnv</code>
-                  (always the first)</p>
-                </li>
+                <li>Search the global environment <code>.GlobalEnv</code>
+                (always the first)</li>
 
                 <li>
                   <p>Search the namespaces of each of the packages on the
@@ -2139,28 +2084,21 @@ search()                            <span class=
                   </div>
                 </li>
 
-                <li>
-                  <p>Search the <code>base</code> package (always the last
-                  element)</p>
-                </li>
+                <li>Search the <code>base</code> package (always the last
+                element)</li>
               </ul>
             </li>
 
-            <li>
-              <p>Last loaded package gets put in position 2 of the search list
-              and everything else gets shifted</p>
-            </li>
+            <li>Last loaded package gets put in position 2 of the search list
+            and everything else gets shifted</li>
 
-            <li>
-              <p>Separate namespaces for functions and non-function objects</p>
-            </li>
+            <li>Separate namespaces for functions and non-function objects</li>
 
-            <li>
-              <p>R uses <b>lexical</b> (or <i>static</i>) <b>scoping</b>
-              (instead of <i>dynamic scoping</i>): <i>the value of free
-              variables are searched for in the environment in which the
-              function</i> <i>was</i> <b>defined</b> (until the empty
-              environment, after the <code>base</code> package)</p>
+            <li>R uses <b>lexical</b> (or <i>static</i>) <b>scoping</b>
+            (instead of <i>dynamic scoping</i>): <i>the value of free variables
+            are searched for in the environment in which the function</i>
+            <i>was</i> <b>defined</b> (until the empty environment, after the
+            <code>base</code> package)
 
               <ul class="org-ul">
                 <li>With <b>dynamic</b> scoping, the value of free variables is
@@ -2178,16 +2116,12 @@ search()                            <span class=
               </ul>
             </li>
 
-            <li>
-              <p>Every environment has one parent environment (next thing down
-              on the search list); it is possible for an environment to have
-              mulitple “children”</p>
-            </li>
+            <li>Every environment has one parent environment (next thing down
+            on the search list); it is possible for an environment to have
+            mulitple “children”</li>
 
-            <li>
-              <p>A function + an environment = a (<i>function</i>)
-              <i>closure</i></p>
-            </li>
+            <li>A function + an environment = a (<i>function</i>)
+            <i>closure</i></li>
 
             <li>
               <p>In R (unlike C), you can have functions defined <i>inside
@@ -2226,8 +2160,7 @@ square <span class="org-constant">&lt;-</span> make.power(2)
               </div>
             </li>
 
-            <li>
-              <p>Functions:</p>
+            <li>Functions:
 
               <dl class="org-dl">
                 <dt><code>environment(f)</code></dt>
@@ -2255,7 +2188,7 @@ square <span class="org-constant">&lt;-</span> make.power(2)
       output</h2>
 
       <div class="outline-text-2" id="text-11">
-        <p>Types of files:</p>
+        Types of files:
 
         <ul class="org-ul">
           <li>Tab-delimited</li>
@@ -2365,10 +2298,8 @@ data <span class="org-constant">&lt;-</span> read.table(<span class=
           <p>For <b>large datasets</b>:</p>
 
           <ul class="org-ul">
-            <li>
-              <p>Set <code>comment.char</code> = "" if there are no comments in
-              your file.</p>
-            </li>
+            <li>Set <code>comment.char</code> = "" if there are no comments in
+            your file.</li>
 
             <li>
               <p>Use the <code>colClasses</code> argument.</p>
@@ -2392,9 +2323,7 @@ tabAll <span class="org-constant">&lt;-</span> read.table(<span class=
               </div>
             </li>
 
-            <li>
-              <p>Set <code>nrows</code> helps with memory usage.</p>
-            </li>
+            <li>Set <code>nrows</code> helps with memory usage.</li>
           </ul>
 
           <p>R equivalent of Linux <code>cut</code> (to read only certain
@@ -2476,7 +2405,7 @@ read.csv(file.choose())            <span class=
             <dt><code>read.csv2(file)</code></dt>
 
             <dd>
-              <p>Read data from CSV file, create data frame.</p>
+              Read data from CSV file, create data frame.
 
               <ul class="org-ul">
                 <li><code>header</code> (defaults to <code>TRUE</code>)</li>
@@ -2498,6 +2427,9 @@ read.csv(file.choose())            <span class=
 
             <dd>Read Excel files.</dd>
           </dl>
+
+          <p>You can also read from Excel spreadsheets using RODBC and
+          <code>sqlQuery</code>.</p>
         </div>
       </div>
 
@@ -2593,19 +2525,45 @@ xpathSApply(html3, <span class=
 "org-comment">install.packages("RODBC")</span>
 <span class="org-constant">library</span>(RODBC)
 <span class="org-comment-delimiter">## </span><span class=
-"org-comment">con &lt;- odbcConnect("DSN", uid="username")</span>
+"org-comment">channel &lt;- odbcConnect("DSN", uid="username")</span>
 <span class="org-comment-delimiter">## </span><span class=
-"org-comment">con &lt;- odbcDriverConnect("driver={SQL Server};server=hostname;database=dbname;trusted_connection=true")</span>
-con <span class="org-constant">&lt;-</span> odbcDriverConnect(<span class=
+"org-comment">channel &lt;- odbcDriverConnect("driver={SQL Server};server=hostname;database=dbname;trusted_connection=true")</span>
+channel <span class="org-constant">&lt;-</span> odbcDriverConnect(<span class=
 "org-string">"driver={SQL Server};server=hostname;database=dbname;uid=username;pwd=password"</span>)
 sql <span class="org-constant">&lt;-</span>
  <span class="org-string">"SELECT *</span>
 <span class="org-string">  FROM table"</span>
-<span class="org-comment-delimiter">## </span><span class=
-"org-comment">sql &lt;- gsub("\n"," ",sql)            # maybe needed for long multiline string?</span>
-df <span class="org-constant">&lt;-</span> sqlQuery(con, sql)
-print(head(df))
-odbcClose(con)
+sql <span class="org-constant">&lt;-</span> gsub(<span class=
+"org-string">"\n"</span>, <span class=
+"org-string">" "</span>, sql)             <span class=
+"org-comment-delimiter"># </span><span class="org-comment">optional</span>
+df <span class="org-constant">&lt;-</span> r(channel, sql)
+
+<span class="org-keyword">if</span> (is.character(df)) {
+  <span class="org-keyword">stop</span>(paste(df, collapse=<span class=
+"org-string">"\n"</span>))        <span class=
+"org-comment-delimiter"># </span><span class="org-comment">SQL error</span>
+} <span class="org-keyword">else</span> <span class=
+"org-keyword">if</span> (nrow(df) == 0) {
+  cat(<span class="org-string">"No data\n"</span>)
+} <span class="org-keyword">else</span>
+  print(head(df))
+
+odbcClose(channel)
+</pre>
+          </div>
+
+          <div class="org-src-container">
+            <pre class="src src-R">
+<span class=
+"org-keyword">if</span> (transaction) sqlQuery(channel, <span class="org-string">'START TRANSACTION'</span>)
+
+<span class="org-keyword">if</span> (success &amp; transaction) {
+  sqlQuery(channel, <span class="org-string">'COMMIT'</span>)
+} <span class="org-keyword">else</span> <span class=
+"org-keyword">if</span> (transaction){
+  sqlQuery(channel, <span class="org-string">'ROLLBACK'</span>)
+}
 </pre>
           </div>
         </div>
@@ -2616,8 +2574,7 @@ odbcClose(con)
         and transporting objects</h3>
 
         <div class="outline-text-3" id="text-11-10">
-          <p>Textual formats (potentially recoverable in case of
-          corruption).</p>
+          Textual formats (potentially recoverable in case of corruption).
 
           <dl class="org-dl">
             <dt><code>dput()</code></dt>
@@ -2636,7 +2593,7 @@ odbcClose(con)
         resources</h3>
 
         <div class="outline-text-3" id="text-11-11">
-          <p>Packages:</p>
+          Packages:
 
           <dl class="org-dl">
             <dt><code>httr</code></dt>
@@ -2673,15 +2630,11 @@ odbcClose(con)
           <dl class="org-dl">
             <dt><code>head()</code></dt>
 
-            <dd>
-              <p>Look at the first 6 rows.</p>
-            </dd>
+            <dd>Look at the first 6 rows.</dd>
 
             <dt><code>tail()</code></dt>
 
-            <dd>
-              <p>Look at the last 6 rows.</p>
-            </dd>
+            <dd>Look at the last 6 rows.</dd>
 
             <dt><code>str()</code></dt>
 
@@ -2704,10 +2657,8 @@ str(.Platform)                     <span class=
 
             <dt><code>attributes()</code></dt>
 
-            <dd>
-              <p>Access (set or modify) the (list of) attributes of an
-              object.</p>
-            </dd>
+            <dd>Access (set or modify) the (list of) attributes of an
+            object.</dd>
           </dl>
         </div>
       </div>
@@ -2744,9 +2695,7 @@ yrange <span class="org-constant">&lt;-</span> range(c(x1, x2, x3))
 
             <dt><code>summary()</code></dt>
 
-            <dd>
-              <p>Produce a summary of the object.</p>
-            </dd>
+            <dd>Produce a summary of the object.</dd>
           </dl>
         </div>
       </div>
@@ -2822,9 +2771,7 @@ table(dfrm$f1, dfrm$f2)            <span class=
 
             <dt><code>ftable(f)</code></dt>
 
-            <dd>
-              <p>3-dimensional contingency table.</p>
-            </dd>
+            <dd>3-dimensional contingency table.</dd>
           </dl>
         </div>
       </div>
@@ -3090,7 +3037,7 @@ df <span class="org-constant">&lt;-</span> df[, colSums(is.na(df)) == 0]
 
       <div id="outline-container-sec-14-7" class="outline-3">
         <h3 id="sec-14-7"><span class="section-number-3">14.7</span> Merging
-        data frames by commun column</h3>
+        data frames by common column</h3>
 
         <div class="outline-text-3" id="text-14-7">
           <dl class="org-dl">
@@ -3111,7 +3058,7 @@ df <span class="org-constant">&lt;-</span> df[, colSums(is.na(df)) == 0]
             <dd><b>(Full) outer</b> join (all records from both tables).</dd>
           </dl>
 
-          <p>Merge data sets.</p>
+          <p>Merge data sets (of different columns).</p>
 
           <div class="org-src-container">
             <pre class="src src-R">
@@ -3125,10 +3072,27 @@ merged.data <span class=
       </div>
 
       <div id="outline-container-sec-14-8" class="outline-3">
-        <h3 id="sec-14-8"><span class="section-number-3">14.8</span>
-        Converting</h3>
+        <h3 id="sec-14-8"><span class="section-number-3">14.8</span> Convert a
+        list of data frames into one data frame</h3>
 
         <div class="outline-text-3" id="text-14-8">
+          <p>Combine a list of data frames (of identical columns) into a single
+          data frame:</p>
+
+          <div class="org-src-container">
+            <pre class="src src-R">
+df <span class="org-constant">&lt;-</span> do.call(<span class=
+"org-string">"rbind"</span>, list.of.data.frames)
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="outline-container-sec-14-9" class="outline-3">
+        <h3 id="sec-14-9"><span class="section-number-3">14.9</span>
+        Converting</h3>
+
+        <div class="outline-text-3" id="text-14-9">
           <dl class="org-dl">
             <dt><code>as.*()</code></dt>
 
@@ -3179,19 +3143,19 @@ x[ind] <span class="org-constant">&lt;-</span> lapply(x[ind], factor)
         </div>
       </div>
 
-      <div id="outline-container-sec-14-9" class="outline-3">
-        <h3 id="sec-14-9"><span class="section-number-3">14.9</span> Applying a
-        function to each list element</h3>
+      <div id="outline-container-sec-14-10" class="outline-3">
+        <h3 id="sec-14-10"><span class="section-number-3">14.10</span> Applying
+        a function to each list element</h3>
 
-        <div class="outline-text-3" id="text-14-9">
-          <p>Alternative (to <code>for</code> <b>loops</b>) to apply a function
-          (or summary statistics).</p>
+        <div class="outline-text-3" id="text-14-10">
+          Alternative (to <code>for</code> <b>loops</b>) to apply a function
+          (or summary statistics).
         </div>
 
-        <div id="outline-container-sec-14-9-1" class="outline-4">
-          <h4 id="sec-14-9-1"><code>lapply</code></h4>
+        <div id="outline-container-sec-14-10-1" class="outline-4">
+          <h4 id="sec-14-10-1"><code>lapply</code></h4>
 
-          <div class="outline-text-4" id="text-14-9-1">
+          <div class="outline-text-4" id="text-14-10-1">
             <p><b>Loop over a list</b> and apply a <b>function</b> on each
             element. <i>Always</i> returns a <b>list</b> back (that is, not a
             simplified result).</p>
@@ -3230,10 +3194,10 @@ lapply(x, <span class="org-keyword">function</span>(x) x[, 1])
           </div>
         </div>
 
-        <div id="outline-container-sec-14-9-2" class="outline-4">
-          <h4 id="sec-14-9-2"><code>sapply</code></h4>
+        <div id="outline-container-sec-14-10-2" class="outline-4">
+          <h4 id="sec-14-10-2"><code>sapply</code></h4>
 
-          <div class="outline-text-4" id="text-14-9-2">
+          <div class="outline-text-4" id="text-14-10-2">
             <p>Same as <code>lapply</code>, but tries to “<b>simplify</b>” the
             result in a much more compact format (put all the elements into a
             <b>vector</b> or a <b>matrix</b> if that is possible, instead of
@@ -3264,43 +3228,45 @@ sapply(s, <span class=
         </div>
       </div>
 
-      <div id="outline-container-sec-14-10" class="outline-3">
-        <h3 id="sec-14-10"><span class="section-number-3">14.10</span>
+      <div id="outline-container-sec-14-11" class="outline-3">
+        <h3 id="sec-14-11"><span class="section-number-3">14.11</span>
         Splitting a vector into groups</h3>
 
-        <div class="outline-text-3" id="text-14-10">
+        <div class="outline-text-3" id="text-14-11">
           <dl class="org-dl">
             <dt><code>split(x, f)</code></dt>
 
             <dd>
-              <p>Take a vector, and <b>split</b> it into subpieces (the number
-              of groups identified by the levels of a <b>factor</b> variable).
-              Always return a <b>list</b> (of lists?) back.</p>
+              Take a vector, and <b>split</b> it into subpieces (the number of
+              groups identified by the levels of a <b>factor</b> variable).
+              Always return a <b>list</b> (of lists?) back.
 
               <dl class="org-dl">
                 <dt><code>drop = TRUE</code></dt>
 
                 <dd>Don’t keep the empty levels of the factor.</dd>
               </dl>
+            </dd>
+          </dl>
 
-              <p>Auxiliary function, used in conjunction with functions like
-              <code>lapply</code> or <code>sapply</code> to apply a function to
-              those individual groups.</p>
+          <p>Auxiliary function, used in conjunction with functions like
+          <code>lapply</code> or <code>sapply</code> to apply a function to
+          those individual groups.</p>
 
-              <div class="org-src-container">
-                <pre class="src src-R">
+          <div class="org-src-container">
+            <pre class="src src-R">
 lapply(split(x, f), mean)
 </pre>
-              </div>
+          </div>
 
-              <p>Like <code>tapply</code>, but without applying the summary
-              statistics.</p>
+          <p>Like <code>tapply</code>, but without applying the summary
+          statistics.</p>
 
-              <p>Splitting a data frame (or other kinds of lists), and apply an
-              <i>anonymous function</i>:</p>
+          <p>Split a data frame (or other kinds of lists), and apply an
+          <i>anonymous function</i>:</p>
 
-              <div class="org-src-container">
-                <pre class="src src-R">
+          <div class="org-src-container">
+            <pre class="src src-R">
 s <span class=
 "org-constant">&lt;-</span> split(airquality, airquality$Month) <span class=
 "org-comment-delimiter"># </span><span class=
@@ -3310,17 +3276,24 @@ lapply(s, <span class=
 "org-string">"Ozone"</span>, <span class=
 "org-string">"Solar.R"</span>, <span class="org-string">"Wind"</span>)])
 </pre>
-              </div>
-            </dd>
-          </dl>
+          </div>
+
+          <p>Split a data frame into chunks of size <code>max</code>:</p>
+
+          <div class="org-src-container">
+            <pre class="src src-R">
+size.max <span class="org-constant">&lt;-</span> 20
+split(x, ceiling(seq_along(x$col1) / size.max))
+</pre>
+          </div>
         </div>
       </div>
 
-      <div id="outline-container-sec-14-11" class="outline-3">
-        <h3 id="sec-14-11"><span class="section-number-3">14.11</span> Applying
+      <div id="outline-container-sec-14-12" class="outline-3">
+        <h3 id="sec-14-12"><span class="section-number-3">14.12</span> Applying
         a function to every row/column</h3>
 
-        <div class="outline-text-3" id="text-14-11">
+        <div class="outline-text-3" id="text-14-12">
           <dl class="org-dl">
             <dt><code>apply(dfrm, margin, fun, ...)</code></dt>
 
@@ -3376,11 +3349,11 @@ apply(x, 1, quantile, probs=c(0.25, 0.75)) <span class=
         </div>
       </div>
 
-      <div id="outline-container-sec-14-12" class="outline-3">
-        <h3 id="sec-14-12"><span class="section-number-3">14.12</span> Applying
+      <div id="outline-container-sec-14-13" class="outline-3">
+        <h3 id="sec-14-13"><span class="section-number-3">14.13</span> Applying
         a function to groups of data</h3>
 
-        <div class="outline-text-3" id="text-14-12">
+        <div class="outline-text-3" id="text-14-13">
           <dl class="org-dl">
             <dt><code>tapply(x, index, fun)</code></dt>
 
@@ -3434,11 +3407,11 @@ tapply(x, f, length)
         </div>
       </div>
 
-      <div id="outline-container-sec-14-13" class="outline-3">
-        <h3 id="sec-14-13"><span class="section-number-3">14.13</span> Applying
+      <div id="outline-container-sec-14-14" class="outline-3">
+        <h3 id="sec-14-14"><span class="section-number-3">14.14</span> Applying
         a function to parallel vectors or lists</h3>
 
-        <div class="outline-text-3" id="text-14-13">
+        <div class="outline-text-3" id="text-14-14">
           <dl class="org-dl">
             <dt><code>mapply</code></dt>
 
@@ -3477,8 +3450,8 @@ list(rnorm(1, 1, 2),
         </div>
       </div>
 
-      <div id="outline-container-sec-14-14" class="outline-3">
-        <h3 id="sec-14-14"><span class="section-number-3">14.14</span> Checking
+      <div id="outline-container-sec-14-15" class="outline-3">
+        <h3 id="sec-14-15"><span class="section-number-3">14.15</span> Checking
         on and removing inconsistent values</h3>
       </div>
     </div>
@@ -3544,57 +3517,39 @@ This is one sentence.
           <dl class="org-dl">
             <dt><code>^</code></dt>
 
-            <dd>
-              <p>Start of a line (or negation of a character class).</p>
-            </dd>
+            <dd>Start of a line (or negation of a character class).</dd>
 
             <dt><code>$</code></dt>
 
-            <dd>
-              <p>End of a line.</p>
-            </dd>
+            <dd>End of a line.</dd>
 
             <dt><code>[]</code></dt>
 
-            <dd>
-              <p>Character classes.</p>
-            </dd>
+            <dd>Character classes.</dd>
 
             <dt><code>.</code></dt>
 
-            <dd>
-              <p>Any character.</p>
-            </dd>
+            <dd>Any character.</dd>
 
             <dt><code>|</code></dt>
 
-            <dd>
-              <p>Or.</p>
-            </dd>
+            <dd>Or.</dd>
 
             <dt><code>()</code></dt>
 
-            <dd>
-              <p>Subexpressions (alternatives or “remember” matched text).</p>
-            </dd>
+            <dd>Subexpressions (alternatives or “remember” matched text).</dd>
 
             <dt><code>?</code></dt>
 
-            <dd>
-              <p>Optional.</p>
-            </dd>
+            <dd>Optional.</dd>
 
             <dt>\</dt>
 
-            <dd>
-              <p>“Escape” the metacharacter.</p>
-            </dd>
+            <dd>“Escape” the metacharacter.</dd>
 
             <dt><code>+</code></dt>
 
-            <dd>
-              <p>Any number, including none.</p>
-            </dd>
+            <dd>Any number, including none.</dd>
 
             <dt><code>*</code></dt>
 
@@ -3615,9 +3570,7 @@ This is one sentence.
 
             <dt><code>{}</code></dt>
 
-            <dd>
-              <p>Interval quantifiers (minimum, maximum).</p>
-            </dd>
+            <dd>Interval quantifiers (minimum, maximum).</dd>
           </dl>
 
           <p>These functions can take vector arguments.</p>
@@ -3652,11 +3605,9 @@ setdiff(j, i) <span class="org-comment-delimiter"># </span><span class=
 
             <dt><code>grepl</code></dt>
 
-            <dd>
-              <p>Return a <b>logical vector</b> (<code>TRUE</code> /
-              <code>FALSE</code>) indicating which element matches (used for
-              <i>subsetting</i>).</p>
-            </dd>
+            <dd>Return a <b>logical vector</b> (<code>TRUE</code> /
+            <code>FALSE</code>) indicating which element matches (used for
+            <i>subsetting</i>).</dd>
 
             <dt><code>regexpr</code></dt>
 
@@ -3689,17 +3640,13 @@ regmatches(string, r)
 
             <dt><code>gregexpr</code></dt>
 
-            <dd>
-              <p>Return <b>all of the matches</b> (“global”) in a given
-              string.</p>
-            </dd>
+            <dd>Return <b>all of the matches</b> (“global”) in a given
+            string.</dd>
 
             <dt><code>sub</code></dt>
 
-            <dd>
-              <p>Replace <b>the first match</b> with another string (used to
-              strip out stuff by replacing the match with nothing).</p>
-            </dd>
+            <dd>Replace <b>the first match</b> with another string (used to
+            strip out stuff by replacing the match with nothing).</dd>
 
             <dt><code>gsub</code></dt>
 
@@ -3766,8 +3713,8 @@ hist(dates, <span class="org-string">"month"</span>, freq=<span class=
           <dt><code>base</code></dt>
 
           <dd>
-            <p>Graphics are constructed piecemeal by <b>different function
-            calls</b>; you can add things one by one:</p>
+            Graphics are constructed piecemeal by <b>different function
+            calls</b>; you can add things one by one:
 
             <ul class="org-ul">
               <li>annotate (some of the points in) the plot,</li>
@@ -3786,20 +3733,16 @@ hist(dates, <span class="org-string">"month"</span>, freq=<span class=
 
           <dt><code>lattice</code></dt>
 
-          <dd>
-            <p>Graphics are constructed via a single function call: all options
-            have to be specified at once (advantage: that allows R to calculate
-            the necessary spacings, margins and font sizes).</p>
-          </dd>
+          <dd>Graphics are constructed via a single function call: all options
+          have to be specified at once (advantage: that allows R to calculate
+          the necessary spacings, margins and font sizes).</dd>
         </dl>
 
         <p>Behavior:</p>
 
         <ul class="org-ul">
-          <li>
-            <p>Base graphics functions have a “side effect”: they plot data
-            directly to the graphics device.</p>
-          </li>
+          <li>Base graphics functions have a “side effect”: they plot data
+          directly to the graphics device.</li>
 
           <li>
             <p>Lattice graphics functions return an object of the class
@@ -4001,10 +3944,10 @@ cor(iris[-5])
             <code>barplot</code></h5>
 
             <div class="outline-text-5" id="text-17-1-1-2">
-              <p>See <a href=
+              See <a href=
               "http://onertipaday.blogspot.be/2007/05/barplots-of-two-sets.html">
               http://onertipaday.blogspot.be/2007/05/barplots-of-two-sets.html</a>
-              for barplot with figures above the bars.</p>
+              for barplot with figures above the bars.
             </div>
           </div>
 
@@ -4161,6 +4104,15 @@ boxplot(iris[, 1:4], col=rainbow(4), main=<span class=
                 <p><img src="Rplots/base-boxplot.png" alt=
                 "base-boxplot.png" /></p>
               </div>
+            </div>
+          </div>
+
+          <div id="outline-container-sec-17-1-1-5" class="outline-5">
+            <h5 id="sec-17-1-1-5">violinplot</h5>
+
+            <div class="outline-text-5" id="text-17-1-1-5">
+              See <a href=
+              "http://www.math.csi.cuny.edu/Statistics/R/simpleR/stat006.html">http://www.math.csi.cuny.edu/Statistics/R/simpleR/stat006.html</a>
             </div>
           </div>
         </div>
@@ -4363,43 +4315,31 @@ legend(<span class="org-string">"topleft"</span>, legend=<span class=
                 <dl class="org-dl">
                   <dt><code>pch</code></dt>
 
-                  <dd>
-                    <p><b>Plotting character</b> (default: open circle
-                    symbol).</p>
-                  </dd>
+                  <dd><b>Plotting character</b> (default: open circle
+                  symbol).</dd>
 
                   <dt><code>lty</code></dt>
 
-                  <dd>
-                    <p>Line type (default: <code>solid</code> line).</p>
-                  </dd>
+                  <dd>Line type (default: <code>solid</code> line).</dd>
 
                   <dt><code>lwd</code></dt>
 
-                  <dd>
-                    <p>Line width.</p>
-                  </dd>
+                  <dd>Line width.</dd>
 
                   <dt><code>col</code></dt>
 
-                  <dd>
-                    <p>Plotting color.</p>
-                  </dd>
+                  <dd>Plotting color.</dd>
 
                   <dt><code>las</code></dt>
 
-                  <dd>
-                    <p>Orientation of the axis labels on the plot
-                    (<code>las=2</code> will set the tick <b>labels</b> to be
-                    <b>perpendicular</b> to the axis).</p>
-                  </dd>
+                  <dd>Orientation of the axis labels on the plot
+                  (<code>las=2</code> will set the tick <b>labels</b> to be
+                  <b>perpendicular</b> to the axis).</dd>
 
                   <dt><code>bg</code></dt>
 
-                  <dd>
-                    <p>Background color (default:
-                    <code>transparent</code>).</p>
-                  </dd>
+                  <dd>Background color (default:
+                  <code>transparent</code>).</dd>
 
                   <dt><code>mar</code></dt>
 
@@ -4415,10 +4355,8 @@ par(mar=c(2, 2, 1, 1))
 
                   <dt><code>oma</code></dt>
 
-                  <dd>
-                    <p>Outer margin size (relevant if you have more than one
-                    plot per canvas).</p>
-                  </dd>
+                  <dd>Outer margin size (relevant if you have more than one
+                  plot per canvas).</dd>
 
                   <dt><code>mfrow</code></dt>
 
@@ -4439,10 +4377,8 @@ plot(x, z)
 
                   <dt><code>mfcol</code></dt>
 
-                  <dd>
-                    <p>Number of plots per row and per column on the canvas
-                    (filled column-wise).</p>
-                  </dd>
+                  <dd>Number of plots per row and per column on the canvas
+                  (filled column-wise).</dd>
 
                   <dt><code>bty</code></dt>
 
@@ -4466,7 +4402,7 @@ par(<span class="org-string">"lty"</span>)
               <dt><code>?Devices</code></dt>
 
               <dd>
-                <p>List graphical devices.</p>
+                List graphical devices.
 
                 <dl class="org-dl">
                   <dt><code>pdf</code></dt>
@@ -4495,7 +4431,7 @@ par(<span class="org-string">"lty"</span>)
               <dt>(no term)</dt>
 
               <dd>
-                <p>Copy the plot to another device</p>
+                Copy the plot to another device
 
                 <dl class="org-dl">
                   <dt><code>dev.copy2pdf</code></dt>
@@ -4571,8 +4507,8 @@ pareto.chart(table(iris[iris$Species==<span class=
       regression and ANOVA</h2>
 
       <div class="outline-text-2" id="text-18">
-        <p><a href=
-        "https://www.zoology.ubc.ca/~schluter/R/fit-model/">https://www.zoology.ubc.ca/~schluter/R/fit-model/</a></p>
+        <a href=
+        "https://www.zoology.ubc.ca/~schluter/R/fit-model/">https://www.zoology.ubc.ca/~schluter/R/fit-model/</a>
       </div>
 
       <div id="outline-container-sec-18-1" class="outline-3">
@@ -4609,6 +4545,117 @@ rpart
 </pre>
           </div>
         </div>
+      </div>
+    </div>
+
+    <div id="outline-container-sec-19" class="outline-2">
+      <h2 id="sec-19"><span class="section-number-2">19</span> Debugging</h2>
+
+      <div class="outline-text-2" id="text-19">
+        <ul class="org-ul">
+          <li>3 main indications of a problem / <code>condition</code>:
+
+            <ul class="org-ul">
+              <li>
+                <p><code>message</code></p>
+
+                <div class="org-src-container">
+                  <pre class="src src-R">
+print(<span class="org-string">"message"</span>)
+</pre>
+                </div>
+              </li>
+
+              <li>
+                <p><code>warning</code></p>
+
+                <div class="org-src-container">
+                  <pre class="src src-R">
+log(-1)
+</pre>
+                </div>
+              </li>
+
+              <li>
+                <p><code>error</code></p>
+
+                <div class="org-src-container">
+                  <pre class="src src-R">
+<span class="org-keyword">stop</span>(<span class=
+"org-string">"error"</span>)                       <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">throw an error</span>
+</pre>
+                </div>
+              </li>
+            </ul>
+          </li>
+
+          <li>General notion of a <code>condition</code>: you can create your
+          own if something specific happens</li>
+
+          <li>Functions:
+
+            <dl class="org-dl">
+              <dt>invisible(x)</dt>
+
+              <dd><b>Prevent auto-printing</b> of the last element in the
+              function value; <b>still return</b> the same object</dd>
+            </dl>
+          </li>
+
+          <li>
+            <b>Interactive</b> debugging tools to find problematic code:
+
+            <dl class="org-dl">
+              <dt><code>traceback</code></dt>
+
+              <dd>Print out the function call stack – you have to call it
+              <b>immediately</b> after the error occurred.</dd>
+
+              <dt><code>debug</code></dt>
+
+              <dd>Flag a function for “debug” mode to step through any function
+              (you wrote or not), one expression at a time, from the top of the
+              function.</dd>
+
+              <dt>browser</dt>
+
+              <dd>Put the function in debug mode anywhere in your code; in the
+              browser, there is nothing in your environment except for the
+              function arguments (and the default values which are not listed).
+              You can nest browser frames: you can call the debug function even
+              while you’re in the debugger.</dd>
+
+              <dt>trace</dt>
+
+              <dd>Insert debugging code into a function, without actually
+              editing the function.</dd>
+
+              <dt>recover</dt>
+
+              <dd>
+                <p>Modify the default behavior (of getting the console back) by
+                creating an error handler.</p>
+
+                <div class="org-src-container">
+                  <pre class="src src-R">
+options(error = recover)
+</pre>
+                </div>
+              </dd>
+            </dl>
+          </li>
+
+          <li>Blunt techniques:
+
+            <ul class="org-ul">
+              <li>print</li>
+
+              <li>cat</li>
+            </ul>
+          </li>
+        </ul>
       </div>
     </div>
   </div>

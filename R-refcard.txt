@@ -193,8 +193,12 @@ Help at your fingertips:
      Display vignettes.
 
 - ~C-c C-d C-e~ ::
-     *Describe object at point* (repeat ~C-e~ or ~e~ to cycle through the list of
-     commands: ~str()~, ~htsummary()~, ~summary()~).
+     *Describe object at point*.
+
+     Repeat ~C-e~ to cycle through the list of commands:
+     + ~str()~,
+     + ~htsummary()~,
+     + ~summary()~.
 
 - ~C-c C-d o~ ::
      Create an Demos buffer with a linked list of available demos.
@@ -1040,6 +1044,8 @@ df <- read.table(pipe("cut -f1,5,28 myFile.txt"))
 - ~read.xlsx()~, ~read.xlsx2()~ ::
      Read Excel files.
 
+You can also read from Excel spreadsheets using RODBC and ~sqlQuery~.
+
 ** Reading files from the Internet
 
 - ~download.file()~ ::
@@ -1085,16 +1091,33 @@ df <- read.table(pipe("cut -f1,5,28 myFile.txt"))
 #+begin_src R
 ## install.packages("RODBC")
 library(RODBC)
-## con <- odbcConnect("DSN", uid="username")
-## con <- odbcDriverConnect("driver={SQL Server};server=hostname;database=dbname;trusted_connection=true")
-con <- odbcDriverConnect("driver={SQL Server};server=hostname;database=dbname;uid=username;pwd=password")
+## channel <- odbcConnect("DSN", uid="username")
+## channel <- odbcDriverConnect("driver={SQL Server};server=hostname;database=dbname;trusted_connection=true")
+channel <- odbcDriverConnect("driver={SQL Server};server=hostname;database=dbname;uid=username;pwd=password")
 sql <-
  "SELECT *
   FROM table"
-## sql <- gsub("\n"," ",sql)            # maybe needed for long multiline string?
-df <- sqlQuery(con, sql)
-print(head(df))
-odbcClose(con)
+sql <- gsub("\n", " ", sql)             # optional
+df <- sqlQuery(channel, sql)
+
+if (is.character(df)) {
+  stop(paste(df, collapse="\n"))        # SQL error
+} else if (nrow(df) == 0) {
+  cat("No data\n")
+} else
+  print(head(df))
+
+odbcClose(channel)
+#+end_src
+
+#+begin_src R
+if (transaction) sqlQuery(channel, 'START TRANSACTION')
+
+if (success & transaction) {
+  sqlQuery(channel, 'COMMIT')
+} else if (transaction){
+  sqlQuery(channel, 'ROLLBACK')
+}
 #+end_src
 
 ** Saving and transporting objects
@@ -1332,7 +1355,7 @@ Get rid of any column that has one or more NAs.
 df <- df[, colSums(is.na(df)) == 0]
 #+end_src
 
-** Merging data frames by commun column
+** Merging data frames by common column
 
 - ~merge(df1, df2, by="CustomerId")~ ::
      Natural join (special case of *inner* join).
@@ -1346,10 +1369,18 @@ df <- df[, colSums(is.na(df)) == 0]
 - ~merge(df1, df2, by="CustomerId", all=TRUE)~ ::
      *(Full) outer* join (all records from both tables).
 
-Merge data sets.
+Merge data sets (of different columns).
 
 #+begin_src R
 merged.data <- merge(df1, df2, by.x="id1", by.y="id2", all=TRUE)
+#+end_src
+
+** Convert a list of data frames into one data frame
+
+Combine a list of data frames (of identical columns) into a single data frame:
+
+#+begin_src R
+df <- do.call("rbind", list.of.data.frames)
 #+end_src
 
 ** Converting
@@ -1439,22 +1470,28 @@ sapply(s, function(x) colMeans(x[, c("Ozone", "Solar.R", "Wind")], na.rm=TRUE))
      + ~drop = TRUE~ ::
           Don't keep the empty levels of the factor.
 
-     Auxiliary function, used in conjunction with functions like ~lapply~ or
-     ~sapply~ to apply a function to those individual groups.
+Auxiliary function, used in conjunction with functions like ~lapply~ or ~sapply~ to
+apply a function to those individual groups.
 
-     #+begin_src R
-     lapply(split(x, f), mean)
-     #+end_src
+#+begin_src R
+lapply(split(x, f), mean)
+#+end_src
 
-     Like ~tapply~, but without applying the summary statistics.
+Like ~tapply~, but without applying the summary statistics.
 
-     Splitting a data frame (or other kinds of lists), and apply an /anonymous
-     function/:
+Split a data frame (or other kinds of lists), and apply an /anonymous function/:
 
-     #+begin_src R
-     s <- split(airquality, airquality$Month) # split according to month
-     lapply(s, function(x) colMeans(x[, c("Ozone", "Solar.R", "Wind")])
-     #+end_src
+#+begin_src R
+s <- split(airquality, airquality$Month) # split according to month
+lapply(s, function(x) colMeans(x[, c("Ozone", "Solar.R", "Wind")])
+#+end_src
+
+Split a data frame into chunks of size ~max~:
+
+#+begin_src R
+size.max <- 20
+split(x, ceiling(seq_along(x$col1) / size.max))
+#+end_src
 
 ** Applying a function to every row/column
 
@@ -1901,6 +1938,10 @@ boxplot(iris[, 1:4], col=rainbow(4), main="Boxplot", ylab="Appropriate units")
 #+results:
 [[file:Rplots/base-boxplot.png]]
 
+**** violinplot
+
+See http://www.math.csi.cuny.edu/Statistics/R/simpleR/stat006.html
+
 *** Add to an existing plot
 
 - ~points~ ::
@@ -2140,3 +2181,67 @@ http://www.statmethods.net/advstats/cart.html
 #+begin_src R
 rpart
 #+end_src
+
+* Debugging
+
+- 3 main indications of a problem / =condition=:
+
+  + =message=
+
+    #+begin_src R
+    print("message")
+    #+end_src
+
+  + =warning=
+
+    #+begin_src R
+    log(-1)
+    #+end_src
+
+  + =error=
+
+    #+begin_src R
+    stop("error")                       # throw an error
+    #+end_src
+
+- General notion of a =condition=: you can create your own if something
+  specific happens
+
+- Functions:
+
+  + invisible(x) ::
+       *Prevent auto-printing* of the last element in the function value; *still
+       return* the same object
+
+- *Interactive* debugging tools to find problematic code:
+
+  + =traceback= ::
+       Print out the function call stack -- you have to call it *immediately*
+       after the error occurred.
+
+  + =debug= ::
+       Flag a function for "debug" mode to step through any function (you wrote
+       or not), one expression at a time, from the top of the function.
+
+  + browser ::
+       Put the function in debug mode anywhere in your code; in the browser,
+       there is nothing in your environment except for the function arguments
+       (and the default values which are not listed). You can nest browser
+       frames: you can call the debug function even while you're in the
+       debugger.
+
+  + trace ::
+       Insert debugging code into a function, without actually editing the
+       function.
+
+  + recover ::
+       Modify the default behavior (of getting the console back) by creating an
+       error handler.
+
+       #+begin_src R
+       options(error = recover)
+       #+end_src
+
+- Blunt techniques:
+  + print
+  + cat
