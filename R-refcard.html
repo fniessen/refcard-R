@@ -2532,9 +2532,13 @@ xpathSApply(html3, <span class=
 channel <span class="org-constant">&lt;-</span> odbcDriverConnect(<span class=
 "org-string">"driver={SQL Server};server=hostname;database=dbname;uid=username;pwd=password"</span>)
 
-odbcGetInfo(channel)                    <span class=
-"org-comment-delimiter"># </span><span class=
+<span class="org-comment-delimiter"># </span><span class=
 "org-comment">Check that connection is working.</span>
+<span class="org-keyword">if</span> (channel == -1)
+  <span class="org-keyword">stop</span>(<span class=
+"org-string">"Error establishing an ODBC connection."</span>)
+<span class="org-keyword">else</span>
+  odbcGetInfo(channel)
 
 sql <span class="org-constant">&lt;-</span>
  <span class="org-string">"SELECT *</span>
