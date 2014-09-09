@@ -2524,12 +2524,18 @@ xpathSApply(html3, <span class=
 <span class="org-comment-delimiter">## </span><span class=
 "org-comment">install.packages("RODBC")</span>
 <span class="org-constant">library</span>(RODBC)
+
 <span class="org-comment-delimiter">## </span><span class=
 "org-comment">channel &lt;- odbcConnect("DSN", uid="username")</span>
 <span class="org-comment-delimiter">## </span><span class=
 "org-comment">channel &lt;- odbcDriverConnect("driver={SQL Server};server=hostname;database=dbname;trusted_connection=true")</span>
 channel <span class="org-constant">&lt;-</span> odbcDriverConnect(<span class=
 "org-string">"driver={SQL Server};server=hostname;database=dbname;uid=username;pwd=password"</span>)
+
+odbcGetInfo(channel)                    <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">Check that connection is working.</span>
+
 sql <span class="org-constant">&lt;-</span>
  <span class="org-string">"SELECT *</span>
 <span class="org-string">  FROM table"</span>
@@ -2537,12 +2543,15 @@ sql <span class="org-constant">&lt;-</span> gsub(<span class=
 "org-string">"\n"</span>, <span class=
 "org-string">" "</span>, sql)             <span class=
 "org-comment-delimiter"># </span><span class="org-comment">optional</span>
-df <span class="org-constant">&lt;-</span> r(channel, sql)
 
-<span class="org-keyword">if</span> (is.character(df)) {
+df <span class="org-constant">&lt;-</span> sqlQuery(channel, sql)
+
+<span class=
+"org-keyword">if</span> (is.character(df)) {                 <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">SQL error (no data frame returned)</span>
   <span class="org-keyword">stop</span>(paste(df, collapse=<span class=
-"org-string">"\n"</span>))        <span class=
-"org-comment-delimiter"># </span><span class="org-comment">SQL error</span>
+"org-string">"\n"</span>))
 } <span class="org-keyword">else</span> <span class=
 "org-keyword">if</span> (nrow(df) == 0) {
   cat(<span class="org-string">"No data\n"</span>)

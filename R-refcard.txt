@@ -1091,17 +1091,22 @@ You can also read from Excel spreadsheets using RODBC and ~sqlQuery~.
 #+begin_src R
 ## install.packages("RODBC")
 library(RODBC)
+
 ## channel <- odbcConnect("DSN", uid="username")
 ## channel <- odbcDriverConnect("driver={SQL Server};server=hostname;database=dbname;trusted_connection=true")
 channel <- odbcDriverConnect("driver={SQL Server};server=hostname;database=dbname;uid=username;pwd=password")
+
+odbcGetInfo(channel)                    # Check that connection is working.
+
 sql <-
  "SELECT *
   FROM table"
 sql <- gsub("\n", " ", sql)             # optional
+
 df <- sqlQuery(channel, sql)
 
-if (is.character(df)) {
-  stop(paste(df, collapse="\n"))        # SQL error
+if (is.character(df)) {                 # SQL error (no data frame returned)
+  stop(paste(df, collapse="\n"))
 } else if (nrow(df) == 0) {
   cat("No data\n")
 } else
