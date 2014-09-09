@@ -2526,7 +2526,7 @@ xpathSApply(html3, <span class=
 <span class="org-constant">library</span>(RODBC)
 
 <span class="org-comment-delimiter">## </span><span class=
-"org-comment">channel &lt;- odbcConnect("DSN", uid="username")</span>
+"org-comment">channel &lt;- odbcConnect("DSN", uid="username", pwd="password")</span>
 <span class="org-comment-delimiter">## </span><span class=
 "org-comment">channel &lt;- odbcDriverConnect("driver={SQL Server};server=hostname;database=dbname;trusted_connection=true")</span>
 channel <span class="org-constant">&lt;-</span> odbcDriverConnect(<span class=
@@ -2534,7 +2534,7 @@ channel <span class="org-constant">&lt;-</span> odbcDriverConnect(<span class=
 
 <span class="org-comment-delimiter"># </span><span class=
 "org-comment">Check that connection is working.</span>
-<span class="org-keyword">if</span> (channel == -1) {
+<span class="org-keyword">if</span> (channel == -1L) {
   <span class="org-keyword">stop</span>(<span class=
 "org-string">"Error establishing an ODBC connection."</span>)
 } <span class="org-keyword">else</span>
@@ -2579,6 +2579,12 @@ odbcClose(channel)
 }
 </pre>
           </div>
+
+          <p>There is a convergence movement to the DBI package.</p>
+
+          <p><a href="https://github.com/agstudy/rsqlserver">rsqlserver</a> is
+          part of it, but it is less mature than RODBC (though it’s still high
+          quality).</p>
         </div>
       </div>
 

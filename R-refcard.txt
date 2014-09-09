@@ -1092,12 +1092,12 @@ You can also read from Excel spreadsheets using RODBC and ~sqlQuery~.
 ## install.packages("RODBC")
 library(RODBC)
 
-## channel <- odbcConnect("DSN", uid="username")
+## channel <- odbcConnect("DSN", uid="username", pwd="password")
 ## channel <- odbcDriverConnect("driver={SQL Server};server=hostname;database=dbname;trusted_connection=true")
 channel <- odbcDriverConnect("driver={SQL Server};server=hostname;database=dbname;uid=username;pwd=password")
 
 # Check that connection is working.
-if (channel == -1) {
+if (channel == -1L) {
   stop("Error establishing an ODBC connection.")
 } else
   odbcGetInfo(channel)
@@ -1128,6 +1128,11 @@ if (success & transaction) {
   sqlQuery(channel, 'ROLLBACK')
 }
 #+end_src
+
+There is a convergence movement to the DBI package.
+
+[[https://github.com/agstudy/rsqlserver][rsqlserver]] is part of it, but it is less mature than RODBC (though it's still
+high quality).
 
 ** Saving and transporting objects
 
