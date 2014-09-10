@@ -1678,11 +1678,35 @@ x %*% y                                 <span class=
 
         <div class="outline-text-3" id="text-8-9">
           <dl class="org-dl">
+            <dt><code>[</code></dt>
+
+            <dd>
+              <p>Return an <b>object</b> of the <b>same class as the
+              original</b>: a list of elements (or a data frame built from
+              multiple columns).</p>
+
+              <p>Extract multiple elements of a list:</p>
+
+              <div class="org-src-container">
+                <pre class="src src-R">
+x[c(1, 3)]
+</pre>
+              </div>
+
+              <p>Remove the first column:</p>
+
+              <div class="org-src-container">
+                <pre class="src src-R">
+df[, -1]
+</pre>
+              </div>
+            </dd>
+
             <dt><code>[[</code></dt>
 
             <dd>
-              <p>Extract a <b>single element</b> of a list (or a single column
-              of a data frame).</p>
+              <p>Extract a <b>single element of a list</b> (or a single column
+              of a data frame) <b>by index</b>.</p>
 
               <p>Can be used with <i>computed</i> indices.</p>
 
@@ -1710,30 +1734,6 @@ x[[<span class="org-string">"a"</span>, exact=<span class=
 </pre>
               </div>
             </dd>
-
-            <dt><code>[</code></dt>
-
-            <dd>
-              <p>Return an object of the <b>same class</b> as the original: a
-              list of elements (or a data frame built from multiple
-              columns).</p>
-
-              <p>Extract multiple elements of a list:</p>
-
-              <div class="org-src-container">
-                <pre class="src src-R">
-x[c(1, 3)]
-</pre>
-              </div>
-
-              <p>Remove the first column:</p>
-
-              <div class="org-src-container">
-                <pre class="src src-R">
-df[, -1]
-</pre>
-              </div>
-            </dd>
           </dl>
         </div>
       </div>
@@ -1747,7 +1747,7 @@ df[, -1]
             <dt><code>$</code></dt>
 
             <dd>
-              <p>Extract a single element of a <b>list</b> (or a single column
+              <p>Extract a <b>single element of a list</b> (or a single column
               of a data frame) <b>by name</b>: you don’t have to remember where
               the element is in the list.</p>
 

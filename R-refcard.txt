@@ -636,8 +636,25 @@ x %*% y                                 # true matrix multiplication
 
 ** Selecting list elements or data frame columns by position (subsetting)
 
+- ~[~ ::
+     Return an *object* of the *same class as the original*: a list of elements (or
+     a data frame built from multiple columns).
+
+     Extract multiple elements of a list:
+
+     #+begin_src R
+     x[c(1, 3)]
+     #+end_src
+
+     Remove the first column:
+
+     #+begin_src R
+     df[, -1]
+     #+end_src
+
 - ~[[~ ::
-     Extract a *single element* of a list (or a single column of a data frame).
+     Extract a *single element of a list* (or a single column of a data frame) *by
+     index*.
 
      Can be used with /computed/ indices.
 
@@ -654,26 +671,10 @@ x %*% y                                 # true matrix multiplication
      x[["a", exact=FALSE]]              # instead of: x[["aardvark"]]
      #+end_src
 
-- ~[~ ::
-     Return an object of the *same class* as the original: a list of elements (or
-     a data frame built from multiple columns).
-
-     Extract multiple elements of a list:
-
-     #+begin_src R
-     x[c(1, 3)]
-     #+end_src
-
-     Remove the first column:
-
-     #+begin_src R
-     df[, -1]
-     #+end_src
-
 ** Selecting list elements or data frame columns by name (subsetting)
 
 - ~$~ ::
-     Extract a single element of a *list* (or a single column of a data frame) *by
+     Extract a *single element of a list* (or a single column of a data frame) *by
      name*: you don't have to remember where the element is in the list.
 
      #+begin_src R
