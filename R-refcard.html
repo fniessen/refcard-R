@@ -187,28 +187,31 @@
             <a href="#sec-8">8. 5. Data structures</a>
 
             <ul>
-              <li><a href="#sec-8-1">8.1. Vectors</a></li>
+              <li><a href="#sec-8-1">8.1. Basic (“atomic”) vector
+              types</a></li>
 
-              <li><a href="#sec-8-2">8.2. Matrices</a></li>
+              <li><a href="#sec-8-2">8.2. Vectors</a></li>
 
-              <li><a href="#sec-8-3">8.3. Arrays</a></li>
+              <li><a href="#sec-8-3">8.3. Matrices</a></li>
 
-              <li><a href="#sec-8-4">8.4. Lists</a></li>
+              <li><a href="#sec-8-4">8.4. Arrays</a></li>
 
-              <li><a href="#sec-8-5">8.5. Factors</a></li>
+              <li><a href="#sec-8-5">8.5. Lists</a></li>
 
-              <li><a href="#sec-8-6">8.6. Data frames</a></li>
+              <li><a href="#sec-8-6">8.6. Factors</a></li>
 
-              <li><a href="#sec-8-7">8.7. Vectorized operations (recycling
+              <li><a href="#sec-8-7">8.7. Data frames</a></li>
+
+              <li><a href="#sec-8-8">8.8. Vectorized operations (recycling
               rule)</a></li>
 
-              <li><a href="#sec-8-8">8.8. Selecting list elements or data frame
+              <li><a href="#sec-8-9">8.9. Selecting list elements or data frame
               columns by position (subsetting)</a></li>
 
-              <li><a href="#sec-8-9">8.9. Selecting list elements or data frame
-              columns by name (subsetting)</a></li>
+              <li><a href="#sec-8-10">8.10. Selecting list elements or data
+              frame columns by name (subsetting)</a></li>
 
-              <li><a href="#sec-8-10">8.10. Selecting data frame columns by
+              <li><a href="#sec-8-11">8.11. Selecting data frame columns by
               position (subsetting)</a></li>
             </ul>
           </li>
@@ -883,7 +886,7 @@
               <dl class="org-dl">
                 <dt><code>C-c C-t `</code> (also on <code>C-c `</code>)</dt>
 
-                <dd>Show traceback buffer (display source locations).</dd>
+                <dd>Show Traceback buffer (display source locations).</dd>
 
                 <dt><code>C-c C-t ~</code> (also on <code>C-c ~</code>)</dt>
 
@@ -1345,7 +1348,7 @@ x &lt;- as.numeric(argv[1])
       structures</h2>
 
       <div class="outline-text-2" id="text-8">
-        <p>What is data?</p>
+        What is data?
 
         <dl class="org-dl">
           <dt>Population</dt>
@@ -1368,73 +1371,80 @@ x &lt;- as.numeric(argv[1])
             </dl>
           </dd>
         </dl>
-
-        <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame=
-        "hsides">
-          <colgroup>
-            <col class="left" />
-            <col class="left" />
-          </colgroup>
-
-          <thead>
-            <tr>
-              <th scope="col" class="left">Class</th>
-
-              <th scope="col" class="left">Example</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <tr>
-              <td class="left"><code>logical</code></td>
-
-              <td class="left"><code>TRUE</code> / <code>FALSE</code></td>
-            </tr>
-
-            <tr>
-              <td class="left"><code>integer</code></td>
-
-              <td class="left"><code>1L</code> (with explicit <code>L</code>
-              suffix)</td>
-            </tr>
-
-            <tr>
-              <td class="left"><code>numeric</code></td>
-
-              <td class="left"><code>0.5</code> or <code>1</code> (<i>real</i>
-              numbers)</td>
-            </tr>
-
-            <tr>
-              <td class="left"><code>complex</code></td>
-
-              <td class="left"><code>1+0i</code></td>
-            </tr>
-
-            <tr>
-              <td class="left"><code>character</code></td>
-
-              <td class="left">“hello” (= lowest class)</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <dl class="org-dl">
-          <dt><code>class()</code></dt>
-
-          <dd>Show the class of the object.</dd>
-
-          <dt><code>unclass(vector)</code></dt>
-
-          <dd>Strip out the class (see factors).</dd>
-        </dl>
       </div>
 
       <div id="outline-container-sec-8-1" class="outline-3">
-        <h3 id="sec-8-1"><span class="section-number-3">8.1</span> Vectors</h3>
+        <h3 id="sec-8-1"><span class="section-number-3">8.1</span> Basic
+        (“atomic”) vector types</h3>
 
         <div class="outline-text-3" id="text-8-1">
-          <p><b>Vectors</b> are sets of elements of the <i>same class</i>.</p>
+          <table border="2" cellspacing="0" cellpadding="6" rules="groups"
+          frame="hsides">
+            <colgroup>
+              <col class="left" />
+              <col class="left" />
+            </colgroup>
+
+            <thead>
+              <tr>
+                <th scope="col" class="left">Class</th>
+
+                <th scope="col" class="left">Example</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="left"><code>logical</code></td>
+
+                <td class="left"><code>TRUE</code> / <code>FALSE</code></td>
+              </tr>
+
+              <tr>
+                <td class="left"><code>integer</code></td>
+
+                <td class="left"><code>1L</code> (with explicit <code>L</code>
+                suffix)</td>
+              </tr>
+
+              <tr>
+                <td class="left"><code>numeric</code></td>
+
+                <td class="left"><code>0.5</code> or <code>1</code>
+                (<i>real</i> numbers)</td>
+              </tr>
+
+              <tr>
+                <td class="left"><code>complex</code></td>
+
+                <td class="left"><code>1+0i</code></td>
+              </tr>
+
+              <tr>
+                <td class="left"><code>character</code></td>
+
+                <td class="left">“hello” (= lowest class)</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="org-dl">
+            <dt><code>class()</code></dt>
+
+            <dd>Show the class of the object.</dd>
+
+            <dt><code>unclass(vector)</code></dt>
+
+            <dd>Strip out the class (see factors).</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div id="outline-container-sec-8-2" class="outline-3">
+        <h3 id="sec-8-2"><span class="section-number-3">8.2</span> Vectors</h3>
+
+        <div class="outline-text-3" id="text-8-2">
+          <p><b>Vectors</b> are sets of <b>elements of the same class</b>.</p>
 
           <p>When objects of different classes are mixed in a vector,
           <i>coercion</i> occurs behind the scene so that every element is of
@@ -1467,11 +1477,11 @@ names(df) <span class="org-constant">&lt;-</span> tolower(names(df))
         </div>
       </div>
 
-      <div id="outline-container-sec-8-2" class="outline-3">
-        <h3 id="sec-8-2"><span class="section-number-3">8.2</span>
+      <div id="outline-container-sec-8-3" class="outline-3">
+        <h3 id="sec-8-3"><span class="section-number-3">8.3</span>
         Matrices</h3>
 
-        <div class="outline-text-3" id="text-8-2">
+        <div class="outline-text-3" id="text-8-3">
           <p>Matrices are <b>vectors with 2 dimensions</b> attached to them
           (see <code>dimension</code> attribute).</p>
 
@@ -1546,10 +1556,10 @@ print(v)
         </div>
       </div>
 
-      <div id="outline-container-sec-8-3" class="outline-3">
-        <h3 id="sec-8-3"><span class="section-number-3">8.3</span> Arrays</h3>
+      <div id="outline-container-sec-8-4" class="outline-3">
+        <h3 id="sec-8-4"><span class="section-number-3">8.4</span> Arrays</h3>
 
-        <div class="outline-text-3" id="text-8-3">
+        <div class="outline-text-3" id="text-8-4">
           Arrays are <b>n-dimensional matrices</b>.
 
           <dl class="org-dl">
@@ -1560,10 +1570,10 @@ print(v)
         </div>
       </div>
 
-      <div id="outline-container-sec-8-4" class="outline-3">
-        <h3 id="sec-8-4"><span class="section-number-3">8.4</span> Lists</h3>
+      <div id="outline-container-sec-8-5" class="outline-3">
+        <h3 id="sec-8-5"><span class="section-number-3">8.5</span> Lists</h3>
 
-        <div class="outline-text-3" id="text-8-4">
+        <div class="outline-text-3" id="text-8-5">
           <p><b>Lists</b> are vectors of objects of possibly different
           classes.</p>
 
@@ -1578,10 +1588,10 @@ print(v)
         </div>
       </div>
 
-      <div id="outline-container-sec-8-5" class="outline-3">
-        <h3 id="sec-8-5"><span class="section-number-3">8.5</span> Factors</h3>
+      <div id="outline-container-sec-8-6" class="outline-3">
+        <h3 id="sec-8-6"><span class="section-number-3">8.6</span> Factors</h3>
 
-        <div class="outline-text-3" id="text-8-5">
+        <div class="outline-text-3" id="text-8-6">
           <p><b>Factors</b> are <i>qualitative</i> variables used to represent
           <i>categorical</i> data, to store self-describing codes for
           <i>labels</i> (such as “male” and “female”, or “low”, “medium” and
@@ -1602,11 +1612,11 @@ print(v)
         </div>
       </div>
 
-      <div id="outline-container-sec-8-6" class="outline-3">
-        <h3 id="sec-8-6"><span class="section-number-3">8.6</span> Data
+      <div id="outline-container-sec-8-7" class="outline-3">
+        <h3 id="sec-8-7"><span class="section-number-3">8.7</span> Data
         frames</h3>
 
-        <div class="outline-text-3" id="text-8-6">
+        <div class="outline-text-3" id="text-8-7">
           <b>Data frames</b> are used to store tabular data where each column
           can be of a different class: special type of list (of columns) where
           every element has the same length.
@@ -1632,11 +1642,11 @@ print(v)
         </div>
       </div>
 
-      <div id="outline-container-sec-8-7" class="outline-3">
-        <h3 id="sec-8-7"><span class="section-number-3">8.7</span> Vectorized
+      <div id="outline-container-sec-8-8" class="outline-3">
+        <h3 id="sec-8-8"><span class="section-number-3">8.8</span> Vectorized
         operations (recycling rule)</h3>
 
-        <div class="outline-text-3" id="text-8-7">
+        <div class="outline-text-3" id="text-8-8">
           <p>Avoid writing loops (code is a lot simpler):</p>
 
           <div class="org-src-container">
@@ -1662,11 +1672,11 @@ x %*% y                                 <span class=
         </div>
       </div>
 
-      <div id="outline-container-sec-8-8" class="outline-3">
-        <h3 id="sec-8-8"><span class="section-number-3">8.8</span> Selecting
+      <div id="outline-container-sec-8-9" class="outline-3">
+        <h3 id="sec-8-9"><span class="section-number-3">8.9</span> Selecting
         list elements or data frame columns by position (subsetting)</h3>
 
-        <div class="outline-text-3" id="text-8-8">
+        <div class="outline-text-3" id="text-8-9">
           <dl class="org-dl">
             <dt><code>[[</code></dt>
 
@@ -1728,18 +1738,18 @@ df[, -1]
         </div>
       </div>
 
-      <div id="outline-container-sec-8-9" class="outline-3">
-        <h3 id="sec-8-9"><span class="section-number-3">8.9</span> Selecting
+      <div id="outline-container-sec-8-10" class="outline-3">
+        <h3 id="sec-8-10"><span class="section-number-3">8.10</span> Selecting
         list elements or data frame columns by name (subsetting)</h3>
 
-        <div class="outline-text-3" id="text-8-9">
+        <div class="outline-text-3" id="text-8-10">
           <dl class="org-dl">
             <dt><code>$</code></dt>
 
             <dd>
-              <p>Extract a single element of a list (or a single column of a
-              data frame) <b>by name</b>: you don’t have to remember where the
-              element is in the list.</p>
+              <p>Extract a single element of a <b>list</b> (or a single column
+              of a data frame) <b>by name</b>: you don’t have to remember where
+              the element is in the list.</p>
 
               <div class="org-src-container">
                 <pre class="src src-R">
@@ -1765,11 +1775,11 @@ x$a                                <span class=
         </div>
       </div>
 
-      <div id="outline-container-sec-8-10" class="outline-3">
-        <h3 id="sec-8-10"><span class="section-number-3">8.10</span> Selecting
+      <div id="outline-container-sec-8-11" class="outline-3">
+        <h3 id="sec-8-11"><span class="section-number-3">8.11</span> Selecting
         data frame columns by position (subsetting)</h3>
 
-        <div class="outline-text-3" id="text-8-10">
+        <div class="outline-text-3" id="text-8-11">
           <p>Matrices can be subsetted with <code>(row, col)</code> type
           indices.</p>
 
@@ -3167,10 +3177,13 @@ dfrm$x <span class=
 </pre>
           </div>
 
-          <p>Warning: To convert factors to numeric or integer, first convert
-          to character. Converting factors directly to numeric or integer data
-          can lead to unwanted outcomes. Always check the results of a
-          conversion to make sure R did what you wanted.</p>
+          <div class="warning">
+            <b>Warning</b><br />
+            To convert factors to numeric or integer, first convert to
+            character. Converting factors directly to numeric or integer data
+            can lead to unwanted outcomes. Always check the results of a
+            conversion to make sure R did what you wanted.
+          </div>
 
           <p>Convert at once all the string columns to factors:</p>
 
@@ -3200,7 +3213,7 @@ x[ind] <span class="org-constant">&lt;-</span> lapply(x[ind], factor)
 
           <div class="outline-text-4" id="text-14-10-1">
             <p><b>Loop over a list</b> and apply a <b>function</b> on each
-            element. <i>Always</i> returns a <b>list</b> back (that is, not a
+            element. <i>Always</i> <b>returns a list</b> back (that is, not a
             simplified result).</p>
 
             <ul class="org-ul">
@@ -3243,7 +3256,7 @@ lapply(x, <span class="org-keyword">function</span>(x) x[, 1])
           <div class="outline-text-4" id="text-14-10-2">
             <p>Same as <code>lapply</code>, but tries to “<b>simplify</b>” the
             result in a much more compact format (put all the elements into a
-            <b>vector</b> or a <b>matrix</b> if that is possible, instead of
+            <b>vector</b> or a <b>matrix</b> when possible, instead of
             returning a list).</p>
 
             <div class="org-src-container">
@@ -3389,6 +3402,14 @@ apply(x, 1, quantile, probs=c(0.25, 0.75)) <span class=
               </ul>
             </dd>
           </dl>
+
+          <div class="warning">
+            Since <code>apply</code> <b>coerces</b> the first argument <b>to a
+            matrix</b>, if you are using a data frame which has character data
+            as well as numeric data, <i>the whole matrix will be converted to
+            character</i> and numerical operations will probably not give what
+            you expect.
+          </div>
         </div>
       </div>
 
@@ -3401,8 +3422,10 @@ apply(x, 1, quantile, probs=c(0.25, 0.75)) <span class=
             <dt><code>tapply(x, index, fun)</code></dt>
 
             <dd>
-              <p>Short for “<b>table apply</b>”. Apply a <b>function</b> over
-              <b>subsets</b> of a vector:</p>
+              <p>Short for “<b>table apply</b>” (or “tagged apply”, where the
+              tags identify the subsets).</p>
+
+              <p>Apply a <b>function</b> over <b>subsets</b> of a vector:</p>
 
               <ul class="org-ul">
                 <li>Splits up a vector into little groups (such as men and

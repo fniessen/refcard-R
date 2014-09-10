@@ -250,7 +250,7 @@ Tracebug highlighting of errors.
 **** Debugging
 
 - ~C-c C-t `~ (also on ~C-c `~) ::
-     Show traceback buffer (display source locations).
+     Show Traceback buffer (display source locations).
 
 - ~C-c C-t ~~ (also on ~C-c ~~) ::
      Show call stack (display source locations).
@@ -499,6 +499,8 @@ What is data?
      + Quantitative ::
           Measured on a numerical scale.
 
+** Basic ("atomic") vector types
+
 | Class     | Example                     |
 |-----------+-----------------------------|
 | ~logical~   | ~TRUE~ / ~FALSE~                |
@@ -515,7 +517,7 @@ What is data?
 
 ** Vectors
 
-*Vectors* are sets of elements of the /same class/.
+*Vectors* are sets of *elements of the same class*.
 
 When objects of different classes are mixed in a vector, /coercion/ occurs behind
 the scene so that every element is of the same class (the "lowest common
@@ -546,9 +548,7 @@ They are constructed /column-wise/ (vector inserted by column).
 
 They can be created from vectors by adding a dimension attribute:
 
-# XXX Emacs infloops during export when :eval is set to yes
-
-#+begin_src R :eval no
+#+begin_src R
 v <- 1:10
 dim(v) <- c(2, 5)
 print(v)
@@ -673,7 +673,7 @@ x %*% y                                 # true matrix multiplication
 ** Selecting list elements or data frame columns by name (subsetting)
 
 - ~$~ ::
-     Extract a single element of a list (or a single column of a data frame) *by
+     Extract a single element of a *list* (or a single column of a data frame) *by
      name*: you don't have to remember where the element is in the list.
 
      #+begin_src R
@@ -1431,10 +1431,13 @@ dfrm$x <- as.factor(dfrm$x)             # character to factor
 dfrm$x <- as.character(dfrm$x)          # factor to character
 #+end_src
 
-Warning: To convert factors to numeric or integer, first convert to character.
+#+begin_warning
+*Warning* \\
+To convert factors to numeric or integer, first convert to character.
 Converting factors directly to numeric or integer data can lead to unwanted
 outcomes. Always check the results of a conversion to make sure R did what you
 wanted.
+#+end_warning
 
 Convert at once all the string columns to factors:
 
@@ -1451,7 +1454,7 @@ See also http://adv-r.had.co.nz/Functionals.html.
 
 *** ~lapply~
 
-*Loop over a list* and apply a *function* on each element. /Always/ returns a *list*
+*Loop over a list* and apply a *function* on each element. /Always/ *returns a list*
 back (that is, not a simplified result).
 
 - (coerced) list ~X~
@@ -1476,7 +1479,7 @@ lapply(x, function(x) x[, 1])
 *** ~sapply~
 
 Same as ~lapply~, but tries to "*simplify*" the result in a much more compact format
-(put all the elements into a *vector* or a *matrix* if that is possible, instead of
+(put all the elements into a *vector* or a *matrix* when possible, instead of
 returning a list).
 
 #+begin_src R
@@ -1554,10 +1557,19 @@ split(x, ceiling(seq_along(x$col1) / size.max))
      + ~colSums~ = ~apply(x, 2, sum)~
      + ~colMeans~ = ~apply(x, 2, mean)~
 
+#+begin_warning
+Since ~apply~ *coerces* the first argument *to a matrix*, if you are using a data
+frame which has character data as well as numeric data, /the whole matrix will be
+converted to character/ and numerical operations will probably not give what you
+expect.
+#+end_warning
+
 ** Applying a function to groups of data
 
 - ~tapply(x, index, fun)~ ::
-     Short for "*table apply*".
+     Short for "*table apply*" (or "tagged apply", where the tags identify the
+     subsets).
+
      Apply a *function* over *subsets* of a vector:
      + Splits up a vector into little groups (such as men and women, indicated
        by a *factor*),
