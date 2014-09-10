@@ -732,14 +732,19 @@ y <- if(x > 3) {                        # x must be a scalar here, not a vector
 
 ** Loops
 
+Loop over the *elements*:
+
 #+begin_src R
-for (i in 1:10) {                       # successive values from a sequence or
-                                        # vector
+for (x in xs) {                         # take elements from the vector
   ## do something
 }
+#+end_src
 
-for (letter in x) {                     # take elements from the vector
-  ## do something
+Loop over the *numeric indices*:
+
+#+begin_src R
+for (i in seq_along(xs)) {              # successive values from a sequence or
+  ## do something                       # vector
 }
 #+end_src
 
@@ -754,6 +759,14 @@ for (letter in x) {                     # take elements from the vector
 
 - ~ncol(dataset)~ ::
      Tell the number of columns.
+
+Loop over the *names*:
+
+#+begin_src R
+for (nm in names(xs)) {
+  ## do something
+}
+#+end_src
 
 #+begin_src R
 while (z >= 3 && z <= 10) {             # conditions are always evaluated from
@@ -1433,6 +1446,8 @@ x[ind] <- lapply(x[ind], factor)
 ** Applying a function to each list element
 
 Alternative (to ~for~ *loops*) to apply a function (or summary statistics).
+
+See also http://adv-r.had.co.nz/Functionals.html.
 
 *** ~lapply~
 
