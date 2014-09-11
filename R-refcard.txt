@@ -613,6 +613,10 @@ same length.
 - ~data.frame()~ ::
      Create a data frame.
 
+     #+begin_src R
+     dfrm <- data.frame(cbind(v1, v2))  # create a dataframe of two vectors
+     #+end_src
+
 - ~data.matrix()~ ::
      Convert a data frame to a /numeric/ matrix (forced *coercion*!).
 

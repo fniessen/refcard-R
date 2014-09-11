@@ -1659,8 +1659,18 @@ print(v)
             <li>Most often created by calling <code>read.table()</code> or
             <code>read.csv()</code></li>
 
-            <li id="&lt;code&gt;data.frame()&lt;/code&gt;">Create a data
-            frame.</li>
+            <li id="&lt;code&gt;data.frame()&lt;/code&gt;">
+              <p>Create a data frame.</p>
+
+              <div class="org-src-container">
+                <pre class="src src-R">
+dfrm <span class=
+"org-constant">&lt;-</span> data.frame(cbind(v1, v2))  <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">create a dataframe of two vectors</span>
+</pre>
+              </div>
+            </li>
 
             <li id="&lt;code&gt;data.matrix()&lt;/code&gt;">Convert a data
             frame to a <i>numeric</i> matrix (forced <b>coercion</b>!).</li>
