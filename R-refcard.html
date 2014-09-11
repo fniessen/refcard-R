@@ -363,7 +363,18 @@
             </ul>
           </li>
 
-          <li><a href="#sec-16">16. 8. Probability</a></li>
+          <li>
+            <a href="#sec-16">16. 8. Probability</a>
+
+            <ul>
+              <li><a href="#sec-16-1">16.1. Names of distributions</a></li>
+
+              <li><a href="#sec-16-2">16.2. Generate reproducible random
+              numbers</a></li>
+
+              <li><a href="#sec-16-3">16.3. Generate a random sample</a></li>
+            </ul>
+          </li>
 
           <li>
             <a href="#sec-17">17. 10. Graphics</a>
@@ -416,9 +427,11 @@
             <a href="#sec-18">18. 11. Linear regression and ANOVA</a>
 
             <ul>
-              <li><a href="#sec-18-1">18.1. Regression tree models</a></li>
+              <li><a href="#sec-18-1">18.1. Linear model</a></li>
 
-              <li><a href="#sec-18-2">18.2. Classification tree models</a></li>
+              <li><a href="#sec-18-2">18.2. Regression tree models</a></li>
+
+              <li><a href="#sec-18-3">18.3. Classification tree models</a></li>
             </ul>
           </li>
 
@@ -3766,6 +3779,124 @@ hist(dates, <span class="org-string">"month"</span>, freq=<span class=
     <div id="outline-container-sec-16" class="outline-2">
       <h2 id="sec-16"><span class="section-number-2">16</span> 8.
       Probability</h2>
+
+      <div class="outline-text-2" id="text-16"></div>
+
+      <div id="outline-container-sec-16-1" class="outline-3">
+        <h3 id="sec-16-1"><span class="section-number-3">16.1</span> Names of
+        distributions</h3>
+
+        <div class="outline-text-3" id="text-16-1">
+          <ul class="org-ul">
+            <li>Functions for <b>probability distributions</b>
+
+              <dl class="org-dl">
+                <dt>rnorm(n, mean, sd)</dt>
+
+                <dd>Generate <code>n</code> <b>normal</b> random variates</dd>
+
+                <dt>runif(n)</dt>
+
+                <dd>Generate <code>n</code> <b>uniform</b> random variates</dd>
+
+                <dt>rpois(n, lambda)</dt>
+
+                <dd>Generate <code>n</code> <b>Poisson</b> random variates with
+                a given rate</dd>
+
+                <dt>rbinom(n, size, prob)</dt>
+
+                <dd>Generate binary data</dd>
+
+                <dt>rexp</dt>
+              </dl>
+            </li>
+          </ul>
+
+          <dl class="org-dl">
+            <dt>rgamma</dt>
+          </dl>
+
+          <ul class="org-ul">
+            <li>Associated functions
+
+              <dl class="org-dl">
+                <dt>r*</dt>
+
+                <dd>Generate <b>random</b> numbers (draw samples)</dd>
+
+                <dt>d*</dt>
+
+                <dd>Evaluate the probability <b>density</b></dd>
+
+                <dt>p*</dt>
+
+                <dd>
+                  <p>Evaluate the <b>cumulative distribution</b> function</p>
+
+                  <div class="org-src-container">
+                    <pre class="src src-R">
+ppois(4, 2) <span class="org-comment-delimiter"># </span><span class=
+"org-comment">Pr(x &lt;= 4)</span>
+ppois(6, 2) <span class="org-comment-delimiter"># </span><span class=
+"org-comment">Pr(x &lt;= 6)</span>
+</pre>
+                  </div>
+                </dd>
+
+                <dt>q*</dt>
+
+                <dd>evaluate the <b>quantile</b> function</dd>
+              </dl>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="outline-container-sec-16-2" class="outline-3">
+        <h3 id="sec-16-2"><span class="section-number-3">16.2</span> Generate
+        reproducible random numbers</h3>
+
+        <div class="outline-text-3" id="text-16-2">
+          <p>Set the random number <b>seed</b> is critical for
+          <b>reproducibility</b>: <b>always set it when conducting a
+          simulation!</b></p>
+
+          <div class="org-src-container">
+            <pre class="src src-R">
+set.seed(1)                           <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">or use any other positive integer</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="outline-container-sec-16-3" class="outline-3">
+        <h3 id="sec-16-3"><span class="section-number-3">16.3</span> Generate a
+        random sample</h3>
+
+        <div class="outline-text-3" id="text-16-3">
+          <p><b>Sample randomly</b> from a specified vector of scalar
+          objects.</p>
+
+          <div class="org-src-container">
+            <pre class="src src-R">
+sample(1:10, 4)                         <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">select 4 different numbers at random</span>
+sample(1:10)                            <span class=
+"org-comment-delimiter"># </span><span class="org-comment">permutation</span>
+sample(1:10, replace = <span class=
+"org-type">TRUE</span>)            <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">sample with replacement (I can get repeats)</span>
+</pre>
+          </div>
+
+          <p>Sample can draw according to a set of probabilities.</p>
+        </div>
+      </div>
     </div>
 
     <div id="outline-container-sec-17" class="outline-2">
@@ -4578,10 +4709,30 @@ pareto.chart(table(iris[iris$Species==<span class=
       </div>
 
       <div id="outline-container-sec-18-1" class="outline-3">
-        <h3 id="sec-18-1"><span class="section-number-3">18.1</span> Regression
-        tree models</h3>
+        <h3 id="sec-18-1"><span class="section-number-3">18.1</span> Linear
+        model</h3>
 
         <div class="outline-text-3" id="text-18-1">
+          <p>y = β<sub>0</sub> + β<sub>1</sub> x + ε</p>
+
+          <div class="org-src-container">
+            <pre class="src src-R">
+x <span class=
+"org-constant">&lt;-</span> rnorm(100)                         <span class=
+"org-comment-delimiter"># </span><span class="org-comment">predictor</span>
+e <span class=
+"org-constant">&lt;-</span> rnorm(100, 0, 2)                   <span class=
+"org-comment-delimiter"># </span><span class="org-comment">noise</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="outline-container-sec-18-2" class="outline-3">
+        <h3 id="sec-18-2"><span class="section-number-3">18.2</span> Regression
+        tree models</h3>
+
+        <div class="outline-text-3" id="text-18-2">
           <ul class="org-ul">
             <li>arbres de régression : la variable expliquée est de type
             numérique et il s’agit de prédire une valeur la plus proche
@@ -4593,11 +4744,11 @@ pareto.chart(table(iris[iris$Species==<span class=
         </div>
       </div>
 
-      <div id="outline-container-sec-18-2" class="outline-3">
-        <h3 id="sec-18-2"><span class="section-number-3">18.2</span>
+      <div id="outline-container-sec-18-3" class="outline-3">
+        <h3 id="sec-18-3"><span class="section-number-3">18.3</span>
         Classification tree models</h3>
 
-        <div class="outline-text-3" id="text-18-2">
+        <div class="outline-text-3" id="text-18-3">
           <ul class="org-ul">
             <li>arbres de classification : la variable expliquée est de type
             nominale (facteur). A chaque étape du partitionnement, on cherche à

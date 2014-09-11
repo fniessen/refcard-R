@@ -1761,6 +1761,65 @@ These functions can take vector arguments.
 
 * 8. Probability
 
+** Names of distributions
+
+- Functions for *probability distributions*
+
+  + rnorm(n, mean, sd) ::
+       Generate =n= *normal* random variates
+
+  + runif(n) ::
+       Generate =n= *uniform* random variates
+
+  + rpois(n, lambda) ::
+       Generate =n= *Poisson* random variates with a given rate
+
+  + rbinom(n, size, prob) ::
+       Generate binary data
+
+  + rexp ::
+
+
+  + rgamma ::
+
+- Associated functions
+  + r* ::
+       Generate *random* numbers (draw samples)
+
+  + d* ::
+       Evaluate the probability *density*
+
+  + p* ::
+       Evaluate the *cumulative distribution* function
+
+       #+begin_src R
+       ppois(4, 2) # Pr(x <= 4)
+       ppois(6, 2) # Pr(x <= 6)
+       #+end_src
+
+  + q* :: evaluate the *quantile* function
+
+** Generate reproducible random numbers
+
+Set the random number *seed* is critical for *reproducibility*: *always set it when
+conducting a simulation!*
+
+  #+begin_src R
+  set.seed(1)                           # or use any other positive integer
+  #+end_src
+
+** Generate a random sample
+
+*Sample randomly* from a specified vector of scalar objects.
+
+#+begin_src R
+sample(1:10, 4)                         # select 4 different numbers at random
+sample(1:10)                            # permutation
+sample(1:10, replace = TRUE)            # sample with replacement (I can get repeats)
+#+end_src
+
+Sample can draw according to a set of probabilities.
+
 * 10. Graphics
   :PROPERTIES:
   :eval:     yes
@@ -2206,6 +2265,15 @@ pareto.chart(table(iris[iris$Species=="setosa", ]$Petal.Length))
 * 11. Linear regression and ANOVA
 
 https://www.zoology.ubc.ca/~schluter/R/fit-model/
+
+** Linear model
+
+y = \beta_{0} + \beta_{1} x + \epsilon
+
+#+begin_src R
+x <- rnorm(100)                         # predictor
+e <- rnorm(100, 0, 2)                   # noise
+#+end_src
 
 ** Regression tree models
 
