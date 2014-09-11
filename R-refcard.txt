@@ -1648,9 +1648,7 @@ expect.
 
 ** Regular expressions
 
-For the moment, we assume pattern matching on *ASCII strings*...
-
-Metacharacters:
+*** Metacharacters
 
 - ~^~ ::
      Start of a line (or negation of a character class).
@@ -1693,6 +1691,10 @@ Metacharacters:
 - ~{}~ ::
      Interval quantifiers (minimum, maximum).
 
+*** Regular expressions in R
+
+For the moment, we assume pattern matching on *ASCII strings*...
+
 These functions can take vector arguments.
 
 - ~grep~ ::
@@ -1700,10 +1702,10 @@ These functions can take vector arguments.
      matches (it won't do anything).
 
      #+begin_src R
-     i <- grep("regexp", vector) # get a set of indices
+     i <- grep("regexp", vector)        # get a set of indices
      j <- grep("anotherregexp", vector) # get another set of indices
-     setdiff(i, j) # substract j elements from i when they are the same
-     setdiff(j, i) # different result
+     setdiff(i, j)                      # substract j elements from i when they are the same
+     setdiff(j, i)                      # different result
      #+end_src
 
      Setting ~value = TRUE~ returns the *actual elements* of the character vector
@@ -1830,12 +1832,12 @@ Sample can draw according to a set of probabilities.
 - ~base~ ::
      Graphics are constructed piecemeal by *different function calls*;
      you can add things one by one:
-     - annotate (some of the points in) the plot,
-     - put some points on the canvas,
-     - draw a title,
-     - add some axis labels,
-     - add some colors,
-     - add a legend.
+     + annotate (some of the points in) the plot,
+     + put some points on the canvas,
+     + draw a title,
+     + add some axis labels,
+     + add some colors,
+     + add a legend.
 
 - ~lattice~ ::
      Graphics are constructed via a single function call: all options have to be
@@ -2232,6 +2234,121 @@ See http://www.math.csi.cuny.edu/Statistics/R/simpleR/stat006.html
   + ~dev.copy2pdf~ :: copy a plot to PDF
 
 ** Lattice graphics
+
+- Tellis graphics
+
+  + =xyplot= :: *scatterplots*
+  + =bwplot= :: box-and-whiskers plots ("boxplots")
+  + histogram :: histograms
+  + stripplot :: like a boxplot but with actual points (instead of boxes)
+  + dotplot :: plot dots on "violin strings"
+  + splom :: scatterplot matrix, like =pairs= in the base graphics system
+  + =levelplot=, =contourplot= :: for plotting "image" data
+
+  #+begin_src R
+  library(lattice)
+  #+end_src
+
+- Generally create plots all in one go, from a single function call
+
+- Strength of Lattice functions = conditioning plots: you can plot
+  the *relationship* between =x= and =y=, *conditioned* on the levels of a third
+  variable (factor variable =f= or variable cut into different ranges, see
+  =equal.count=)
+
+  #+begin_src R
+  y ~ x | f * g                         # formula
+  #+end_src
+
+  + =y= = response (on the y-axis)
+  + =x= = input, predictor (on the x-axis)
+  + =f * g= = factors which are *interacting* with each other (often, just one
+    factor)
+
+- Tell the function =xyplot= where to find the variables =y= and =x=: look up names
+  inside the =environmental= data frame (because they are not objects in my
+  workspace)
+
+  #+begin_src R
+  xyplot(y ~ x, data = environmental)
+  #+end_src
+
+- Lattice functions have a separate panel created for each level of the
+  factors
+
+  #+begin_src R
+  xyplot(y ~ x | f)
+  #+end_src
+
+  The *panel function* controls what happens inside each panel of the entire
+  plot
+
+  I can create my own (anonymous) panel function:
+
+  #+begin_src R
+  xyplot(y ~ x | f,
+         panel = function(x, y, ...) { # x and y = data that appear in a specific panel (it's not all the data)
+                 panel.xyplot(x, y, ...) # plot using all the default options
+                 panel.abline(h = median(y), lty = 2) # plot the median of the y values in each panel
+         })
+  #+end_src
+
+  Add a (simple linear) regression line to each panel of the plot:
+
+  #+begin_src R
+  xyplot(y ~ x | f,
+         panel = function(x, y, ...) {
+                 panel.xyplot(x, y, ...)
+                 panel.lmline(x, y, col = 2)
+         })
+  #+end_src
+
+  #+begin_src R
+  xyplot(y ~ x | f, pch = 20,
+         panel = function(x, y, ...) {
+                 panel.xyplot(x, y, ...)
+                 fit <- lm(y ~ x)
+                 panel.abline(fit, lwd = 2) # add a regression line to the plot
+         })
+  #+end_src
+
+- Options
+  + Don't worry about spacing: everything gets automatically adjusted!
+  + main :: title
+  + layout = c(1,4) :: 4 panels on top of each other
+  + as.table = TRUE :: change the order in which the panels are drawn, from
+       top to bottom (default: from bottom to top)
+  + xlab :: label on the x-axis
+  + ylab :: label on the y-axis
+
+- Functions
+  + x.cut <- equal.count(x, l) :: cut the original =x= variable, creating =l=
+       different ranges (~ levels, which may overlap slightly)
+
+  + panel.loess(x, y) :: give a smooth rendition of the linear model
+
+*** Splom
+
+-  Look at pairwise relationships possible in the data frame (make a scatter
+   plot of all the different variables against each other)
+
+  #+begin_src R
+  splom(~ df)
+  #+end_src
+
+*** Histogram
+
+- Histogram of =x=
+
+  #+begin_src R
+  histogram(~ x, data = df)
+  #+end_src
+
+- Histogram of =x=, as =f= varies (for each range of =f.cut=)
+
+  #+begin_src R
+  histogram(~ x | f.cut, data = df)
+  #+end_src
 
 ** ggplot2
 

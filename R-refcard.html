@@ -359,7 +359,15 @@
 
               <li><a href="#sec-15-2">15.2. Concatenating strings</a></li>
 
-              <li><a href="#sec-15-3">15.3. Regular expressions</a></li>
+              <li>
+                <a href="#sec-15-3">15.3. Regular expressions</a>
+
+                <ul>
+                  <li><a href="#sec-15-3-1">Metacharacters</a></li>
+
+                  <li><a href="#sec-15-3-2">Regular expressions in R</a></li>
+                </ul>
+              </li>
             </ul>
           </li>
 
@@ -409,7 +417,15 @@
                 </ul>
               </li>
 
-              <li><a href="#sec-17-2">17.2. Lattice graphics</a></li>
+              <li>
+                <a href="#sec-17-2">17.2. Lattice graphics</a>
+
+                <ul>
+                  <li><a href="#sec-17-2-1">Splom</a></li>
+
+                  <li><a href="#sec-17-2-2">Histogram</a></li>
+                </ul>
+              </li>
 
               <li><a href="#sec-17-3">17.3. ggplot2</a></li>
 
@@ -445,8 +461,8 @@
       card</h2>
 
       <div class="outline-text-2" id="text-1">
-        Welcome to R reference card. It contains the reference documentation
-        that describes how to perform <b>data analysis</b> using R.
+        <p>Welcome to R reference card. It contains the reference documentation
+        that describes how to perform <b>data analysis</b> using R.</p>
       </div>
     </div>
 
@@ -493,7 +509,7 @@
       Statistics (ESS) key bindings</h2>
 
       <div class="outline-text-2" id="text-3">
-        Most of the shortcuts are actually mnemonic and hierarchical:
+        <p>Most of the shortcuts are actually mnemonic and hierarchical:</p>
 
         <ul class="org-ul">
           <li><code>C-c C-d</code> for <code>doc-map</code>,</li>
@@ -510,7 +526,7 @@
         References</h3>
 
         <div class="outline-text-3" id="text-3-1">
-          See
+          <p>See</p>
 
           <ul class="org-ul">
             <li><a href=
@@ -549,7 +565,7 @@
           <h4 id="sec-3-2-2">Hot keys for common commands</h4>
 
           <div class="outline-text-4" id="text-3-2-2">
-            ESS handling of <b>multiple processes</b> is pretty unique.
+            <p>ESS handling of <b>multiple processes</b> is pretty unique.</p>
 
             <dl class="org-dl">
               <dt><code>C-c C-s</code></dt>
@@ -761,7 +777,7 @@
         files</h3>
 
         <div class="outline-text-3" id="text-3-6">
-          Help at your fingertips:
+          <p>Help at your fingertips:</p>
 
           <dl class="org-dl">
             <dt><code>C-c C-d C-d</code> (or <code>C-c C-v</code>)</dt>
@@ -830,8 +846,8 @@
           <h4 id="sec-3-7-1">Integration with auto-complete package</h4>
 
           <div class="outline-text-4" id="text-3-7-1">
-            Auto-completion of objects and arguments: <a href=
-            "http://www.emacswiki.org/emacs/ESSAuto-complete">http://www.emacswiki.org/emacs/ESSAuto-complete</a>.
+            <p>Auto-completion of objects and arguments: <a href=
+            "http://www.emacswiki.org/emacs/ESSAuto-complete">http://www.emacswiki.org/emacs/ESSAuto-complete</a>.</p>
           </div>
         </div>
       </div>
@@ -846,7 +862,7 @@
           <h4 id="sec-3-8-1">ESS tracebug</h4>
 
           <div class="outline-text-4" id="text-3-8-1">
-            Tracebug highlighting of errors.
+            <p>Tracebug highlighting of errors.</p>
           </div>
 
           <div id="outline-container-sec-3-8-1-1" class="outline-5">
@@ -1045,8 +1061,8 @@ paste(<span class="org-string">"{**"</span>, })
           <h4 id="sec-3-9-1">ElDoc</h4>
 
           <div class="outline-text-4" id="text-3-9-1">
-            <b>ElDoc</b> support: automatic display of function arguments in
-            the <b>echo area</b>.
+            <p><b>ElDoc</b> support: automatic display of function arguments in
+            the <b>echo area</b>.</p>
           </div>
         </div>
       </div>
@@ -1361,7 +1377,7 @@ x &lt;- as.numeric(argv[1])
       structures</h2>
 
       <div class="outline-text-2" id="text-8">
-        What is data?
+        <p>What is data?</p>
 
         <dl class="org-dl">
           <dt>Population</dt>
@@ -1573,7 +1589,7 @@ print(v)
         <h3 id="sec-8-4"><span class="section-number-3">8.4</span> Arrays</h3>
 
         <div class="outline-text-3" id="text-8-4">
-          Arrays are <b>n-dimensional matrices</b>.
+          <p>Arrays are <b>n-dimensional matrices</b>.</p>
 
           <dl class="org-dl">
             <dt><code>array()</code></dt>
@@ -1630,9 +1646,9 @@ print(v)
         frames</h3>
 
         <div class="outline-text-3" id="text-8-7">
-          <b>Data frames</b> are used to store tabular data where each column
-          can be of a different class: special type of list (of columns) where
-          every element has the same length.
+          <p><b>Data frames</b> are used to store tabular data where each
+          column can be of a different class: special type of list (of columns)
+          where every element has the same length.</p>
 
           <ul class="org-ul">
             <li>Row = observation, column = variable</li>
@@ -1829,9 +1845,9 @@ x$a                                <span class=
       structures</h2>
 
       <div class="outline-text-2" id="text-9">
-        Control structures mentioned here are primarily useful for writing
+        <p>Control structures mentioned here are primarily useful for writing
         programs. For command-line interactive work, the <code>*apply</code>
-        functions are more useful.
+        functions are more useful.</p>
       </div>
 
       <div id="outline-container-sec-9-1" class="outline-3">
@@ -2232,7 +2248,7 @@ square <span class="org-constant">&lt;-</span> make.power(2)
       output</h2>
 
       <div class="outline-text-2" id="text-11">
-        Types of files:
+        <p>Types of files:</p>
 
         <ul class="org-ul">
           <li>Tab-delimited</li>
@@ -2637,7 +2653,8 @@ odbcClose(channel)
         and transporting objects</h3>
 
         <div class="outline-text-3" id="text-11-10">
-          Textual formats (potentially recoverable in case of corruption).
+          <p>Textual formats (potentially recoverable in case of
+          corruption).</p>
 
           <dl class="org-dl">
             <dt><code>dput()</code></dt>
@@ -2656,7 +2673,7 @@ odbcClose(channel)
         resources</h3>
 
         <div class="outline-text-3" id="text-11-11">
-          Packages:
+          <p>Packages:</p>
 
           <dl class="org-dl">
             <dt><code>httr</code></dt>
@@ -3191,11 +3208,11 @@ dfrm$x <span class=
           </div>
 
           <div class="warning">
-            <b>Warning</b><br />
+            <p><b>Warning</b><br />
             To convert factors to numeric or integer, first convert to
             character. Converting factors directly to numeric or integer data
             can lead to unwanted outcomes. Always check the results of a
-            conversion to make sure R did what you wanted.
+            conversion to make sure R did what you wanted.</p>
           </div>
 
           <p>Convert at once all the string columns to factors:</p>
@@ -3417,11 +3434,11 @@ apply(x, 1, quantile, probs=c(0.25, 0.75)) <span class=
           </dl>
 
           <div class="warning">
-            Since <code>apply</code> <b>coerces</b> the first argument <b>to a
-            matrix</b>, if you are using a data frame which has character data
-            as well as numeric data, <i>the whole matrix will be converted to
-            character</i> and numerical operations will probably not give what
-            you expect.
+            <p>Since <code>apply</code> <b>coerces</b> the first argument <b>to
+            a matrix</b>, if you are using a data frame which has character
+            data as well as numeric data, <i>the whole matrix will be converted
+            to character</i> and numerical operations will probably not give
+            what you expect.</p>
           </div>
         </div>
       </div>
@@ -3587,168 +3604,181 @@ This is one sentence.
         <h3 id="sec-15-3"><span class="section-number-3">15.3</span> Regular
         expressions</h3>
 
-        <div class="outline-text-3" id="text-15-3">
-          <p>For the moment, we assume pattern matching on <b>ASCII
-          strings</b>…</p>
+        <div class="outline-text-3" id="text-15-3"></div>
 
-          <p>Metacharacters:</p>
+        <div id="outline-container-sec-15-3-1" class="outline-4">
+          <h4 id="sec-15-3-1">Metacharacters</h4>
 
-          <dl class="org-dl">
-            <dt><code>^</code></dt>
+          <div class="outline-text-4" id="text-15-3-1">
+            <dl class="org-dl">
+              <dt><code>^</code></dt>
 
-            <dd>Start of a line (or negation of a character class).</dd>
+              <dd>Start of a line (or negation of a character class).</dd>
 
-            <dt><code>$</code></dt>
+              <dt><code>$</code></dt>
 
-            <dd>End of a line.</dd>
+              <dd>End of a line.</dd>
 
-            <dt><code>[]</code></dt>
+              <dt><code>[]</code></dt>
 
-            <dd>Character classes.</dd>
+              <dd>Character classes.</dd>
 
-            <dt><code>.</code></dt>
+              <dt><code>.</code></dt>
 
-            <dd>Any character.</dd>
+              <dd>Any character.</dd>
 
-            <dt><code>|</code></dt>
+              <dt><code>|</code></dt>
 
-            <dd>Or.</dd>
+              <dd>Or.</dd>
 
-            <dt><code>()</code></dt>
+              <dt><code>()</code></dt>
 
-            <dd>Subexpressions (alternatives or “remember” matched text).</dd>
+              <dd>Subexpressions (alternatives or “remember” matched
+              text).</dd>
 
-            <dt><code>?</code></dt>
+              <dt><code>?</code></dt>
 
-            <dd>Optional.</dd>
+              <dd>Optional.</dd>
 
-            <dt>\</dt>
+              <dt>\</dt>
 
-            <dd>“Escape” the metacharacter.</dd>
+              <dd>“Escape” the metacharacter.</dd>
 
-            <dt><code>+</code></dt>
+              <dt><code>+</code></dt>
 
-            <dd>Any number, including none.</dd>
+              <dd>Any number, including none.</dd>
 
-            <dt><code>*</code></dt>
+              <dt><code>*</code></dt>
 
-            <dd>
-              <p>Any number, at least one – it is “greedy” so it always matches
-              the <i>longest</i> possible string that satisfies the regular
-              expression.</p>
+              <dd>
+                <p>Any number, at least one – it is “greedy” so it always
+                matches the <i>longest</i> possible string that satisfies the
+                regular expression.</p>
 
-              <p>The greediness can be turned off with the <code>?</code>
-              metacharacter (make the regex “lazy”), as in:</p>
+                <p>The greediness can be turned off with the <code>?</code>
+                metacharacter (make the regex “lazy”), as in:</p>
 
-              <div class="org-src-container">
-                <pre class="src src-R">
+                <div class="org-src-container">
+                  <pre class="src src-R">
 ^s(.*?)s$
 </pre>
-              </div>
-            </dd>
+                </div>
+              </dd>
 
-            <dt><code>{}</code></dt>
+              <dt><code>{}</code></dt>
 
-            <dd>Interval quantifiers (minimum, maximum).</dd>
-          </dl>
+              <dd>Interval quantifiers (minimum, maximum).</dd>
+            </dl>
+          </div>
+        </div>
 
-          <p>These functions can take vector arguments.</p>
+        <div id="outline-container-sec-15-3-2" class="outline-4">
+          <h4 id="sec-15-3-2">Regular expressions in R</h4>
 
-          <dl class="org-dl">
-            <dt><code>grep</code></dt>
+          <div class="outline-text-4" id="text-15-3-2">
+            <p>For the moment, we assume pattern matching on <b>ASCII
+            strings</b>…</p>
 
-            <dd>
-              <p>Return the <b>indices</b> into the character vector where the
-              regex pattern matches (it won’t do anything).</p>
+            <p>These functions can take vector arguments.</p>
 
-              <div class="org-src-container">
-                <pre class="src src-R">
+            <dl class="org-dl">
+              <dt><code>grep</code></dt>
+
+              <dd>
+                <p>Return the <b>indices</b> into the character vector where
+                the regex pattern matches (it won’t do anything).</p>
+
+                <div class="org-src-container">
+                  <pre class="src src-R">
 i <span class="org-constant">&lt;-</span> grep(<span class=
-"org-string">"regexp"</span>, vector) <span class=
+"org-string">"regexp"</span>, vector)        <span class=
 "org-comment-delimiter"># </span><span class=
 "org-comment">get a set of indices</span>
 j <span class="org-constant">&lt;-</span> grep(<span class=
 "org-string">"anotherregexp"</span>, vector) <span class=
 "org-comment-delimiter"># </span><span class=
 "org-comment">get another set of indices</span>
-setdiff(i, j) <span class="org-comment-delimiter"># </span><span class=
+setdiff(i, j)                      <span class=
+"org-comment-delimiter"># </span><span class=
 "org-comment">substract j elements from i when they are the same</span>
-setdiff(j, i) <span class="org-comment-delimiter"># </span><span class=
+setdiff(j, i)                      <span class=
+"org-comment-delimiter"># </span><span class=
 "org-comment">different result</span>
 </pre>
-              </div>
+                </div>
 
-              <p>Setting <code>value = TRUE</code> returns the <b>actual
-              elements</b> of the character vector that match.</p>
-            </dd>
+                <p>Setting <code>value = TRUE</code> returns the <b>actual
+                elements</b> of the character vector that match.</p>
+              </dd>
 
-            <dt><code>grepl</code></dt>
+              <dt><code>grepl</code></dt>
 
-            <dd>Return a <b>logical vector</b> (<code>TRUE</code> /
-            <code>FALSE</code>) indicating which element matches (used for
-            <i>subsetting</i>).</dd>
+              <dd>Return a <b>logical vector</b> (<code>TRUE</code> /
+              <code>FALSE</code>) indicating which element matches (used for
+              <i>subsetting</i>).</dd>
 
-            <dt><code>regexpr</code></dt>
+              <dt><code>regexpr</code></dt>
 
-            <dd>
-              <p>Return the indices (integer vector) of the string <b>where the
-              first match begins</b> and the length of the match.</p>
+              <dd>
+                <p>Return the indices (integer vector) of the string <b>where
+                the first match begins</b> and the length of the match.</p>
 
-              <p>If I want to see what the match is, use
-              <code>substr</code>:</p>
+                <p>If I want to see what the match is, use
+                <code>substr</code>:</p>
 
-              <div class="org-src-container">
-                <pre class="src src-R">
+                <div class="org-src-container">
+                  <pre class="src src-R">
 regexpr(<span class="org-string">"..."</span>, string)
 substr(string, start + length - 1)
 </pre>
-              </div>
+                </div>
 
-              <p>Useful in conjunction with <code>regmatches</code> which
-              extracts the matches in the strings without having you to use
-              <code>substr</code>.</p>
+                <p>Useful in conjunction with <code>regmatches</code> which
+                extracts the matches in the strings without having you to use
+                <code>substr</code>.</p>
 
-              <div class="org-src-container">
-                <pre class="src src-R">
+                <div class="org-src-container">
+                  <pre class="src src-R">
 r <span class="org-constant">&lt;-</span> regexpr(<span class=
 "org-string">"..."</span>, string)
 regmatches(string, r)
 </pre>
-              </div>
-            </dd>
+                </div>
+              </dd>
 
-            <dt><code>gregexpr</code></dt>
+              <dt><code>gregexpr</code></dt>
 
-            <dd>Return <b>all of the matches</b> (“global”) in a given
-            string.</dd>
+              <dd>Return <b>all of the matches</b> (“global”) in a given
+              string.</dd>
 
-            <dt><code>sub</code></dt>
+              <dt><code>sub</code></dt>
 
-            <dd>Replace <b>the first match</b> with another string (used to
-            strip out stuff by replacing the match with nothing).</dd>
+              <dd>Replace <b>the first match</b> with another string (used to
+              strip out stuff by replacing the match with nothing).</dd>
 
-            <dt><code>gsub</code></dt>
+              <dt><code>gsub</code></dt>
 
-            <dd>
-              <p>Replace <b>all of the matches</b> with another string.</p>
+              <dd>
+                <p>Replace <b>all of the matches</b> with another string.</p>
 
-              <div class="org-src-container">
-                <pre class="src src-R">
+                <div class="org-src-container">
+                  <pre class="src src-R">
 names(data)[i] <span class="org-constant">&lt;-</span> gsub(<span class=
 "org-string">"-"</span>, <span class="org-string">"."</span>, names(data)[i])
 </pre>
-              </div>
-            </dd>
+                </div>
+              </dd>
 
-            <dt><code>regexec</code></dt>
+              <dt><code>regexec</code></dt>
 
-            <dd>
-              <p>Give the indices (list) for parenthesized sub-expressions.</p>
+              <dd>
+                <p>Give the indices (list) for parenthesized
+                sub-expressions.</p>
 
-              <p>If I want to see what the submatch is:</p>
+                <p>If I want to see what the submatch is:</p>
 
-              <div class="org-src-container">
-                <pre class="src src-R">
+                <div class="org-src-container">
+                  <pre class="src src-R">
 r <span class="org-constant">&lt;-</span> regexpr(<span class=
 "org-string">"... (.*) ..."</span>, string) <span class=
 "org-comment-delimiter"># </span><span class=
@@ -3769,9 +3799,10 @@ hist(dates, <span class="org-string">"month"</span>, freq=<span class=
 "org-comment-delimiter"># </span><span class=
 "org-comment">aggregate the dates by month and give an histogram</span>
 </pre>
-              </div>
-            </dd>
-          </dl>
+                </div>
+              </dd>
+            </dl>
+          </div>
         </div>
       </div>
     </div>
@@ -4141,10 +4172,10 @@ cor(iris[-5])
             <code>barplot</code></h5>
 
             <div class="outline-text-5" id="text-17-1-1-2">
-              See <a href=
+              <p>See <a href=
               "http://onertipaday.blogspot.be/2007/05/barplots-of-two-sets.html">
               http://onertipaday.blogspot.be/2007/05/barplots-of-two-sets.html</a>
-              for barplot with figures above the bars.
+              for barplot with figures above the bars.</p>
             </div>
           </div>
 
@@ -4308,8 +4339,8 @@ boxplot(iris[, 1:4], col=rainbow(4), main=<span class=
             <h5 id="sec-17-1-1-5">violinplot</h5>
 
             <div class="outline-text-5" id="text-17-1-1-5">
-              See <a href=
-              "http://www.math.csi.cuny.edu/Statistics/R/simpleR/stat006.html">http://www.math.csi.cuny.edu/Statistics/R/simpleR/stat006.html</a>
+              <p>See <a href=
+              "http://www.math.csi.cuny.edu/Statistics/R/simpleR/stat006.html">http://www.math.csi.cuny.edu/Statistics/R/simpleR/stat006.html</a></p>
             </div>
           </div>
         </div>
@@ -4644,6 +4675,276 @@ par(<span class="org-string">"lty"</span>)
       <div id="outline-container-sec-17-2" class="outline-3">
         <h3 id="sec-17-2"><span class="section-number-3">17.2</span> Lattice
         graphics</h3>
+
+        <div class="outline-text-3" id="text-17-2">
+          <ul class="org-ul">
+            <li>
+              <p>Tellis graphics</p>
+
+              <dl class="org-dl">
+                <dt><code>xyplot</code></dt>
+
+                <dd><b>scatterplots</b></dd>
+
+                <dt><code>bwplot</code></dt>
+
+                <dd>box-and-whiskers plots (“boxplots”)</dd>
+
+                <dt>histogram</dt>
+
+                <dd>histograms</dd>
+
+                <dt>stripplot</dt>
+
+                <dd>like a boxplot but with actual points (instead of
+                boxes)</dd>
+
+                <dt>dotplot</dt>
+
+                <dd>plot dots on “violin strings”</dd>
+
+                <dt>splom</dt>
+
+                <dd>scatterplot matrix, like <code>pairs</code> in the base
+                graphics system</dd>
+
+                <dt><code>levelplot</code>, <code>contourplot</code></dt>
+
+                <dd>for plotting “image” data</dd>
+              </dl>
+
+              <div class="org-src-container">
+                <pre class="src src-R">
+<span class="org-constant">library</span>(lattice)
+</pre>
+              </div>
+
+              <table border="2" cellspacing="0" cellpadding="6" rules="groups"
+              frame="hsides">
+                <colgroup>
+                  <col class="left" />
+                </colgroup>
+
+                <tbody>
+                  <tr>
+                    <td class="left">lattice</td>
+                  </tr>
+
+                  <tr>
+                    <td class="left">stats</td>
+                  </tr>
+
+                  <tr>
+                    <td class="left">graphics</td>
+                  </tr>
+
+                  <tr>
+                    <td class="left">grDevices</td>
+                  </tr>
+
+                  <tr>
+                    <td class="left">utils</td>
+                  </tr>
+
+                  <tr>
+                    <td class="left">datasets</td>
+                  </tr>
+
+                  <tr>
+                    <td class="left">methods</td>
+                  </tr>
+
+                  <tr>
+                    <td class="left">base</td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+
+            <li>Generally create plots all in one go, from a single function
+            call</li>
+
+            <li>
+              <p>Strength of Lattice functions = conditioning plots: you can
+              plot the <b>relationship</b> between <code>x</code> and
+              <code>y</code>, <b>conditioned</b> on the levels of a third
+              variable (factor variable <code>f</code> or variable cut into
+              different ranges, see <code>equal.count</code>)</p>
+
+              <div class="org-src-container">
+                <pre class="src src-R">
+y ~ x | f * g                         <span class=
+"org-comment-delimiter"># </span><span class="org-comment">formula</span>
+</pre>
+              </div>
+
+              <ul class="org-ul">
+                <li><code>y</code> = response (on the y-axis)</li>
+
+                <li><code>x</code> = input, predictor (on the x-axis)</li>
+
+                <li><code>f * g</code> = factors which are <b>interacting</b>
+                with each other (often, just one factor)</li>
+              </ul>
+            </li>
+
+            <li>
+              <p>Tell the function <code>xyplot</code> where to find the
+              variables <code>y</code> and <code>x</code>: look up names inside
+              the <code>environmental</code> data frame (because they are not
+              objects in my workspace)</p>
+
+              <div class="org-src-container">
+                <pre class="src src-R">
+xyplot(y ~ x, data = environmental)
+</pre>
+              </div>
+            </li>
+
+            <li>
+              <p>Lattice functions have a separate panel created for each level
+              of the factors</p>
+
+              <div class="org-src-container">
+                <pre class="src src-R">
+xyplot(y ~ x | f)
+</pre>
+              </div>
+
+              <p>The <b>panel function</b> controls what happens inside each
+              panel of the entire plot</p>
+
+              <p>I can create my own (anonymous) panel function:</p>
+
+              <div class="org-src-container">
+                <pre class="src src-R">
+xyplot(y ~ x | f,
+       panel = <span class=
+"org-keyword">function</span>(x, y, ...) { <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">x and y = data that appear in a specific panel (it's not all the data)</span>
+               panel.xyplot(x, y, ...) <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">plot using all the default options</span>
+               panel.abline(h = median(y), lty = 2) <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">plot the median of the y values in each panel</span>
+       })
+</pre>
+              </div>
+
+              <p>Add a (simple linear) regression line to each panel of the
+              plot:</p>
+
+              <div class="org-src-container">
+                <pre class="src src-R">
+xyplot(y ~ x | f,
+       panel = <span class="org-keyword">function</span>(x, y, ...) {
+               panel.xyplot(x, y, ...)
+               panel.lmline(x, y, col = 2)
+       })
+</pre>
+              </div>
+
+              <div class="org-src-container">
+                <pre class="src src-R">
+xyplot(y ~ x | f, pch = 20,
+       panel = <span class="org-keyword">function</span>(x, y, ...) {
+               panel.xyplot(x, y, ...)
+               fit <span class="org-constant">&lt;-</span> lm(y ~ x)
+               panel.abline(fit, lwd = 2) <span class=
+"org-comment-delimiter"># </span><span class=
+"org-comment">add a regression line to the plot</span>
+       })
+</pre>
+              </div>
+            </li>
+
+            <li>Options
+
+              <ul class="org-ul">
+                <li>Don’t worry about spacing: everything gets automatically
+                adjusted!</li>
+
+                <li id="main">title</li>
+
+                <li id="layout = c(1,4)">4 panels on top of each other</li>
+
+                <li id="as.table = TRUE">change the order in which the panels
+                are drawn, from top to bottom (default: from bottom to
+                top)</li>
+
+                <li id="xlab">label on the x-axis</li>
+
+                <li id="ylab">label on the y-axis</li>
+              </ul>
+            </li>
+
+            <li>Functions
+
+              <dl class="org-dl">
+                <dt>x.cut &lt;- equal.count(x, l)</dt>
+
+                <dd>cut the original <code>x</code> variable, creating
+                <code>l</code> different ranges (~ levels, which may overlap
+                slightly)</dd>
+
+                <dt>panel.loess(x, y)</dt>
+
+                <dd>give a smooth rendition of the linear model</dd>
+              </dl>
+            </li>
+          </ul>
+        </div>
+
+        <div id="outline-container-sec-17-2-1" class="outline-4">
+          <h4 id="sec-17-2-1">Splom</h4>
+
+          <div class="outline-text-4" id="text-17-2-1">
+            <ul class="org-ul">
+              <li>
+                <p>Look at pairwise relationships possible in the data frame
+                (make a scatter plot of all the different variables against
+                each other)</p>
+
+                <div class="org-src-container">
+                  <pre class="src src-R">
+splom(~ df)
+</pre>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div id="outline-container-sec-17-2-2" class="outline-4">
+          <h4 id="sec-17-2-2">Histogram</h4>
+
+          <div class="outline-text-4" id="text-17-2-2">
+            <ul class="org-ul">
+              <li>
+                <p>Histogram of <code>x</code></p>
+
+                <div class="org-src-container">
+                  <pre class="src src-R">
+histogram(~ x, data = df)
+</pre>
+                </div>
+              </li>
+
+              <li>
+                <p>Histogram of <code>x</code>, as <code>f</code> varies (for
+                each range of <code>f.cut</code>)</p>
+
+                <div class="org-src-container">
+                  <pre class="src src-R">
+histogram(~ x | f.cut, data = df)
+</pre>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
 
       <div id="outline-container-sec-17-3" class="outline-3">
@@ -4704,8 +5005,8 @@ pareto.chart(table(iris[iris$Species==<span class=
       regression and ANOVA</h2>
 
       <div class="outline-text-2" id="text-18">
-        <a href=
-        "https://www.zoology.ubc.ca/~schluter/R/fit-model/">https://www.zoology.ubc.ca/~schluter/R/fit-model/</a>
+        <p><a href=
+        "https://www.zoology.ubc.ca/~schluter/R/fit-model/">https://www.zoology.ubc.ca/~schluter/R/fit-model/</a></p>
       </div>
 
       <div id="outline-container-sec-18-1" class="outline-3">
