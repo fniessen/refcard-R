@@ -512,6 +512,10 @@ What is data?
 - ~class()~ ::
      Show the class of the object.
 
+     #+begin_note
+     Note that an object can belong to more than one class.
+     #+end_note
+
 - ~unclass(vector)~ ::
      Strip out the class (see factors).
 
@@ -602,7 +606,7 @@ Unordered or ordered.
 ** Data frames
 
 *Data frames* are used to store tabular data where each column can be of
-a different class: special type of list (of columns) where every element has the
+a different class: special type of *list (of columns)* where every element has the
 same length.
 
 - Row = observation, column = variable
@@ -709,6 +713,12 @@ By default,
 - a single column or a single row is retrieved as a vector, not as a matrix.
 
 This can be turned off by setting ~drop = FALSE~ (don't drop the dimension).
+
+** Flatten a list into a vector
+
+- ~unlist~ ::
+     Flatten the *list into* a *vector* (for functions which work on vectors but not
+     on lists.)
 
 * Control structures
 
@@ -1137,6 +1147,11 @@ if (is.character(df)) {                 # SQL error (no data frame returned)
 odbcClose(channel)
 #+end_src
 
+#+begin_tip
+- Check the class of each column with ~lapply(dfrm, class)~!
+- Display the factor columns with ~dfrm[sapply(dfrm, is.factor)]~!
+#+end_tip
+
 #+begin_src R
 if (transaction) sqlQuery(channel, 'START TRANSACTION')
 
@@ -1207,8 +1222,8 @@ Packages:
 ** Summarizing your data
 
 - ~range()~ ::
-     Give the min and the max (vector of length 2) of the observations (vector
-     of numbers).
+     Give the *min* and the *max* (vector 2 elements) of the observations (vector of
+     numbers).
 
      Useful to give the *extremes of a range to the ~xlim~ and ~ylim~ arguments* of an
      axis.
@@ -1293,7 +1308,7 @@ tolower(names(dfrm))
 
 #+begin_src R
 splitNames <- strsplit(names(dfrm), "\\.") # split at period in names
-firstElement <- function(x){x[1]}       # select the 1st component of the vector
+firstElement <- function(x) x[1]        # select the 1st component of the vector
 sapply(splitNames, firstElement)        # remove everything after the trailing
                                         # dot
 #+end_src
@@ -1306,6 +1321,13 @@ gsub("_", "", names(dfrm))
 
 #+begin_src R
 dfrm$ranges <- ranges                   # add a variable to the data frame
+#+end_src
+
+** Change the class of many columns from factor to numeric
+
+#+begin_src R
+unfactorize <- c("var1", "var2")
+d[, unfactorize] <- lapply(unfactorize, function(x) as.numeric(d[, x]))
 #+end_src
 
 ** Removing list elements using a condition
@@ -1455,12 +1477,17 @@ x[ind] <- lapply(x[ind], factor)
 
 Alternative (to ~for~ *loops*) to apply a function (or summary statistics).
 
-See also http://adv-r.had.co.nz/Functionals.html.
+The following two articles provide the necessary background to motivate the
+*functional programming* techniques that are being provided by the ~apply~ family of
+functions.
+
+- [[http://adv-r.had.co.nz/Functional-programming.html][Advanced R: Functional Programming]], by Hadley Wickham
+- [[http://www.bioinformaticszen.com/post/simple-functional-programming-in-r/][Simple Functional Programming in R]], by Michael Barton
 
 *** ~lapply~
 
-*Loop over a list* and apply a *function* on each element. /Always/ *returns a list*
-back (that is, not a simplified result).
+*Loop over a list* (or every /column/ of a data frame) and apply a *function* on each
+*element. /Always/ returns a list* back (that is, not a simplified result).
 
 - (coerced) list ~X~
 - function ~FUN~
@@ -1483,9 +1510,9 @@ lapply(x, function(x) x[, 1])
 
 *** ~sapply~
 
-Same as ~lapply~, but tries to "*simplify*" the result in a much more compact format
-(put all the elements into a *vector* or a *matrix* when possible, instead of
-returning a list).
+Same as ~lapply~ (for lists or /columns/ of data frames), but tries to "*simplify*"
+the *result* in a much more compact format (put all the elements into a *vector* or
+a *matrix* when possible, instead of returning a list).
 
 #+begin_src R
 sapply(s, function(x) colMeans(x[, c("Ozone", "Solar.R", "Wind")]))
@@ -1527,19 +1554,19 @@ Split a data frame into chunks of size ~max~:
 
 #+begin_src R
 size.max <- 20
-split(x, ceiling(seq_along(x$col1) / size.max))
+split(x, ceiling(seq_along(x$var1) / size.max))
 #+end_src
 
 ** Applying a function to every row/column
 
 - ~apply(dfrm, margin, fun, ...)~ ::
-     Apply a function over the *margins* of an array.
+     Apply a function over the /margins/ of an *array*.
 
      Often used to apply a function to the rows or columns of a matrix. Very
      useful if you wanna take *summaries* of matrices or higher-dimensional arrays
      (such as array of matrices).
 
-     MARGIN is an integer vector which indicates which margins should be
+     ~MARGIN~ is an integer vector which indicates which margins should be
      "retained":
      - *margin 1* = apply FUN *for each row* (dimension 1): preserve all the rows,
        eliminate all columns, get a vector of the number of rows
@@ -1563,10 +1590,15 @@ split(x, ceiling(seq_along(x$col1) / size.max))
      + ~colMeans~ = ~apply(x, 2, mean)~
 
 #+begin_warning
-Since ~apply~ *coerces* the first argument *to a matrix*, if you are using a data
-frame which has character data as well as numeric data, /the whole matrix will be
-converted to character/ and numerical operations will probably not give what you
-expect.
+~apply~ works on matrices, *not data frames*. It will *coerce* the first argument *to
+a matrix*, by converting it to the lowest common form -- which you can see with
+~apply(dfrm, 2, class)~.
+
+If you are using a data frame which has character data as well as numeric data,
+/the whole matrix will be converted to character/ and numerical operations will
+probably not give what you expect.
+
+~sapply~ does not coerce the data frame to a matrix: see ~sapply(dfrm, class)~.
 #+end_warning
 
 ** Applying a function to groups of data
@@ -1760,7 +1792,7 @@ These functions can take vector arguments.
      #+begin_src R
      r <- regexpr("... (.*) ...", string) # find all the date fields
      m <- regmatches(string, r)         # parse out
-     dates <- sapply(m, function (x) x[2]) # extract the 2nd element of each list object
+     dates <- sapply(m, function(x) x[2]) # extract the 2nd element of each list object
      dates <- as.Date(dates, "%B %d, %Y") # convert to date
      hist(dates, "month", freq=TRUE)    # aggregate the dates by month and give an histogram
      #+end_src
