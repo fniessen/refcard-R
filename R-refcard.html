@@ -1676,8 +1676,8 @@ print(v)
 
               <div class="org-src-container">
                 <pre class="src src-R">
-dfrm <span class=
-"org-constant">&lt;-</span> data.frame(cbind(v1, v2))  <span class=
+df <span class=
+"org-constant">&lt;-</span> data.frame(cbind(v1, v2))    <span class=
 "org-comment-delimiter"># </span><span class=
 "org-comment">create a dataframe of two vectors</span>
 </pre>
@@ -1734,7 +1734,7 @@ x %*% y                                 <span class=
             <dd>
               <p>Return an <b>object</b> of the <b>same class as the
               original</b>: a list of elements (or a data frame built from
-              multiple columns).</p>
+              multiple columns). The data type is <b>preserved</b>.</p>
 
               <p>Extract multiple elements of a list:</p>
 
@@ -1823,6 +1823,12 @@ x$a                                <span class=
               </div>
             </dd>
           </dl>
+
+          <div class="note">
+            <p>the reason for your syntax error is that d becomes a matrix when
+            you use apply, and you can’t use $ notation with matrices. You
+            would need to use x[“ratio”] or x<i>“ratio”</i>.</p>
+          </div>
         </div>
       </div>
 
@@ -2664,10 +2670,10 @@ odbcClose(channel)
 
           <div class="tip">
             <ul class="org-ul">
-              <li>Check the class of each column with <code>lapply(dfrm,
+              <li>Check the class of each column with <code>lapply(df,
               class)</code>!</li>
 
-              <li>Display the factor columns with <code>dfrm[sapply(dfrm,
+              <li>Display the factor columns with <code>df[sapply(df,
               is.factor)]</code>!</li>
             </ul>
           </div>
@@ -2841,12 +2847,12 @@ yrange <span class="org-constant">&lt;-</span> range(c(x1, x2, x3))
 
               <div class="org-src-container">
                 <pre class="src src-R">
-unique(dfrm$f)
-length(unique(dfrm$f))             <span class=
+unique(df$f)
+length(unique(df$f))               <span class=
 "org-comment-delimiter"># </span><span class=
 "org-comment">how many unique values</span>
 
-table(dfrm$f, useNA=<span class="org-string">"ifany"</span>)       <span class=
+table(df$f, useNA=<span class="org-string">"ifany"</span>)         <span class=
 "org-comment-delimiter"># </span><span class=
 "org-comment">number of times each unique value</span>
                                    <span class=
@@ -2859,7 +2865,7 @@ table(dfrm$f, useNA=<span class="org-string">"ifany"</span>)       <span class=
 
               <div class="org-src-container">
                 <pre class="src src-R">
-tbl <span class="org-constant">&lt;-</span> table(dfrm$f, useNA=<span class=
+tbl <span class="org-constant">&lt;-</span> table(df$f, useNA=<span class=
 "org-string">"ifany"</span>)
 tbl / sum(tbl)
 </pre>
@@ -2871,7 +2877,7 @@ tbl / sum(tbl)
               <div class="org-src-container">
                 <pre class="src src-R">
 f <span class=
-"org-constant">&lt;-</span> cut(dfrm$x, breaks=30)        <span class=
+"org-constant">&lt;-</span> cut(df$x, breaks=30)          <span class=
 "org-comment-delimiter"># </span><span class=
 "org-comment">use `labels' to give nice names</span>
 table(f, useNA=<span class="org-string">"ifany"</span>)
@@ -2886,7 +2892,7 @@ table(f, useNA=<span class="org-string">"ifany"</span>)
 
               <div class="org-src-container">
                 <pre class="src src-R">
-table(dfrm$f1, dfrm$f2)            <span class=
+table(df$f1, df$f2)                <span class=
 "org-comment-delimiter"># </span><span class=
 "org-comment">look at the relationship between f1</span>
                                    <span class=
@@ -2964,14 +2970,14 @@ quantile(vec, na.rm=<span class="org-type">TRUE</span>)
         <div class="outline-text-3" id="text-14-1">
           <div class="org-src-container">
             <pre class="src src-R">
-tolower(names(dfrm))
+tolower(names(df))
 </pre>
           </div>
 
           <div class="org-src-container">
             <pre class="src src-R">
 splitNames <span class=
-"org-constant">&lt;-</span> strsplit(names(dfrm), <span class=
+"org-constant">&lt;-</span> strsplit(names(df), <span class=
 "org-string">"\\."</span>) <span class=
 "org-comment-delimiter"># </span><span class=
 "org-comment">split at period in names</span>
@@ -2991,7 +2997,7 @@ sapply(splitNames, firstElement)        <span class=
           <div class="org-src-container">
             <pre class="src src-R">
 gsub(<span class="org-string">"_"</span>, <span class=
-"org-string">""</span>, names(dfrm))
+"org-string">""</span>, names(df))
 </pre>
           </div>
         </div>
@@ -3004,8 +3010,8 @@ gsub(<span class="org-string">"_"</span>, <span class=
         <div class="outline-text-3" id="text-14-2">
           <div class="org-src-container">
             <pre class="src src-R">
-dfrm$ranges <span class=
-"org-constant">&lt;-</span> ranges                   <span class=
+df$ranges <span class=
+"org-constant">&lt;-</span> ranges                     <span class=
 "org-comment-delimiter"># </span><span class=
 "org-comment">add a variable to the data frame</span>
 </pre>
@@ -3021,10 +3027,10 @@ dfrm$ranges <span class=
           <div class="org-src-container">
             <pre class="src src-R">
 unfactorize <span class="org-constant">&lt;-</span> c(<span class=
-"org-string">"var1"</span>, <span class="org-string">"var2"</span>)
+"org-string">"V1"</span>, <span class="org-string">"V2"</span>)
 d[, unfactorize] <span class=
 "org-constant">&lt;-</span> lapply(unfactorize, <span class=
-"org-keyword">function</span>(x) as.numeric(d[, x]))
+"org-keyword">function</span>(x) as.numeric(as.character(d[, x])))
 </pre>
           </div>
         </div>
@@ -3129,16 +3135,14 @@ x <span class="org-constant">&lt;-</span> x[, tokeep, drop=<span class=
         rows and columns more easily</h3>
 
         <div class="outline-text-3" id="text-14-5">
-          <p>Indexing approach.</p>
+          <p>Subset on V1 and/or V2 &gt; 0.</p>
 
           <div class="org-src-container">
             <pre class="src src-R">
-dfrm[dfrm$var1 &gt; 0 &amp; dfrm$var2 &gt; 0, c(1, 2)] <span class=
-"org-comment-delimiter"># </span><span class=
-"org-comment">subset on var1 and var2</span>
-dfrm[dfrm$var1 &gt; 0 | dfrm$var2 &gt; 0, c(1, 2)] <span class=
-"org-comment-delimiter"># </span><span class=
-"org-comment">subset on var1 or var2</span>
+df[df$V1 &gt; 0 &amp; df$V2 &gt; 0, c(<span class=
+"org-string">"V1"</span>, <span class="org-string">"V2"</span>)]
+df[df$V1 &gt; 0 | df$V2 &gt; 0, c(<span class=
+"org-string">"V1"</span>, <span class="org-string">"V2"</span>)]
 </pre>
           </div>
 
@@ -3146,15 +3150,18 @@ dfrm[dfrm$var1 &gt; 0 | dfrm$var2 &gt; 0, c(1, 2)] <span class=
 
           <div class="org-src-container">
             <pre class="src src-R">
-subset(dfrm, select=c(var1, var2), subset=(var1 &gt; 0 &amp; var2 &gt; 0))
-subset(dfrm, select=c(var1, var2), subset=(var1 &gt; 0 | var2 &gt; 0))
+subset(df, select=c(<span class="org-string">"V1"</span>, <span class=
+"org-string">"V2"</span>), subset=(V1 &gt; 0 &amp; V2 &gt; 0))
+subset(df, select=c(<span class="org-string">"V1"</span>, <span class=
+"org-string">"V2"</span>), subset=(V1 &gt; 0 | V2 &gt; 0))
 </pre>
           </div>
 
+          <p>Note that you do <i>not</i> quote the column names (in the
+          <code>subset</code> argument).</p>
+
           <p>Use the <code>%in%</code> operator to compare a variable to a list
           of desired values.</p>
-
-          <p>Note that you do <i>not</i> quote the column names.</p>
         </div>
       </div>
 
@@ -3259,12 +3266,12 @@ df <span class="org-constant">&lt;-</span> do.call(<span class=
 
           <div class="org-src-container">
             <pre class="src src-R">
-dfrm$x <span class=
-"org-constant">&lt;-</span> as.factor(dfrm$x)             <span class=
+df$x <span class=
+"org-constant">&lt;-</span> as.factor(df$x)                 <span class=
 "org-comment-delimiter"># </span><span class=
 "org-comment">character to factor</span>
-dfrm$x <span class=
-"org-constant">&lt;-</span> as.character(dfrm$x)          <span class=
+df$x <span class=
+"org-constant">&lt;-</span> as.character(df$x)              <span class=
 "org-comment-delimiter"># </span><span class=
 "org-comment">factor to character</span>
 </pre>
@@ -3360,8 +3367,10 @@ lapply(x, <span class="org-keyword">function</span>(x) x[, 1])
           <div class="outline-text-4" id="text-14-11-2">
             <p>Same as <code>lapply</code> (for lists or <i>columns</i> of data
             frames), but tries to “<b>simplify</b>” the <b>result</b> in a much
-            more compact format (put all the elements into a <b>vector</b> or a
-            <b>matrix</b> when possible, instead of returning a list).</p>
+            more compact format (return the simplest possible data structure
+            that can represent the output and is useful interactively, by
+            putting all the elements into a <b>vector</b> or a <b>matrix</b>
+            when possible, instead of returning a list).</p>
 
             <div class="org-src-container">
               <pre class="src src-R">
@@ -3443,7 +3452,7 @@ lapply(s, <span class=
           <div class="org-src-container">
             <pre class="src src-R">
 size.max <span class="org-constant">&lt;-</span> 20
-split(x, ceiling(seq_along(x$var1) / size.max))
+split(x, ceiling(seq_along(x$V1) / size.max))
 </pre>
           </div>
         </div>
@@ -3455,7 +3464,7 @@ split(x, ceiling(seq_along(x$var1) / size.max))
 
         <div class="outline-text-3" id="text-14-13">
           <dl class="org-dl">
-            <dt><code>apply(dfrm, margin, fun, ...)</code></dt>
+            <dt><code>apply(df, margin, fun, ...)</code></dt>
 
             <dd>
               <p>Apply a function over the <i>margins</i> of an
@@ -3512,7 +3521,7 @@ apply(x, 1, quantile, probs=c(0.25, 0.75)) <span class=
             <p><code>apply</code> works on matrices, <b>not data frames</b>. It
             will <b>coerce</b> the first argument <b>to a matrix</b>, by
             converting it to the lowest common form – which you can see with
-            <code>apply(dfrm, 2, class)</code>.</p>
+            <code>apply(df, 2, class)</code>.</p>
 
             <p>If you are using a data frame which has character data as well
             as numeric data, <i>the whole matrix will be converted to
@@ -3520,7 +3529,7 @@ apply(x, 1, quantile, probs=c(0.25, 0.75)) <span class=
             you expect.</p>
 
             <p><code>sapply</code> does not coerce the data frame to a matrix:
-            see <code>sapply(dfrm, class)</code>.</p>
+            see <code>sapply(df, class)</code>.</p>
           </div>
         </div>
       </div>
@@ -3949,10 +3958,10 @@ hist(dates, <span class="org-string">"month"</span>, freq=<span class=
 
                   <div class="org-src-container">
                     <pre class="src src-R">
-ppois(4, 2) <span class="org-comment-delimiter"># </span><span class=
-"org-comment">Pr(x &lt;= 4)</span>
-ppois(6, 2) <span class="org-comment-delimiter"># </span><span class=
-"org-comment">Pr(x &lt;= 6)</span>
+ppois(4, 2)                      <span class=
+"org-comment-delimiter"># </span><span class="org-comment">Pr(x &lt;= 4)</span>
+ppois(6, 2)                      <span class=
+"org-comment-delimiter"># </span><span class="org-comment">Pr(x &lt;= 6)</span>
 </pre>
                   </div>
                 </dd>
@@ -4162,7 +4171,7 @@ plot(iris$Petal.Length, iris$Petal.Width,
                   frame… XXX</p>
                 </dd>
 
-                <dt><code>plot(dfrm)</code></dt>
+                <dt><code>plot(df)</code></dt>
 
                 <dd>
                   <p>Create <b>multiple scatter plots</b> if your data frame
@@ -4902,7 +4911,7 @@ xyplot(y ~ x | f)
                 <pre class="src src-R">
 xyplot(y ~ x | f,
        panel = <span class=
-"org-keyword">function</span>(x, y, ...) { <span class=
+"org-keyword">function</span>(x, y, ...) {  <span class=
 "org-comment-delimiter"># </span><span class=
 "org-comment">x and y = data that appear in a specific panel (it's not all the data)</span>
                panel.xyplot(x, y, ...) <span class=
@@ -5034,6 +5043,10 @@ histogram(~ x | f.cut, data = df)
         ggplot2</h3>
 
         <div class="outline-text-3" id="text-17-3">
+          <p>See <a href=
+          "http://tutorials.iq.harvard.edu/R/Rgraphics/Rgraphics.html">http://tutorials.iq.harvard.edu/R/Rgraphics/Rgraphics.html</a>
+          for a comparison with Base graphics.</p>
+
           <p>See post of Antoine Lizée in <a href=
           "http://stackoverflow.com/questions/5234117/how-to-drop-columns-by-name-in-a-data-frame">
           http://stackoverflow.com/questions/5234117/how-to-drop-columns-by-name-in-a-data-frame</a>

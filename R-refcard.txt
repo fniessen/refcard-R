@@ -618,7 +618,7 @@ same length.
      Create a data frame.
 
      #+begin_src R
-     dfrm <- data.frame(cbind(v1, v2))  # create a dataframe of two vectors
+     df <- data.frame(cbind(v1, v2))    # create a dataframe of two vectors
      #+end_src
 
 - ~data.matrix()~ ::
@@ -646,7 +646,7 @@ x %*% y                                 # true matrix multiplication
 
 - ~[~ ::
      Return an *object* of the *same class as the original*: a list of elements (or
-     a data frame built from multiple columns).
+     a data frame built from multiple columns). The data type is *preserved*.
 
      Extract multiple elements of a list:
 
@@ -696,6 +696,12 @@ x %*% y                                 # true matrix multiplication
      #+begin_src R
      x$a                                # instead of: x$aardvark
      #+end_src
+
+#+begin_note
+the reason for your syntax error is that d becomes a matrix when you use apply,
+and you can't use $ notation with matrices. You would need to use x["ratio"] or
+x[["ratio"]].
+#+end_note
 
 ** Selecting data frame columns by position (subsetting)
 
@@ -1148,8 +1154,8 @@ odbcClose(channel)
 #+end_src
 
 #+begin_tip
-- Check the class of each column with ~lapply(dfrm, class)~!
-- Display the factor columns with ~dfrm[sapply(dfrm, is.factor)]~!
+- Check the class of each column with ~lapply(df, class)~!
+- Display the factor columns with ~df[sapply(df, is.factor)]~!
 #+end_tip
 
 #+begin_src R
@@ -1242,24 +1248,24 @@ Packages:
      Give a *frequency* of how many levels there are.
 
      #+begin_src R
-     unique(dfrm$f)
-     length(unique(dfrm$f))             # how many unique values
+     unique(df$f)
+     length(unique(df$f))               # how many unique values
 
-     table(dfrm$f, useNA="ifany")       # number of times each unique value
+     table(df$f, useNA="ifany")         # number of times each unique value
                                         #  appears (show missing values as well)
      #+end_src
 
      Relative frequencies:
 
      #+begin_src R
-     tbl <- table(dfrm$f, useNA="ifany")
+     tbl <- table(df$f, useNA="ifany")
      tbl / sum(tbl)
      #+end_src
 
      Use the ~cut~ function to calculate tables with /numeric/ values.
 
      #+begin_src R
-     f <- cut(dfrm$x, breaks=30)        # use `labels' to give nice names
+     f <- cut(df$x, breaks=30)          # use `labels' to give nice names
      table(f, useNA="ifany")
      #+end_src
 
@@ -1267,7 +1273,7 @@ Packages:
      Produce a /contingency table/ (cross-tabulation).
 
      #+begin_src R
-     table(dfrm$f1, dfrm$f2)            # look at the relationship between f1
+     table(df$f1, df$f2)                # look at the relationship between f1
                                         # and f2
      #+end_src
 
@@ -1303,31 +1309,32 @@ Processed (*tidy*) data:
 ** Fixing variable names
 
 #+begin_src R
-tolower(names(dfrm))
+tolower(names(df))
 #+end_src
 
 #+begin_src R
-splitNames <- strsplit(names(dfrm), "\\.") # split at period in names
+splitNames <- strsplit(names(df), "\\.") # split at period in names
 firstElement <- function(x) x[1]        # select the 1st component of the vector
 sapply(splitNames, firstElement)        # remove everything after the trailing
                                         # dot
 #+end_src
 
 #+begin_src R
-gsub("_", "", names(dfrm))
+gsub("_", "", names(df))
 #+end_src
 
 ** Creating new variables
 
 #+begin_src R
-dfrm$ranges <- ranges                   # add a variable to the data frame
+df$ranges <- ranges                     # add a variable to the data frame
 #+end_src
 
 ** Change the class of many columns from factor to numeric
 
 #+begin_src R
-unfactorize <- c("var1", "var2")
-d[, unfactorize] <- lapply(unfactorize, function(x) as.numeric(d[, x]))
+unfactorize <- c("V1", "V2")
+d[, unfactorize] <- lapply(unfactorize,
+                           function(x) as.numeric(as.character(d[, x])))
 #+end_src
 
 ** Removing list elements using a condition
@@ -1381,23 +1388,23 @@ x <- x[, tokeep, drop=FALSE]            # you will need this option to avoid the
 
 ** Selecting rows and columns more easily
 
-Indexing approach.
+Subset on V1 and/or V2 > 0.
 
 #+begin_src R
-dfrm[dfrm$var1 > 0 & dfrm$var2 > 0, c(1, 2)] # subset on var1 and var2
-dfrm[dfrm$var1 > 0 | dfrm$var2 > 0, c(1, 2)] # subset on var1 or var2
+df[df$V1 > 0 & df$V2 > 0, c("V1", "V2")]
+df[df$V1 > 0 | df$V2 > 0, c("V1", "V2")]
 #+end_src
 
 Using the ~subset~ function.
 
 #+begin_src R
-subset(dfrm, select=c(var1, var2), subset=(var1 > 0 & var2 > 0))
-subset(dfrm, select=c(var1, var2), subset=(var1 > 0 | var2 > 0))
+subset(df, select=c("V1", "V2"), subset=(V1 > 0 & V2 > 0))
+subset(df, select=c("V1", "V2"), subset=(V1 > 0 | V2 > 0))
 #+end_src
 
-Use the ~%in%~ operator to compare a variable to a list of desired values.
+Note that you do /not/ quote the column names (in the ~subset~ argument).
 
-Note that you do /not/ quote the column names.
+Use the ~%in%~ operator to compare a variable to a list of desired values.
 
 ** Removing rows that contain NAs from a data frame
 
@@ -1454,8 +1461,8 @@ df <- do.call("rbind", list.of.data.frames)
 You can always convert variables between types.
 
 #+begin_src R
-dfrm$x <- as.factor(dfrm$x)             # character to factor
-dfrm$x <- as.character(dfrm$x)          # factor to character
+df$x <- as.factor(df$x)                 # character to factor
+df$x <- as.character(df$x)              # factor to character
 #+end_src
 
 #+begin_warning
@@ -1511,8 +1518,10 @@ lapply(x, function(x) x[, 1])
 *** ~sapply~
 
 Same as ~lapply~ (for lists or /columns/ of data frames), but tries to "*simplify*"
-the *result* in a much more compact format (put all the elements into a *vector* or
-a *matrix* when possible, instead of returning a list).
+the *result* in a much more compact format (return the simplest possible data
+structure that can represent the output and is useful interactively, by putting
+all the elements into a *vector* or a *matrix* when possible, instead of returning
+a list).
 
 #+begin_src R
 sapply(s, function(x) colMeans(x[, c("Ozone", "Solar.R", "Wind")]))
@@ -1554,12 +1563,12 @@ Split a data frame into chunks of size ~max~:
 
 #+begin_src R
 size.max <- 20
-split(x, ceiling(seq_along(x$var1) / size.max))
+split(x, ceiling(seq_along(x$V1) / size.max))
 #+end_src
 
 ** Applying a function to every row/column
 
-- ~apply(dfrm, margin, fun, ...)~ ::
+- ~apply(df, margin, fun, ...)~ ::
      Apply a function over the /margins/ of an *array*.
 
      Often used to apply a function to the rows or columns of a matrix. Very
@@ -1592,13 +1601,13 @@ split(x, ceiling(seq_along(x$var1) / size.max))
 #+begin_warning
 ~apply~ works on matrices, *not data frames*. It will *coerce* the first argument *to
 a matrix*, by converting it to the lowest common form -- which you can see with
-~apply(dfrm, 2, class)~.
+~apply(df, 2, class)~.
 
 If you are using a data frame which has character data as well as numeric data,
 /the whole matrix will be converted to character/ and numerical operations will
 probably not give what you expect.
 
-~sapply~ does not coerce the data frame to a matrix: see ~sapply(dfrm, class)~.
+~sapply~ does not coerce the data frame to a matrix: see ~sapply(df, class)~.
 #+end_warning
 
 ** Applying a function to groups of data
@@ -1831,8 +1840,8 @@ These functions can take vector arguments.
        Evaluate the *cumulative distribution* function
 
        #+begin_src R
-       ppois(4, 2) # Pr(x <= 4)
-       ppois(6, 2) # Pr(x <= 6)
+       ppois(4, 2)                      # Pr(x <= 4)
+       ppois(6, 2)                      # Pr(x <= 6)
        #+end_src
 
   + q* :: evaluate the *quantile* function
@@ -1945,7 +1954,7 @@ You cannot use functions from the base plotting system in a Lattice plot.
 
      Note that you have ~POSIXct~ dates in your data frame... XXX
 
-- ~plot(dfrm)~ ::
+- ~plot(df)~ ::
      Create *multiple scatter plots* if your data frame contains more than
      2 columns.
 
@@ -2323,7 +2332,7 @@ See http://www.math.csi.cuny.edu/Statistics/R/simpleR/stat006.html
 
   #+begin_src R
   xyplot(y ~ x | f,
-         panel = function(x, y, ...) { # x and y = data that appear in a specific panel (it's not all the data)
+         panel = function(x, y, ...) {  # x and y = data that appear in a specific panel (it's not all the data)
                  panel.xyplot(x, y, ...) # plot using all the default options
                  panel.abline(h = median(y), lty = 2) # plot the median of the y values in each panel
          })
@@ -2387,6 +2396,9 @@ See http://www.math.csi.cuny.edu/Statistics/R/simpleR/stat006.html
   #+end_src
 
 ** ggplot2
+
+See http://tutorials.iq.harvard.edu/R/Rgraphics/Rgraphics.html for a comparison
+with Base graphics.
 
 See post of Antoine Lizée in
 http://stackoverflow.com/questions/5234117/how-to-drop-columns-by-name-in-a-data-frame
