@@ -698,9 +698,9 @@ x %*% y                                 # true matrix multiplication
      #+end_src
 
 #+begin_note
-the reason for your syntax error is that d becomes a matrix when you use apply,
-and you can't use $ notation with matrices. You would need to use x["ratio"] or
-x[["ratio"]].
+The only (typical data) class that uses ~$~ as a accessor is *list* (from which
+*dataframes* inherit).  Hence, you can't use ~$~ notation with *matrices*.  You need
+to use ~x["ratio"]~ or ~x[["ratio"]]~.
 #+end_note
 
 ** Selecting data frame columns by position (subsetting)
@@ -1600,14 +1600,15 @@ split(x, ceiling(seq_along(x$V1) / size.max))
 
 #+begin_warning
 ~apply~ works on matrices, *not data frames*. It will *coerce* the first argument *to
-a matrix*, by converting it to the lowest common form -- which you can see with
-~apply(df, 2, class)~.
+a matrix*, by converting its columns to the lowest common form -- which you can
+see with ~apply(df, 2, class)~.
 
 If you are using a data frame which has character data as well as numeric data,
 /the whole matrix will be converted to character/ and numerical operations will
 probably not give what you expect.
 
-~sapply~ does not coerce the data frame to a matrix: see ~sapply(df, class)~.
+Unlike ~apply~, ~sapply~ does not coerce the data frame to a matrix: see ~sapply(df,
+class)~.
 #+end_warning
 
 ** Applying a function to groups of data

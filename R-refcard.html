@@ -1825,9 +1825,11 @@ x$a                                <span class=
           </dl>
 
           <div class="note">
-            <p>the reason for your syntax error is that d becomes a matrix when
-            you use apply, and you can’t use $ notation with matrices. You
-            would need to use x[“ratio”] or x<i>“ratio”</i>.</p>
+            <p>The only (typical data) class that uses <code>$</code> as a
+            accessor is <b>list</b> (from which <b>dataframes</b> inherit).
+            Hence, you can’t use <code>$</code> notation with <b>matrices</b>.
+            You need to use <code>x["ratio"]</code> or
+            <code>x[["ratio"]]</code>.</p>
           </div>
         </div>
       </div>
@@ -3028,8 +3030,8 @@ df$ranges <span class=
             <pre class="src src-R">
 unfactorize <span class="org-constant">&lt;-</span> c(<span class=
 "org-string">"V1"</span>, <span class="org-string">"V2"</span>)
-d[, unfactorize] <span class=
-"org-constant">&lt;-</span> lapply(unfactorize, <span class=
+d[, unfactorize] <span class="org-constant">&lt;-</span> lapply(unfactorize,
+                           <span class=
 "org-keyword">function</span>(x) as.numeric(as.character(d[, x])))
 </pre>
           </div>
@@ -3520,16 +3522,16 @@ apply(x, 1, quantile, probs=c(0.25, 0.75)) <span class=
           <div class="warning">
             <p><code>apply</code> works on matrices, <b>not data frames</b>. It
             will <b>coerce</b> the first argument <b>to a matrix</b>, by
-            converting it to the lowest common form – which you can see with
-            <code>apply(df, 2, class)</code>.</p>
+            converting its columns to the lowest common form – which you can
+            see with <code>apply(df, 2, class)</code>.</p>
 
             <p>If you are using a data frame which has character data as well
             as numeric data, <i>the whole matrix will be converted to
             character</i> and numerical operations will probably not give what
             you expect.</p>
 
-            <p><code>sapply</code> does not coerce the data frame to a matrix:
-            see <code>sapply(df, class)</code>.</p>
+            <p>Unlike <code>apply</code>, <code>sapply</code> does not coerce
+            the data frame to a matrix: see <code>sapply(df, class)</code>.</p>
           </div>
         </div>
       </div>
