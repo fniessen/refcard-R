@@ -306,7 +306,7 @@
               <li><a href="#sec-14-2">14.2. Creating new variables</a></li>
 
               <li><a href="#sec-14-3">14.3. Change the class of many columns
-              from factor to numeric</a></li>
+              from factor to (character or) numeric</a></li>
 
               <li><a href="#sec-14-4">14.4. Removing list elements using a
               condition</a></li>
@@ -2829,7 +2829,11 @@ yrange <span class="org-constant">&lt;-</span> range(c(x1, x2, x3))
 
             <dt><code>summary()</code></dt>
 
-            <dd>Produce a summary of the object.</dd>
+            <dd>
+              <p>Produce a summary of the object.</p>
+
+              <p>Display the <b>number of NA values</b> in each column.</p>
+            </dd>
           </dl>
         </div>
       </div>
@@ -3023,7 +3027,7 @@ df$ranges <span class=
 
       <div id="outline-container-sec-14-3" class="outline-3">
         <h3 id="sec-14-3"><span class="section-number-3">14.3</span> Change the
-        class of many columns from factor to numeric</h3>
+        class of many columns from factor to (character or) numeric</h3>
 
         <div class="outline-text-3" id="text-14-3">
           <div class="org-src-container">
@@ -3032,9 +3036,11 @@ unfactorize <span class="org-constant">&lt;-</span> c(<span class=
 "org-string">"V1"</span>, <span class="org-string">"V2"</span>)
 d[, unfactorize] <span class="org-constant">&lt;-</span> lapply(unfactorize,
                            <span class=
-"org-keyword">function</span>(x) as.numeric(as.character(d[, x])))
+"org-keyword">function</span>(x) as.character(d[, x]))
 </pre>
           </div>
+
+          <p>Add <code>as.numeric</code> to convert them to numeric.</p>
         </div>
       </div>
 
@@ -3083,26 +3089,25 @@ sum(y)                                  <span class=
           <p>The analogue of <code>is.na</code> for <b>data frames</b> is
           <code>complete.cases</code>.</p>
 
-          <p>Take all the rows of a data frame where <b>all the values are not
-          missing</b>:</p>
+          <p>List all the rows of a data frame with <b>missing values</b>:</p>
 
           <div class="org-src-container">
             <pre class="src src-R">
-nonmissing <span class="org-constant">&lt;-</span> complete.cases(x)
-x[nonmissing, ]
+nonmissing <span class="org-constant">&lt;-</span> complete.cases(df)
+df[!nonmissing, ]
 </pre>
           </div>
 
-          <p>Take the subset of all objects (<code>x</code> and <code>y</code>)
-          that has no missing values:</p>
+          <p>Take the subset of all objects (<code>dfx</code> and
+          <code>dfy</code>) that has no missing values:</p>
 
           <div class="org-src-container">
             <pre class="src src-R">
 bothnonmissing <span class=
-"org-constant">&lt;-</span> complete.cases(x, y)  <span class=
+"org-constant">&lt;-</span> complete.cases(dfx, dfy) <span class=
 "org-comment-delimiter"># </span><span class=
 "org-comment">logical vector</span>
-x[bothnonmissing]
+dfx[bothnonmissing, ]
 </pre>
           </div>
 
@@ -3111,14 +3116,14 @@ x[bothnonmissing]
 
           <div class="org-src-container">
             <pre class="src src-R">
-tokeep <span class="org-constant">&lt;-</span> !names(x) %<span class=
+tokeep <span class="org-constant">&lt;-</span> !names(df) %<span class=
 "org-keyword">in</span>% c(<span class=
 "org-string">"remove1"</span>, <span class="org-string">"remove2"</span>)
-x <span class=
-"org-constant">&lt;-</span> x[, tokeep]                        <span class=
+df <span class=
+"org-constant">&lt;-</span> df[, tokeep]                      <span class=
 "org-comment-delimiter"># </span><span class="org-comment">or...</span>
-x <span class="org-constant">&lt;-</span> x[, tokeep, drop=<span class=
-"org-type">FALSE</span>]            <span class=
+df <span class="org-constant">&lt;-</span> df[, tokeep, drop=<span class=
+"org-type">FALSE</span>]          <span class=
 "org-comment-delimiter"># </span><span class=
 "org-comment">you will need this option to avoid the</span>
                                         <span class=

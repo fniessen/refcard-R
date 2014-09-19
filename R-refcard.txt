@@ -1241,6 +1241,8 @@ Packages:
 - ~summary()~ ::
      Produce a summary of the object.
 
+     Display the *number of NA values* in each column.
+
 ** Tabulating factors
 
 - ~table(f)~ ::
@@ -1329,13 +1331,15 @@ gsub("_", "", names(df))
 df$ranges <- ranges                     # add a variable to the data frame
 #+end_src
 
-** Change the class of many columns from factor to numeric
+** Change the class of many columns from factor to (character or) numeric
 
 #+begin_src R
 unfactorize <- c("V1", "V2")
 d[, unfactorize] <- lapply(unfactorize,
-                           function(x) as.numeric(as.character(d[, x])))
+                           function(x) as.character(d[, x]))
 #+end_src
+
+Add ~as.numeric~ to convert them to numeric.
 
 ** Removing list elements using a condition
 
@@ -1361,27 +1365,27 @@ sum(y)                                  # = sum(x, na.rm=TRUE)
 
 The analogue of ~is.na~ for *data frames* is ~complete.cases~.
 
-Take all the rows of a data frame where *all the values are not missing*:
+List all the rows of a data frame with *missing values*:
 
 #+begin_src R
-nonmissing <- complete.cases(x)
-x[nonmissing, ]
+nonmissing <- complete.cases(df)
+df[!nonmissing, ]
 #+end_src
 
-Take the subset of all objects (~x~ and ~y~) that has no missing values:
+Take the subset of all objects (~dfx~ and ~dfy~) that has no missing values:
 
 #+begin_src R
-bothnonmissing <- complete.cases(x, y)  # logical vector
-x[bothnonmissing]
+bothnonmissing <- complete.cases(dfx, dfy) # logical vector
+dfx[bothnonmissing, ]
 #+end_src
 
 To *drop columns by name* in a data frame, you can use direct indexing (with
 booleans vectors) and then, simply reassign data:
 
 #+begin_src R
-tokeep <- !names(x) %in% c("remove1", "remove2")
-x <- x[, tokeep]                        # or...
-x <- x[, tokeep, drop=FALSE]            # you will need this option to avoid the
+tokeep <- !names(df) %in% c("remove1", "remove2")
+df <- df[, tokeep]                      # or...
+df <- df[, tokeep, drop=FALSE]          # you will need this option to avoid the
                                         # conversion to an atomic vector if
                                         # there is only one column left
 #+end_src
