@@ -1397,6 +1397,12 @@ y <- x[!missing]
 sum(y)                                  # = sum(x, na.rm=TRUE)
 #+end_src
 
+#+begin_note
+The function ~sum~ (like many other math functions in R) takes an argument
+~na.rm~. If you set ~na.rm=TRUE~, R removes all NA values before doing the
+calculation.
+#+end_note
+
 The analogue of ~is.na~ for *data frames* is ~complete.cases~.
 
 ** Removing rows that contain NAs from a data frame
