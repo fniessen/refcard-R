@@ -1379,17 +1379,6 @@ bothnonmissing <- complete.cases(dfx, dfy) # logical vector
 dfx[bothnonmissing, ]
 #+end_src
 
-To *drop columns by name* in a data frame, you can use direct indexing (with
-booleans vectors) and then, simply reassign data:
-
-#+begin_src R
-tokeep <- !names(df) %in% c("remove1", "remove2")
-df <- df[, tokeep]                      # or...
-df <- df[, tokeep, drop=FALSE]          # you will need this option to avoid the
-                                        # conversion to an atomic vector if
-                                        # there is only one column left
-#+end_src
-
 ** Selecting rows and columns more easily
 
 Subset on V1 and/or V2 > 0.
@@ -1402,15 +1391,20 @@ df[df$V1 > 0 | df$V2 > 0, c("V1", "V2")]
 Using the ~subset~ function.
 
 #+begin_src R
-subset(df, select=c("V1", "V2"), subset=(V1 > 0 & V2 > 0))
-subset(df, select=c("V1", "V2"), subset=(V1 > 0 | V2 > 0))
+subset(df, select=c(V1, V2), subset=(V1 > 0 & V2 > 0))
+subset(df, select=c(V1, V2), subset=(V1 > 0 | V2 > 0))
 #+end_src
 
-Note that you do /not/ quote the column names (in the ~subset~ argument).
+Note that you *do /not/ quote the column names* in the ~subset~ argument (and you /can/
+omit them in the ~select~ argument /if/ the vector is not negated).
 
 Use the ~%in%~ operator to compare a variable to a list of desired values.
 
 ** Removing rows that contain NAs from a data frame
+
+#+begin_src R
+df <- na.omit(df)
+#+end_src
 
 ** Removing columns that contain NAs from a data frame
 
@@ -1418,6 +1412,23 @@ Get rid of any column that has one or more NAs.
 
 #+begin_src R
 df <- df[, colSums(is.na(df)) == 0]
+#+end_src
+
+** Removing columns by name
+
+To *drop columns by name* in a data frame, you can use direct indexing (with
+booleans vectors) and then, simply reassign data:
+
+#+begin_src R
+tokeep <- !names(df) %in% c("remove1", "remove2")
+df <- df[, tokeep]                      # or...
+df <- df[, tokeep, drop=FALSE]          # you will need this option to avoid the
+                                        # conversion to an atomic vector if
+                                        # there is only one column left
+
+df <- subset(df, select=-c(remove1, remove2))
+                                        # use the `-' operator directly on a
+                                        # vector of column names
 #+end_src
 
 ** Merging data frames by common column
