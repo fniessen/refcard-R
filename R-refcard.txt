@@ -15,6 +15,10 @@
 Welcome to R reference card. It contains the reference documentation that
 describes how to perform *data analysis* using R.
 
+* Documentation
+
+- [[http://www.statmethods.net/][Quick-R]]
+
 * Coding style
 
 - [[http://cran.r-project.org/doc/manuals/R-ints.html#R-coding-standards][R Internals manual, section 8. "R Coding Standards"]]
@@ -1355,30 +1359,6 @@ x[u]                                    # get all elements which are greater
                                         # than "a"
 #+end_src
 
-Remove missing values (~NA~) from a *list*:
-
-#+begin_src R
-missing <- is.na(x)                     # logical vector
-y <- x[!missing]
-sum(y)                                  # = sum(x, na.rm=TRUE)
-#+end_src
-
-The analogue of ~is.na~ for *data frames* is ~complete.cases~.
-
-List all the rows of a data frame with *missing values*:
-
-#+begin_src R
-nonmissing <- complete.cases(df)
-df[!nonmissing, ]
-#+end_src
-
-Take the subset of all objects (~dfx~ and ~dfy~) that has no missing values:
-
-#+begin_src R
-bothnonmissing <- complete.cases(dfx, dfy) # logical vector
-dfx[bothnonmissing, ]
-#+end_src
-
 ** Selecting rows and columns more easily
 
 Subset on V1 and/or V2 > 0.
@@ -1395,15 +1375,50 @@ subset(df, select=c(V1, V2), subset=(V1 > 0 & V2 > 0))
 subset(df, select=c(V1, V2), subset=(V1 > 0 | V2 > 0))
 #+end_src
 
-Note that you *do /not/ quote the column names* in the ~subset~ argument (and you /can/
-omit them in the ~select~ argument /if/ the vector is not negated).
+Note that you *do /not/ quote the column names* in the ~subset~ argument (and you /must/
+omit them in the ~select~ argument /if/ the vector is negated).
+
+#+begin_warning
+This is a convenience function intended *for interactive use*.  For programming,
+it is better to use the standard subsetting functions like ~[~.  In particular,
+the non-standard evaluation of argument ~subset~ can have unanticipated
+consequences.
+#+end_warning
 
 Use the ~%in%~ operator to compare a variable to a list of desired values.
 
+** Removing NA from a list
+
+Remove missing values (~NA~) from a *list*:
+
+#+begin_src R
+missing <- is.na(x)                     # logical vector
+y <- x[!missing]
+sum(y)                                  # = sum(x, na.rm=TRUE)
+#+end_src
+
+The analogue of ~is.na~ for *data frames* is ~complete.cases~.
+
 ** Removing rows that contain NAs from a data frame
+
+Remove rows that contain any NA values:
 
 #+begin_src R
 df <- na.omit(df)
+#+end_src
+
+List all the rows of a data frame with *missing values*:
+
+#+begin_src R
+nonmissing <- complete.cases(df)
+df[!nonmissing, ]
+#+end_src
+
+Take the subset of all objects (~dfx~ and ~dfy~) that has no missing values:
+
+#+begin_src R
+bothnonmissing <- complete.cases(dfx, dfy) # logical vector
+dfx[bothnonmissing, ]
 #+end_src
 
 ** Removing columns that contain NAs from a data frame
