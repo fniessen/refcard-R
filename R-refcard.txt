@@ -15,8 +15,35 @@
 Welcome to R reference card. It contains the reference documentation that
 describes how to perform *data analysis* using R.
 
+* Package                                                             :noexport:
+
+#+name: current-year
+#+begin_src emacs-lisp :eval yes :results silent :tangle no
+(format-time-string "%Y")
+#+end_src
+
+#+begin_src R :noweb yes :tangle Rlib.R
+#  Rlib.R -- Collection of utility and convenience functions
+#
+#  Copyright (C) 2014-<<current-year()>> Fabrice Niessen
+#
+#  This program is free software; you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation; either version 2 of the License, or
+#  (at your option) any later version.
+#
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#
+#  A copy of the GNU General Public License is available at
+#  http://www.r-project.org/Licenses/
+#+end_src
+
 * Documentation
 
+- [[http://www.rdocumentation.org/][Search the documentation of R packages and R functions]]
 - [[http://www.statmethods.net/][Quick-R]]
 
 * Coding style
@@ -1275,6 +1302,13 @@ Packages:
      table(f, useNA="ifany")
      #+end_src
 
+     Draw a useful graphical summary (to describe proportions):
+
+     #+begin_src R
+     pie(table(df$x))
+     pie(sort(table(df$x)))             # bigger and bigger
+     #+end_src
+
 - ~table(f1, f2)~ ::
      Produce a /contingency table/ (cross-tabulation).
 
@@ -1335,15 +1369,24 @@ gsub("_", "", names(df))
 df$ranges <- ranges                     # add a variable to the data frame
 #+end_src
 
-** Change the class of many columns from factor to (character or) numeric
+** Change the class of many columns from factor to character (or numeric)
 
 #+begin_src R
-unfactorize <- c("V1", "V2")
-d[, unfactorize] <- lapply(unfactorize,
+unfactor.cols <- c("V1", "V2")
+d[, unfactor.cols] <- lapply(unfactor.cols,
                            function(x) as.character(d[, x]))
 #+end_src
 
-Add ~as.numeric~ to convert them to numeric.
+Add ~as.numeric~ to convert them to numeric (may induce ~NA~).
+
+#+begin_src R :tangle Rlib.R
+## Convert all factors from a data frame to character
+unfactor <- function (df) {
+  cols <- sapply(df, is.factor)         # find the factors
+  df[cols] <- lapply(df[cols], as.character) # convert to character
+  df
+}
+#+end_src
 
 ** Removing list elements using a condition
 
