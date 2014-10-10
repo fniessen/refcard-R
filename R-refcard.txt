@@ -170,9 +170,9 @@ same back.
 
 Other nice tools ( probably not available in other editors):
 
-- ~C-c C-e i~	ess-install-library
-- ~C-c C-e l~	ess-load-library
-- ~C-c C-e C-w~	ess-execute-screen-options
+- ~C-c C-e i~ :: ~ess-install-library~
+- ~C-c C-e l~ :: ~ess-load-library~
+- ~C-c C-e C-w~ :: ~ess-execute-screen-options~
 
 *** Loading source files into the ESS process
 
@@ -327,7 +327,7 @@ Tracebug highlighting of errors.
 **** Navigation to errors
 
 #+begin_src R
-source(file = "missing-file.R")
+source(file="missing-file.R")
 list(a=22, b=343)
 ^
 protocol <- NULL
@@ -749,7 +749,7 @@ By default,
 
 - a single column or a single row is retrieved as a vector, not as a matrix.
 
-This can be turned off by setting ~drop = FALSE~ (don't drop the dimension).
+This can be turned off by setting ~drop=FALSE~ (don't drop the dimension).
 
 ** Flatten a list into a vector
 
@@ -1363,6 +1363,12 @@ sapply(splitNames, firstElement)        # remove everything after the trailing
 gsub("_", "", names(df))
 #+end_src
 
+Rename one named column:
+
+#+begin_src R
+colnames(df)[colnames(df) == "old"] <- "new"
+#+end_src
+
 ** Creating new variables
 
 #+begin_src R
@@ -1619,7 +1625,7 @@ sapply(s, function(x) colMeans(x[, c("Ozone", "Solar.R", "Wind")], na.rm=TRUE))
      Take a vector, and *split* it into subpieces (the number of groups identified
      by the levels of a *factor* variable). Always return a *list* (of lists?) back.
 
-     + ~drop = TRUE~ ::
+     + ~drop=TRUE~ ::
           Don't keep the empty levels of the factor.
 
 Auxiliary function, used in conjunction with functions like ~lapply~ or ~sapply~ to
@@ -1704,7 +1710,7 @@ class)~.
 
      Function may be anonymous.
 
-     ~Simplify = FALSE~ to get back a list (instead of an array).
+     ~Simplify=FALSE~ to get back a list (instead of an array).
 
      ~tapply~ is one of the most useful commands you'll ever need. For example, to
      calculate statistics of ~x~ separately for each group identified in the
@@ -1771,6 +1777,9 @@ class)~.
      #+results:
      : This is one sentence.
 
+- ~paste0(...)~ ::
+     Equivalent to ~paste(..., sep="")~.
+
 ** Regular expressions
 
 *** Metacharacters
@@ -1833,7 +1842,7 @@ These functions can take vector arguments.
      setdiff(j, i)                      # different result
      #+end_src
 
-     Setting ~value = TRUE~ returns the *actual elements* of the character vector
+     Setting ~value=TRUE~ returns the *actual elements* of the character vector
      that match.
 
 - ~grepl~ ::
@@ -1942,7 +1951,7 @@ conducting a simulation!*
 #+begin_src R
 sample(1:10, 4)                         # select 4 different numbers at random
 sample(1:10)                            # permutation
-sample(1:10, replace = TRUE)            # sample with replacement (I can get repeats)
+sample(1:10, replace=TRUE)              # sample with replacement (I can get repeats)
 #+end_src
 
 Sample can draw according to a set of probabilities.
@@ -2029,7 +2038,7 @@ You cannot use functions from the base plotting system in a Lattice plot.
      #+results:
      [[file:Rplots/base-scatterplot.png]]
 
-- ~plot(x, y, type = "n")~ ::
+- ~plot(x, y, type="n")~ ::
      Set up the plot window, but don't actually plot the data in there.
 
      Note that you have ~POSIXct~ dates in your data frame... XXX
@@ -2395,7 +2404,7 @@ See http://www.math.csi.cuny.edu/Statistics/R/simpleR/stat006.html
   workspace)
 
   #+begin_src R
-  xyplot(y ~ x, data = environmental)
+  xyplot(y ~ x, data=environmental)
   #+end_src
 
 - Lattice functions have a separate panel created for each level of the
@@ -2412,9 +2421,9 @@ See http://www.math.csi.cuny.edu/Statistics/R/simpleR/stat006.html
 
   #+begin_src R
   xyplot(y ~ x | f,
-         panel = function(x, y, ...) {  # x and y = data that appear in a specific panel (it's not all the data)
+         panel=function(x, y, ...) {    # x and y = data that appear in a specific panel (it's not all the data)
                  panel.xyplot(x, y, ...) # plot using all the default options
-                 panel.abline(h = median(y), lty = 2) # plot the median of the y values in each panel
+                 panel.abline(h=median(y), lty=2) # plot the median of the y values in each panel
          })
   #+end_src
 
@@ -2422,26 +2431,26 @@ See http://www.math.csi.cuny.edu/Statistics/R/simpleR/stat006.html
 
   #+begin_src R
   xyplot(y ~ x | f,
-         panel = function(x, y, ...) {
+         panel=function(x, y, ...) {
                  panel.xyplot(x, y, ...)
-                 panel.lmline(x, y, col = 2)
+                 panel.lmline(x, y, col=2)
          })
   #+end_src
 
   #+begin_src R
-  xyplot(y ~ x | f, pch = 20,
-         panel = function(x, y, ...) {
+  xyplot(y ~ x | f, pch=20,
+         panel=function(x, y, ...) {
                  panel.xyplot(x, y, ...)
                  fit <- lm(y ~ x)
-                 panel.abline(fit, lwd = 2) # add a regression line to the plot
+                 panel.abline(fit, lwd=2) # add a regression line to the plot
          })
   #+end_src
 
 - Options
   + Don't worry about spacing: everything gets automatically adjusted!
   + main :: title
-  + layout = c(1,4) :: 4 panels on top of each other
-  + as.table = TRUE :: change the order in which the panels are drawn, from
+  + layout=c(1,4) :: 4 panels on top of each other
+  + as.table=TRUE :: change the order in which the panels are drawn, from
        top to bottom (default: from bottom to top)
   + xlab :: label on the x-axis
   + ylab :: label on the y-axis
@@ -2466,13 +2475,13 @@ See http://www.math.csi.cuny.edu/Statistics/R/simpleR/stat006.html
 - Histogram of =x=
 
   #+begin_src R
-  histogram(~ x, data = df)
+  histogram(~ x, data=df)
   #+end_src
 
 - Histogram of =x=, as =f= varies (for each range of =f.cut=)
 
   #+begin_src R
-  histogram(~ x | f.cut, data = df)
+  histogram(~ x | f.cut, data=df)
   #+end_src
 
 ** ggplot2
@@ -2594,7 +2603,7 @@ rpart
        error handler.
 
        #+begin_src R
-       options(error = recover)
+       options(error=recover)
        #+end_src
 
 - Blunt techniques:
@@ -2604,22 +2613,21 @@ rpart
 * Assert
 
 #+begin_src R :tangle Rlib.R
-warn_if_not_empty <- function (..., env = parent.frame())
+## TODO Add a message to use; if not provided, generic one...
+warn_if_not_empty <- function (..., env=parent.frame())
 {
   check <- eval(substitute(alist(...)))
-  cat(paste(check, "empty?  "))
+  cat(paste(check, "empty?\n"))
 
   expr <- eval(parse(text=check))
 
   if (nrow(expr) == 0) {
-    cat("OK!\n\n")
+    cat("OK!\n")
     return(TRUE)
   } else {
-    cat(nrow(expr), "contradictions...\n")
     print(expr)
-    cat("\n")
+    stop(nrow(expr), " contradictions.\n")
   }
-
 }
 
 ## warn_if_not_empty(pfisortie[is.na(pfisortie$frmArretDate), ])

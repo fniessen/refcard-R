@@ -5396,24 +5396,25 @@ options(error = recover)
       <div class="outline-text-2" id="text-21">
         <div class="org-src-container">
           <pre class="src src-R">
+<span class="org-comment-delimiter">## </span><span class=
+"org-comment">TODO Add a message to use; if not provided, generic one...</span>
 <span class="org-function-name">warn_if_not_empty</span> <span class=
 "org-constant">&lt;-</span> <span class=
 "org-keyword">function</span> (..., env = parent.frame())
 {
   check <span class="org-constant">&lt;-</span> eval(substitute(alist(...)))
-  cat(paste(check, <span class="org-string">"empty?  "</span>))
+  cat(paste(check, <span class="org-string">"empty?\n"</span>))
 
   expr <span class="org-constant">&lt;-</span> eval(parse(text=check))
 
   <span class="org-keyword">if</span> (nrow(expr) == 0) {
-    cat(<span class="org-string">"OK!\n\n"</span>)
+    cat(<span class="org-string">"OK!\n"</span>)
     <span class="org-keyword">return</span>(<span class="org-type">TRUE</span>)
   } <span class="org-keyword">else</span> {
-    cat(nrow(expr), <span class="org-string">"contradictions...\n"</span>)
     print(expr)
-    cat(<span class="org-string">"\n"</span>)
+    <span class="org-keyword">stop</span>(nrow(expr), <span class=
+"org-string">"contradictions.\n"</span>)
   }
-
 }
 
 <span class="org-comment-delimiter">## </span><span class=

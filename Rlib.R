@@ -22,22 +22,21 @@ unfactor <- function (df) {
   df
 }
 
+## TODO Add a message to use; if not provided, generic one...
 warn_if_not_empty <- function (..., env = parent.frame())
 {
   check <- eval(substitute(alist(...)))
-  cat(paste(check, "empty?  "))
+  cat(paste(check, "empty?\n"))
 
   expr <- eval(parse(text=check))
 
   if (nrow(expr) == 0) {
-    cat("OK!\n\n")
+    cat("OK!\n")
     return(TRUE)
   } else {
-    cat(nrow(expr), "contradictions...\n")
     print(expr)
-    cat("\n")
+    stop(nrow(expr), "contradictions.\n")
   }
-
 }
 
 ## warn_if_not_empty(pfisortie[is.na(pfisortie$frmArretDate), ])
