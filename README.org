@@ -43,8 +43,10 @@ describes how to perform *data analysis* using R.
 
 * Documentation
 
+- [[http://cran.r-project.org/doc/contrib/Short-refcard.pdf][R Reference Card]]
 - [[http://www.rdocumentation.org/][Search the documentation of R packages and R functions]]
-- [[http://www.statmethods.net/][Quick-R]]
+- [[http://www.statmethods.net/][Quick-R]] -- An excellent quick reference
+- Cookbook for R: http://www.cookbook-r.com/
 
 * Coding style
 
@@ -472,15 +474,6 @@ Other ways:
 - ~%in%~ ::
      Test membership.
 
-** Defining a function
-
-#+begin_src R
-MyFunction <- function(x) {
-  y <- norm(100)
-  mean(y)
-}
-#+end_src
-
 * 3. Navigating the software
 
 - ~library(package)~ ::
@@ -866,13 +859,19 @@ it's allowed to run.
 - Functions can be nested, so that you can define a function inside of another
   function (implications: see *lexical scoping*)
 
-- The return value of a function is the last expression in the function body to
-  be evaluated
+- You can omit ~return~ if you want to return the *last value* produced in function.
 
 - 3 types of...
   + formal argument
   + local variable
   + free variable
+
+- R *pass arguments by copy*, not by reference.
+
+  #+begin_note
+  To add a column in the data frame within a function, return new values either
+  by ~return(data_frame_I_work_with)~ or ~return(column_I_made)~.
+  #+end_note
 
 ** Arguments
 
@@ -902,7 +901,7 @@ it's allowed to run.
   3. Check for a positional match
 
 - When defining a function, you can also set an argument value to ~NULL~ (there
-  is nothing there)
+  is *no value* there)
 
 - Arguments to functions are evaluated /lazily/ (only when needed to be evaluated
 
@@ -994,7 +993,7 @@ it's allowed to run.
   + ~get(object, environment)~ ::
        Get the value of an object inside an environment
 
-* 4. Input and output
+* 4. Data Input and output
 
 Types of files:
 - Tab-delimited
@@ -1158,6 +1157,8 @@ You can also read from Excel spreadsheets using RODBC and ~sqlQuery~.
 library(RODBC)
 
 ## channel <- odbcConnect("DSN", uid="username", pwd="password")
+## channel <- odbcDriverConnect("DSN=DSN;UID=username;PWD=password")
+
 ## channel <- odbcDriverConnect("driver={SQL Server};server=hostname;database=dbname;trusted_connection=true")
 channel <- odbcDriverConnect("driver={SQL Server};server=hostname;database=dbname;uid=username;pwd=password")
 
@@ -1276,16 +1277,28 @@ Packages:
 
 ** Tabulating factors
 
-- ~table(f)~ ::
+- <<table>> ~table(f)~ ::
      *Count* the number of observations in each /level/ (only works on /factors/).
-     Give a *frequency* of how many levels there are.
+     Give a *frequency* of how many levels there are (sorted by level).
 
      #+begin_src R
      unique(df$f)
      length(unique(df$f))               # how many unique values
 
      table(df$f, useNA="ifany")         # number of times each unique value
-                                        #  appears (show missing values as well)
+                                        # appears (show missing values as well)
+     #+end_src
+
+     Sort by decreasing count:
+
+     #+begin_src R
+     sort(table(df$f, useNA="ifany"), decreasing=TRUE)
+     #+end_src
+
+     Convert it into a data frame if you're more comfortable working with that:
+
+     #+begin_src R
+     as.data.frame(table(df$f, useNA="ifany"))
      #+end_src
 
      Relative frequencies:
@@ -1499,6 +1512,14 @@ df <- df[, tokeep, drop=FALSE]          # you will need this option to avoid the
 df <- subset(df, select=-c(remove1, remove2))
                                         # use the `-' operator directly on a
                                         # vector of column names
+#+end_src
+
+#+begin_src R
+## remove columns
+df$remove3 <- NULL
+
+## rename columns
+colnames(df)[colnames(df) == "old"] <- "new"
 #+end_src
 
 ** Merging data frames by common column
@@ -1722,6 +1743,8 @@ class)~.
      tapply(x, f, length)
      #+end_src
 
+     For counting the number of elements, see [[table][table]].
+
 - ~interaction(f1, f2)~ ::
      Combines all the levels of the first factor with all the levels of the
      second factor.
@@ -1755,7 +1778,7 @@ class)~.
 
 ** Checking on and removing inconsistent values
 
-* 7. Strings and dates
+* 7. Strings (and dates)
 
 ** Getting the length of a string
 
@@ -1779,6 +1802,8 @@ class)~.
 
 - ~paste0(...)~ ::
      Equivalent to ~paste(..., sep="")~.
+
+- ~sprintf()~ ::
 
 ** Regular expressions
 
@@ -1991,6 +2016,8 @@ Behavior:
   device*), so it will look like Lattice functions have a "side effect"
 
 You cannot use functions from the base plotting system in a Lattice plot.
+
+Excellent resource for graphics: http://www.cookbook-r.com/Graphs/Scatterplot/.
 
 ** Base graphics
 
