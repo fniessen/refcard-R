@@ -1020,6 +1020,22 @@ Types of files:
      close(con)
      #+end_src
 
+** Make your data available
+
+Data can be imported directly into R with the ~textConnection~ function:
+
+#+BEGIN_SRC R :results value replace
+con <- textConnection("
+index	email
+A	abc@example.com
+B	def@example.com
+C	def@example.com
+D	ghi@example.com
+E	abc@example.com
+F	def@example.com")
+df <- read.table(con, header = TRUE)
+#+END_SRC
+
 ** Reading tabular data files
 
 - ~read.table(file)~ ::
@@ -1109,6 +1125,14 @@ df <- read.table(pipe("cut -f1,5,28 myFile.txt"))
      Read Excel files.
 
 You can also read from Excel spreadsheets using RODBC and ~sqlQuery~.
+
+** Reading from Google spreadsheets
+
+#+begin_src R
+require(RCurl)
+myCsv <- getURL("https://docs.google.com/spreadsheet/pub?...&output=csv")
+read.csv(textConnection(myCsv))
+#+end_src
 
 ** Reading files from the Internet
 

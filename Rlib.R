@@ -23,7 +23,7 @@ unfactor <- function (df) {
 }
 
 ## TODO Add a message to use; if not provided, generic one...
-warn_if_not_empty <- function (..., env = parent.frame())
+warn_if_not_empty <- function (..., env=parent.frame())
 {
   check <- eval(substitute(alist(...)))
   cat(paste(check, "empty?\n"))
@@ -35,7 +35,7 @@ warn_if_not_empty <- function (..., env = parent.frame())
     return(TRUE)
   } else {
     print(expr)
-    stop(nrow(expr), "contradictions.\n")
+    stop(nrow(expr), " contradictions.\n")
   }
 }
 
