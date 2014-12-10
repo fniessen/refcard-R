@@ -57,7 +57,7 @@ describes how to perform *data analysis* using R.
 
 - [[http://google-styleguide.googlecode.com/svn/trunk/Rguide.xml][Google R Style Guide]]
 
-  ~variable.name~ (preferred, ~variableName~ accepted) \\
+  ~variable.name~ preferred (~variableName~ accepted) \\
   ~FunctionName~ \\
   ~kConstantName~
 
@@ -623,6 +623,8 @@ Unordered or ordered.
 - ~factor(character vector)~ ::
      Create a factor variable (with levels by alphabetical order).
 
+     *Drop the levels that do not occur.*
+
 - ~levels(x)~ ::
      Return the value of the levels.
 
@@ -649,6 +651,15 @@ same length.
 
 - ~names()~ ::
      Tell the names of each *column* included in the data frame.
+
+*** Tables
+
+By using the function [[id:5d29be63-e58c-4ef3-b28e-2818b65fd46f][~table~]], you create a ~table~ object.
+
+#+begin_note
+If you sort it, it creates an ~array~ object (an object of a different class). Add
+~as.table~ to get back a table object.
+#+end_note
 
 *** Vectorized operations (recycling rule)
 
@@ -1019,21 +1030,50 @@ Types of files:
      close(con)
      #+end_src
 
-*** Make your data available
+*** Make your data available (for StackOverflow)
 
-Data can be imported directly into R with the ~textConnection~ function:
+Data can now be imported directly into R without the ~textConnection~ function,
+simply by doing this:
 
-#+BEGIN_SRC R :results value replace
-con <- textConnection("
-index	email
-A	abc@example.com
-B	def@example.com
-C	def@example.com
-D	ghi@example.com
-E	abc@example.com
-F	def@example.com")
-df <- read.table(con, header = TRUE)
-#+END_SRC
+#+begin_src R :results value replace :eval yes :rownames yes :colnames yes
+df.str <- "State	Abbreviation
+Alabama	AL
+Alaska	AK
+Arizona	AZ
+Arkansas	AR
+California	CA"
+df <- read.table(text=df.str, header = TRUE)
+#+end_src
+
+#+results:
+|   | State      | Abbreviation |
+|---+------------+--------------|
+| 1 | Alabama    | AL           |
+| 2 | Alaska     | AK           |
+| 3 | Arizona    | AZ           |
+| 4 | Arkansas   | AR           |
+| 5 | California | CA           |
+
+or:
+
+#+begin_src R :results value replace :eval yes :rownames yes :colnames yes
+df.str <- "State,Abbreviation
+Alabama,AL
+Alaska,AK
+Arizona,AZ
+Arkansas,AR
+California,CA"
+df <- read.csv(text=df.str, header = TRUE)
+#+end_src
+
+#+results:
+|   | State      | Abbreviation |
+|---+------------+--------------|
+| 1 | Alabama    | AL           |
+| 2 | Alaska     | AK           |
+| 3 | Arizona    | AZ           |
+| 4 | Arkansas   | AR           |
+| 5 | California | CA           |
 
 *** Reading tabular data files
 
@@ -1299,10 +1339,17 @@ Packages:
      Display the *number of NA values* in each column.
 
 *** Tabulating factors
+    :PROPERTIES:
+    :ID:       5d29be63-e58c-4ef3-b28e-2818b65fd46f
+    :END:
 
 - <<table>> ~table(f)~ ::
      *Count* the number of observations in each /level/ (only works on /factors/).
      Give a *frequency* of how many levels there are (sorted by level).
+
+     #+begin_note
+     This creates a ~table~ object.
+     #+end_note
 
      #+begin_src R
      unique(df$f)
@@ -1318,7 +1365,7 @@ Packages:
      sort(table(df$f, useNA="ifany"), decreasing=TRUE)
      #+end_src
 
-     Convert it into a data frame if you're more comfortable working with that:
+     *Convert it* into a data frame if you're more comfortable working with that:
 
      #+begin_src R
      as.data.frame(table(df$f, useNA="ifany"))
@@ -1767,6 +1814,8 @@ class)~.
      #+end_src
 
      For counting the number of elements, see [[table][table]].
+
+     See also ~by~ to apply a function to a data frame split by factors.
 
 - ~interaction(f1, f2)~ ::
      Combines all the levels of the first factor with all the levels of the
