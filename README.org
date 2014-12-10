@@ -2403,8 +2403,11 @@ See http://www.math.csi.cuny.edu/Statistics/R/simpleR/stat006.html
           Plotting color.
 
      + ~las~ ::
-          Orientation of the axis labels on the plot (~las=2~ will set the tick
-          *labels* to be *perpendicular* to the axis).
+          *Orientation* of the axis *labels* on the plot.
+          - ~las=0~: *parallel* to the axis [default],
+          - ~las=1~: *horizontal*,
+          - ~las=2~: *perpendicular* to the axis,
+          - ~las=3~: *vertical*.
 
      + ~bg~ ::
           Background color (default: ~transparent~).
