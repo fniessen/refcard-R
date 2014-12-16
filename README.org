@@ -754,6 +754,20 @@ By default,
 
 This can be turned off by setting ~drop=FALSE~ (don't drop the dimension).
 
+*** ~which~
+
+- ~which~ ::
+     Return (a vector of) the *indices* of the elements which *are ~TRUE~* --
+     instead of a (longer) vector of Booleans (~TRUE~ / ~FALSE~).
+
+     This is computationally efficient.
+
+#+begin_note
+When you use ~[~ to extract from a dataframe, any calculation in the row position
+that results in ~NA~ will get a junk row returned. Using ~which~ *removes the
+~NA~'s*. You can use ~subset~ or ~%in%~, which do not create the same problem.
+#+end_note
+
 *** Flatten a list into a vector
 
 - ~unlist~ ::
