@@ -1056,7 +1056,7 @@ Alaska	AK
 Arizona	AZ
 Arkansas	AR
 California	CA"
-df <- read.table(text=df.str, header = TRUE)
+df <- read.table(text=df.str, header=TRUE)
 #+end_src
 
 #+results:
@@ -1099,11 +1099,12 @@ df <- read.csv(text=df.str, header = TRUE)
      + ~header~
      + ~sep~ (defaults to the *space*)
      + ~quote~
+     + ~as.is~ (controls the conversion of character columns to factors)
      + ~colClasses~ (class of each column, also used to *skip columns*)
      + ~nrows~
      + ~skip~ (number of lines to skip from the beginning)
      + ~comment.char~
-     + ~stringsAsFactors~ (defaults to ~TRUE~)
+     + ~stringsAsFactors~ (defaults to ~TRUE~) -- see ~as.is~ and ~colClasses~
      + ~text~ to *feed your data text representation* directly to ~read.table~
 
   #+begin_src R

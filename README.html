@@ -2541,8 +2541,8 @@ df.str <span class="org-constant">&lt;-</span> <span class=
 df <span class="org-constant">&lt;-</span> <span class=
 "org-ess-function-call">read.table</span><span class=
 "org-builtin">(</span>text<span class=
-"org-constant">=</span>df.str, header <span class=
-"org-constant">=</span> <span class="org-type">TRUE</span><span class=
+"org-constant">=</span>df.str, header<span class=
+"org-constant">=</span><span class="org-type">TRUE</span><span class=
 "org-builtin">)</span>
 </pre>
             </div>
@@ -2712,6 +2712,9 @@ df <span class="org-constant">&lt;-</span> <span class=
 
                   <li><code>quote</code></li>
 
+                  <li><code>as.is</code> (controls the conversion of character
+                  columns to factors)</li>
+
                   <li><code>colClasses</code> (class of each column, also used
                   to <b>skip columns</b>)</li>
 
@@ -2723,7 +2726,8 @@ df <span class="org-constant">&lt;-</span> <span class=
                   <li><code>comment.char</code></li>
 
                   <li><code>stringsAsFactors</code> (defaults to
-                  <code>TRUE</code>)</li>
+                  <code>TRUE</code>) – see <code>as.is</code> and
+                  <code>colClasses</code></li>
 
                   <li><code>text</code> to <b>feed your data text
                   representation</b> directly to <code>read.table</code></li>
