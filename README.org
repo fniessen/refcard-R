@@ -420,9 +420,23 @@ Other ways:
 - ~print(object)~ ::
      Explicitly print out an object.
 
+     #+begin_src R :results output
+     print("This is one sentence.\n")
+     #+end_src
+
+     #+results:
+     : [1] "This is one sentence.\n"
+
 - ~cat()~ ::
-     Concatenate together a set of strings and prints out the concatenated
-     string (to a file or to the console).
+     Concatenate together a set of strings and *print out* the concatenated string
+     (to a file or to the console).
+
+     #+begin_src R :results output
+     cat("This", "is", "one", "sentence.\n")
+     #+end_src
+
+     #+results:
+     : This is one sentence.
 
 *** Setting variables
 
@@ -1057,7 +1071,8 @@ Alaska	AK
 Arizona	AZ
 Arkansas	AR
 California	CA"
-  read.table(text=str, header=TRUE, row.names=NULL)})
+  read.table(text=str, header=TRUE, row.names=NULL)
+})
 #+end_src
 
 #+results:
@@ -1079,7 +1094,8 @@ Alaska,AK
 Arizona,AZ
 Arkansas,AR
 California,CA"
-  read.csv(text=str, header = TRUE, row.names=NULL)})
+  read.csv(text=str, header = TRUE, row.names=NULL)
+})
 #+end_src
 
 #+results:
@@ -1882,12 +1898,21 @@ class)~.
 
      Convert a vector to a string:
 
-     #+begin_src R
-     paste(c("This", "is", "one", "sentence."), collapse=" ")
+     #+begin_src R :results output :eval yes
+     cat(paste(c("This", "is", "one", "sentence.\n"), collapse=" "))
+     print(paste(c("This", "is", "one", "sentence.\n"), collapse=" "))
+     cat(paste(c("This", "is", "one", "paragraph."), collapse="\n"))
      #+end_src
 
      #+results:
-     : This is one sentence.
+     #+begin_example
+     This is one sentence.
+     [1] "This is one sentence.\n"
+     This
+     is
+     one
+     paragraph.
+#+end_example
 
 - ~paste0(...)~ ::
      Equivalent to ~paste(..., sep="")~.
