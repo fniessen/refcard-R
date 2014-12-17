@@ -1050,13 +1050,14 @@ Data can now be imported directly into R without the ~textConnection~ function,
 simply by doing this:
 
 #+begin_src R :results value replace :eval yes :rownames yes :colnames yes
-df.str <- "State	Abbreviation
+df <- local({
+  str <- "State	Abbreviation
 Alabama	AL
 Alaska	AK
 Arizona	AZ
 Arkansas	AR
 California	CA"
-df <- read.table(text=df.str, header=TRUE)
+  read.table(text=str, header=TRUE, row.names=NULL)})
 #+end_src
 
 #+results:
@@ -1071,13 +1072,14 @@ df <- read.table(text=df.str, header=TRUE)
 or:
 
 #+begin_src R :results value replace :eval yes :rownames yes :colnames yes
-df.str <- "State,Abbreviation
+df <- local({
+  str <- "State,Abbreviation
 Alabama,AL
 Alaska,AK
 Arizona,AZ
 Arkansas,AR
 California,CA"
-df <- read.csv(text=df.str, header = TRUE)
+  read.csv(text=str, header = TRUE, row.names=NULL)})
 #+end_src
 
 #+results:

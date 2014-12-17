@@ -2531,19 +2531,20 @@ cameraData <span class="org-constant">&lt;-</span> <span class=
 
             <div class="org-src-container">
               <pre class="src src-R">
-df.str <span class="org-constant">&lt;-</span> <span class=
-"org-string">"State        Abbreviation</span>
+df <span class="org-constant">&lt;-</span> <span class=
+"org-ess-function-call">local</span><span class="org-builtin">({</span>
+  str <span class="org-constant">&lt;-</span> <span class=
+"org-string">"State Abbreviation</span>
 <span class="org-string">Alabama AL</span>
 <span class="org-string">Alaska  AK</span>
 <span class="org-string">Arizona AZ</span>
 <span class="org-string">Arkansas        AR</span>
 <span class="org-string">California      CA"</span>
-df <span class="org-constant">&lt;-</span> <span class=
-"org-ess-function-call">read.table</span><span class=
+  <span class="org-ess-function-call">read.table</span><span class=
 "org-builtin">(</span>text<span class=
-"org-constant">=</span>df.str, header<span class=
-"org-constant">=</span><span class="org-type">TRUE</span><span class=
-"org-builtin">)</span>
+"org-constant">=</span>str, header<span class=
+"org-constant">=</span><span class=
+"org-type">TRUE</span>, row.names<span class="org-constant">=</span><span class="org-type">NULL</span><span class="org-builtin">)})</span>
 </pre>
             </div>
 
@@ -2612,19 +2613,22 @@ df <span class="org-constant">&lt;-</span> <span class=
 
             <div class="org-src-container">
               <pre class="src src-R">
-df.str <span class="org-constant">&lt;-</span> <span class=
+df <span class="org-constant">&lt;-</span> <span class=
+"org-ess-function-call">local</span><span class="org-builtin">({</span>
+  str <span class="org-constant">&lt;-</span> <span class=
 "org-string">"State,Abbreviation</span>
 <span class="org-string">Alabama,AL</span>
 <span class="org-string">Alaska,AK</span>
 <span class="org-string">Arizona,AZ</span>
 <span class="org-string">Arkansas,AR</span>
 <span class="org-string">California,CA"</span>
-df <span class="org-constant">&lt;-</span> <span class=
-"org-ess-function-call">read.csv</span><span class=
+  <span class="org-ess-function-call">read.csv</span><span class=
 "org-builtin">(</span>text<span class=
-"org-constant">=</span>df.str, header <span class=
-"org-constant">=</span> <span class="org-type">TRUE</span><span class=
-"org-builtin">)</span>
+"org-constant">=</span>str, header <span class=
+"org-constant">=</span> <span class=
+"org-type">TRUE</span>, row.names<span class=
+"org-constant">=</span><span class="org-type">NULL</span><span class=
+"org-builtin">)})</span>
 </pre>
             </div>
 
