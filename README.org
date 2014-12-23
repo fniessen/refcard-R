@@ -454,7 +454,7 @@ Other ways:
      Remove objects from your workspace.
 
      #+begin_src R
-     rm(list=ls())                      # remove everything from the workspace
+     rm(list=ls())                      # Remove everything from the workspace.
      #+end_src
 
 *** Computing basic statistics
@@ -513,7 +513,7 @@ You may write a script containing R code:
 argv <- commandArgs(TRUE)
 x <- as.numeric(argv[1])
 
-# etc.
+# Etc.
 
 png("graph.png", 500, 500)
 plot(graph)
@@ -657,7 +657,7 @@ same length.
      Create a data frame.
 
      #+begin_src R
-     df <- data.frame(cbind(v1, v2))    # create a dataframe of two vectors
+     df <- data.frame(cbind(v1, v2))    # Create a dataframe of two vectors.
      #+end_src
 
 - ~data.matrix()~ ::
@@ -680,14 +680,14 @@ If you sort it, it creates an ~array~ object (an object of a different class). A
 Avoid writing loops (code is a lot simpler):
 
 #+begin_src R
-x + y                                   # element-wise addition
+x + y                                   # Element-wise addition.
 #+end_src
 
 Similar for the matrices:
 
 #+begin_src R
-x * y                                   # element-wise multiplication
-x %*% y                                 # true matrix multiplication
+x * y                                   # Element-wise multiplication.
+x %*% y                                 # True matrix multiplication.
 #+end_src
 
 *** Selecting list elements or data frame columns by position (subsetting)
@@ -717,14 +717,14 @@ x %*% y                                 # true matrix multiplication
      Can extract nested elements of a list:
 
      #+begin_src R
-     x[[1]][[3]]                        # same as: x[[c(1, 3)]]
-                                        # third element of the first element
+     x[[1]][[3]]                        # Same as: x[[c(1, 3)]].
+                                        # Third element of the first element.
      #+end_src
 
      Partial matching allowed at the command-line:
 
      #+begin_src R
-     x[["a", exact=FALSE]]              # instead of: x[["aardvark"]]
+     x[["a", exact=FALSE]]              # Instead of: x[["aardvark"]].
      #+end_src
 
 *** Selecting list elements or data frame columns by name (subsetting)
@@ -734,7 +734,7 @@ x %*% y                                 # true matrix multiplication
      name*: you don't have to remember where the element is in the list.
 
      #+begin_src R
-     x$bar                              # same as x[["bar"]]
+     x$bar                              # Same as x[["bar"]].
      #+end_src
 
      Can only be used with literal names.
@@ -742,7 +742,7 @@ x %*% y                                 # true matrix multiplication
      Partial matching allowed at the command-line:
 
      #+begin_src R
-     x$a                                # instead of: x$aardvark
+     x$a                                # Instead of: x$aardvark.
      #+end_src
 
 #+begin_note
@@ -797,16 +797,16 @@ For command-line interactive work, the ~*apply~ functions are more useful.
 
 #+begin_src R
 if (condition) {
-  ## do something
+  ## Do something.
 } else {
-  ## do something else
+  ## Do something else.
 }
 #+end_src
 
 Here, the entire ~if/else~ construct is all about assigning a value to ~y~:
 
 #+begin_src R
-y <- if(x > 3) {                        # x must be a scalar here, not a vector
+y <- if(x > 3) {                        # x must be a scalar here, not a vector.
   10
 } else {
   0
@@ -818,16 +818,16 @@ y <- if(x > 3) {                        # x must be a scalar here, not a vector
 Loop over the *elements*:
 
 #+begin_src R
-for (x in xs) {                         # take elements from the vector
-  ## do something
+for (x in xs) {                         # Take elements from the vector.
+  ## Do something.
 }
 #+end_src
 
 Loop over the *numeric indices*:
 
 #+begin_src R
-for (i in seq_along(xs)) {              # successive values from a sequence or
-  ## do something                       # vector
+for (i in seq_along(xs)) {              # Successive values from a sequence or
+  ## Do something.                      # vector.
 }
 #+end_src
 
@@ -847,14 +847,14 @@ Loop over the *names*:
 
 #+begin_src R
 for (nm in names(xs)) {
-  ## do something
+  ## Do something.
 }
 #+end_src
 
 #+begin_src R
-while (z >= 3 && z <= 10) {             # conditions are always evaluated from
-                                        # left to right
-  ## do something
+while (z >= 3 && z <= 10) {             # Conditions are always evaluated from
+                                        # left to right.
+  ## Do something.
 }
 #+end_src
 
@@ -862,9 +862,9 @@ Initiate an infinite loop:
 
 #+begin_src R
 repeat {
-  ## do something
+  ## Do something.
   if(<condition>) {
-    break                               # only way to exit a repeat loop
+    break                               # Only way to exit a repeat loop.
   }
 }
 #+end_src
@@ -888,7 +888,7 @@ it's allowed to run.
   #+begin_src R
   MyFunction <- function(arguments) {
     # Function documentation.
-    ## do something
+    ## Do something.
   }
   #+end_src
 
@@ -968,7 +968,7 @@ it's allowed to run.
   + Search the namespaces of each of the packages on the search list
 
     #+begin_src R
-    search()                            # find the search list
+    search()                            # Find the search list.
     #+end_src
 
   + Search the ~base~ package (always the last element)
@@ -1002,12 +1002,12 @@ it's allowed to run.
   another function!
 
   #+begin_src R
-  make.power <- function(n) {           # "constructor" function
+  make.power <- function(n) {           # "constructor" function.
     pow <- function(x) {
       x^n                               # n is a free variable (not defined
-                                        # inside pow)
+                                        # inside pow).
     }
-    pow                                 # return function as return value
+    pow                                 # Return function as return value.
   }
   #+end_src
 
@@ -1143,7 +1143,7 @@ For *large datasets*:
   tabSample <- read.table("datatable.txt", nrows=100)
   classes <- sapply(tabSample, class)
   tabAll <- read.table("datatanble.txt", colClasses=classes)
-                                        # save time on importing data
+                                        # Save time on importing data.
   #+end_src
 
 - Set ~nrows~ helps with memory usage.
@@ -1151,7 +1151,7 @@ For *large datasets*:
 R equivalent of Linux ~cut~ (to read only certain columns from a file):
 
 #+begin_src R
-whichCols <- rep("NULL", 28)            # assuming 28 colums
+whichCols <- rep("NULL", 28)            # Assuming 28 colums.
 whichCols[c(1, 5, 28)] <- NA
 df <- read.table(file, colClasses=whichCols)
 #+end_src
@@ -1179,7 +1179,7 @@ df <- read.table(pipe("cut -f1,5,28 myFile.txt"))
      #+begin_src R
      data <- read.csv("./data/file.csv")
 
-     read.csv(file.choose())            # pick a file
+     read.csv(file.choose())            # Pick a file.
      #+end_src
 
      It calls ~read.table~ with some default values. To look at them, just look at
@@ -1236,13 +1236,13 @@ read.csv(textConnection(myCsv))
      htmlCode <- readLines(con)
      close(con)
 
-     # get data off webpages
+     # Get data off webpages.
      html3 <- htmlTreeParse("...")
 
-     # find value of title tag
+     # Find value of title tag.
      xpathSApply(html3, "//title", xmlValue)
 
-     # access parts of the table
+     # Access parts of the table.
      xpathSApply(html3, "//td[@id='col-citedby']", xmlValue)
      #+end_src
 
@@ -1252,11 +1252,9 @@ read.csv(textConnection(myCsv))
 ## install.packages("RODBC")
 library(RODBC)
 
-## channel <- odbcConnect("DSN", uid="username", pwd="password")
-## channel <- odbcDriverConnect("DSN=DSN;UID=username;PWD=password")
-
-## channel <- odbcDriverConnect("driver={SQL Server};server=hostname;database=dbname;trusted_connection=true")
-channel <- odbcDriverConnect("driver={SQL Server};server=hostname;database=dbname;uid=username;pwd=password")
+## channel <- odbcDriverConnect("DRIVER={SQL Server};SERVER=hostname;DATABASE=dbname;TRUSTED_CONNECTION=true")
+## channel <- odbcDriverConnect("DRIVER={SQL Server};SERVER=hostname;DATABASE=dbname;UID=username;PWD=password")
+channel <- odbcDriverConnect("DSN=DSN;UID=username;PWD=password")
 
 # Check that connection is working.
 if (channel == -1L) {
@@ -1267,11 +1265,11 @@ if (channel == -1L) {
 sql <-
  "SELECT *
   FROM table"
-sql <- gsub("\n", " ", sql)             # optional
+sql <- gsub("\n", " ", sql)             # Optional.
 
 df <- sqlQuery(channel, sql)
 
-if (is.character(df)) {                 # SQL error (no data frame returned)
+if (is.character(df)) {                 # SQL error (no data frame returned).
   stop(paste(df, collapse="\n"))
 } else if (nrow(df) == 0) {
   cat("No data\n")
@@ -1296,10 +1294,8 @@ if (success & transaction) {
 }
 #+end_src
 
-There is a convergence movement to the DBI package.
-
-[[https://github.com/agstudy/rsqlserver][rsqlserver]] is part of it, but it is less mature than RODBC (though it's still
-high quality).
+There is a convergence movement to the DBI package.  [[https://github.com/agstudy/rsqlserver][rsqlserver]] is part of it,
+but it is less mature than RODBC (though it's still high quality).
 
 *** Saving and transporting objects
 
@@ -1345,7 +1341,7 @@ Packages:
      When applied to functions, show the *arguments*.
 
      #+begin_src R
-     str(.Platform)                     # what is the operating system
+     str(.Platform)                     # What is the operating system.
      #+end_src
 
 - ~attributes()~ ::
@@ -1386,10 +1382,10 @@ Packages:
 
      #+begin_src R
      unique(df$f)
-     length(unique(df$f))               # how many unique values
+     length(unique(df$f))               # How many unique values.
 
-     table(df$f, useNA="ifany")         # number of times each unique value
-                                        # appears (show missing values as well)
+     table(df$f, useNA="ifany")         # Number of times each unique value
+                                        # appears (show missing values as well).
      #+end_src
 
      Sort by decreasing count:
@@ -1414,7 +1410,7 @@ Packages:
      Use the ~cut~ function to calculate tables with /numeric/ values.
 
      #+begin_src R
-     f <- cut(df$x, breaks=30)          # use `labels' to give nice names
+     f <- cut(df$x, breaks=30)          # Use `labels' to give nice names.
      table(f, useNA="ifany")
      #+end_src
 
@@ -1422,15 +1418,15 @@ Packages:
 
      #+begin_src R
      pie(table(df$x))
-     pie(sort(table(df$x)))             # bigger and bigger
+     pie(sort(table(df$x)))             # Bigger and bigger.
      #+end_src
 
 - ~table(f1, f2)~ ::
      Produce a /contingency table/ (cross-tabulation).
 
      #+begin_src R
-     table(df$f1, df$f2)                # look at the relationship between f1
-                                        # and f2
+     table(df$f1, df$f2)                # Look at the relationship between f1
+                                        # and f2.
      #+end_src
 
 - ~ftable(f)~ ::
@@ -1469,10 +1465,10 @@ tolower(names(df))
 #+end_src
 
 #+begin_src R
-splitNames <- strsplit(names(df), "\\.") # split at period in names
-firstElement <- function(x) x[1]        # select the 1st component of the vector
-sapply(splitNames, firstElement)        # remove everything after the trailing
-                                        # dot
+splitNames <- strsplit(names(df), "\\.") # Split at period in names.
+firstElement <- function(x) x[1]        # Select the 1st component of the vector.
+sapply(splitNames, firstElement)        # Remove everything after the trailing
+                                        # dot.
 #+end_src
 
 #+begin_src R
@@ -1488,7 +1484,7 @@ colnames(df)[colnames(df) == "old"] <- "new"
 *** Creating new variables
 
 #+begin_src R
-df$ranges <- ranges                     # add a variable to the data frame
+df$ranges <- ranges                     # Add a variable to the data frame.
 #+end_src
 
 *** Change the class of many columns from factor to character (or numeric)
@@ -1502,10 +1498,10 @@ d[, unfactor.cols] <- lapply(unfactor.cols,
 Add ~as.numeric~ to convert them to numeric (may induce ~NA~).
 
 #+begin_src R :tangle Rlib.R
-## Convert all factors from a data frame to character
+## Convert all factors from a data frame to character.
 unfactor <- function (df) {
-  cols <- sapply(df, is.factor)         # find the factors
-  df[cols] <- lapply(df[cols], as.character) # convert to character
+  cols <- sapply(df, is.factor)         # Find the factors.
+  df[cols] <- lapply(df[cols], as.character) # Convert to character.
   df
 }
 #+end_src
@@ -1520,8 +1516,8 @@ Create a logical vector:
 
 #+begin_src R
 u <- x > "a"
-x[u]                                    # get all elements which are greater
-                                        # than "a"
+x[u]                                    # Get all elements which are greater
+                                        # than "a".
 #+end_src
 
 *** Selecting rows and columns more easily
@@ -1557,9 +1553,9 @@ Use the ~%in%~ operator to compare a variable to a list of desired values.
 Remove missing values (~NA~) from a *list*:
 
 #+begin_src R
-missing <- is.na(x)                     # logical vector
+missing <- is.na(x)                     # Logical vector.
 y <- x[!missing]
-sum(y)                                  # = sum(x, na.rm=TRUE)
+sum(y)                                  # = sum(x, na.rm=TRUE).
 #+end_src
 
 #+begin_note
@@ -1588,7 +1584,7 @@ df[!nonmissing, ]
 Take the subset of all objects (~dfx~ and ~dfy~) that has no missing values:
 
 #+begin_src R
-bothnonmissing <- complete.cases(dfx, dfy) # logical vector
+bothnonmissing <- complete.cases(dfx, dfy) # Logical vector.
 dfx[bothnonmissing, ]
 #+end_src
 
@@ -1607,21 +1603,21 @@ booleans vectors) and then, simply reassign data:
 
 #+begin_src R
 tokeep <- !names(df) %in% c("remove1", "remove2")
-df <- df[, tokeep]                      # or...
-df <- df[, tokeep, drop=FALSE]          # you will need this option to avoid the
+df <- df[, tokeep]                      # Or...
+df <- df[, tokeep, drop=FALSE]          # You will need this option to avoid the
                                         # conversion to an atomic vector if
-                                        # there is only one column left
+                                        # there is only one column left.
 
 df <- subset(df, select=-c(remove1, remove2))
-                                        # use the `-' operator directly on a
-                                        # vector of column names
+                                        # Use the `-' operator directly on a
+                                        # vector of column names.
 #+end_src
 
 #+begin_src R
-## remove columns
+## Remove columns.
 df$remove3 <- NULL
 
-## rename columns
+## Rename columns.
 colnames(df)[colnames(df) == "old"] <- "new"
 #+end_src
 
@@ -1670,8 +1666,8 @@ df <- do.call("rbind", list.of.data.frames)
 You can always convert variables between types.
 
 #+begin_src R
-df$x <- as.factor(df$x)                 # character to factor
-df$x <- as.character(df$x)              # factor to character
+df$x <- as.factor(df$x)                 # Character to factor.
+df$x <- as.character(df$x)              # Factor to character.
 #+end_src
 
 #+begin_warning
@@ -1715,7 +1711,7 @@ lapply(x, mean)
 #+end_src
 
 #+begin_src R
-lapply(1:4, runif, min=0, max=10)       # arguments passed through the `...'
+lapply(1:4, runif, min=0, max=10)       # Arguments passed through the `...'.
 #+end_src
 
 Extract the first column of each matrix of a list:
@@ -1764,7 +1760,7 @@ Like ~tapply~, but without applying the summary statistics.
 Split a data frame (or other kinds of lists), and apply an /anonymous function/:
 
 #+begin_src R
-s <- split(airquality, airquality$Month) # split according to month
+s <- split(airquality, airquality$Month) # Split according to month.
 lapply(s, function(x) colMeans(x[, c("Ozone", "Solar.R", "Wind")])
 #+end_src
 
@@ -1798,7 +1794,7 @@ split(x, ceiling(seq_along(x$V1) / size.max))
 
      #+begin_src R
      x <- matrix(rnorm(200), 20, 10)
-     apply(x, 1, quantile, probs=c(0.25, 0.75)) # no default value for `probs'
+     apply(x, 1, quantile, probs=c(0.25, 0.75)) # No default value for `probs'.
      #+end_src
 
      Shortcut functions (/much/ faster on large matrices):
@@ -1841,8 +1837,8 @@ class)~.
      variable ~f~:
 
      #+begin_src R
-     tapply(x, f, sum, simplify=FALSE)  # = lapply(split(x, f), sum)
-     tapply(x, f, mean)                 # = sapply(split(x, f), mean)
+     tapply(x, f, sum, simplify=FALSE)  # = lapply(split(x, f), sum).
+     tapply(x, f, mean)                 # = sapply(split(x, f), mean).
      tapply(x, f, length)
      #+end_src
 
@@ -1870,7 +1866,7 @@ class)~.
      *Vectorizing a function* (that doesn't allow for vector arguments).
 
      #+begin_src R
-     mapply(rnorm, 1:3, 1:3, 2)         # fixed standard deviation
+     mapply(rnorm, 1:3, 1:3, 2)         # Fixed standard deviation.
      #+end_src
 
      is the same as
@@ -1975,10 +1971,10 @@ These functions can take vector arguments.
      matches (it won't do anything).
 
      #+begin_src R
-     i <- grep("regexp", vector)        # get a set of indices
-     j <- grep("anotherregexp", vector) # get another set of indices
-     setdiff(i, j)                      # substract j elements from i when they are the same
-     setdiff(j, i)                      # different result
+     i <- grep("regexp", vector)        # Get a set of indices.
+     j <- grep("anotherregexp", vector) # Get another set of indices.
+     setdiff(i, j)                      # Substract j elements from i when they are the same
+     setdiff(j, i)                      # different result.
      #+end_src
 
      Setting ~value=TRUE~ returns the *actual elements* of the character vector
@@ -2027,11 +2023,11 @@ These functions can take vector arguments.
      If I want to see what the submatch is:
 
      #+begin_src R
-     r <- regexpr("... (.*) ...", string) # find all the date fields
-     m <- regmatches(string, r)         # parse out
-     dates <- sapply(m, function(x) x[2]) # extract the 2nd element of each list object
-     dates <- as.Date(dates, "%B %d, %Y") # convert to date
-     hist(dates, "month", freq=TRUE)    # aggregate the dates by month and give an histogram
+     r <- regexpr("... (.*) ...", string) # Find all the date fields.
+     m <- regmatches(string, r)         # Parse out.
+     dates <- sapply(m, function(x) x[2]) # Extract the 2nd element of each list object.
+     dates <- as.Date(dates, "%B %d, %Y") # Convert to date.
+     hist(dates, "month", freq=TRUE)    # Aggregate the dates by month and give an histogram.
      #+end_src
 
 ** 8. Probability
@@ -2068,8 +2064,8 @@ These functions can take vector arguments.
        Evaluate the *cumulative distribution* function
 
        #+begin_src R
-       ppois(4, 2)                      # Pr(x <= 4)
-       ppois(6, 2)                      # Pr(x <= 6)
+       ppois(4, 2)                      # Pr(x <= 4).
+       ppois(6, 2)                      # Pr(x <= 6).
        #+end_src
 
   + q* :: evaluate the *quantile* function
@@ -2080,7 +2076,7 @@ Set the random number *seed* is critical for *reproducibility*: *always set it w
 conducting a simulation!*
 
   #+begin_src R
-  set.seed(1)                           # or use any other positive integer
+  set.seed(1)                           # Or use any other positive integer.
   #+end_src
 
 *** Generate a random sample
@@ -2088,9 +2084,9 @@ conducting a simulation!*
 *Sample randomly* from a specified vector of scalar objects.
 
 #+begin_src R
-sample(1:10, 4)                         # select 4 different numbers at random
-sample(1:10)                            # permutation
-sample(1:10, replace=TRUE)              # sample with replacement (I can get repeats)
+sample(1:10, 4)                         # Select 4 different numbers at random.
+sample(1:10)                            # Permutation.
+sample(1:10, replace=TRUE)              # Sample with replacement (I can get repeats).
 #+end_src
 
 Sample can draw according to a set of probabilities.
@@ -2226,7 +2222,7 @@ order to break it up into sequences.
 
 #+begin_src R :results graphics :file Rplots/base-hist.png
 data(iris)
-hist(iris$Petal.Length, main="Histogram", col="lightblue") # shape of distribution
+hist(iris$Petal.Length, main="Histogram", col="lightblue") # Shape of distribution.
 #+end_src
 
 #+results:
@@ -2238,7 +2234,7 @@ for each category.
 #+begin_src R :results graphics :file Rplots/base-hist-breaks.png
 data(iris)
 hist(iris$Petal.Length, breaks=seq(1, 7, by=0.1), main="Histogram", col="lightblue")
-                                        # much more fine-grained distribution
+                                        # Much more fine-grained distribution.
 #+end_src
 
 #+results:
@@ -2277,9 +2273,9 @@ being too small, would be on the x-axis itself).
   *Density* = percentage of observations
 
   #+begin_src R
-  dens <- density(data$var) # smooth density function
+  dens <- density(data$var) # Smooth density function.
   plot(dens, lwd=3, col="blue")
-# or: lines(dens, lwd=3, col="blue") after hist plot
+# Or: lines(dens, lwd=3, col="blue") after hist plot.
   #+end_src
 
   #+results:
@@ -2287,7 +2283,7 @@ being too small, would be on the x-axis itself).
   Easy to compare multiple distributions:
 
   #+begin_src R
-  # add another density
+  # Add another density.
   densMales <- density(data$var[which(data$sex==1)])
   lines(densMales, lwd=3, col="orange")
   #+end_src
@@ -2363,7 +2359,7 @@ See http://www.math.csi.cuny.edu/Statistics/R/simpleR/stat006.html
      *Add lines* (connect all the dots) *to a plot*.
 
      #+begin_src R :eval no
-     lines(x, y)                        # all lines
+     lines(x, y)                        # All lines.
      #+end_src
 
      Even better: option ~type="b"~ to plot method for /both/ *points and lines*.
@@ -2470,7 +2466,7 @@ See http://www.math.csi.cuny.edu/Statistics/R/simpleR/stat006.html
           row-wise).
 
           #+begin_src R :eval no
-          par(mfrow=c(2, 1))            # 2 rows and 1 column
+          par(mfrow=c(2, 1))            # 2 rows and 1 column.
           plot(x, y)
           plot(x, z)
           #+end_src
@@ -2535,7 +2531,7 @@ See http://www.math.csi.cuny.edu/Statistics/R/simpleR/stat006.html
   =equal.count=)
 
   #+begin_src R
-  y ~ x | f * g                         # formula
+  y ~ x | f * g                         # Formula.
   #+end_src
 
   + =y= = response (on the y-axis)
@@ -2565,9 +2561,9 @@ See http://www.math.csi.cuny.edu/Statistics/R/simpleR/stat006.html
 
   #+begin_src R
   xyplot(y ~ x | f,
-         panel=function(x, y, ...) {    # x and y = data that appear in a specific panel (it's not all the data)
-                 panel.xyplot(x, y, ...) # plot using all the default options
-                 panel.abline(h=median(y), lty=2) # plot the median of the y values in each panel
+         panel=function(x, y, ...) {    # x and y = data that appear in a specific panel (it's not all the data).
+                 panel.xyplot(x, y, ...) # Plot using all the default options.
+                 panel.abline(h=median(y), lty=2) # Plot the median of the y values in each panel.
          })
   #+end_src
 
@@ -2586,7 +2582,7 @@ See http://www.math.csi.cuny.edu/Statistics/R/simpleR/stat006.html
          panel=function(x, y, ...) {
                  panel.xyplot(x, y, ...)
                  fit <- lm(y ~ x)
-                 panel.abline(fit, lwd=2) # add a regression line to the plot
+                 panel.abline(fit, lwd=2) # Add a regression line to the plot.
          })
   #+end_src
 
@@ -2669,8 +2665,8 @@ https://www.zoology.ubc.ca/~schluter/R/fit-model/
 y = \beta_{0} + \beta_{1} x + \epsilon
 
 #+begin_src R
-x <- rnorm(100)                         # predictor
-e <- rnorm(100, 0, 2)                   # noise
+x <- rnorm(100)                         # Predictor.
+e <- rnorm(100, 0, 2)                   # Noise.
 #+end_src
 
 *** Regression tree models
@@ -2709,7 +2705,7 @@ rpart
   + =error=
 
     #+begin_src R
-    stop("error")                       # throw an error
+    stop("error")                       # Throw an error.
     #+end_src
 
 - General notion of a =condition=: you can create your own if something
@@ -2778,6 +2774,10 @@ warn_if_not_empty <- function (..., env=parent.frame())
 ##
 ## warn_if_not_empty(pfisortie[is.na(pfisortie$stgNom.x), ])
 #+end_src
+
+** How to deal with character(0)?
+
+(length(dd) == 0) && (typeof(dd) == "character")
 
 ** Contributing
 

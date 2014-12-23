@@ -15,10 +15,10 @@
 #  A copy of the GNU General Public License is available at
 #  http://www.r-project.org/Licenses/
 
-## Convert all factors from a data frame to character
+## Convert all factors from a data frame to character.
 unfactor <- function (df) {
-  cols <- sapply(df, is.factor)         # find the factors
-  df[cols] <- lapply(df[cols], as.character) # convert to character
+  cols <- sapply(df, is.factor)         # Find the factors.
+  df[cols] <- lapply(df[cols], as.character) # Convert to character.
   df
 }
 
