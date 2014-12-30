@@ -770,11 +770,16 @@ This can be turned off by setting ~drop=FALSE~ (don't drop the dimension).
 
 *** Give the ~TRUE~ indices of a logical object
 
-- ~which~ ::
+- ~which()~ ::
      Return (a vector of) the *indices* of the elements which *are ~TRUE~* --
      instead of a /longer/ vector of Booleans (~TRUE~ / ~FALSE~).
 
      This is computationally efficient.
+
+#+begin_src R :tangle no :exports none
+df[df$var != 0, ] ==? df[is.na(df$var) | df$var != 0, ]
+df[which(df$var != 0), ] ==? df[!is.na(df$var) & df$var != 0, ]
+#+end_src
 
 #+begin_note
 When you use ~[~ to extract from a dataframe, any calculation in the row position
@@ -784,7 +789,7 @@ that results in ~NA~ will get a junk row returned. Using ~which~ *removes the
 
 *** Flatten a list into a vector
 
-- ~unlist~ ::
+- ~unlist()~ ::
      Flatten the *list into* a *vector* (for functions which work on vectors but not
      on lists.)
 
