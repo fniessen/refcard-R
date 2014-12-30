@@ -1070,13 +1070,13 @@ simply by doing this:
 
 #+begin_src R :results value replace :eval yes :rownames yes :colnames yes
 df <- local({
-  str <- "State	Abbreviation
+  string <- "State	Abbreviation
 Alabama	AL
 Alaska	AK
 Arizona	AZ
 Arkansas	AR
 California	CA"
-  read.table(text=str, header=TRUE, row.names=NULL)
+  read.delim(text=string, header=TRUE, row.names=NULL)
 })
 #+end_src
 
@@ -1093,13 +1093,13 @@ or:
 
 #+begin_src R :results value replace :eval yes :rownames yes :colnames yes
 df <- local({
-  str <- "State,Abbreviation
+  string <- "State,Abbreviation
 Alabama,AL
 Alaska,AK
 Arizona,AZ
 Arkansas,AR
 California,CA"
-  read.csv(text=str, header = TRUE, row.names=NULL)
+  read.csv(text=string, header = TRUE, row.names=NULL)
 })
 #+end_src
 
