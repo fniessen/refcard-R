@@ -96,7 +96,7 @@ See
 ESS handling of *multiple processes* is pretty unique.
 
 - ~C-c C-s~ ::
-     ess-switch-process
+     ~ess-switch-process~
 
 - ~C-c C-q~ ::
      Issue a ~q()~ command to the inferior process, and kill all the temporary
@@ -289,9 +289,9 @@ Tracebug highlighting of errors.
 
 - ~C-c C-t e~ ::
      Toggle *on-error action* (repeat to cycle):
-     + ~NONE~ ("-" in the mode line)
-     + ~RECOVER~ ("r" in the mode line)
-     + ~TRACEBACK~ ("t" in the mode line)
+     + ~NONE~ (~-~ in the mode line)
+     + ~RECOVER~ (~r~ in the mode line)
+     + ~TRACEBACK~ (~t~ in the mode line)
 
 - ~C-c C-t d~ ::
      Flag for debugging.
@@ -370,16 +370,16 @@ and the end of the buffer.
 
 *** Other Emacs features and tools
 
-I would add C-s and C-r to search in the help buffer and M-\ to indent
+Ability to mix in other, general purpose Emacs tools:
 
-Also the ability to mix in other, general purpose Emacs tools:
+- ~C-s~ and ~C-r~ to search in the help buffer and ~M-\~ to indent
 
-paredit-mode to give me good shortcuts to navigate around and manipulate
-parentheses and braces,
+- ~paredit-mode~ to give me good shortcuts to navigate around and manipulate
+  parentheses and braces,
 
-git-gutter-mode to keep tabs on lines I've changed in a file.
+- ~diff-hl~ mode to indicate lines I've changed in a file.
 
-M-/ to complete long words the second time I type them.
+- ~M-/~ to complete long words the second time I type them.
 
 ** 0. Overview of R
 
