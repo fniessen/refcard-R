@@ -507,7 +507,7 @@ Other ways:
 
 You may write a script containing R code:
 
-#+begin_src sh
+#+begin_src shell
 #!/usr/bin/env Rscript
 
 argv <- commandArgs(TRUE)
@@ -764,9 +764,13 @@ By default,
 - a single element is retrieved as a vector of length 1 rather than a 1x1
   matrix.
 
-- a single column or a single row is retrieved as a vector, not as a matrix.
+- a single column or a single row is retrieved as a *vector*, not as a *matrix*.
 
-This can be turned off by setting ~drop=FALSE~ (don't drop the dimension).
+This can be turned off by setting ~drop=FALSE~ (*don't drop the dimension*).
+
+#+begin_src R :tangle no :exports none
+df[, 1, drop=FALSE]                     # A one-column data frame.
+#+end_src
 
 *** Give the ~TRUE~ indices of a logical object
 
@@ -1593,6 +1597,13 @@ bothnonmissing <- complete.cases(dfx, dfy) # Logical vector.
 dfx[bothnonmissing, ]
 #+end_src
 
+Extract the rows which contain NA in column V2:
+
+#+begin_src R
+df[is.na(df$V2), ]
+df[which(is.na(df$V2)), ]
+#+end_src
+
 *** Removing columns that contain NAs from a data frame
 
 Get rid of any column that has one or more NAs.
@@ -1919,6 +1930,9 @@ class)~.
      Equivalent to ~paste(..., sep="")~.
 
 - ~sprintf()~ ::
+     Format numbers (converting numeric to string!).
+
+See ~prettyNum~ formatting for manual axis tick labels.
 
 *** Regular expressions
 
@@ -2757,6 +2771,8 @@ rpart
 
 ** Assert
 
+https://github.com/hadley/assertthat
+
 #+begin_src R :tangle Rlib.R
 ## TODO Add a message to use; if not provided, generic one...
 warn_if_not_empty <- function (..., env=parent.frame())
@@ -2780,9 +2796,24 @@ warn_if_not_empty <- function (..., env=parent.frame())
 ## warn_if_not_empty(pfisortie[is.na(pfisortie$stgNom.x), ])
 #+end_src
 
+** Total                                                              :noexport:
+
+#+begin_src R
+Total <- function(df) {
+  sapply(df,
+         function(x) if ("logical" %in% class(x) | "numeric" %in% class(x)) {
+           sum(as.numeric(x), na.rm = TRUE)
+         } else {
+           NA
+         })
+}
+#+end_src
+
 ** How to deal with character(0)?
 
+#+begin_src R
 (length(dd) == 0) && (typeof(dd) == "character")
+#+end_src
 
 ** Contributing
 
@@ -2804,7 +2835,7 @@ beer and as in speech.
 
 ** License
 
-Copyright (C) 2013-2014 Free Software Foundation, Inc.
+Copyright (C) 2013-2015 Free Software Foundation, Inc.
 
 Author: Fabrice Niessen \\
 Keywords: r reference card
