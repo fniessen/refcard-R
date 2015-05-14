@@ -1,20 +1,29 @@
+#+TITLE:     R reference card
 #+AUTHOR:    Fabrice Niessen
 #+EMAIL:     (concat "fniessen" at-sign "pirilampo.org")
 #+DESCRIPTION:
 #+KEYWORDS:
 #+LANGUAGE:  en
-#+OPTIONS:   H:4 num:2
+#+OPTIONS:   H:4 num:nil
 
 #+PROPERTY:  eval never
 #+PROPERTY:  exports both
-#+SETUPFILE: ~/src/org-style/setup/bigblow-pirilampo.setup
+#+SETUPFILE: ~/src/org-html-themes/setup/theme-readtheorg.setup
 
-* R reference card [[http://opensource.org/licenses/GPL-3.0][http://img.shields.io/:license-gpl-blue.svg]] [[https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=VCVAS6KPDQ4JC&lc=BE&item_number=refcard%2dR&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted][https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif]]
+#+begin_html
+<a href="http://opensource.org/licenses/GPL-3.0">
+  <img src="http://img.shields.io/:license-gpl-blue.svg" alt=":license-gpl-blue.svg" />
+</a>
+
+<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=VCVAS6KPDQ4JC&lc=BE&item_number=refcard%2dR&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted">
+  <img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" alt="btn_donate_LG.gif" />
+</a>
+#+end_html
 
 Welcome to R reference card. It contains the reference documentation that
 describes how to perform *data analysis* using R.
 
-** Package                                                            :noexport:
+* Package                                                             :noexport:
 
 #+name: current-year
 #+begin_src emacs-lisp :eval yes :results silent :tangle no
@@ -40,14 +49,14 @@ describes how to perform *data analysis* using R.
 #  http://www.r-project.org/Licenses/
 #+end_src
 
-** Documentation
+* Documentation
 
 - [[http://cran.r-project.org/doc/contrib/Short-refcard.pdf][R Reference Card]]
 - [[http://www.rdocumentation.org/][Search the documentation of R packages and R functions]]
 - [[http://www.statmethods.net/][Quick-R]] -- An excellent quick reference
 - Cookbook for R: http://www.cookbook-r.com/
 
-** Coding style
+* Coding style
 
 - [[http://cran.r-project.org/doc/manuals/R-ints.html#R-coding-standards][R Internals manual, section 8. "R Coding Standards"]]
 
@@ -61,13 +70,13 @@ describes how to perform *data analysis* using R.
   ~FunctionName~ \\
   ~kConstantName~
 
-  Place spaces around all binary operators (=, +, -, <-, etc.). \\
-  Exception: Spaces around ='s are optional when passing parameters in
+  Place spaces around all binary operators (~=~, ~+~, ~-~, ~<-~, etc.). \\
+  Exception: Spaces around ~=~'s are optional when passing parameters in
   a function call.
 
   Do not place a space before a comma, but always place one after a comma.
 
-** Emacs Speaks Statistics (ESS) key bindings
+* Emacs Speaks Statistics (ESS) key bindings
 
 Most of the shortcuts are actually mnemonic and hierarchical:
 
@@ -75,15 +84,15 @@ Most of the shortcuts are actually mnemonic and hierarchical:
 - ~C-c C-e~ for ~extra-map~,
 - ~C-c C-t~ for ~dev-map~ which includes mostly [t]racebug.
 
-*** References
+** References
 
 See
 - http://ess.r-project.org/refcard.pdf
 - http://www.damtp.cam.ac.uk/user/sje30/ess11/ess-slides.pdf
 
-*** Interacting with the ESS process
+** Interacting with the ESS process
 
-**** Command History
+*** Command History
 
 - ~M-r~ ::
      Search for a regular expression backward in the command history (using
@@ -91,7 +100,7 @@ See
 
      This is worth a wealth...
 
-**** Hot keys for common commands
+*** Hot keys for common commands
 
 ESS handling of *multiple processes* is pretty unique.
 
@@ -105,12 +114,12 @@ ESS handling of *multiple processes* is pretty unique.
      Press ~C-c C-q~ + ~M-x R~ to quickly restart the R console (without restarting
      the editor).
 
-**** Other commands provided by inferior-ESS
+*** Other commands provided by inferior-ESS
 
 - ~C-c C-z~ ::
      *Switch to* the (most recent) *script buffer*.
 
-*** Sending code to the iESS process
+** Sending code to the iESS process
 
 Primary process interaction commands:
 
@@ -147,7 +156,7 @@ Other evaluation commands:
 - ~C-c C-n~ ::
      *Send* the current *line* to the ESS process *and step* to the next line of code.
 
-*** Manipulating saved transcript files
+** Manipulating saved transcript files
 
 - ~C-u C-u C-y~ ::
      *Paste cleaned commands* (from a region copied with ~M-w~) into a new R buffer
@@ -156,9 +165,9 @@ Other evaluation commands:
 
      This is handy if you paste code from iESS, mail buffers or PDF documents.
 
-*** Editing objects and functions
+** Editing objects and functions
 
-**** Creating or modifying objects
+*** Creating or modifying objects
 
 In-session function editing.
 
@@ -175,7 +184,7 @@ Other nice tools ( probably not available in other editors):
 - ~C-c C-e l~ :: ~ess-load-library~
 - ~C-c C-e C-w~ :: ~ess-execute-screen-options~
 
-**** Loading source files into the ESS process
+*** Loading source files into the ESS process
 
 - ~C-c C-l~ ::
      *(Re-)Load a file* into the ESS process using ~source()~.
@@ -183,12 +192,12 @@ Other nice tools ( probably not available in other editors):
      This usually works better than ~C-c C-c~ for reporting parsing errors /with
      a trace/.
 
-**** Commands for motion, completion and more
+*** Commands for motion, completion and more
 
 - ~C-c C-z~ ::
      *Switch to* the associated *iESS process buffer*.
 
-***** Tags Tables
+**** Tags Tables
 
 - ~C-c C-e C-t~ ::
      Build tag tables.
@@ -203,7 +212,7 @@ and you will be able to navigate to the definition of the symbol at point as
 long as the other file is open. This is like tag navigation but more convenient
 IMO. Both ido and helm interfaces are available.
 
-*** Reading help files
+** Reading help files
 
 Help at your fingertips:
 
@@ -238,20 +247,20 @@ Help at your fingertips:
 - ~C-c C-d C-w~ ::
      Search the web for documentation.
 
-*** Completion
+** Completion
 
-**** Integration with auto-complete package
+*** Integration with auto-complete package
 
 Auto-completion of objects and arguments:
 http://www.emacswiki.org/emacs/ESSAuto-complete.
 
-*** Developing with ESS
+** Developing with ESS
 
-**** ESS tracebug
+*** ESS tracebug
 
 Tracebug highlighting of errors.
 
-***** Breakpoints
+**** Breakpoints
 
 - ~C-c C-t b~ ::
      Set breakpoint (repeat to cycle through the breakpoint types: ~browser~ and ~recover~).
@@ -279,7 +288,7 @@ Tracebug highlighting of errors.
 
 (~C-~ prefixed equivalents are also defined)
 
-***** Debugging
+**** Debugging
 
 - ~C-c C-t `~ (also on ~C-c `~) ::
      Show Traceback buffer (display source locations).
@@ -305,7 +314,7 @@ Tracebug highlighting of errors.
 
 (~C-~ prefixed equivalents are also defined)
 
-***** Interactive debugging
+**** Interactive debugging
 
 - ~M-C~ ::
      Continue
@@ -325,7 +334,7 @@ Tracebug highlighting of errors.
 - ~M-Q~ ::
      Quit debugging
 
-***** Navigation to errors
+**** Navigation to errors
 
 #+begin_src R
 source(file="missing-file.R")
@@ -349,9 +358,9 @@ and the end of the buffer.
 - ~M-g p~ (~M-x previous-error~) ::
      Previous error.
 
-***** Tracebug visual debugger
+**** Tracebug visual debugger
 
-**** ESS developer
+*** ESS developer
 
 - ~C-c C-t C-a~ ::
      Add a package to your development list.
@@ -362,13 +371,13 @@ and the end of the buffer.
 - ~C-c C-t l~ ::
      ess-developer-load-package (this one is in ESS dev as yet).
 
-*** Other ESS features and tools
+** Other ESS features and tools
 
-**** ElDoc
+*** ElDoc
 
 *ElDoc* support: automatic display of function arguments in the *echo area*.
 
-*** Other Emacs features and tools
+** Other Emacs features and tools
 
 Ability to mix in other, general purpose Emacs tools:
 
@@ -381,7 +390,7 @@ Ability to mix in other, general purpose Emacs tools:
 
 - ~M-/~ to complete long words the second time I type them.
 
-** 0. Overview of R
+* 0. Overview of R
 
 R system that you download from [[http://cran.r-project.org/][CRAN]]:
 - ~base~ package
@@ -396,7 +405,7 @@ Some [[http://cran.r-project.org/manuals.html][R manuals]]:
 - [[http://cran.r-project.org/doc/manuals/r-release/R-data.html][R data import/export]]
 - [[http://cran.r-project.org/doc/manuals/R-exts.html][Writing R extensions]]
 
-** 1. Getting started and getting help
+* 1. Getting started and getting help
 
 #+begin_src R
 ?function
@@ -413,9 +422,9 @@ Other ways:
 - [[mailto:r-help@r-project.org][R general mailing list]]
 - [[http://stackoverflow.com/questions/tagged/r][Stack Overflow]]
 
-** 2. Some basics
+* 2. Some basics
 
-*** Print something
+** Print something
 
 - ~print(object)~ ::
      Explicitly print out an object.
@@ -438,17 +447,17 @@ Other ways:
      #+results:
      : This is one sentence.
 
-*** Setting variables
+** Setting variables
 
 - ~<-~ ::
      Assign a value to a variable.
 
-*** Listing variables
+** Listing variables
 
 - ~ls()~, ~ls.str()~ ::
      Show objects in my workspace.
 
-*** Deleting variables
+** Deleting variables
 
 - ~rm()~ ::
      Remove objects from your workspace.
@@ -457,7 +466,7 @@ Other ways:
      rm(list=ls())                      # Remove everything from the workspace.
      #+end_src
 
-*** Computing basic statistics
+** Computing basic statistics
 
 - ~mean()~ ::
      Take the mean.
@@ -468,7 +477,7 @@ Other ways:
 - ~cor()~ ::
      Correlation function.
 
-*** Creating sequences
+** Creating sequences
 
 - ~n:m~ ::
      Create an *sequence of* integers from ~n~ to ~m~ (~n~ < ~m~ or ~n~ > ~m~).
@@ -479,7 +488,20 @@ Other ways:
 - ~rep(x, times)~ ::
      Create a series of repeated values.
 
-*** Operators
+** Operators
+
+- ~&~ ::
+     Logical "and".
+
+- ~|~ ::
+     Logical "or".
+
+#+begin_note
+The functions ~all~ and ~any~ are often used on the result of a vectorized
+comparison to see if all or any of the comparisons are true, respectively. The
+results from these functions are sure to be length 1 so they are appropriate for
+use in if clauses.
+#+end_note
 
 - ~==~ ::
      Compare.
@@ -487,7 +509,7 @@ Other ways:
 - ~%in%~ ::
      Test membership.
 
-** 3. Navigating the software
+* 3. Navigating the software
 
 - ~library(package)~ ::
      Load PACKAGE.
@@ -503,7 +525,7 @@ Other ways:
 - ~source("file.R")~ ::
      Evaluate R code file.
 
-*** Running a batch script
+** Running a batch script
 
 You may write a script containing R code:
 
@@ -520,7 +542,7 @@ plot(graph)
 graphics.off()
 #+end_src
 
-** 5. Data structures
+* 5. Data structures
 
 What is data?
 
@@ -536,7 +558,7 @@ What is data?
      + Quantitative ::
           Measured on a numerical scale.
 
-*** Basic ("atomic") vector types
+** Basic ("atomic") vector types
 
 | Class     | Example                     |
 |-----------+-----------------------------|
@@ -556,7 +578,7 @@ What is data?
 - ~unclass(vector)~ ::
      Strip out the class (see factors).
 
-*** Vectors
+** Vectors
 
 *Vectors* are sets of *elements of the same class*.
 
@@ -580,7 +602,7 @@ denominator" class).
 
 - ~length()~ ::
 
-*** Matrices
+** Matrices
 
 Matrices are *vectors with 2 dimensions* attached to them (see ~dimension~
 attribute).
@@ -610,14 +632,14 @@ They can be created by /column-binding/ or /row-binding/.
 - ~rbind()~ ::
      Row-bind.
 
-*** Arrays
+** Arrays
 
 Arrays are *n-dimensional matrices*.
 
 - ~array()~ ::
      Create an array.
 
-*** Lists
+** Lists
 
 *Lists* are vectors of objects of possibly different classes.
 
@@ -626,7 +648,7 @@ The indexes of the elements of a list have double brackets around them.
 - ~list()~ ::
      Construct a list.
 
-*** Factors
+** Factors
 
 *Factors* are /qualitative/ variables used to represent /categorical/ data, to store
 self-describing codes for /labels/ (such as "male" and "female", or "low",
@@ -642,7 +664,7 @@ Unordered or ordered.
 - ~levels(x)~ ::
      Return the value of the levels.
 
-*** Data frames
+** Data frames
 
 *Data frames* are used to store tabular data where each column can be of
 a different class: special type of *list (of columns)* where every element has the
@@ -666,7 +688,7 @@ same length.
 - ~names()~ ::
      Tell the names of each *column* included in the data frame.
 
-*** Tables
+** Tables
 
 By using the function [[id:5d29be63-e58c-4ef3-b28e-2818b65fd46f][~table~]], you create a ~table~ object.
 
@@ -675,7 +697,7 @@ If you sort it, it creates an ~array~ object (an object of a different class). A
 ~as.table~ to get back a table object.
 #+end_note
 
-*** Vectorized operations (recycling rule)
+** Vectorized operations (recycling rule)
 
 Avoid writing loops (code is a lot simpler):
 
@@ -690,7 +712,7 @@ x * y                                   # Element-wise multiplication.
 x %*% y                                 # True matrix multiplication.
 #+end_src
 
-*** Selecting list elements or data frame columns by position (subsetting)
+** Selecting list elements or data frame columns by position (subsetting)
 
 - ~[~ ::
      Return an *object* of the *same class as the original*: a list of elements (or
@@ -727,7 +749,7 @@ x %*% y                                 # True matrix multiplication.
      x[["a", exact=FALSE]]              # Instead of: x[["aardvark"]].
      #+end_src
 
-*** Selecting list elements or data frame columns by name (subsetting)
+** Selecting list elements or data frame columns by name (subsetting)
 
 - ~$~ ::
      Extract a *single element of a list* (or a single column of a data frame) *by
@@ -751,7 +773,7 @@ The only (typical data) class that uses ~$~ as a accessor is *list* (from which
 to use ~x["ratio"]~ or ~x[["ratio"]]~.
 #+end_note
 
-*** Selecting data frame columns by position (subsetting)
+** Selecting data frame columns by position (subsetting)
 
 Matrices can be subsetted with ~(row, col)~ type indices.
 
@@ -772,7 +794,7 @@ This can be turned off by setting ~drop=FALSE~ (*don't drop the dimension*).
 df[, 1, drop=FALSE]                     # A one-column data frame.
 #+end_src
 
-*** Give the ~TRUE~ indices of a logical object
+** Give the ~TRUE~ indices of a logical object
 
 - ~which()~ ::
      Return (a vector of) the *indices* of the elements which *are ~TRUE~* --
@@ -791,18 +813,18 @@ that results in ~NA~ will get a junk row returned. Using ~which~ *removes the
 ~NA~'s*. You can use ~subset~ or ~%in%~, which do not create the same problem.
 #+end_note
 
-*** Flatten a list into a vector
+** Flatten a list into a vector
 
 - ~unlist()~ ::
      Flatten the *list into* a *vector* (for functions which work on vectors but not
      on lists.)
 
-** Control structures
+* Control structures
 
 Control structures mentioned here are primarily useful for writing programs.
 For command-line interactive work, the ~*apply~ functions are more useful.
 
-*** Conditional statements
+** Conditional statements
 
 #+begin_src R
 if (condition) {
@@ -822,7 +844,7 @@ y <- if(x > 3) {                        # x must be a scalar here, not a vector.
 }
 #+end_src
 
-*** Loops
+** Loops
 
 Loop over the *elements*:
 
@@ -890,7 +912,7 @@ repeat {
 Better to use a ~for~ loop with an hard limit on the number of iterations that
 it's allowed to run.
 
-** Writing functions
+* Writing functions
 
 - Functions are R objects of class ~function~
 
@@ -920,7 +942,7 @@ it's allowed to run.
   by ~return(data_frame_I_work_with)~ or ~return(column_I_made)~.
   #+end_note
 
-*** Arguments
+** Arguments
 
 - /Named arguments/ can potentially have /default values/ (useful: not every
   function call makes use of all the formal arguments; some can be /missing/)
@@ -960,13 +982,13 @@ it's allowed to run.
   + Used by generic functions (such as ~mean~) so that extra arguments can be
     passed to methods
 
-  + Used when the number of arguments cannot be known in advance (see ~paste~
+  + Used when the number of arguments cannot be known in advance (see [[id:e6b8c6ad-d5dd-4396-9a0f-ffa168da2118][paste]]
     function)
 
   + Any argument that appears /after/ the ~...~ must be named explicitly and cannot
     be partially matched
 
-*** Scoping rules for R
+** Scoping rules for R
 
 - R searches through the /search list/ (a series of ~environments~, an environment
   being a collection of symbol/value pairs) to bind the appropriate value to
@@ -1040,7 +1062,7 @@ it's allowed to run.
   + ~get(object, environment)~ ::
        Get the value of an object inside an environment
 
-** 4. Data Input and output
+* 4. Data Input and output
 
 Types of files:
 - Tab-delimited
@@ -1050,12 +1072,12 @@ Types of files:
 - HTML/XML
 - Database
 
-*** Getting the current working directory
+** Getting the current working directory
 
 - ~getwd()~ ::
      Figure out what your *working directory* is.
 
-*** Creating, opening and closing connections
+** Creating, opening and closing connections
 
 - ~file()~ ::
      + ~description~ is the name of the file
@@ -1067,7 +1089,7 @@ Types of files:
      close(con)
      #+end_src
 
-*** Make your data available (for StackOverflow)
+** Make your data available (for StackOverflow)
 
 Data can now be imported directly into R without the ~textConnection~ function,
 simply by doing this:
@@ -1116,7 +1138,7 @@ California,CA"
 | 4 | Arkansas   | AR           |
 | 5 | California | CA           |
 
-*** Reading tabular data files
+** Reading tabular data files
 
 - ~read.table(file)~ ::
      Read tabular data file, create data frame.
@@ -1172,12 +1194,15 @@ To call some shell script to do the column extraction and then using
 df <- read.table(pipe("cut -f1,5,28 myFile.txt"))
 #+end_src
 
-*** Writing tabular data files
+** Writing tabular data files
 
 - ~write.table()~ ::
      Write data.
 
-*** Reading from CSV files
+     To prevent row index and column names, use:
+     ~row.names = FALSE~ and ~col.names = FALSE~.
+
+** Reading from CSV files
 
 - ~read.csv(file)~ ::
      Read data from CSV file, create data frame.
@@ -1200,14 +1225,14 @@ df <- read.table(pipe("cut -f1,5,28 myFile.txt"))
      + ~header~ (defaults to ~TRUE~)
      + ~separator~ (defaults to ~;~)
 
-*** Reading from Excel files
+** Reading from Excel files
 
 - ~read.xlsx()~, ~read.xlsx2()~ ::
      Read Excel files.
 
 You can also read from Excel spreadsheets using RODBC and ~sqlQuery~.
 
-*** Reading from Google spreadsheets
+** Reading from Google spreadsheets
 
 #+begin_src R
 require(RCurl)
@@ -1215,7 +1240,7 @@ myCsv <- getURL("https://docs.google.com/spreadsheet/pub?...&output=csv")
 read.csv(textConnection(myCsv))
 #+end_src
 
-*** Reading files from the Internet
+** Reading files from the Internet
 
 - ~download.file()~ ::
      Download a file from the Internet.
@@ -1227,7 +1252,7 @@ read.csv(textConnection(myCsv))
      download.file(fileUrl, destfile="./data/file.csv", method="curl")
      #+end_src
 
-*** Reading files with a complex structure
+** Reading files with a complex structure
 
 - ~readLines()~ ::
      Read lines of text from a connection.
@@ -1255,7 +1280,7 @@ read.csv(textConnection(myCsv))
      xpathSApply(html3, "//td[@id='col-citedby']", xmlValue)
      #+end_src
 
-*** Reading from SQL Server databases
+** Reading from SQL Server databases
 
 #+begin_src R
 ## install.packages("RODBC")
@@ -1306,7 +1331,7 @@ if (success & transaction) {
 There is a convergence movement to the DBI package.  [[https://github.com/agstudy/rsqlserver][rsqlserver]] is part of it,
 but it is less mature than RODBC (though it's still high quality).
 
-*** Saving and transporting objects
+** Saving and transporting objects
 
 Textual formats (potentially recoverable in case of corruption).
 
@@ -1316,7 +1341,7 @@ Textual formats (potentially recoverable in case of corruption).
 - ~dump()~ ::
      Can be used on multiple R objects.
 
-*** Further resources
+** Further resources
 
 Packages:
 
@@ -1332,9 +1357,9 @@ Packages:
 - ~foreign~ ::
      For getting data into R from SAS, SPSS, Octave, etc.
 
-** 12. Useful tricks
+* 12. Useful tricks
 
-*** Peeking at your data
+** Peeking at your data
 
 - ~head()~ ::
      Look at the first 6 rows.
@@ -1356,9 +1381,9 @@ Packages:
 - ~attributes()~ ::
      Access (set or modify) the (list of) attributes of an object.
 
-** 9. General statistics
+* 9. General statistics
 
-*** Summarizing your data
+** Summarizing your data
 
 - ~range()~ ::
      Give the *min* and the *max* (vector 2 elements) of the observations (vector of
@@ -1376,7 +1401,7 @@ Packages:
 
      Display the *number of NA values* in each column.
 
-*** Tabulating factors
+** Tabulating factors
     :PROPERTIES:
     :ID:       5d29be63-e58c-4ef3-b28e-2818b65fd46f
     :END:
@@ -1441,7 +1466,7 @@ Packages:
 - ~ftable(f)~ ::
      3-dimensional contingency table.
 
-*** Testing categorical variables for independence
+** Testing categorical variables for independence
 
 #+begin_src R
 summary(table(f1, f2))
@@ -1450,13 +1475,13 @@ summary(table(f1, f2))
 Conventionally, a /p/-value of less than 0.05 indicates that the variables are
 likely not independent (there is some connection between the variables).
 
-*** Calculating quantiles (and quartiles) of a dataset
+** Calculating quantiles (and quartiles) of a dataset
 
 #+begin_src R
 quantile(vec, na.rm=TRUE)
 #+end_src
 
-** 6. Data transformations
+* 6. Data transformations
 
 (Partial list of) munging operations (= key process)
 - *These steps must be recorded* in their own R script
@@ -1467,7 +1492,7 @@ Processed (*tidy*) data:
 - Each observation forms a row.
 - Each table / file stores data about one kind of observation.
 
-*** Fixing variable names
+** Fixing variable names
 
 #+begin_src R
 tolower(names(df))
@@ -1490,13 +1515,13 @@ Rename one named column:
 colnames(df)[colnames(df) == "old"] <- "new"
 #+end_src
 
-*** Creating new variables
+** Creating new variables
 
 #+begin_src R
 df$ranges <- ranges                     # Add a variable to the data frame.
 #+end_src
 
-*** Change the class of many columns from factor to character (or numeric)
+** Change the class of many columns from factor to character (or numeric)
 
 #+begin_src R
 unfactor.cols <- c("V1", "V2")
@@ -1515,7 +1540,7 @@ unfactor <- function (df) {
 }
 #+end_src
 
-*** Removing list elements using a condition
+** Removing list elements using a condition
 
 *Subsetting* by using 2 types of index:
 - a numeric vector (~x[2]~, ~x[1:4]~)
@@ -1529,7 +1554,7 @@ x[u]                                    # Get all elements which are greater
                                         # than "a".
 #+end_src
 
-*** Selecting rows and columns more easily
+** Selecting rows and columns more easily
 
 Subset on V1 and/or V2 > 0.
 
@@ -1557,7 +1582,7 @@ consequences.
 
 Use the ~%in%~ operator to compare a variable to a list of desired values.
 
-*** Removing NA from a list
+** Removing NA from a list
 
 Remove missing values (~NA~) from a *list*:
 
@@ -1575,7 +1600,7 @@ calculation.
 
 The analogue of ~is.na~ for *data frames* is ~complete.cases~.
 
-*** Removing rows that contain NAs from a data frame
+** Removing rows that contain NAs from a data frame
 
 Remove rows that contain any NA values:
 
@@ -1604,7 +1629,7 @@ df[is.na(df$V2), ]
 df[which(is.na(df$V2)), ]
 #+end_src
 
-*** Removing columns that contain NAs from a data frame
+** Removing columns that contain NAs from a data frame
 
 Get rid of any column that has one or more NAs.
 
@@ -1612,7 +1637,7 @@ Get rid of any column that has one or more NAs.
 df <- df[, colSums(is.na(df)) == 0]
 #+end_src
 
-*** Removing columns by name
+** Removing columns by name
 
 To *drop columns by name* in a data frame, you can use direct indexing (with
 booleans vectors) and then, simply reassign data:
@@ -1637,7 +1662,7 @@ df$remove3 <- NULL
 colnames(df)[colnames(df) == "old"] <- "new"
 #+end_src
 
-*** Merging data frames by common column
+** Merging data frames by common column
 
 - ~merge(df1, df2, by="CustomerId")~ ::
      Natural join (special case of *inner* join).
@@ -1657,7 +1682,7 @@ Merge data sets (of different columns).
 merged.data <- merge(df1, df2, by.x="id1", by.y="id2", all=TRUE)
 #+end_src
 
-*** Convert a list of data frames into one data frame
+** Convert a list of data frames into one data frame
 
 Combine a list of data frames (of identical columns) into a single data frame:
 
@@ -1665,7 +1690,7 @@ Combine a list of data frames (of identical columns) into a single data frame:
 df <- do.call("rbind", list.of.data.frames)
 #+end_src
 
-*** Converting
+** Converting
 
 - ~as.*()~ ::
      Explicitly coerce from one class to another.
@@ -1701,7 +1726,7 @@ ind <- sapply(x, is.character)
 x[ind] <- lapply(x[ind], factor)
 #+end_src
 
-*** Applying a function to each list element
+** Applying a function to each list element
 
 Alternative (to ~for~ *loops*) to apply a function (or summary statistics).
 
@@ -1712,7 +1737,7 @@ functions.
 - [[http://adv-r.had.co.nz/Functional-programming.html][Advanced R: Functional Programming]], by Hadley Wickham
 - [[http://www.bioinformaticszen.com/post/simple-functional-programming-in-r/][Simple Functional Programming in R]], by Michael Barton
 
-**** ~lapply~
+*** ~lapply~
 
 *Loop over a list* (or every /column/ of a data frame) and apply a *function* on each
 *element. /Always/ returns a list* back (that is, not a simplified result).
@@ -1736,7 +1761,7 @@ Extract the first column of each matrix of a list:
 lapply(x, function(x) x[, 1])
 #+end_src
 
-**** ~sapply~
+*** ~sapply~
 
 Same as ~lapply~ (for lists or /columns/ of data frames), but tries to "*simplify*"
 the *result* in a much more compact format (return the simplest possible data
@@ -1755,7 +1780,7 @@ the mean.
 sapply(s, function(x) colMeans(x[, c("Ozone", "Solar.R", "Wind")], na.rm=TRUE))
 #+end_src
 
-*** Splitting a vector into groups
+** Splitting a vector into groups
 
 - ~split(x, f)~ ::
      Take a vector, and *split* it into subpieces (the number of groups identified
@@ -1787,7 +1812,7 @@ size.max <- 20
 split(x, ceiling(seq_along(x$V1) / size.max))
 #+end_src
 
-*** Applying a function to every row/column
+** Applying a function to every row/column
 
 - ~apply(df, margin, fun, ...)~ ::
      Apply a function over the /margins/ of an *array*.
@@ -1832,7 +1857,7 @@ Unlike ~apply~, ~sapply~ does not coerce the data frame to a matrix: see ~sapply
 class)~.
 #+end_warning
 
-*** Applying a function to groups of data
+** Applying a function to groups of data
 
 - ~tapply(x, index, fun)~ ::
      Short for "*table apply*" (or "tagged apply", where the tags identify the
@@ -1869,7 +1894,7 @@ class)~.
      You can also use ~aggregate~ to analyze groups defined by more than one
      categorical variable (e.g., month and year).
 
-*** Applying a function to parallel vectors or lists
+** Applying a function to parallel vectors or lists
 
 - ~mapply~ ::
      Apply a *function* to the elements of *multiple lists* in parallel
@@ -1893,16 +1918,19 @@ class)~.
           rnorm(3, 3, 2))
      #+end_src
 
-*** Checking on and removing inconsistent values
+** Checking on and removing inconsistent values
 
-** 7. Strings (and dates)
+* 7. Strings (and dates)
 
-*** Getting the length of a string
+** Getting the length of a string
 
 - ~nchar()~ ::
      Get the length of a string.
 
-*** Concatenating strings
+** Concatenating strings
+    :PROPERTIES:
+    :ID:       e6b8c6ad-d5dd-4396-9a0f-ffa168da2118
+    :END:
 
 - ~paste()~ ::
      *Concatenate* a set of *strings together* to create one string or a vector of
@@ -1934,9 +1962,9 @@ class)~.
 
 See ~prettyNum~ formatting for manual axis tick labels.
 
-*** Regular expressions
+** Regular expressions
 
-**** Metacharacters
+*** Metacharacters
 
 - ~^~ ::
      Start of a line (or negation of a character class).
@@ -1979,7 +2007,7 @@ See ~prettyNum~ formatting for manual axis tick labels.
 - ~{}~ ::
      Interval quantifiers (minimum, maximum).
 
-**** Regular expressions in R
+*** Regular expressions in R
 
 For the moment, we assume pattern matching on *ASCII strings*...
 
@@ -2049,9 +2077,9 @@ These functions can take vector arguments.
      hist(dates, "month", freq=TRUE)    # Aggregate the dates by month and give an histogram.
      #+end_src
 
-** 8. Probability
+* 8. Probability
 
-*** Names of distributions
+** Names of distributions
 
 - Functions for *probability distributions*
 
@@ -2089,7 +2117,7 @@ These functions can take vector arguments.
 
   + q* :: evaluate the *quantile* function
 
-*** Generate reproducible random numbers
+** Generate reproducible random numbers
 
 Set the random number *seed* is critical for *reproducibility*: *always set it when
 conducting a simulation!*
@@ -2098,7 +2126,7 @@ conducting a simulation!*
   set.seed(1)                           # Or use any other positive integer.
   #+end_src
 
-*** Generate a random sample
+** Generate a random sample
 
 *Sample randomly* from a specified vector of scalar objects.
 
@@ -2110,7 +2138,7 @@ sample(1:10, replace=TRUE)              # Sample with replacement (I can get rep
 
 Sample can draw according to a set of probabilities.
 
-** 10. Graphics
+* 10. Graphics
   :PROPERTIES:
   :eval:     yes
   :END:
@@ -2148,9 +2176,9 @@ You cannot use functions from the base plotting system in a Lattice plot.
 
 Excellent resource for graphics: http://www.cookbook-r.com/Graphs/Scatterplot/.
 
-*** Base graphics
+** Base graphics
 
-**** Make a plot
+*** Make a plot
 
 - ~plot~ ::
      Create a *scatter plot* (or another type of plot, depending on the class of
@@ -2166,7 +2194,7 @@ Excellent resource for graphics: http://www.cookbook-r.com/Graphs/Scatterplot/.
      Create a box-and-whisker plot of the ~y~ variable by the grouping variable ~x~
      (usually a ~factor~).
 
-***** Create a scatter plot
+**** Create a scatter plot
 
 - ~plot(x)~ ::
      Plot the (numeric) data against the index (~1:N~).
@@ -2226,12 +2254,12 @@ Excellent resource for graphics: http://www.cookbook-r.com/Graphs/Scatterplot/.
      |  0.871753775886583 |  -0.42844010433054 |                 1 |  0.962865431402796 |
      |  0.817941126271576 | -0.366125932536439 | 0.962865431402796 |                  1 |
 
-***** TODO ~barplot~
+**** TODO ~barplot~
 
 See http://onertipaday.blogspot.be/2007/05/barplots-of-two-sets.html for
 barplot with figures above the bars.
 
-***** ~hist~
+**** ~hist~
 
 Histogram (*distribution* of data, *frequency* = exact number).
 
@@ -2309,7 +2337,7 @@ being too small, would be on the x-axis itself).
 
   #+results:
 
-***** ~boxplot~
+**** ~boxplot~
 
 ~boxplot~ draws plot summarizing:
 
@@ -2331,11 +2359,11 @@ boxplot(iris[, 1:4], col=rainbow(4), main="Boxplot", ylab="Appropriate units")
 #+results:
 [[file:Rplots/base-boxplot.png]]
 
-***** violinplot
+**** violinplot
 
 See http://www.math.csi.cuny.edu/Statistics/R/simpleR/stat006.html
 
-**** Add to an existing plot
+*** Add to an existing plot
 
 - ~points~ ::
      *Add points to a plot* (~col~ for boundary color, ~bg~ for fill color, ~pch~ for
@@ -2440,7 +2468,7 @@ See http://www.math.csi.cuny.edu/Statistics/R/simpleR/stat006.html
      legend("topleft", legend="Data", pch=1)
      #+end_src
 
-**** Changing graphical parameters
+*** Changing graphical parameters
 
 - ~par()~ ::
      control *all the graphing parameters* that you can specify (/defaults/ for all
@@ -2526,7 +2554,7 @@ See http://www.math.csi.cuny.edu/Statistics/R/simpleR/stat006.html
 - Copy the plot to another device
   + ~dev.copy2pdf~ :: copy a plot to PDF
 
-*** Lattice graphics
+** Lattice graphics
 
 - Tellis graphics
 
@@ -2620,7 +2648,7 @@ See http://www.math.csi.cuny.edu/Statistics/R/simpleR/stat006.html
 
   + panel.loess(x, y) :: give a smooth rendition of the linear model
 
-**** Splom
+*** Splom
 
 -  Look at pairwise relationships possible in the data frame (make a scatter
    plot of all the different variables against each other)
@@ -2629,7 +2657,7 @@ See http://www.math.csi.cuny.edu/Statistics/R/simpleR/stat006.html
   splom(~ df)
   #+end_src
 
-**** Histogram
+*** Histogram
 
 - Histogram of =x=
 
@@ -2643,7 +2671,7 @@ See http://www.math.csi.cuny.edu/Statistics/R/simpleR/stat006.html
   histogram(~ x | f.cut, data=df)
   #+end_src
 
-*** ggplot2
+** ggplot2
 
 See http://tutorials.iq.harvard.edu/R/Rgraphics/Rgraphics.html for a comparison
 with Base graphics.
@@ -2661,9 +2689,9 @@ qplot(speed, dist, data=cars) + geom_smooth()
 #+results:
 [[file:Rplots/ggplot2.png]]
 
-*** Other graphics
+** Other graphics
 
-**** Pareto diagrams
+*** Pareto diagrams
 
 #+begin_src R :results graphics :file Rplots/qcc-pareto.png
 ## install.packages("qcc")
@@ -2675,11 +2703,11 @@ pareto.chart(table(iris[iris$Species=="setosa", ]$Petal.Length))
 #+results:
 [[file:Rplots/qcc-pareto.png]]
 
-** 11. Linear regression and ANOVA
+* 11. Linear regression and ANOVA
 
 https://www.zoology.ubc.ca/~schluter/R/fit-model/
 
-*** Linear model
+** Linear model
 
 y = \beta_{0} + \beta_{1} x + \epsilon
 
@@ -2688,14 +2716,14 @@ x <- rnorm(100)                         # Predictor.
 e <- rnorm(100, 0, 2)                   # Noise.
 #+end_src
 
-*** Regression tree models
+** Regression tree models
 
 - arbres de régression : la variable expliquée est de type numérique et il
   s'agit de prédire une valeur la plus proche possible de la vraie valeur.
 
 http://www.statmethods.net/advstats/cart.html
 
-*** Classification tree models
+** Classification tree models
 
 - arbres de classification : la variable expliquée est de type nominale
   (facteur). A chaque étape du partitionnement, on cherche à réduire l'impureté
@@ -2705,7 +2733,7 @@ http://www.statmethods.net/advstats/cart.html
 rpart
 #+end_src
 
-** Debugging
+* Debugging
 
 - 3 main indications of a problem / =condition=:
 
@@ -2769,7 +2797,7 @@ rpart
   + ~print~
   + ~cat~
 
-** Assert
+* Assert
 
 https://github.com/hadley/assertthat
 
@@ -2796,7 +2824,7 @@ warn_if_not_empty <- function (..., env=parent.frame())
 ## warn_if_not_empty(pfisortie[is.na(pfisortie$stgNom.x), ])
 #+end_src
 
-** Total                                                              :noexport:
+* Total                                                               :noexport:
 
 #+begin_src R
 Total <- function(df) {
@@ -2809,23 +2837,23 @@ Total <- function(df) {
 }
 #+end_src
 
-** How to deal with character(0)?
+* How to deal with character(0)?
 
 #+begin_src R
 (length(dd) == 0) && (typeof(dd) == "character")
 #+end_src
 
-** Contributing
+* Contributing
 
-*** Issues
+** Issues
 
 Report issues and suggest features and improvements on the [[https://github.com/fniessen/refcard-R/issues/new][GitHub issue tracker]].
 
-*** Patches
+** Patches
 
 I love contributions!  Patches under any form are always welcome!
 
-*** Donations
+** Donations
 
 If you like the refcard-R project (or any of [[https://github.com/fniessen/][my other projects]]), you can show
 your appreciation and help support future development by making today a [[https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=VCVAS6KPDQ4JC&lc=BE&item_number=refcard%2dR&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted][donation]]
@@ -2834,7 +2862,7 @@ through PayPal.
 Regardless of the donations, refcard-R will always be free both as in beer and
 as in speech.
 
-** License
+* License
 
 Copyright (C) 2013-2015 Free Software Foundation, Inc.
 
@@ -2852,3 +2880,13 @@ A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License along with
 this program. If not, see http://www.gnu.org/licenses/.
+
+#+begin_html
+<a href="http://opensource.org/licenses/GPL-3.0">
+  <img src="http://img.shields.io/:license-gpl-blue.svg" alt=":license-gpl-blue.svg" />
+</a>
+
+<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=VCVAS6KPDQ4JC&lc=BE&item_number=refcard%2dR&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted">
+  <img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" alt="btn_donate_LG.gif" />
+</a>
+#+end_html

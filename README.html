@@ -4,27 +4,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <meta name="generator" content="HTML Tidy for Cygwin (vers 1st September 2004), see www.w3.org" />
-<title></title>
+<title>R reference card</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Org-mode" />
 <meta name="author" content="Fabrice Niessen" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="stylesheet" type="text/css" href="http://www.pirilampo.org/styles/bigblow/css/htmlize.css" />
-<link rel="stylesheet" type="text/css" href="http://www.pirilampo.org/styles/bigblow/css/bigblow.css" />
-<link rel="stylesheet" type="text/css" href="http://www.pirilampo.org/styles/bigblow/css/hideshow.css" />
-<script type="text/javascript" src="http://www.pirilampo.org/styles/bigblow/js/jquery-1.11.0.min.js">
+<link rel="stylesheet" type="text/css" href="http://www.pirilampo.org/styles/readtheorg/css/htmlize.css" />
+<link rel="stylesheet" type="text/css" href="http://www.pirilampo.org/styles/readtheorg/css/readtheorg.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript">
 </script>
-<script type="text/javascript" src="http://www.pirilampo.org/styles/bigblow/js/jquery-ui-1.10.2.min.js">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js" type="text/javascript">
 </script>
-<script type="text/javascript" src="http://www.pirilampo.org/styles/bigblow/js/jquery.localscroll-min.js">
+<script type="text/javascript" src="http://www.pirilampo.org/styles/lib/js/jquery.stickytableheaders.js">
 </script>
-<script type="text/javascript" src="http://www.pirilampo.org/styles/bigblow/js/jquery.scrollTo-1.4.3.1-min.js">
-</script>
-<script type="text/javascript" src="http://www.pirilampo.org/styles/bigblow/js/jquery.zclip.min.js">
-</script>
-<script type="text/javascript" src="http://www.pirilampo.org/styles/bigblow/js/bigblow.js">
-</script>
-<script type="text/javascript" src="http://www.pirilampo.org/styles/bigblow/js/hideshow.js">
+<script type="text/javascript" src="http://www.pirilampo.org/styles/readtheorg/js/readtheorg.js">
 </script>
 <style type="text/css">
 /*<![CDATA[*/
@@ -35,56 +28,67 @@
 </head>
 <body>
 <div id="content">
+<h1 class="title">R reference card</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline143">1. R reference card</a>
+<li><a href="#orgheadline1">Documentation</a></li>
+<li><a href="#orgheadline2">Coding style</a></li>
+<li><a href="#orgheadline3">Emacs Speaks Statistics (ESS) key bindings</a>
 <ul>
-<li><a href="#orgheadline1">1.1. Documentation</a></li>
-<li><a href="#orgheadline2">1.2. Coding style</a></li>
-<li><a href="#orgheadline29">1.3. Emacs Speaks Statistics (ESS) key bindings</a>
+<li><a href="#orgheadline4">References</a></li>
+<li><a href="#orgheadline8">Interacting with the ESS process</a>
 <ul>
-<li><a href="#orgheadline3">References</a></li>
-<li><a href="#orgheadline7">Interacting with the ESS process</a>
-<ul>
-<li><a href="#orgheadline4">Command History</a></li>
-<li><a href="#orgheadline5">Hot keys for common commands</a></li>
-<li><a href="#orgheadline6">Other commands provided by inferior-ESS</a></li>
+<li><a href="#orgheadline5">Command History</a></li>
+<li><a href="#orgheadline6">Hot keys for common commands</a></li>
+<li><a href="#orgheadline7">Other commands provided by inferior-ESS</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline8">Sending code to the iESS process</a></li>
-<li><a href="#orgheadline9">Manipulating saved transcript files</a></li>
-<li><a href="#orgheadline14">Editing objects and functions</a>
+<li><a href="#orgheadline9">Sending code to the iESS process</a></li>
+<li><a href="#orgheadline10">Manipulating saved transcript files</a></li>
+<li><a href="#orgheadline15">Editing objects and functions</a>
 <ul>
-<li><a href="#orgheadline10">Creating or modifying objects</a></li>
-<li><a href="#orgheadline11">Loading source files into the ESS process</a></li>
-<li><a href="#orgheadline12">Commands for motion, completion and more</a></li>
-</ul>
-</li>
-<li><a href="#orgheadline15">Reading help files</a></li>
-<li><a href="#orgheadline17">Completion</a>
+<li><a href="#orgheadline11">Creating or modifying objects</a></li>
+<li><a href="#orgheadline12">Loading source files into the ESS process</a></li>
+<li><a href="#orgheadline13">Commands for motion, completion and more</a>
 <ul>
-<li><a href="#orgheadline16">Integration with auto-complete package</a></li>
+<li><a href="#orgheadline14">Tags Tables</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline25">Developing with ESS</a>
+</ul>
+</li>
+<li><a href="#orgheadline16">Reading help files</a></li>
+<li><a href="#orgheadline18">Completion</a>
 <ul>
-<li><a href="#orgheadline18">ESS tracebug</a></li>
-<li><a href="#orgheadline24">ESS developer</a></li>
+<li><a href="#orgheadline17">Integration with auto-complete package</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline27">Other ESS features and tools</a>
+<li><a href="#orgheadline26">Developing with ESS</a>
 <ul>
-<li><a href="#orgheadline26">ElDoc</a></li>
+<li><a href="#orgheadline19">ESS tracebug</a>
+<ul>
+<li><a href="#orgheadline20">Breakpoints</a></li>
+<li><a href="#orgheadline21">Debugging</a></li>
+<li><a href="#orgheadline22">Interactive debugging</a></li>
+<li><a href="#orgheadline23">Navigation to errors</a></li>
+<li><a href="#orgheadline24">Tracebug visual debugger</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline28">Other Emacs features and tools</a></li>
+<li><a href="#orgheadline25">ESS developer</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline30">1.4. 0. Overview of R</a></li>
-<li><a href="#orgheadline31">1.5. 1. Getting started and getting help</a></li>
-<li><a href="#orgheadline39">1.6. 2. Some basics</a>
+<li><a href="#orgheadline28">Other ESS features and tools</a>
+<ul>
+<li><a href="#orgheadline27">ElDoc</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline29">Other Emacs features and tools</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline30">0. Overview of R</a></li>
+<li><a href="#orgheadline31">1. Getting started and getting help</a></li>
+<li><a href="#orgheadline39">2. Some basics</a>
 <ul>
 <li><a href="#orgheadline32">Print something</a></li>
 <li><a href="#orgheadline33">Setting variables</a></li>
@@ -95,102 +99,102 @@
 <li><a href="#orgheadline38">Operators</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline41">1.7. 3. Navigating the software</a>
+<li><a href="#orgheadline40">3. Navigating the software</a>
 <ul>
-<li><a href="#orgheadline40">Running a batch script</a></li>
+<li><a href="#orgheadline41">Running a batch script</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline57">1.8. 5. Data structures</a>
+<li><a href="#orgheadline42">5. Data structures</a>
 <ul>
-<li><a href="#orgheadline42">Basic ("atomic") vector types</a></li>
-<li><a href="#orgheadline43">Vectors</a></li>
-<li><a href="#orgheadline44">Matrices</a></li>
-<li><a href="#orgheadline45">Arrays</a></li>
-<li><a href="#orgheadline46">Lists</a></li>
-<li><a href="#orgheadline47">Factors</a></li>
-<li><a href="#orgheadline48">Data frames</a></li>
-<li><a href="#orgheadline50">Tables</a></li>
-<li><a href="#orgheadline51">Vectorized operations (recycling rule)</a></li>
-<li><a href="#orgheadline52">Selecting list elements or data frame columns by position (subsetting)</a></li>
-<li><a href="#orgheadline53">Selecting list elements or data frame columns by name (subsetting)</a></li>
-<li><a href="#orgheadline54">Selecting data frame columns by position (subsetting)</a></li>
-<li><a href="#orgheadline55">Give the <code>TRUE</code> indices of a logical object</a></li>
-<li><a href="#orgheadline56">Flatten a list into a vector</a></li>
+<li><a href="#orgheadline43">Basic ("atomic") vector types</a></li>
+<li><a href="#orgheadline44">Vectors</a></li>
+<li><a href="#orgheadline45">Matrices</a></li>
+<li><a href="#orgheadline46">Arrays</a></li>
+<li><a href="#orgheadline47">Lists</a></li>
+<li><a href="#orgheadline48">Factors</a></li>
+<li><a href="#orgheadline49">Data frames</a></li>
+<li><a href="#orgheadline51">Tables</a></li>
+<li><a href="#orgheadline52">Vectorized operations (recycling rule)</a></li>
+<li><a href="#orgheadline53">Selecting list elements or data frame columns by position (subsetting)</a></li>
+<li><a href="#orgheadline54">Selecting list elements or data frame columns by name (subsetting)</a></li>
+<li><a href="#orgheadline55">Selecting data frame columns by position (subsetting)</a></li>
+<li><a href="#orgheadline56">Give the <code>TRUE</code> indices of a logical object</a></li>
+<li><a href="#orgheadline57">Flatten a list into a vector</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline60">1.9. Control structures</a>
+<li><a href="#orgheadline58">Control structures</a>
 <ul>
-<li><a href="#orgheadline58">Conditional statements</a></li>
-<li><a href="#orgheadline59">Loops</a></li>
+<li><a href="#orgheadline59">Conditional statements</a></li>
+<li><a href="#orgheadline60">Loops</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline63">1.10. Writing functions</a>
+<li><a href="#orgheadline61">Writing functions</a>
 <ul>
-<li><a href="#orgheadline61">Arguments</a></li>
-<li><a href="#orgheadline62">Scoping rules for R</a></li>
+<li><a href="#orgheadline63">Arguments</a></li>
+<li><a href="#orgheadline64">Scoping rules for R</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline77">1.11. 4. Data Input and output</a>
+<li><a href="#orgheadline65">4. Data Input and output</a>
 <ul>
-<li><a href="#orgheadline64">Getting the current working directory</a></li>
-<li><a href="#orgheadline65">Creating, opening and closing connections</a></li>
-<li><a href="#orgheadline66">Make your data available (for StackOverflow)</a></li>
-<li><a href="#orgheadline67">Reading tabular data files</a></li>
-<li><a href="#orgheadline68">Writing tabular data files</a></li>
-<li><a href="#orgheadline69">Reading from CSV files</a></li>
-<li><a href="#orgheadline70">Reading from Excel files</a></li>
-<li><a href="#orgheadline71">Reading from Google spreadsheets</a></li>
-<li><a href="#orgheadline72">Reading files from the Internet</a></li>
-<li><a href="#orgheadline73">Reading files with a complex structure</a></li>
-<li><a href="#orgheadline74">Reading from SQL Server databases</a></li>
-<li><a href="#orgheadline75">Saving and transporting objects</a></li>
-<li><a href="#orgheadline76">Further resources</a></li>
+<li><a href="#orgheadline66">Getting the current working directory</a></li>
+<li><a href="#orgheadline67">Creating, opening and closing connections</a></li>
+<li><a href="#orgheadline68">Make your data available (for StackOverflow)</a></li>
+<li><a href="#orgheadline69">Reading tabular data files</a></li>
+<li><a href="#orgheadline70">Writing tabular data files</a></li>
+<li><a href="#orgheadline71">Reading from CSV files</a></li>
+<li><a href="#orgheadline72">Reading from Excel files</a></li>
+<li><a href="#orgheadline73">Reading from Google spreadsheets</a></li>
+<li><a href="#orgheadline74">Reading files from the Internet</a></li>
+<li><a href="#orgheadline75">Reading files with a complex structure</a></li>
+<li><a href="#orgheadline76">Reading from SQL Server databases</a></li>
+<li><a href="#orgheadline77">Saving and transporting objects</a></li>
+<li><a href="#orgheadline78">Further resources</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline79">1.12. 12. Useful tricks</a>
+<li><a href="#orgheadline80">12. Useful tricks</a>
 <ul>
-<li><a href="#orgheadline78">Peeking at your data</a></li>
+<li><a href="#orgheadline79">Peeking at your data</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline83">1.13. 9. General statistics</a>
+<li><a href="#orgheadline84">9. General statistics</a>
 <ul>
-<li><a href="#orgheadline80">Summarizing your data</a></li>
-<li><a href="#orgheadline49">Tabulating factors</a></li>
-<li><a href="#orgheadline81">Testing categorical variables for independence</a></li>
-<li><a href="#orgheadline82">Calculating quantiles (and quartiles) of a dataset</a></li>
+<li><a href="#orgheadline81">Summarizing your data</a></li>
+<li><a href="#orgheadline50">Tabulating factors</a></li>
+<li><a href="#orgheadline82">Testing categorical variables for independence</a></li>
+<li><a href="#orgheadline83">Calculating quantiles (and quartiles) of a dataset</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline104">1.14. 6. Data transformations</a>
+<li><a href="#orgheadline85">6. Data transformations</a>
 <ul>
-<li><a href="#orgheadline84">Fixing variable names</a></li>
-<li><a href="#orgheadline85">Creating new variables</a></li>
-<li><a href="#orgheadline86">Change the class of many columns from factor to character (or numeric)</a></li>
-<li><a href="#orgheadline87">Removing list elements using a condition</a></li>
-<li><a href="#orgheadline88">Selecting rows and columns more easily</a></li>
-<li><a href="#orgheadline89">Removing NA from a list</a></li>
-<li><a href="#orgheadline90">Removing rows that contain NAs from a data frame</a></li>
-<li><a href="#orgheadline91">Removing columns that contain NAs from a data frame</a></li>
-<li><a href="#orgheadline92">Removing columns by name</a></li>
-<li><a href="#orgheadline93">Merging data frames by common column</a></li>
-<li><a href="#orgheadline94">Convert a list of data frames into one data frame</a></li>
-<li><a href="#orgheadline95">Converting</a></li>
-<li><a href="#orgheadline96">Applying a function to each list element</a>
+<li><a href="#orgheadline86">Fixing variable names</a></li>
+<li><a href="#orgheadline87">Creating new variables</a></li>
+<li><a href="#orgheadline88">Change the class of many columns from factor to character (or numeric)</a></li>
+<li><a href="#orgheadline89">Removing list elements using a condition</a></li>
+<li><a href="#orgheadline90">Selecting rows and columns more easily</a></li>
+<li><a href="#orgheadline91">Removing NA from a list</a></li>
+<li><a href="#orgheadline92">Removing rows that contain NAs from a data frame</a></li>
+<li><a href="#orgheadline93">Removing columns that contain NAs from a data frame</a></li>
+<li><a href="#orgheadline94">Removing columns by name</a></li>
+<li><a href="#orgheadline95">Merging data frames by common column</a></li>
+<li><a href="#orgheadline96">Convert a list of data frames into one data frame</a></li>
+<li><a href="#orgheadline97">Converting</a></li>
+<li><a href="#orgheadline98">Applying a function to each list element</a>
 <ul>
-<li><a href="#orgheadline97"><code>lapply</code></a></li>
-<li><a href="#orgheadline98"><code>sapply</code></a></li>
+<li><a href="#orgheadline99"><code>lapply</code></a></li>
+<li><a href="#orgheadline100"><code>sapply</code></a></li>
 </ul>
 </li>
-<li><a href="#orgheadline99">Splitting a vector into groups</a></li>
-<li><a href="#orgheadline100">Applying a function to every row/column</a></li>
-<li><a href="#orgheadline101">Applying a function to groups of data</a></li>
-<li><a href="#orgheadline102">Applying a function to parallel vectors or lists</a></li>
-<li><a href="#orgheadline103">Checking on and removing inconsistent values</a></li>
+<li><a href="#orgheadline101">Splitting a vector into groups</a></li>
+<li><a href="#orgheadline102">Applying a function to every row/column</a></li>
+<li><a href="#orgheadline103">Applying a function to groups of data</a></li>
+<li><a href="#orgheadline104">Applying a function to parallel vectors or lists</a></li>
+<li><a href="#orgheadline105">Checking on and removing inconsistent values</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline110">1.15. 7. Strings (and dates)</a>
+<li><a href="#orgheadline110">7. Strings (and dates)</a>
 <ul>
-<li><a href="#orgheadline105">Getting the length of a string</a></li>
-<li><a href="#orgheadline106">Concatenating strings</a></li>
+<li><a href="#orgheadline106">Getting the length of a string</a></li>
+<li><a href="#orgheadline62">Concatenating strings</a></li>
 <li><a href="#orgheadline109">Regular expressions</a>
 <ul>
 <li><a href="#orgheadline107">Metacharacters</a></li>
@@ -199,67 +203,70 @@
 </li>
 </ul>
 </li>
-<li><a href="#orgheadline114">1.16. 8. Probability</a>
+<li><a href="#orgheadline114">8. Probability</a>
 <ul>
 <li><a href="#orgheadline111">Names of distributions</a></li>
 <li><a href="#orgheadline112">Generate reproducible random numbers</a></li>
 <li><a href="#orgheadline113">Generate a random sample</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline130">1.17. 10. Graphics</a>
+<li><a href="#orgheadline115">10. Graphics</a>
 <ul>
-<li><a href="#orgheadline123">Base graphics</a>
+<li><a href="#orgheadline124">Base graphics</a>
 <ul>
-<li><a href="#orgheadline115">Make a plot</a></li>
-<li><a href="#orgheadline121">Add to an existing plot</a></li>
-<li><a href="#orgheadline122">Changing graphical parameters</a></li>
+<li><a href="#orgheadline116">Make a plot</a>
+<ul>
+<li><a href="#orgheadline117">Create a scatter plot</a></li>
+<li><a href="#orgheadline118"><span class="todo nilTODO">TODO</span> <code>barplot</code></a></li>
+<li><a href="#orgheadline119"><code>hist</code></a></li>
+<li><a href="#orgheadline120"><code>boxplot</code></a></li>
+<li><a href="#orgheadline121">violinplot</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline124">Lattice graphics</a>
+<li><a href="#orgheadline122">Add to an existing plot</a></li>
+<li><a href="#orgheadline123">Changing graphical parameters</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline125">Lattice graphics</a>
 <ul>
-<li><a href="#orgheadline125">Splom</a></li>
-<li><a href="#orgheadline126">Histogram</a></li>
+<li><a href="#orgheadline126">Splom</a></li>
+<li><a href="#orgheadline127">Histogram</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline127">ggplot2</a></li>
-<li><a href="#orgheadline129">Other graphics</a>
+<li><a href="#orgheadline128">ggplot2</a></li>
+<li><a href="#orgheadline130">Other graphics</a>
 <ul>
-<li><a href="#orgheadline128">Pareto diagrams</a></li>
+<li><a href="#orgheadline129">Pareto diagrams</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgheadline134">1.18. 11. Linear regression and ANOVA</a>
+<li><a href="#orgheadline131">11. Linear regression and ANOVA</a>
 <ul>
-<li><a href="#orgheadline131">Linear model</a></li>
-<li><a href="#orgheadline132">Regression tree models</a></li>
-<li><a href="#orgheadline133">Classification tree models</a></li>
+<li><a href="#orgheadline132">Linear model</a></li>
+<li><a href="#orgheadline133">Regression tree models</a></li>
+<li><a href="#orgheadline134">Classification tree models</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline135">1.19. Debugging</a></li>
-<li><a href="#orgheadline136">1.20. Assert</a></li>
-<li><a href="#orgheadline137">1.21. How to deal with character(0)?</a></li>
-<li><a href="#orgheadline141">1.22. Contributing</a>
+<li><a href="#orgheadline135">Debugging</a></li>
+<li><a href="#orgheadline136">Assert</a></li>
+<li><a href="#orgheadline137">How to deal with character(0)?</a></li>
+<li><a href="#orgheadline141">Contributing</a>
 <ul>
 <li><a href="#orgheadline138">Issues</a></li>
 <li><a href="#orgheadline139">Patches</a></li>
 <li><a href="#orgheadline140">Donations</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline142">1.23. License</a></li>
-</ul>
-</li>
+<li><a href="#orgheadline142">License</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline143" class="outline-2">
-<h2 id="orgheadline143"><span class="section-number-2">1</span> R reference card <a href="http://opensource.org/licenses/GPL-3.0"><object type="image/svg+xml" data="http://img.shields.io/:license-gpl-blue.svg">Sorry, your browser does not support SVG.</object></a> <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=VCVAS6KPDQ4JC&amp;lc=BE&amp;item_number=refcard-R&amp;currency_code=EUR&amp;bn=PP-DonationsBF:btn_donate_LG.gif:NonHosted"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" alt="btn_donate_LG.gif" /></a></h2>
-<div class="outline-text-2" id="text-1">
+<a href="http://opensource.org/licenses/GPL-3.0"><img src="http://img.shields.io/:license-gpl-blue.svg" alt=":license-gpl-blue.svg" /></a> <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=VCVAS6KPDQ4JC&amp;lc=BE&amp;item_number=refcard%2dR&amp;currency_code=EUR&amp;bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" alt="btn_donate_LG.gif" /></a>
 <p>Welcome to R reference card. It contains the reference documentation that describes how to perform <b>data analysis</b> using R.</p>
-</div>
-<div id="outline-container-orgheadline1" class="outline-3">
-<h3 id="orgheadline1"><span class="section-number-3">1.1</span> Documentation</h3>
-<div class="outline-text-3" id="text-1-1">
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1">Documentation</h2>
+<div class="outline-text-2" id="text-orgheadline1">
 <ul class="org-ul">
 <li><a href="http://cran.r-project.org/doc/contrib/Short-refcard.pdf">R Reference Card</a></li>
 <li><a href="http://www.rdocumentation.org/">Search the documentation of R packages and R functions</a></li>
@@ -268,9 +275,9 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2"><span class="section-number-3">1.2</span> Coding style</h3>
-<div class="outline-text-3" id="text-1-2">
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2">Coding style</h2>
+<div class="outline-text-2" id="text-orgheadline2">
 <ul class="org-ul">
 <li><a href="http://cran.r-project.org/doc/manuals/R-ints.html#R-coding-standards">R Internals manual, section 8. "R Coding Standards"</a></li>
 <li><a href="http://adv-r.had.co.nz/Style.html">R coding style guide</a></li>
@@ -280,16 +287,16 @@
 <p><code>variable.name</code> preferred (<code>variableName</code> accepted)<br />
 <code>FunctionName</code><br />
 <code>kConstantName</code></p>
-<p>Place spaces around all binary operators (=, +, -, &lt;-, etc.).<br />
-Exception: Spaces around ='s are optional when passing parameters in a function call.</p>
+<p>Place spaces around all binary operators (<code>=</code>, <code>+</code>, <code>-</code>, <code>&lt;-</code>, etc.).<br />
+Exception: Spaces around <code>=</code>'s are optional when passing parameters in a function call.</p>
 <p>Do not place a space before a comma, but always place one after a comma.</p>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline29" class="outline-3">
-<h3 id="orgheadline29"><span class="section-number-3">1.3</span> Emacs Speaks Statistics (ESS) key bindings</h3>
-<div class="outline-text-3" id="text-1-3">
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3">Emacs Speaks Statistics (ESS) key bindings</h2>
+<div class="outline-text-2" id="text-orgheadline3">
 <p>Most of the shortcuts are actually mnemonic and hierarchical:</p>
 <ul class="org-ul">
 <li><code>C-c C-d</code> for <code>doc-map</code>,</li>
@@ -297,9 +304,9 @@ Exception: Spaces around ='s are optional when passing parameters in a function 
 <li><code>C-c C-t</code> for <code>dev-map</code> which includes mostly [t]racebug.</li>
 </ul>
 </div>
-<div id="outline-container-orgheadline3" class="outline-4">
-<h4 id="orgheadline3">References</h4>
-<div class="outline-text-4" id="text-orgheadline3">
+<div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4">References</h3>
+<div class="outline-text-3" id="text-orgheadline4">
 <p>See</p>
 <ul class="org-ul">
 <li><a href="http://ess.r-project.org/refcard.pdf">http://ess.r-project.org/refcard.pdf</a></li>
@@ -307,12 +314,12 @@ Exception: Spaces around ='s are optional when passing parameters in a function 
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline7" class="outline-4">
-<h4 id="orgheadline7">Interacting with the ESS process</h4>
-<div class="outline-text-4" id="text-orgheadline7"></div>
-<div id="outline-container-orgheadline4" class="outline-5">
-<h5 id="orgheadline4">Command History</h5>
-<div class="outline-text-5" id="text-orgheadline4">
+<div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8">Interacting with the ESS process</h3>
+<div class="outline-text-3" id="text-orgheadline8"></div>
+<div id="outline-container-orgheadline5" class="outline-4">
+<h4 id="orgheadline5">Command History</h4>
+<div class="outline-text-4" id="text-orgheadline5">
 <dl class="org-dl">
 <dt><code>M-r</code></dt>
 <dd>
@@ -322,9 +329,9 @@ Exception: Spaces around ='s are optional when passing parameters in a function 
 </dl>
 </div>
 </div>
-<div id="outline-container-orgheadline5" class="outline-5">
-<h5 id="orgheadline5">Hot keys for common commands</h5>
-<div class="outline-text-5" id="text-orgheadline5">
+<div id="outline-container-orgheadline6" class="outline-4">
+<h4 id="orgheadline6">Hot keys for common commands</h4>
+<div class="outline-text-4" id="text-orgheadline6">
 <p>ESS handling of <b>multiple processes</b> is pretty unique.</p>
 <dl class="org-dl">
 <dt><code>C-c C-s</code></dt>
@@ -337,9 +344,9 @@ Exception: Spaces around ='s are optional when passing parameters in a function 
 </dl>
 </div>
 </div>
-<div id="outline-container-orgheadline6" class="outline-5">
-<h5 id="orgheadline6">Other commands provided by inferior-ESS</h5>
-<div class="outline-text-5" id="text-orgheadline6">
+<div id="outline-container-orgheadline7" class="outline-4">
+<h4 id="orgheadline7">Other commands provided by inferior-ESS</h4>
+<div class="outline-text-4" id="text-orgheadline7">
 <dl class="org-dl">
 <dt><code>C-c C-z</code></dt>
 <dd><b>Switch to</b> the (most recent) <b>script buffer</b>.</dd>
@@ -347,9 +354,9 @@ Exception: Spaces around ='s are optional when passing parameters in a function 
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline8" class="outline-4">
-<h4 id="orgheadline8">Sending code to the iESS process</h4>
-<div class="outline-text-4" id="text-orgheadline8">
+<div id="outline-container-orgheadline9" class="outline-3">
+<h3 id="orgheadline9">Sending code to the iESS process</h3>
+<div class="outline-text-3" id="text-orgheadline9">
 <p>Primary process interaction commands:</p>
 <dl class="org-dl">
 <dt><code>C-M-x</code></dt>
@@ -377,9 +384,9 @@ Exception: Spaces around ='s are optional when passing parameters in a function 
 </dl>
 </div>
 </div>
-<div id="outline-container-orgheadline9" class="outline-4">
-<h4 id="orgheadline9">Manipulating saved transcript files</h4>
-<div class="outline-text-4" id="text-orgheadline9">
+<div id="outline-container-orgheadline10" class="outline-3">
+<h3 id="orgheadline10">Manipulating saved transcript files</h3>
+<div class="outline-text-3" id="text-orgheadline10">
 <dl class="org-dl">
 <dt><code>C-u C-u C-y</code></dt>
 <dd>
@@ -389,12 +396,12 @@ Exception: Spaces around ='s are optional when passing parameters in a function 
 </dl>
 </div>
 </div>
-<div id="outline-container-orgheadline14" class="outline-4">
-<h4 id="orgheadline14">Editing objects and functions</h4>
-<div class="outline-text-4" id="text-orgheadline14"></div>
-<div id="outline-container-orgheadline10" class="outline-5">
-<h5 id="orgheadline10">Creating or modifying objects</h5>
-<div class="outline-text-5" id="text-orgheadline10">
+<div id="outline-container-orgheadline15" class="outline-3">
+<h3 id="orgheadline15">Editing objects and functions</h3>
+<div class="outline-text-3" id="text-orgheadline15"></div>
+<div id="outline-container-orgheadline11" class="outline-4">
+<h4 id="orgheadline11">Creating or modifying objects</h4>
+<div class="outline-text-4" id="text-orgheadline11">
 <p>In-session function editing.</p>
 <dl class="org-dl">
 <dt><code>C-c C-e C-d</code></dt>
@@ -412,9 +419,9 @@ Exception: Spaces around ='s are optional when passing parameters in a function 
 </dl>
 </div>
 </div>
-<div id="outline-container-orgheadline11" class="outline-5">
-<h5 id="orgheadline11">Loading source files into the ESS process</h5>
-<div class="outline-text-5" id="text-orgheadline11">
+<div id="outline-container-orgheadline12" class="outline-4">
+<h4 id="orgheadline12">Loading source files into the ESS process</h4>
+<div class="outline-text-4" id="text-orgheadline12">
 <dl class="org-dl">
 <dt><code>C-c C-l</code></dt>
 <dd>
@@ -424,17 +431,17 @@ Exception: Spaces around ='s are optional when passing parameters in a function 
 </dl>
 </div>
 </div>
-<div id="outline-container-orgheadline12" class="outline-5">
-<h5 id="orgheadline12">Commands for motion, completion and more</h5>
-<div class="outline-text-5" id="text-orgheadline12">
+<div id="outline-container-orgheadline13" class="outline-4">
+<h4 id="orgheadline13">Commands for motion, completion and more</h4>
+<div class="outline-text-4" id="text-orgheadline13">
 <dl class="org-dl">
 <dt><code>C-c C-z</code></dt>
 <dd><b>Switch to</b> the associated <b>iESS process buffer</b>.</dd>
 </dl>
 </div>
-<ul class="org-ul">
-<li><a id="orgheadline13" name="orgheadline13"></a>Tags Tables<br />
-<div class="outline-text-6" id="text-orgheadline13">
+<div id="outline-container-orgheadline14" class="outline-5">
+<h5 id="orgheadline14">Tags Tables</h5>
+<div class="outline-text-5" id="text-orgheadline14">
 <dl class="org-dl">
 <dt><code>C-c C-e C-t</code></dt>
 <dd>
@@ -446,13 +453,12 @@ Exception: Spaces around ='s are optional when passing parameters in a function 
 <p>(global-set-key (kbd "C-.") 'imenu-anywhere)</p>
 <p>and you will be able to navigate to the definition of the symbol at point as long as the other file is open. This is like tag navigation but more convenient IMO. Both ido and helm interfaces are available.</p>
 </div>
-</li>
-</ul>
 </div>
 </div>
-<div id="outline-container-orgheadline15" class="outline-4">
-<h4 id="orgheadline15">Reading help files</h4>
-<div class="outline-text-4" id="text-orgheadline15">
+</div>
+<div id="outline-container-orgheadline16" class="outline-3">
+<h3 id="orgheadline16">Reading help files</h3>
+<div class="outline-text-3" id="text-orgheadline16">
 <p>Help at your fingertips:</p>
 <dl class="org-dl">
 <dt><code>C-c C-d C-d</code> (or <code>C-c C-v</code>)</dt>
@@ -484,27 +490,27 @@ Exception: Spaces around ='s are optional when passing parameters in a function 
 </dl>
 </div>
 </div>
+<div id="outline-container-orgheadline18" class="outline-3">
+<h3 id="orgheadline18">Completion</h3>
+<div class="outline-text-3" id="text-orgheadline18"></div>
 <div id="outline-container-orgheadline17" class="outline-4">
-<h4 id="orgheadline17">Completion</h4>
-<div class="outline-text-4" id="text-orgheadline17"></div>
-<div id="outline-container-orgheadline16" class="outline-5">
-<h5 id="orgheadline16">Integration with auto-complete package</h5>
-<div class="outline-text-5" id="text-orgheadline16">
+<h4 id="orgheadline17">Integration with auto-complete package</h4>
+<div class="outline-text-4" id="text-orgheadline17">
 <p>Auto-completion of objects and arguments: <a href="http://www.emacswiki.org/emacs/ESSAuto-complete">http://www.emacswiki.org/emacs/ESSAuto-complete</a>.</p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline25" class="outline-4">
-<h4 id="orgheadline25">Developing with ESS</h4>
-<div class="outline-text-4" id="text-orgheadline25"></div>
-<div id="outline-container-orgheadline18" class="outline-5">
-<h5 id="orgheadline18">ESS tracebug</h5>
-<div class="outline-text-5" id="text-orgheadline18">
+<div id="outline-container-orgheadline26" class="outline-3">
+<h3 id="orgheadline26">Developing with ESS</h3>
+<div class="outline-text-3" id="text-orgheadline26"></div>
+<div id="outline-container-orgheadline19" class="outline-4">
+<h4 id="orgheadline19">ESS tracebug</h4>
+<div class="outline-text-4" id="text-orgheadline19">
 <p>Tracebug highlighting of errors.</p>
 </div>
-<ul class="org-ul">
-<li><a id="orgheadline19" name="orgheadline19"></a>Breakpoints<br />
-<div class="outline-text-6" id="text-orgheadline19">
+<div id="outline-container-orgheadline20" class="outline-5">
+<h5 id="orgheadline20">Breakpoints</h5>
+<div class="outline-text-5" id="text-orgheadline20">
 <dl class="org-dl">
 <dt><code>C-c C-t b</code></dt>
 <dd>Set breakpoint (repeat to cycle through the breakpoint types: <code>browser</code> and <code>recover</code>).</dd>
@@ -525,9 +531,10 @@ Exception: Spaces around ='s are optional when passing parameters in a function 
 </dl>
 <p>(<code>C-</code> prefixed equivalents are also defined)</p>
 </div>
-</li>
-<li><a id="orgheadline20" name="orgheadline20"></a>Debugging<br />
-<div class="outline-text-6" id="text-orgheadline20">
+</div>
+<div id="outline-container-orgheadline21" class="outline-5">
+<h5 id="orgheadline21">Debugging</h5>
+<div class="outline-text-5" id="text-orgheadline21">
 <dl class="org-dl">
 <dt><code>C-c C-t `</code> (also on <code>C-c `</code>)</dt>
 <dd>Show Traceback buffer (display source locations).</dd>
@@ -550,9 +557,10 @@ Exception: Spaces around ='s are optional when passing parameters in a function 
 </dl>
 <p>(<code>C-</code> prefixed equivalents are also defined)</p>
 </div>
-</li>
-<li><a id="orgheadline21" name="orgheadline21"></a>Interactive debugging<br />
-<div class="outline-text-6" id="text-orgheadline21">
+</div>
+<div id="outline-container-orgheadline22" class="outline-5">
+<h5 id="orgheadline22">Interactive debugging</h5>
+<div class="outline-text-5" id="text-orgheadline22">
 <dl class="org-dl">
 <dt><code>M-C</code></dt>
 <dd>Continue</dd>
@@ -568,9 +576,10 @@ Exception: Spaces around ='s are optional when passing parameters in a function 
 <dd>Quit debugging</dd>
 </dl>
 </div>
-</li>
-<li><a id="orgheadline22" name="orgheadline22"></a>Navigation to errors<br />
-<div class="outline-text-6" id="text-orgheadline22">
+</div>
+<div id="outline-container-orgheadline23" class="outline-5">
+<h5 id="orgheadline23">Navigation to errors</h5>
+<div class="outline-text-5" id="text-orgheadline23">
 <div class="org-src-container">
 <pre class="src src-R">
 <span class="org-constant">source</span><span class="org-builtin">(</span>file<span class="org-constant">=</span><span class="org-string">"missing-file.R"</span><span class="org-builtin">)</span>
@@ -589,13 +598,14 @@ protocol <span class="org-constant">&lt;-</span> <span class="org-type">NULL</sp
 <dd>Previous error.</dd>
 </dl>
 </div>
-</li>
-<li><a id="orgheadline23" name="orgheadline23"></a>Tracebug visual debugger<br /></li>
-</ul>
 </div>
 <div id="outline-container-orgheadline24" class="outline-5">
-<h5 id="orgheadline24">ESS developer</h5>
-<div class="outline-text-5" id="text-orgheadline24">
+<h5 id="orgheadline24">Tracebug visual debugger</h5>
+</div>
+</div>
+<div id="outline-container-orgheadline25" class="outline-4">
+<h4 id="orgheadline25">ESS developer</h4>
+<div class="outline-text-4" id="text-orgheadline25">
 <dl class="org-dl">
 <dt><code>C-c C-t C-a</code></dt>
 <dd>Add a package to your development list.</dd>
@@ -607,19 +617,19 @@ protocol <span class="org-constant">&lt;-</span> <span class="org-type">NULL</sp
 </div>
 </div>
 </div>
+<div id="outline-container-orgheadline28" class="outline-3">
+<h3 id="orgheadline28">Other ESS features and tools</h3>
+<div class="outline-text-3" id="text-orgheadline28"></div>
 <div id="outline-container-orgheadline27" class="outline-4">
-<h4 id="orgheadline27">Other ESS features and tools</h4>
-<div class="outline-text-4" id="text-orgheadline27"></div>
-<div id="outline-container-orgheadline26" class="outline-5">
-<h5 id="orgheadline26">ElDoc</h5>
-<div class="outline-text-5" id="text-orgheadline26">
+<h4 id="orgheadline27">ElDoc</h4>
+<div class="outline-text-4" id="text-orgheadline27">
 <p><b>ElDoc</b> support: automatic display of function arguments in the <b>echo area</b>.</p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline28" class="outline-4">
-<h4 id="orgheadline28">Other Emacs features and tools</h4>
-<div class="outline-text-4" id="text-orgheadline28">
+<div id="outline-container-orgheadline29" class="outline-3">
+<h3 id="orgheadline29">Other Emacs features and tools</h3>
+<div class="outline-text-3" id="text-orgheadline29">
 <p>Ability to mix in other, general purpose Emacs tools:</p>
 <ul class="org-ul">
 <li><code>C-s</code> and <code>C-r</code> to search in the help buffer and <code>M-\</code> to indent</li>
@@ -630,9 +640,9 @@ protocol <span class="org-constant">&lt;-</span> <span class="org-type">NULL</sp
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline30" class="outline-3">
-<h3 id="orgheadline30"><span class="section-number-3">1.4</span> 0. Overview of R</h3>
-<div class="outline-text-3" id="text-1-4">
+<div id="outline-container-orgheadline30" class="outline-2">
+<h2 id="orgheadline30">0. Overview of R</h2>
+<div class="outline-text-2" id="text-orgheadline30">
 <p>R system that you download from <a href="http://cran.r-project.org/">CRAN</a>:</p>
 <ul class="org-ul">
 <li><code>base</code> package</li>
@@ -649,9 +659,9 @@ protocol <span class="org-constant">&lt;-</span> <span class="org-type">NULL</sp
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline31" class="outline-3">
-<h3 id="orgheadline31"><span class="section-number-3">1.5</span> 1. Getting started and getting help</h3>
-<div class="outline-text-3" id="text-1-5">
+<div id="outline-container-orgheadline31" class="outline-2">
+<h2 id="orgheadline31">1. Getting started and getting help</h2>
+<div class="outline-text-2" id="text-orgheadline31">
 <div class="org-src-container">
 <pre class="src src-R">
 ?<span class="org-keyword">function</span>
@@ -671,12 +681,12 @@ package ? lattice
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline39" class="outline-3">
-<h3 id="orgheadline39"><span class="section-number-3">1.6</span> 2. Some basics</h3>
-<div class="outline-text-3" id="text-1-6"></div>
-<div id="outline-container-orgheadline32" class="outline-4">
-<h4 id="orgheadline32">Print something</h4>
-<div class="outline-text-4" id="text-orgheadline32">
+<div id="outline-container-orgheadline39" class="outline-2">
+<h2 id="orgheadline39">2. Some basics</h2>
+<div class="outline-text-2" id="text-orgheadline39"></div>
+<div id="outline-container-orgheadline32" class="outline-3">
+<h3 id="orgheadline32">Print something</h3>
+<div class="outline-text-3" id="text-orgheadline32">
 <dl class="org-dl">
 <dt><code>print(object)</code></dt>
 <dd>
@@ -701,27 +711,27 @@ This is one sentence.
 </dl>
 </div>
 </div>
-<div id="outline-container-orgheadline33" class="outline-4">
-<h4 id="orgheadline33">Setting variables</h4>
-<div class="outline-text-4" id="text-orgheadline33">
+<div id="outline-container-orgheadline33" class="outline-3">
+<h3 id="orgheadline33">Setting variables</h3>
+<div class="outline-text-3" id="text-orgheadline33">
 <dl class="org-dl">
 <dt><code>&lt;-</code></dt>
 <dd>Assign a value to a variable.</dd>
 </dl>
 </div>
 </div>
-<div id="outline-container-orgheadline34" class="outline-4">
-<h4 id="orgheadline34">Listing variables</h4>
-<div class="outline-text-4" id="text-orgheadline34">
+<div id="outline-container-orgheadline34" class="outline-3">
+<h3 id="orgheadline34">Listing variables</h3>
+<div class="outline-text-3" id="text-orgheadline34">
 <dl class="org-dl">
 <dt><code>ls()</code>, <code>ls.str()</code></dt>
 <dd>Show objects in my workspace.</dd>
 </dl>
 </div>
 </div>
-<div id="outline-container-orgheadline35" class="outline-4">
-<h4 id="orgheadline35">Deleting variables</h4>
-<div class="outline-text-4" id="text-orgheadline35">
+<div id="outline-container-orgheadline35" class="outline-3">
+<h3 id="orgheadline35">Deleting variables</h3>
+<div class="outline-text-3" id="text-orgheadline35">
 <dl class="org-dl">
 <dt><code>rm()</code></dt>
 <dd>
@@ -734,9 +744,9 @@ This is one sentence.
 </dl>
 </div>
 </div>
-<div id="outline-container-orgheadline36" class="outline-4">
-<h4 id="orgheadline36">Computing basic statistics</h4>
-<div class="outline-text-4" id="text-orgheadline36">
+<div id="outline-container-orgheadline36" class="outline-3">
+<h3 id="orgheadline36">Computing basic statistics</h3>
+<div class="outline-text-3" id="text-orgheadline36">
 <dl class="org-dl">
 <dt><code>mean()</code></dt>
 <dd>Take the mean.</dd>
@@ -747,9 +757,9 @@ This is one sentence.
 </dl>
 </div>
 </div>
-<div id="outline-container-orgheadline37" class="outline-4">
-<h4 id="orgheadline37">Creating sequences</h4>
-<div class="outline-text-4" id="text-orgheadline37">
+<div id="outline-container-orgheadline37" class="outline-3">
+<h3 id="orgheadline37">Creating sequences</h3>
+<div class="outline-text-3" id="text-orgheadline37">
 <dl class="org-dl">
 <dt><code>n:m</code></dt>
 <dd>Create an <b>sequence of</b> integers from <code>n</code> to <code>m</code> (<code>n</code> &lt; <code>m</code> or <code>n</code> &gt; <code>m</code>).</dd>
@@ -760,9 +770,18 @@ This is one sentence.
 </dl>
 </div>
 </div>
-<div id="outline-container-orgheadline38" class="outline-4">
-<h4 id="orgheadline38">Operators</h4>
-<div class="outline-text-4" id="text-orgheadline38">
+<div id="outline-container-orgheadline38" class="outline-3">
+<h3 id="orgheadline38">Operators</h3>
+<div class="outline-text-3" id="text-orgheadline38">
+<dl class="org-dl">
+<dt><code>&amp;</code></dt>
+<dd>Logical "and".</dd>
+<dt><code>|</code></dt>
+<dd>Logical "or".</dd>
+</dl>
+<div class="note">
+<p>The functions <code>all</code> and <code>any</code> are often used on the result of a vectorized comparison to see if all or any of the comparisons are true, respectively. The results from these functions are sure to be length 1 so they are appropriate for use in if clauses.</p>
+</div>
 <dl class="org-dl">
 <dt><code>==</code></dt>
 <dd>Compare.</dd>
@@ -772,9 +791,9 @@ This is one sentence.
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline41" class="outline-3">
-<h3 id="orgheadline41"><span class="section-number-3">1.7</span> 3. Navigating the software</h3>
-<div class="outline-text-3" id="text-1-7">
+<div id="outline-container-orgheadline40" class="outline-2">
+<h2 id="orgheadline40">3. Navigating the software</h2>
+<div class="outline-text-2" id="text-orgheadline40">
 <dl class="org-dl">
 <dt><code>library(package)</code></dt>
 <dd>
@@ -791,9 +810,9 @@ airquality
 <dd>Evaluate R code file.</dd>
 </dl>
 </div>
-<div id="outline-container-orgheadline40" class="outline-4">
-<h4 id="orgheadline40">Running a batch script</h4>
-<div class="outline-text-4" id="text-orgheadline40">
+<div id="outline-container-orgheadline41" class="outline-3">
+<h3 id="orgheadline41">Running a batch script</h3>
+<div class="outline-text-3" id="text-orgheadline41">
 <p>You may write a script containing R code:</p>
 <div class="org-src-container">
 <pre class="src src-shell">
@@ -811,9 +830,9 @@ x &lt;- as.numeric(argv[1])
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline57" class="outline-3">
-<h3 id="orgheadline57"><span class="section-number-3">1.8</span> 5. Data structures</h3>
-<div class="outline-text-3" id="text-1-8">
+<div id="outline-container-orgheadline42" class="outline-2">
+<h2 id="orgheadline42">5. Data structures</h2>
+<div class="outline-text-2" id="text-orgheadline42">
 <p>What is data?</p>
 <dl class="org-dl">
 <dt>Population</dt>
@@ -829,9 +848,9 @@ x &lt;- as.numeric(argv[1])
 </dd>
 </dl>
 </div>
-<div id="outline-container-orgheadline42" class="outline-4">
-<h4 id="orgheadline42">Basic ("atomic") vector types</h4>
-<div class="outline-text-4" id="text-orgheadline42">
+<div id="outline-container-orgheadline43" class="outline-3">
+<h3 id="orgheadline43">Basic ("atomic") vector types</h3>
+<div class="outline-text-3" id="text-orgheadline43">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 <colgroup>
 <col class="left" />
@@ -878,9 +897,9 @@ x &lt;- as.numeric(argv[1])
 </dl>
 </div>
 </div>
-<div id="outline-container-orgheadline43" class="outline-4">
-<h4 id="orgheadline43">Vectors</h4>
-<div class="outline-text-4" id="text-orgheadline43">
+<div id="outline-container-orgheadline44" class="outline-3">
+<h3 id="orgheadline44">Vectors</h3>
+<div class="outline-text-3" id="text-orgheadline44">
 <p><b>Vectors</b> are sets of <b>elements of the same class</b>.</p>
 <p>When objects of different classes are mixed in a vector, <i>coercion</i> occurs behind the scene so that every element is of the same class (the "lowest common denominator" class).</p>
 <dl class="org-dl">
@@ -900,9 +919,9 @@ x &lt;- as.numeric(argv[1])
 </dl>
 </div>
 </div>
-<div id="outline-container-orgheadline44" class="outline-4">
-<h4 id="orgheadline44">Matrices</h4>
-<div class="outline-text-4" id="text-orgheadline44">
+<div id="outline-container-orgheadline45" class="outline-3">
+<h3 id="orgheadline45">Matrices</h3>
+<div class="outline-text-3" id="text-orgheadline45">
 <p>Matrices are <b>vectors with 2 dimensions</b> attached to them (see <code>dimension</code> attribute).</p>
 <p>They are constructed <i>column-wise</i> (vector inserted by column).</p>
 <p>They can be created from vectors by adding a dimension attribute:</p>
@@ -947,9 +966,9 @@ v <span class="org-constant">&lt;-</span> <span class="org-ess-numbers">1</span>
 </dl>
 </div>
 </div>
-<div id="outline-container-orgheadline45" class="outline-4">
-<h4 id="orgheadline45">Arrays</h4>
-<div class="outline-text-4" id="text-orgheadline45">
+<div id="outline-container-orgheadline46" class="outline-3">
+<h3 id="orgheadline46">Arrays</h3>
+<div class="outline-text-3" id="text-orgheadline46">
 <p>Arrays are <b>n-dimensional matrices</b>.</p>
 <dl class="org-dl">
 <dt><code>array()</code></dt>
@@ -957,9 +976,9 @@ v <span class="org-constant">&lt;-</span> <span class="org-ess-numbers">1</span>
 </dl>
 </div>
 </div>
-<div id="outline-container-orgheadline46" class="outline-4">
-<h4 id="orgheadline46">Lists</h4>
-<div class="outline-text-4" id="text-orgheadline46">
+<div id="outline-container-orgheadline47" class="outline-3">
+<h3 id="orgheadline47">Lists</h3>
+<div class="outline-text-3" id="text-orgheadline47">
 <p><b>Lists</b> are vectors of objects of possibly different classes.</p>
 <p>The indexes of the elements of a list have double brackets around them.</p>
 <dl class="org-dl">
@@ -968,9 +987,9 @@ v <span class="org-constant">&lt;-</span> <span class="org-ess-numbers">1</span>
 </dl>
 </div>
 </div>
-<div id="outline-container-orgheadline47" class="outline-4">
-<h4 id="orgheadline47">Factors</h4>
-<div class="outline-text-4" id="text-orgheadline47">
+<div id="outline-container-orgheadline48" class="outline-3">
+<h3 id="orgheadline48">Factors</h3>
+<div class="outline-text-3" id="text-orgheadline48">
 <p><b>Factors</b> are <i>qualitative</i> variables used to represent <i>categorical</i> data, to store self-describing codes for <i>labels</i> (such as "male" and "female", or "low", "medium" and "high").</p>
 <p>Unordered or ordered.</p>
 <dl class="org-dl">
@@ -984,9 +1003,9 @@ v <span class="org-constant">&lt;-</span> <span class="org-ess-numbers">1</span>
 </dl>
 </div>
 </div>
-<div id="outline-container-orgheadline48" class="outline-4">
-<h4 id="orgheadline48">Data frames</h4>
-<div class="outline-text-4" id="text-orgheadline48">
+<div id="outline-container-orgheadline49" class="outline-3">
+<h3 id="orgheadline49">Data frames</h3>
+<div class="outline-text-3" id="text-orgheadline49">
 <p><b>Data frames</b> are used to store tabular data where each column can be of a different class: special type of <b>list (of columns)</b> where every element has the same length.</p>
 <ul class="org-ul">
 <li>Row = observation, column = variable</li>
@@ -1004,18 +1023,18 @@ df <span class="org-constant">&lt;-</span> <span class="org-ess-function-call">d
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline50" class="outline-4">
-<h4 id="orgheadline50">Tables</h4>
-<div class="outline-text-4" id="text-orgheadline50">
-<p>By using the function <a href="#orgheadline49"><code>table</code></a>, you create a <code>table</code> object.</p>
+<div id="outline-container-orgheadline51" class="outline-3">
+<h3 id="orgheadline51">Tables</h3>
+<div class="outline-text-3" id="text-orgheadline51">
+<p>By using the function <a href="#orgheadline50"><code>table</code></a>, you create a <code>table</code> object.</p>
 <div class="note">
 <p>If you sort it, it creates an <code>array</code> object (an object of a different class). Add <code>as.table</code> to get back a table object.</p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline51" class="outline-4">
-<h4 id="orgheadline51">Vectorized operations (recycling rule)</h4>
-<div class="outline-text-4" id="text-orgheadline51">
+<div id="outline-container-orgheadline52" class="outline-3">
+<h3 id="orgheadline52">Vectorized operations (recycling rule)</h3>
+<div class="outline-text-3" id="text-orgheadline52">
 <p>Avoid writing loops (code is a lot simpler):</p>
 <div class="org-src-container">
 <pre class="src src-R">
@@ -1029,9 +1048,9 @@ x <span class="org-constant">%</span>*<span class="org-constant">%</span> y     
 </pre></div>
 </div>
 </div>
-<div id="outline-container-orgheadline52" class="outline-4">
-<h4 id="orgheadline52">Selecting list elements or data frame columns by position (subsetting)</h4>
-<div class="outline-text-4" id="text-orgheadline52">
+<div id="outline-container-orgheadline53" class="outline-3">
+<h3 id="orgheadline53">Selecting list elements or data frame columns by position (subsetting)</h3>
+<div class="outline-text-3" id="text-orgheadline53">
 <dl class="org-dl">
 <dt><code>[</code></dt>
 <dd>
@@ -1066,9 +1085,9 @@ x<span class="org-builtin">[[</span><span class="org-string">"a"</span>, exact<s
 </dl>
 </div>
 </div>
-<div id="outline-container-orgheadline53" class="outline-4">
-<h4 id="orgheadline53">Selecting list elements or data frame columns by name (subsetting)</h4>
-<div class="outline-text-4" id="text-orgheadline53">
+<div id="outline-container-orgheadline54" class="outline-3">
+<h3 id="orgheadline54">Selecting list elements or data frame columns by name (subsetting)</h3>
+<div class="outline-text-3" id="text-orgheadline54">
 <dl class="org-dl">
 <dt><code>$</code></dt>
 <dd>
@@ -1090,9 +1109,9 @@ x$a                                <span class="org-comment-delimiter"># </span>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline54" class="outline-4">
-<h4 id="orgheadline54">Selecting data frame columns by position (subsetting)</h4>
-<div class="outline-text-4" id="text-orgheadline54">
+<div id="outline-container-orgheadline55" class="outline-3">
+<h3 id="orgheadline55">Selecting data frame columns by position (subsetting)</h3>
+<div class="outline-text-3" id="text-orgheadline55">
 <p>Matrices can be subsetted with <code>(row, col)</code> type indices.</p>
 <p>Indices can also be missing:</p>
 <dl class="org-dl">
@@ -1109,9 +1128,9 @@ x$a                                <span class="org-comment-delimiter"># </span>
 <p>This can be turned off by setting <code>drop=FALSE</code> (<b>don't drop the dimension</b>).</p>
 </div>
 </div>
-<div id="outline-container-orgheadline55" class="outline-4">
-<h4 id="orgheadline55">Give the <code>TRUE</code> indices of a logical object</h4>
-<div class="outline-text-4" id="text-orgheadline55">
+<div id="outline-container-orgheadline56" class="outline-3">
+<h3 id="orgheadline56">Give the <code>TRUE</code> indices of a logical object</h3>
+<div class="outline-text-3" id="text-orgheadline56">
 <dl class="org-dl">
 <dt><code>which()</code></dt>
 <dd>
@@ -1124,9 +1143,9 @@ x$a                                <span class="org-comment-delimiter"># </span>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline56" class="outline-4">
-<h4 id="orgheadline56">Flatten a list into a vector</h4>
-<div class="outline-text-4" id="text-orgheadline56">
+<div id="outline-container-orgheadline57" class="outline-3">
+<h3 id="orgheadline57">Flatten a list into a vector</h3>
+<div class="outline-text-3" id="text-orgheadline57">
 <dl class="org-dl">
 <dt><code>unlist()</code></dt>
 <dd>Flatten the <b>list into</b> a <b>vector</b> (for functions which work on vectors but not on lists.)</dd>
@@ -1134,14 +1153,14 @@ x$a                                <span class="org-comment-delimiter"># </span>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline60" class="outline-3">
-<h3 id="orgheadline60"><span class="section-number-3">1.9</span> Control structures</h3>
-<div class="outline-text-3" id="text-1-9">
+<div id="outline-container-orgheadline58" class="outline-2">
+<h2 id="orgheadline58">Control structures</h2>
+<div class="outline-text-2" id="text-orgheadline58">
 <p>Control structures mentioned here are primarily useful for writing programs. For command-line interactive work, the <code>*apply</code> functions are more useful.</p>
 </div>
-<div id="outline-container-orgheadline58" class="outline-4">
-<h4 id="orgheadline58">Conditional statements</h4>
-<div class="outline-text-4" id="text-orgheadline58">
+<div id="outline-container-orgheadline59" class="outline-3">
+<h3 id="orgheadline59">Conditional statements</h3>
+<div class="outline-text-3" id="text-orgheadline59">
 <div class="org-src-container">
 <pre class="src src-R">
 <span class="org-keyword">if</span> <span class="org-builtin">(</span>condition<span class="org-builtin">)</span> <span class="org-builtin">{</span>
@@ -1161,9 +1180,9 @@ y <span class="org-constant">&lt;-</span> <span class="org-keyword">if</span><sp
 </pre></div>
 </div>
 </div>
-<div id="outline-container-orgheadline59" class="outline-4">
-<h4 id="orgheadline59">Loops</h4>
-<div class="outline-text-4" id="text-orgheadline59">
+<div id="outline-container-orgheadline60" class="outline-3">
+<h3 id="orgheadline60">Loops</h3>
+<div class="outline-text-3" id="text-orgheadline60">
 <p>Loop over the <b>elements</b>:</p>
 <div class="org-src-container">
 <pre class="src src-R">
@@ -1224,9 +1243,9 @@ y <span class="org-constant">&lt;-</span> <span class="org-keyword">if</span><sp
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline63" class="outline-3">
-<h3 id="orgheadline63"><span class="section-number-3">1.10</span> Writing functions</h3>
-<div class="outline-text-3" id="text-1-10">
+<div id="outline-container-orgheadline61" class="outline-2">
+<h2 id="orgheadline61">Writing functions</h2>
+<div class="outline-text-2" id="text-orgheadline61">
 <ul class="org-ul">
 <li>
 <p>Functions are R objects of class <code>function</code></p>
@@ -1256,9 +1275,9 @@ y <span class="org-constant">&lt;-</span> <span class="org-keyword">if</span><sp
 </li>
 </ul>
 </div>
-<div id="outline-container-orgheadline61" class="outline-4">
-<h4 id="orgheadline61">Arguments</h4>
-<div class="outline-text-4" id="text-orgheadline61">
+<div id="outline-container-orgheadline63" class="outline-3">
+<h3 id="orgheadline63">Arguments</h3>
+<div class="outline-text-3" id="text-orgheadline63">
 <ul class="org-ul">
 <li><i>Named arguments</i> can potentially have <i>default values</i> (useful: not every function call makes use of all the formal arguments; some can be <i>missing</i>)</li>
 <li>The <i>formal arguments</i> are the arguments included in the function definition</li>
@@ -1287,16 +1306,16 @@ y <span class="org-constant">&lt;-</span> <span class="org-keyword">if</span><sp
 <ul class="org-ul">
 <li>Used when extending a function and you don't want to copy the entire argument list of the original function</li>
 <li>Used by generic functions (such as <code>mean</code>) so that extra arguments can be passed to methods</li>
-<li>Used when the number of arguments cannot be known in advance (see <code>paste</code> function)</li>
+<li>Used when the number of arguments cannot be known in advance (see <a href="#orgheadline62">paste</a> function)</li>
 <li>Any argument that appears <i>after</i> the <code>...</code> must be named explicitly and cannot be partially matched</li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline62" class="outline-4">
-<h4 id="orgheadline62">Scoping rules for R</h4>
-<div class="outline-text-4" id="text-orgheadline62">
+<div id="outline-container-orgheadline64" class="outline-3">
+<h3 id="orgheadline64">Scoping rules for R</h3>
+<div class="outline-text-3" id="text-orgheadline64">
 <ul class="org-ul">
 <li>R searches through the <i>search list</i> (a series of <code>environments</code>, an environment being a collection of symbol/value pairs) to bind the appropriate value to a symbol:
 <ul class="org-ul">
@@ -1356,9 +1375,9 @@ square <span class="org-constant">&lt;-</span> <span class="org-ess-function-cal
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline77" class="outline-3">
-<h3 id="orgheadline77"><span class="section-number-3">1.11</span> 4. Data Input and output</h3>
-<div class="outline-text-3" id="text-1-11">
+<div id="outline-container-orgheadline65" class="outline-2">
+<h2 id="orgheadline65">4. Data Input and output</h2>
+<div class="outline-text-2" id="text-orgheadline65">
 <p>Types of files:</p>
 <ul class="org-ul">
 <li>Tab-delimited</li>
@@ -1369,18 +1388,18 @@ square <span class="org-constant">&lt;-</span> <span class="org-ess-function-cal
 <li>Database</li>
 </ul>
 </div>
-<div id="outline-container-orgheadline64" class="outline-4">
-<h4 id="orgheadline64">Getting the current working directory</h4>
-<div class="outline-text-4" id="text-orgheadline64">
+<div id="outline-container-orgheadline66" class="outline-3">
+<h3 id="orgheadline66">Getting the current working directory</h3>
+<div class="outline-text-3" id="text-orgheadline66">
 <dl class="org-dl">
 <dt><code>getwd()</code></dt>
 <dd>Figure out what your <b>working directory</b> is.</dd>
 </dl>
 </div>
 </div>
-<div id="outline-container-orgheadline65" class="outline-4">
-<h4 id="orgheadline65">Creating, opening and closing connections</h4>
-<div class="outline-text-4" id="text-orgheadline65">
+<div id="outline-container-orgheadline67" class="outline-3">
+<h3 id="orgheadline67">Creating, opening and closing connections</h3>
+<div class="outline-text-3" id="text-orgheadline67">
 <dl class="org-dl">
 <dt><code>file()</code></dt>
 <dd>
@@ -1398,9 +1417,9 @@ cameraData <span class="org-constant">&lt;-</span> <span class="org-ess-function
 </dl>
 </div>
 </div>
-<div id="outline-container-orgheadline66" class="outline-4">
-<h4 id="orgheadline66">Make your data available (for StackOverflow)</h4>
-<div class="outline-text-4" id="text-orgheadline66">
+<div id="outline-container-orgheadline68" class="outline-3">
+<h3 id="orgheadline68">Make your data available (for StackOverflow)</h3>
+<div class="outline-text-3" id="text-orgheadline68">
 <p>Data can now be imported directly into R without the <code>textConnection</code> function, simply by doing this:</p>
 <div class="org-src-container">
 <pre class="src src-R">
@@ -1509,9 +1528,9 @@ df <span class="org-constant">&lt;-</span> <span class="org-ess-function-call">l
 </table>
 </div>
 </div>
-<div id="outline-container-orgheadline67" class="outline-4">
-<h4 id="orgheadline67">Reading tabular data files</h4>
-<div class="outline-text-4" id="text-orgheadline67">
+<div id="outline-container-orgheadline69" class="outline-3">
+<h3 id="orgheadline69">Reading tabular data files</h3>
+<div class="outline-text-3" id="text-orgheadline69">
 <dl class="org-dl">
 <dt><code>read.table(file)</code></dt>
 <dd>
@@ -1566,18 +1585,21 @@ df <span class="org-constant">&lt;-</span> <span class="org-ess-function-call">r
 </pre></div>
 </div>
 </div>
-<div id="outline-container-orgheadline68" class="outline-4">
-<h4 id="orgheadline68">Writing tabular data files</h4>
-<div class="outline-text-4" id="text-orgheadline68">
+<div id="outline-container-orgheadline70" class="outline-3">
+<h3 id="orgheadline70">Writing tabular data files</h3>
+<div class="outline-text-3" id="text-orgheadline70">
 <dl class="org-dl">
 <dt><code>write.table()</code></dt>
-<dd>Write data.</dd>
+<dd>
+<p>Write data.</p>
+<p>To prevent row index and column names, use: <code>row.names = FALSE</code> and <code>col.names = FALSE</code>.</p>
+</dd>
 </dl>
 </div>
 </div>
-<div id="outline-container-orgheadline69" class="outline-4">
-<h4 id="orgheadline69">Reading from CSV files</h4>
-<div class="outline-text-4" id="text-orgheadline69">
+<div id="outline-container-orgheadline71" class="outline-3">
+<h3 id="orgheadline71">Reading from CSV files</h3>
+<div class="outline-text-3" id="text-orgheadline71">
 <dl class="org-dl">
 <dt><code>read.csv(file)</code></dt>
 <dd>
@@ -1605,9 +1627,9 @@ data <span class="org-constant">&lt;-</span> <span class="org-ess-function-call"
 </dl>
 </div>
 </div>
-<div id="outline-container-orgheadline70" class="outline-4">
-<h4 id="orgheadline70">Reading from Excel files</h4>
-<div class="outline-text-4" id="text-orgheadline70">
+<div id="outline-container-orgheadline72" class="outline-3">
+<h3 id="orgheadline72">Reading from Excel files</h3>
+<div class="outline-text-3" id="text-orgheadline72">
 <dl class="org-dl">
 <dt><code>read.xlsx()</code>, <code>read.xlsx2()</code></dt>
 <dd>Read Excel files.</dd>
@@ -1615,18 +1637,18 @@ data <span class="org-constant">&lt;-</span> <span class="org-ess-function-call"
 <p>You can also read from Excel spreadsheets using RODBC and <code>sqlQuery</code>.</p>
 </div>
 </div>
-<div id="outline-container-orgheadline71" class="outline-4">
-<h4 id="orgheadline71">Reading from Google spreadsheets</h4>
-<div class="outline-text-4 org-src-container" id="text-orgheadline71">
+<div id="outline-container-orgheadline73" class="outline-3">
+<h3 id="orgheadline73">Reading from Google spreadsheets</h3>
+<div class="outline-text-3 org-src-container" id="text-orgheadline73">
 <pre class="src src-R">
 <span class="org-constant">require</span><span class="org-builtin">(</span>RCurl<span class="org-builtin">)</span>
 myCsv <span class="org-constant">&lt;-</span> <span class="org-ess-function-call">getURL</span><span class="org-builtin">(</span><span class="org-string">"https://docs.google.com/spreadsheet/pub?...&amp;output=csv"</span><span class="org-builtin">)</span>
 <span class="org-ess-function-call">read.csv</span><span class="org-builtin">(</span><span class="org-ess-function-call">textConnection</span><span class="org-builtin">(</span>myCsv<span class="org-builtin">))</span>
 </pre></div>
 </div>
-<div id="outline-container-orgheadline72" class="outline-4">
-<h4 id="orgheadline72">Reading files from the Internet</h4>
-<div class="outline-text-4" id="text-orgheadline72">
+<div id="outline-container-orgheadline74" class="outline-3">
+<h3 id="orgheadline74">Reading files from the Internet</h3>
+<div class="outline-text-3" id="text-orgheadline74">
 <dl class="org-dl">
 <dt><code>download.file()</code></dt>
 <dd>
@@ -1641,9 +1663,9 @@ fileUrl <span class="org-constant">&lt;-</span> <span class="org-string">"http:/
 </dl>
 </div>
 </div>
-<div id="outline-container-orgheadline73" class="outline-4">
-<h4 id="orgheadline73">Reading files with a complex structure</h4>
-<div class="outline-text-4" id="text-orgheadline73">
+<div id="outline-container-orgheadline75" class="outline-3">
+<h3 id="orgheadline75">Reading files with a complex structure</h3>
+<div class="outline-text-3" id="text-orgheadline75">
 <dl class="org-dl">
 <dt><code>readLines()</code></dt>
 <dd>
@@ -1675,9 +1697,9 @@ html3 <span class="org-constant">&lt;-</span> <span class="org-ess-function-call
 </dl>
 </div>
 </div>
-<div id="outline-container-orgheadline74" class="outline-4">
-<h4 id="orgheadline74">Reading from SQL Server databases</h4>
-<div class="outline-text-4" id="text-orgheadline74">
+<div id="outline-container-orgheadline76" class="outline-3">
+<h3 id="orgheadline76">Reading from SQL Server databases</h3>
+<div class="outline-text-3" id="text-orgheadline76">
 <div class="org-src-container">
 <pre class="src src-R">
 <span class="org-comment-delimiter">## </span><span class="org-comment">install.packages("RODBC")</span>
@@ -1728,9 +1750,9 @@ df <span class="org-constant">&lt;-</span> <span class="org-ess-function-call">s
 <p>There is a convergence movement to the DBI package. <a href="https://github.com/agstudy/rsqlserver">rsqlserver</a> is part of it, but it is less mature than RODBC (though it's still high quality).</p>
 </div>
 </div>
-<div id="outline-container-orgheadline75" class="outline-4">
-<h4 id="orgheadline75">Saving and transporting objects</h4>
-<div class="outline-text-4" id="text-orgheadline75">
+<div id="outline-container-orgheadline77" class="outline-3">
+<h3 id="orgheadline77">Saving and transporting objects</h3>
+<div class="outline-text-3" id="text-orgheadline77">
 <p>Textual formats (potentially recoverable in case of corruption).</p>
 <dl class="org-dl">
 <dt><code>dput()</code></dt>
@@ -1740,9 +1762,9 @@ df <span class="org-constant">&lt;-</span> <span class="org-ess-function-call">s
 </dl>
 </div>
 </div>
-<div id="outline-container-orgheadline76" class="outline-4">
-<h4 id="orgheadline76">Further resources</h4>
-<div class="outline-text-4" id="text-orgheadline76">
+<div id="outline-container-orgheadline78" class="outline-3">
+<h3 id="orgheadline78">Further resources</h3>
+<div class="outline-text-3" id="text-orgheadline78">
 <p>Packages:</p>
 <dl class="org-dl">
 <dt><code>httr</code></dt>
@@ -1757,12 +1779,12 @@ df <span class="org-constant">&lt;-</span> <span class="org-ess-function-call">s
 </div>
 </div>
 </div>
+<div id="outline-container-orgheadline80" class="outline-2">
+<h2 id="orgheadline80">12. Useful tricks</h2>
+<div class="outline-text-2" id="text-orgheadline80"></div>
 <div id="outline-container-orgheadline79" class="outline-3">
-<h3 id="orgheadline79"><span class="section-number-3">1.12</span> 12. Useful tricks</h3>
-<div class="outline-text-3" id="text-1-12"></div>
-<div id="outline-container-orgheadline78" class="outline-4">
-<h4 id="orgheadline78">Peeking at your data</h4>
-<div class="outline-text-4" id="text-orgheadline78">
+<h3 id="orgheadline79">Peeking at your data</h3>
+<div class="outline-text-3" id="text-orgheadline79">
 <dl class="org-dl">
 <dt><code>head()</code></dt>
 <dd>Look at the first 6 rows.</dd>
@@ -1784,12 +1806,12 @@ df <span class="org-constant">&lt;-</span> <span class="org-ess-function-call">s
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline83" class="outline-3">
-<h3 id="orgheadline83"><span class="section-number-3">1.13</span> 9. General statistics</h3>
-<div class="outline-text-3" id="text-1-13"></div>
-<div id="outline-container-orgheadline80" class="outline-4">
-<h4 id="orgheadline80">Summarizing your data</h4>
-<div class="outline-text-4" id="text-orgheadline80">
+<div id="outline-container-orgheadline84" class="outline-2">
+<h2 id="orgheadline84">9. General statistics</h2>
+<div class="outline-text-2" id="text-orgheadline84"></div>
+<div id="outline-container-orgheadline81" class="outline-3">
+<h3 id="orgheadline81">Summarizing your data</h3>
+<div class="outline-text-3" id="text-orgheadline81">
 <dl class="org-dl">
 <dt><code>range()</code></dt>
 <dd>
@@ -1808,9 +1830,9 @@ yrange <span class="org-constant">&lt;-</span> <span class="org-ess-function-cal
 </dl>
 </div>
 </div>
-<div id="outline-container-orgheadline49" class="outline-4">
-<h4 id="orgheadline49"><a id="ID-5d29be63-e58c-4ef3-b28e-2818b65fd46f" name="ID-5d29be63-e58c-4ef3-b28e-2818b65fd46f"></a>Tabulating factors</h4>
-<div class="outline-text-4" id="text-orgheadline49">
+<div id="outline-container-orgheadline50" class="outline-3">
+<h3 id="orgheadline50"><a id="ID-5d29be63-e58c-4ef3-b28e-2818b65fd46f" name="ID-5d29be63-e58c-4ef3-b28e-2818b65fd46f"></a>Tabulating factors</h3>
+<div class="outline-text-3" id="text-orgheadline50">
 <dl class="org-dl">
 <dt><a id="orgtarget1" name="orgtarget1"></a> <code>table(f)</code></dt>
 <dd>
@@ -1869,9 +1891,9 @@ f <span class="org-constant">&lt;-</span> <span class="org-ess-function-call">cu
 </dl>
 </div>
 </div>
-<div id="outline-container-orgheadline81" class="outline-4">
-<h4 id="orgheadline81">Testing categorical variables for independence</h4>
-<div class="outline-text-4" id="text-orgheadline81">
+<div id="outline-container-orgheadline82" class="outline-3">
+<h3 id="orgheadline82">Testing categorical variables for independence</h3>
+<div class="outline-text-3" id="text-orgheadline82">
 <div class="org-src-container">
 <pre class="src src-R">
 <span class="org-ess-function-call">summary</span><span class="org-builtin">(</span><span class="org-ess-function-call">table</span><span class="org-builtin">(</span>f1, f2<span class="org-builtin">))</span>
@@ -1879,17 +1901,17 @@ f <span class="org-constant">&lt;-</span> <span class="org-ess-function-call">cu
 <p>Conventionally, a <i>p</i>-value of less than 0.05 indicates that the variables are likely not independent (there is some connection between the variables).</p>
 </div>
 </div>
-<div id="outline-container-orgheadline82" class="outline-4">
-<h4 id="orgheadline82">Calculating quantiles (and quartiles) of a dataset</h4>
-<div class="outline-text-4 org-src-container" id="text-orgheadline82">
+<div id="outline-container-orgheadline83" class="outline-3">
+<h3 id="orgheadline83">Calculating quantiles (and quartiles) of a dataset</h3>
+<div class="outline-text-3 org-src-container" id="text-orgheadline83">
 <pre class="src src-R">
 <span class="org-ess-function-call">quantile</span><span class="org-builtin">(</span>vec, na.rm<span class="org-constant">=</span><span class="org-type">TRUE</span><span class="org-builtin">)</span>
 </pre></div>
 </div>
 </div>
-<div id="outline-container-orgheadline104" class="outline-3">
-<h3 id="orgheadline104"><span class="section-number-3">1.14</span> 6. Data transformations</h3>
-<div class="outline-text-3" id="text-1-14">
+<div id="outline-container-orgheadline85" class="outline-2">
+<h2 id="orgheadline85">6. Data transformations</h2>
+<div class="outline-text-2" id="text-orgheadline85">
 <p>(Partial list of) munging operations (= key process)</p>
 <ul class="org-ul">
 <li><b>These steps must be recorded</b> in their own R script</li>
@@ -1902,9 +1924,9 @@ f <span class="org-constant">&lt;-</span> <span class="org-ess-function-call">cu
 <li>Each table / file stores data about one kind of observation.</li>
 </ul>
 </div>
-<div id="outline-container-orgheadline84" class="outline-4">
-<h4 id="orgheadline84">Fixing variable names</h4>
-<div class="outline-text-4" id="text-orgheadline84">
+<div id="outline-container-orgheadline86" class="outline-3">
+<h3 id="orgheadline86">Fixing variable names</h3>
+<div class="outline-text-3" id="text-orgheadline86">
 <div class="org-src-container">
 <pre class="src src-R">
 <span class="org-ess-function-call">tolower</span><span class="org-builtin">(</span><span class="org-ess-function-call">names</span><span class="org-builtin">(</span>df<span class="org-builtin">))</span>
@@ -1927,16 +1949,16 @@ splitNames <span class="org-constant">&lt;-</span> <span class="org-ess-function
 </pre></div>
 </div>
 </div>
-<div id="outline-container-orgheadline85" class="outline-4">
-<h4 id="orgheadline85">Creating new variables</h4>
-<div class="outline-text-4 org-src-container" id="text-orgheadline85">
+<div id="outline-container-orgheadline87" class="outline-3">
+<h3 id="orgheadline87">Creating new variables</h3>
+<div class="outline-text-3 org-src-container" id="text-orgheadline87">
 <pre class="src src-R">
 df$ranges <span class="org-constant">&lt;-</span> ranges                     <span class="org-comment-delimiter"># </span><span class="org-comment">Add a variable to the data frame.</span>
 </pre></div>
 </div>
-<div id="outline-container-orgheadline86" class="outline-4">
-<h4 id="orgheadline86">Change the class of many columns from factor to character (or numeric)</h4>
-<div class="outline-text-4" id="text-orgheadline86">
+<div id="outline-container-orgheadline88" class="outline-3">
+<h3 id="orgheadline88">Change the class of many columns from factor to character (or numeric)</h3>
+<div class="outline-text-3" id="text-orgheadline88">
 <div class="org-src-container">
 <pre class="src src-R">
 unfactor.cols <span class="org-constant">&lt;-</span> <span class="org-ess-function-call">c</span><span class="org-builtin">(</span><span class="org-string">"V1"</span>, <span class="org-string">"V2"</span><span class="org-builtin">)</span>
@@ -1955,9 +1977,9 @@ d<span class="org-builtin">[</span>, unfactor.cols<span class="org-builtin">]</s
 </pre></div>
 </div>
 </div>
-<div id="outline-container-orgheadline87" class="outline-4">
-<h4 id="orgheadline87">Removing list elements using a condition</h4>
-<div class="outline-text-4" id="text-orgheadline87">
+<div id="outline-container-orgheadline89" class="outline-3">
+<h3 id="orgheadline89">Removing list elements using a condition</h3>
+<div class="outline-text-3" id="text-orgheadline89">
 <p><b>Subsetting</b> by using 2 types of index:</p>
 <ul class="org-ul">
 <li>a numeric vector (<code>x[2]</code>, <code>x[1:4]</code>)</li>
@@ -1972,9 +1994,9 @@ x<span class="org-builtin">[</span>u<span class="org-builtin">]</span>          
 </pre></div>
 </div>
 </div>
-<div id="outline-container-orgheadline88" class="outline-4">
-<h4 id="orgheadline88">Selecting rows and columns more easily</h4>
-<div class="outline-text-4" id="text-orgheadline88">
+<div id="outline-container-orgheadline90" class="outline-3">
+<h3 id="orgheadline90">Selecting rows and columns more easily</h3>
+<div class="outline-text-3" id="text-orgheadline90">
 <p>Subset on V1 and/or V2 &gt; 0.</p>
 <div class="org-src-container">
 <pre class="src src-R">
@@ -1994,9 +2016,9 @@ df<span class="org-builtin">[</span>df$V1 <span class="org-constant">&gt;</span>
 <p>Use the <code>%in%</code> operator to compare a variable to a list of desired values.</p>
 </div>
 </div>
-<div id="outline-container-orgheadline89" class="outline-4">
-<h4 id="orgheadline89">Removing NA from a list</h4>
-<div class="outline-text-4" id="text-orgheadline89">
+<div id="outline-container-orgheadline91" class="outline-3">
+<h3 id="orgheadline91">Removing NA from a list</h3>
+<div class="outline-text-3" id="text-orgheadline91">
 <p>Remove missing values (<code>NA</code>) from a <b>list</b>:</p>
 <div class="org-src-container">
 <pre class="src src-R">
@@ -2010,9 +2032,9 @@ y <span class="org-constant">&lt;-</span> x<span class="org-builtin">[</span>!mi
 <p>The analogue of <code>is.na</code> for <b>data frames</b> is <code>complete.cases</code>.</p>
 </div>
 </div>
-<div id="outline-container-orgheadline90" class="outline-4">
-<h4 id="orgheadline90">Removing rows that contain NAs from a data frame</h4>
-<div class="outline-text-4" id="text-orgheadline90">
+<div id="outline-container-orgheadline92" class="outline-3">
+<h3 id="orgheadline92">Removing rows that contain NAs from a data frame</h3>
+<div class="outline-text-3" id="text-orgheadline92">
 <p>Remove rows that contain any NA values:</p>
 <div class="org-src-container">
 <pre class="src src-R">
@@ -2038,9 +2060,9 @@ df<span class="org-builtin">[</span><span class="org-ess-function-call">which</s
 </pre></div>
 </div>
 </div>
-<div id="outline-container-orgheadline91" class="outline-4">
-<h4 id="orgheadline91">Removing columns that contain NAs from a data frame</h4>
-<div class="outline-text-4" id="text-orgheadline91">
+<div id="outline-container-orgheadline93" class="outline-3">
+<h3 id="orgheadline93">Removing columns that contain NAs from a data frame</h3>
+<div class="outline-text-3" id="text-orgheadline93">
 <p>Get rid of any column that has one or more NAs.</p>
 <div class="org-src-container">
 <pre class="src src-R">
@@ -2048,9 +2070,9 @@ df <span class="org-constant">&lt;-</span> df<span class="org-builtin">[</span>,
 </pre></div>
 </div>
 </div>
-<div id="outline-container-orgheadline92" class="outline-4">
-<h4 id="orgheadline92">Removing columns by name</h4>
-<div class="outline-text-4" id="text-orgheadline92">
+<div id="outline-container-orgheadline94" class="outline-3">
+<h3 id="orgheadline94">Removing columns by name</h3>
+<div class="outline-text-3" id="text-orgheadline94">
 <p>To <b>drop columns by name</b> in a data frame, you can use direct indexing (with booleans vectors) and then, simply reassign data:</p>
 <div class="org-src-container">
 <pre class="src src-R">
@@ -2074,9 +2096,9 @@ df$remove3 <span class="org-constant">&lt;-</span> <span class="org-type">NULL</
 </pre></div>
 </div>
 </div>
-<div id="outline-container-orgheadline93" class="outline-4">
-<h4 id="orgheadline93">Merging data frames by common column</h4>
-<div class="outline-text-4" id="text-orgheadline93">
+<div id="outline-container-orgheadline95" class="outline-3">
+<h3 id="orgheadline95">Merging data frames by common column</h3>
+<div class="outline-text-3" id="text-orgheadline95">
 <dl class="org-dl">
 <dt><code>merge(df1, df2, by="CustomerId")</code></dt>
 <dd>Natural join (special case of <b>inner</b> join).</dd>
@@ -2094,9 +2116,9 @@ merged.data <span class="org-constant">&lt;-</span> <span class="org-ess-functio
 </pre></div>
 </div>
 </div>
-<div id="outline-container-orgheadline94" class="outline-4">
-<h4 id="orgheadline94">Convert a list of data frames into one data frame</h4>
-<div class="outline-text-4" id="text-orgheadline94">
+<div id="outline-container-orgheadline96" class="outline-3">
+<h3 id="orgheadline96">Convert a list of data frames into one data frame</h3>
+<div class="outline-text-3" id="text-orgheadline96">
 <p>Combine a list of data frames (of identical columns) into a single data frame:</p>
 <div class="org-src-container">
 <pre class="src src-R">
@@ -2104,9 +2126,9 @@ df <span class="org-constant">&lt;-</span> <span class="org-ess-function-call">d
 </pre></div>
 </div>
 </div>
-<div id="outline-container-orgheadline95" class="outline-4">
-<h4 id="orgheadline95">Converting</h4>
-<div class="outline-text-4" id="text-orgheadline95">
+<div id="outline-container-orgheadline97" class="outline-3">
+<h3 id="orgheadline97">Converting</h3>
+<div class="outline-text-3" id="text-orgheadline97">
 <dl class="org-dl">
 <dt><code>as.*()</code></dt>
 <dd>Explicitly coerce from one class to another.</dd>
@@ -2135,9 +2157,9 @@ x<span class="org-builtin">[</span>ind<span class="org-builtin">]</span> <span c
 </pre></div>
 </div>
 </div>
-<div id="outline-container-orgheadline96" class="outline-4">
-<h4 id="orgheadline96">Applying a function to each list element</h4>
-<div class="outline-text-4" id="text-orgheadline96">
+<div id="outline-container-orgheadline98" class="outline-3">
+<h3 id="orgheadline98">Applying a function to each list element</h3>
+<div class="outline-text-3" id="text-orgheadline98">
 <p>Alternative (to <code>for</code> <b>loops</b>) to apply a function (or summary statistics).</p>
 <p>The following two articles provide the necessary background to motivate the <b>functional programming</b> techniques that are being provided by the <code>apply</code> family of functions.</p>
 <ul class="org-ul">
@@ -2145,9 +2167,9 @@ x<span class="org-builtin">[</span>ind<span class="org-builtin">]</span> <span c
 <li><a href="http://www.bioinformaticszen.com/post/simple-functional-programming-in-r/">Simple Functional Programming in R</a>, by Michael Barton</li>
 </ul>
 </div>
-<div id="outline-container-orgheadline97" class="outline-5">
-<h5 id="orgheadline97"><code>lapply</code></h5>
-<div class="outline-text-5" id="text-orgheadline97">
+<div id="outline-container-orgheadline99" class="outline-4">
+<h4 id="orgheadline99"><code>lapply</code></h4>
+<div class="outline-text-4" id="text-orgheadline99">
 <p><b>Loop over a list</b> (or every <i>column</i> of a data frame) and apply a <b>function</b> on each <b>element. <i>Always</i> returns a list</b> back (that is, not a simplified result).</p>
 <ul class="org-ul">
 <li>(coerced) list <code>X</code></li>
@@ -2170,9 +2192,9 @@ x <span class="org-constant">&lt;-</span> <span class="org-ess-function-call">li
 </pre></div>
 </div>
 </div>
-<div id="outline-container-orgheadline98" class="outline-5">
-<h5 id="orgheadline98"><code>sapply</code></h5>
-<div class="outline-text-5" id="text-orgheadline98">
+<div id="outline-container-orgheadline100" class="outline-4">
+<h4 id="orgheadline100"><code>sapply</code></h4>
+<div class="outline-text-4" id="text-orgheadline100">
 <p>Same as <code>lapply</code> (for lists or <i>columns</i> of data frames), but tries to "<b>simplify</b>" the <b>result</b> in a much more compact format (return the simplest possible data structure that can represent the output and is useful interactively, by putting all the elements into a <b>vector</b> or a <b>matrix</b> when possible, instead of returning a list).</p>
 <div class="org-src-container">
 <pre class="src src-R">
@@ -2186,9 +2208,9 @@ x <span class="org-constant">&lt;-</span> <span class="org-ess-function-call">li
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline99" class="outline-4">
-<h4 id="orgheadline99">Splitting a vector into groups</h4>
-<div class="outline-text-4" id="text-orgheadline99">
+<div id="outline-container-orgheadline101" class="outline-3">
+<h3 id="orgheadline101">Splitting a vector into groups</h3>
+<div class="outline-text-3" id="text-orgheadline101">
 <dl class="org-dl">
 <dt><code>split(x, f)</code></dt>
 <dd>Take a vector, and <b>split</b> it into subpieces (the number of groups identified by the levels of a <b>factor</b> variable). Always return a <b>list</b> (of lists?) back.
@@ -2218,9 +2240,9 @@ size.max <span class="org-constant">&lt;-</span> <span class="org-ess-numbers">2
 </pre></div>
 </div>
 </div>
-<div id="outline-container-orgheadline100" class="outline-4">
-<h4 id="orgheadline100">Applying a function to every row/column</h4>
-<div class="outline-text-4" id="text-orgheadline100">
+<div id="outline-container-orgheadline102" class="outline-3">
+<h3 id="orgheadline102">Applying a function to every row/column</h3>
+<div class="outline-text-3" id="text-orgheadline102">
 <dl class="org-dl">
 <dt><code>apply(df, margin, fun, ...)</code></dt>
 <dd>
@@ -2257,9 +2279,9 @@ x <span class="org-constant">&lt;-</span> <span class="org-ess-function-call">ma
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline101" class="outline-4">
-<h4 id="orgheadline101">Applying a function to groups of data</h4>
-<div class="outline-text-4" id="text-orgheadline101">
+<div id="outline-container-orgheadline103" class="outline-3">
+<h3 id="orgheadline103">Applying a function to groups of data</h3>
+<div class="outline-text-3" id="text-orgheadline103">
 <dl class="org-dl">
 <dt><code>tapply(x, index, fun)</code></dt>
 <dd>
@@ -2290,9 +2312,9 @@ x <span class="org-constant">&lt;-</span> <span class="org-ess-function-call">ma
 </dl>
 </div>
 </div>
-<div id="outline-container-orgheadline102" class="outline-4">
-<h4 id="orgheadline102">Applying a function to parallel vectors or lists</h4>
-<div class="outline-text-4" id="text-orgheadline102">
+<div id="outline-container-orgheadline104" class="outline-3">
+<h3 id="orgheadline104">Applying a function to parallel vectors or lists</h3>
+<div class="outline-text-3" id="text-orgheadline104">
 <dl class="org-dl">
 <dt><code>mapply</code></dt>
 <dd>
@@ -2314,25 +2336,25 @@ x <span class="org-constant">&lt;-</span> <span class="org-ess-function-call">ma
 </dl>
 </div>
 </div>
-<div id="outline-container-orgheadline103" class="outline-4">
-<h4 id="orgheadline103">Checking on and removing inconsistent values</h4>
+<div id="outline-container-orgheadline105" class="outline-3">
+<h3 id="orgheadline105">Checking on and removing inconsistent values</h3>
 </div>
 </div>
-<div id="outline-container-orgheadline110" class="outline-3">
-<h3 id="orgheadline110"><span class="section-number-3">1.15</span> 7. Strings (and dates)</h3>
-<div class="outline-text-3" id="text-1-15"></div>
-<div id="outline-container-orgheadline105" class="outline-4">
-<h4 id="orgheadline105">Getting the length of a string</h4>
-<div class="outline-text-4" id="text-orgheadline105">
+<div id="outline-container-orgheadline110" class="outline-2">
+<h2 id="orgheadline110">7. Strings (and dates)</h2>
+<div class="outline-text-2" id="text-orgheadline110"></div>
+<div id="outline-container-orgheadline106" class="outline-3">
+<h3 id="orgheadline106">Getting the length of a string</h3>
+<div class="outline-text-3" id="text-orgheadline106">
 <dl class="org-dl">
 <dt><code>nchar()</code></dt>
 <dd>Get the length of a string.</dd>
 </dl>
 </div>
 </div>
-<div id="outline-container-orgheadline106" class="outline-4">
-<h4 id="orgheadline106">Concatenating strings</h4>
-<div class="outline-text-4" id="text-orgheadline106">
+<div id="outline-container-orgheadline62" class="outline-3">
+<h3 id="orgheadline62"><a id="ID-e6b8c6ad-d5dd-4396-9a0f-ffa168da2118" name="ID-e6b8c6ad-d5dd-4396-9a0f-ffa168da2118"></a>Concatenating strings</h3>
+<div class="outline-text-3" id="text-orgheadline62">
 <dl class="org-dl">
 <dt><code>paste()</code></dt>
 <dd>
@@ -2360,12 +2382,12 @@ paragraph.
 <p>See <code>prettyNum</code> formatting for manual axis tick labels.</p>
 </div>
 </div>
-<div id="outline-container-orgheadline109" class="outline-4">
-<h4 id="orgheadline109">Regular expressions</h4>
-<div class="outline-text-4" id="text-orgheadline109"></div>
-<div id="outline-container-orgheadline107" class="outline-5">
-<h5 id="orgheadline107">Metacharacters</h5>
-<div class="outline-text-5" id="text-orgheadline107">
+<div id="outline-container-orgheadline109" class="outline-3">
+<h3 id="orgheadline109">Regular expressions</h3>
+<div class="outline-text-3" id="text-orgheadline109"></div>
+<div id="outline-container-orgheadline107" class="outline-4">
+<h4 id="orgheadline107">Metacharacters</h4>
+<div class="outline-text-4" id="text-orgheadline107">
 <dl class="org-dl">
 <dt><code>^</code></dt>
 <dd>Start of a line (or negation of a character class).</dd>
@@ -2399,9 +2421,9 @@ paragraph.
 </dl>
 </div>
 </div>
-<div id="outline-container-orgheadline108" class="outline-5">
-<h5 id="orgheadline108">Regular expressions in R</h5>
-<div class="outline-text-5" id="text-orgheadline108">
+<div id="outline-container-orgheadline108" class="outline-4">
+<h4 id="orgheadline108">Regular expressions in R</h4>
+<div class="outline-text-4" id="text-orgheadline108">
 <p>For the moment, we assume pattern matching on <b>ASCII strings</b>…</p>
 <p>These functions can take vector arguments.</p>
 <dl class="org-dl">
@@ -2465,12 +2487,12 @@ dates <span class="org-constant">&lt;-</span> <span class="org-ess-function-call
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline114" class="outline-3">
-<h3 id="orgheadline114"><span class="section-number-3">1.16</span> 8. Probability</h3>
-<div class="outline-text-3" id="text-1-16"></div>
-<div id="outline-container-orgheadline111" class="outline-4">
-<h4 id="orgheadline111">Names of distributions</h4>
-<div class="outline-text-4" id="text-orgheadline111">
+<div id="outline-container-orgheadline114" class="outline-2">
+<h2 id="orgheadline114">8. Probability</h2>
+<div class="outline-text-2" id="text-orgheadline114"></div>
+<div id="outline-container-orgheadline111" class="outline-3">
+<h3 id="orgheadline111">Names of distributions</h3>
+<div class="outline-text-3" id="text-orgheadline111">
 <ul class="org-ul">
 <li>Functions for <b>probability distributions</b>
 <dl class="org-dl">
@@ -2512,9 +2534,9 @@ dates <span class="org-constant">&lt;-</span> <span class="org-ess-function-call
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline112" class="outline-4">
-<h4 id="orgheadline112">Generate reproducible random numbers</h4>
-<div class="outline-text-4" id="text-orgheadline112">
+<div id="outline-container-orgheadline112" class="outline-3">
+<h3 id="orgheadline112">Generate reproducible random numbers</h3>
+<div class="outline-text-3" id="text-orgheadline112">
 <p>Set the random number <b>seed</b> is critical for <b>reproducibility</b>: <b>always set it when conducting a simulation!</b></p>
 <div class="org-src-container">
 <pre class="src src-R">
@@ -2522,9 +2544,9 @@ dates <span class="org-constant">&lt;-</span> <span class="org-ess-function-call
 </pre></div>
 </div>
 </div>
-<div id="outline-container-orgheadline113" class="outline-4">
-<h4 id="orgheadline113">Generate a random sample</h4>
-<div class="outline-text-4" id="text-orgheadline113">
+<div id="outline-container-orgheadline113" class="outline-3">
+<h3 id="orgheadline113">Generate a random sample</h3>
+<div class="outline-text-3" id="text-orgheadline113">
 <p><b>Sample randomly</b> from a specified vector of scalar objects.</p>
 <div class="org-src-container">
 <pre class="src src-R">
@@ -2536,9 +2558,9 @@ dates <span class="org-constant">&lt;-</span> <span class="org-ess-function-call
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline130" class="outline-3">
-<h3 id="orgheadline130"><span class="section-number-3">1.17</span> 10. Graphics</h3>
-<div class="outline-text-3" id="text-1-17">
+<div id="outline-container-orgheadline115" class="outline-2">
+<h2 id="orgheadline115">10. Graphics</h2>
+<div class="outline-text-2" id="text-orgheadline115">
 <p>2 systems:</p>
 <dl class="org-dl">
 <dt><code>base</code></dt>
@@ -2566,12 +2588,12 @@ dates <span class="org-constant">&lt;-</span> <span class="org-ess-function-call
 <p>You cannot use functions from the base plotting system in a Lattice plot.</p>
 <p>Excellent resource for graphics: <a href="http://www.cookbook-r.com/Graphs/Scatterplot/">http://www.cookbook-r.com/Graphs/Scatterplot/</a>.</p>
 </div>
-<div id="outline-container-orgheadline123" class="outline-4">
-<h4 id="orgheadline123">Base graphics</h4>
-<div class="outline-text-4" id="text-orgheadline123"></div>
-<div id="outline-container-orgheadline115" class="outline-5">
-<h5 id="orgheadline115">Make a plot</h5>
-<div class="outline-text-5" id="text-orgheadline115">
+<div id="outline-container-orgheadline124" class="outline-3">
+<h3 id="orgheadline124">Base graphics</h3>
+<div class="outline-text-3" id="text-orgheadline124"></div>
+<div id="outline-container-orgheadline116" class="outline-4">
+<h4 id="orgheadline116">Make a plot</h4>
+<div class="outline-text-4" id="text-orgheadline116">
 <dl class="org-dl">
 <dt><code>plot</code></dt>
 <dd>Create a <b>scatter plot</b> (or another type of plot, depending on the class of the object being plotted).</dd>
@@ -2583,9 +2605,9 @@ dates <span class="org-constant">&lt;-</span> <span class="org-ess-function-call
 <dd>Create a box-and-whisker plot of the <code>y</code> variable by the grouping variable <code>x</code> (usually a <code>factor</code>).</dd>
 </dl>
 </div>
-<ul class="org-ul">
-<li><a id="orgheadline116" name="orgheadline116"></a>Create a scatter plot<br />
-<div class="outline-text-6" id="text-orgheadline116">
+<div id="outline-container-orgheadline117" class="outline-5">
+<h5 id="orgheadline117">Create a scatter plot</h5>
+<div class="outline-text-5" id="text-orgheadline117">
 <dl class="org-dl">
 <dt><code>plot(x)</code></dt>
 <dd>
@@ -2674,14 +2696,16 @@ dates <span class="org-constant">&lt;-</span> <span class="org-ess-function-call
 </dd>
 </dl>
 </div>
-</li>
-<li><a id="orgheadline117" name="orgheadline117"></a><span class="todo TODO">TODO</span> <code>barplot</code><br />
-<div class="outline-text-6" id="text-orgheadline117">
+</div>
+<div id="outline-container-orgheadline118" class="outline-5">
+<h5 id="orgheadline118"><span class="todo TODO">TODO</span> <code>barplot</code></h5>
+<div class="outline-text-5" id="text-orgheadline118">
 <p>See <a href="http://onertipaday.blogspot.be/2007/05/barplots-of-two-sets.html">http://onertipaday.blogspot.be/2007/05/barplots-of-two-sets.html</a> for barplot with figures above the bars.</p>
 </div>
-</li>
-<li><a id="orgheadline118" name="orgheadline118"></a><code>hist</code><br />
-<div class="outline-text-6" id="text-orgheadline118">
+</div>
+<div id="outline-container-orgheadline119" class="outline-5">
+<h5 id="orgheadline119"><code>hist</code></h5>
+<div class="outline-text-5" id="text-orgheadline119">
 <p>Histogram (<b>distribution</b> of data, <b>frequency</b> = exact number).</p>
 <p>Generic function: you can call it on different types of data. When you call <code>hist</code> on a <code>Date</code> object, it requires an interval ("day" / "week" / "month" / "year") in order to break it up into sequences.</p>
 <div class="org-src-container">
@@ -2743,9 +2767,10 @@ densMales <span class="org-constant">&lt;-</span> <span class="org-ess-function-
 </li>
 </ul>
 </div>
-</li>
-<li><a id="orgheadline119" name="orgheadline119"></a><code>boxplot</code><br />
-<div class="outline-text-6" id="text-orgheadline119">
+</div>
+<div id="outline-container-orgheadline120" class="outline-5">
+<h5 id="orgheadline120"><code>boxplot</code></h5>
+<div class="outline-text-5" id="text-orgheadline120">
 <p><code>boxplot</code> draws plot summarizing:</p>
 <ul class="org-ul">
 <li>Median (wide line)</li>
@@ -2762,17 +2787,17 @@ densMales <span class="org-constant">&lt;-</span> <span class="org-ess-function-
 <p><img src="Rplots/base-boxplot.png" alt="base-boxplot.png" /></p>
 </div>
 </div>
-</li>
-<li><a id="orgheadline120" name="orgheadline120"></a>violinplot<br />
-<div class="outline-text-6" id="text-orgheadline120">
-<p>See <a href="http://www.math.csi.cuny.edu/Statistics/R/simpleR/stat006.html">http://www.math.csi.cuny.edu/Statistics/R/simpleR/stat006.html</a></p>
-</div>
-</li>
-</ul>
 </div>
 <div id="outline-container-orgheadline121" class="outline-5">
-<h5 id="orgheadline121">Add to an existing plot</h5>
+<h5 id="orgheadline121">violinplot</h5>
 <div class="outline-text-5" id="text-orgheadline121">
+<p>See <a href="http://www.math.csi.cuny.edu/Statistics/R/simpleR/stat006.html">http://www.math.csi.cuny.edu/Statistics/R/simpleR/stat006.html</a></p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline122" class="outline-4">
+<h4 id="orgheadline122">Add to an existing plot</h4>
+<div class="outline-text-4" id="text-orgheadline122">
 <dl class="org-dl">
 <dt><code>points</code></dt>
 <dd>
@@ -2883,9 +2908,9 @@ fit <span class="org-constant">&lt;-</span> <span class="org-ess-function-call">
 </dl>
 </div>
 </div>
-<div id="outline-container-orgheadline122" class="outline-5">
-<h5 id="orgheadline122">Changing graphical parameters</h5>
-<div class="outline-text-5" id="text-orgheadline122">
+<div id="outline-container-orgheadline123" class="outline-4">
+<h4 id="orgheadline123">Changing graphical parameters</h4>
+<div class="outline-text-4" id="text-orgheadline123">
 <dl class="org-dl">
 <dt><code>par()</code></dt>
 <dd>
@@ -2968,9 +2993,9 @@ fit <span class="org-constant">&lt;-</span> <span class="org-ess-function-call">
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline124" class="outline-4">
-<h4 id="orgheadline124">Lattice graphics</h4>
-<div class="outline-text-4" id="text-orgheadline124">
+<div id="outline-container-orgheadline125" class="outline-3">
+<h3 id="orgheadline125">Lattice graphics</h3>
+<div class="outline-text-3" id="text-orgheadline125">
 <ul class="org-ul">
 <li>
 <p>Tellis graphics</p>
@@ -3100,9 +3125,9 @@ y ~ x | f * g                         <span class="org-comment-delimiter"># </sp
 </li>
 </ul>
 </div>
-<div id="outline-container-orgheadline125" class="outline-5">
-<h5 id="orgheadline125">Splom</h5>
-<div class="outline-text-5" id="text-orgheadline125">
+<div id="outline-container-orgheadline126" class="outline-4">
+<h4 id="orgheadline126">Splom</h4>
+<div class="outline-text-4" id="text-orgheadline126">
 <ul class="org-ul">
 <li>
 <p>Look at pairwise relationships possible in the data frame (make a scatter plot of all the different variables against each other)</p>
@@ -3114,9 +3139,9 @@ y ~ x | f * g                         <span class="org-comment-delimiter"># </sp
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline126" class="outline-5">
-<h5 id="orgheadline126">Histogram</h5>
-<div class="outline-text-5" id="text-orgheadline126">
+<div id="outline-container-orgheadline127" class="outline-4">
+<h4 id="orgheadline127">Histogram</h4>
+<div class="outline-text-4" id="text-orgheadline127">
 <ul class="org-ul">
 <li>
 <p>Histogram of <code>x</code></p>
@@ -3136,9 +3161,9 @@ y ~ x | f * g                         <span class="org-comment-delimiter"># </sp
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline127" class="outline-4">
-<h4 id="orgheadline127">ggplot2</h4>
-<div class="outline-text-4" id="text-orgheadline127">
+<div id="outline-container-orgheadline128" class="outline-3">
+<h3 id="orgheadline128">ggplot2</h3>
+<div class="outline-text-3" id="text-orgheadline128">
 <p>See <a href="http://tutorials.iq.harvard.edu/R/Rgraphics/Rgraphics.html">http://tutorials.iq.harvard.edu/R/Rgraphics/Rgraphics.html</a> for a comparison with Base graphics.</p>
 <p>See post of Antoine Lizée in <a href="http://stackoverflow.com/questions/5234117/how-to-drop-columns-by-name-in-a-data-frame">http://stackoverflow.com/questions/5234117/how-to-drop-columns-by-name-in-a-data-frame</a> for an excellent performance reporting.</p>
 <div class="org-src-container">
@@ -3152,12 +3177,12 @@ y ~ x | f * g                         <span class="org-comment-delimiter"># </sp
 </div>
 </div>
 </div>
+<div id="outline-container-orgheadline130" class="outline-3">
+<h3 id="orgheadline130">Other graphics</h3>
+<div class="outline-text-3" id="text-orgheadline130"></div>
 <div id="outline-container-orgheadline129" class="outline-4">
-<h4 id="orgheadline129">Other graphics</h4>
-<div class="outline-text-4" id="text-orgheadline129"></div>
-<div id="outline-container-orgheadline128" class="outline-5">
-<h5 id="orgheadline128">Pareto diagrams</h5>
-<div class="outline-text-5" id="text-orgheadline128">
+<h4 id="orgheadline129">Pareto diagrams</h4>
+<div class="outline-text-4" id="text-orgheadline129">
 <div class="org-src-container">
 <pre class="src src-R">
 <span class="org-comment-delimiter">## </span><span class="org-comment">install.packages("qcc")</span>
@@ -3172,14 +3197,14 @@ y ~ x | f * g                         <span class="org-comment-delimiter"># </sp
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline134" class="outline-3">
-<h3 id="orgheadline134"><span class="section-number-3">1.18</span> 11. Linear regression and ANOVA</h3>
-<div class="outline-text-3" id="text-1-18">
+<div id="outline-container-orgheadline131" class="outline-2">
+<h2 id="orgheadline131">11. Linear regression and ANOVA</h2>
+<div class="outline-text-2" id="text-orgheadline131">
 <p><a href="https://www.zoology.ubc.ca/~schluter/R/fit-model/">https://www.zoology.ubc.ca/~schluter/R/fit-model/</a></p>
 </div>
-<div id="outline-container-orgheadline131" class="outline-4">
-<h4 id="orgheadline131">Linear model</h4>
-<div class="outline-text-4" id="text-orgheadline131">
+<div id="outline-container-orgheadline132" class="outline-3">
+<h3 id="orgheadline132">Linear model</h3>
+<div class="outline-text-3" id="text-orgheadline132">
 <p>y = β<sub>0</sub> + β<sub>1</sub> x + ε</p>
 <div class="org-src-container">
 <pre class="src src-R">
@@ -3188,18 +3213,18 @@ e <span class="org-constant">&lt;-</span> <span class="org-ess-function-call">rn
 </pre></div>
 </div>
 </div>
-<div id="outline-container-orgheadline132" class="outline-4">
-<h4 id="orgheadline132">Regression tree models</h4>
-<div class="outline-text-4" id="text-orgheadline132">
+<div id="outline-container-orgheadline133" class="outline-3">
+<h3 id="orgheadline133">Regression tree models</h3>
+<div class="outline-text-3" id="text-orgheadline133">
 <ul class="org-ul">
 <li>arbres de régression : la variable expliquée est de type numérique et il s'agit de prédire une valeur la plus proche possible de la vraie valeur.</li>
 </ul>
 <p><a href="http://www.statmethods.net/advstats/cart.html">http://www.statmethods.net/advstats/cart.html</a></p>
 </div>
 </div>
-<div id="outline-container-orgheadline133" class="outline-4">
-<h4 id="orgheadline133">Classification tree models</h4>
-<div class="outline-text-4" id="text-orgheadline133">
+<div id="outline-container-orgheadline134" class="outline-3">
+<h3 id="orgheadline134">Classification tree models</h3>
+<div class="outline-text-3" id="text-orgheadline134">
 <ul class="org-ul">
 <li>arbres de classification : la variable expliquée est de type nominale (facteur). A chaque étape du partitionnement, on cherche à réduire l'impureté totale des deux noeuds fils par rapport au noeud père.</li>
 </ul>
@@ -3210,9 +3235,9 @@ rpart
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline135" class="outline-3">
-<h3 id="orgheadline135"><span class="section-number-3">1.19</span> Debugging</h3>
-<div class="outline-text-3" id="text-1-19">
+<div id="outline-container-orgheadline135" class="outline-2">
+<h2 id="orgheadline135">Debugging</h2>
+<div class="outline-text-2" id="text-orgheadline135">
 <ul class="org-ul">
 <li>3 main indications of a problem / <code>condition</code>:
 <ul class="org-ul">
@@ -3275,9 +3300,9 @@ rpart
 </ul>
 </div>
 </div>
-<div id="outline-container-orgheadline136" class="outline-3">
-<h3 id="orgheadline136"><span class="section-number-3">1.20</span> Assert</h3>
-<div class="outline-text-3" id="text-1-20">
+<div id="outline-container-orgheadline136" class="outline-2">
+<h2 id="orgheadline136">Assert</h2>
+<div class="outline-text-2" id="text-orgheadline136">
 <p><a href="https://github.com/hadley/assertthat">https://github.com/hadley/assertthat</a></p>
 <div class="org-src-container">
 <pre class="src src-R">
@@ -3304,47 +3329,46 @@ rpart
 </pre></div>
 </div>
 </div>
-<div id="outline-container-orgheadline137" class="outline-3">
-<h3 id="orgheadline137"><span class="section-number-3">1.21</span> How to deal with character(0)?</h3>
-<div class="outline-text-3 org-src-container" id="text-1-21">
+<div id="outline-container-orgheadline137" class="outline-2">
+<h2 id="orgheadline137">How to deal with character(0)?</h2>
+<div class="outline-text-2 org-src-container" id="text-orgheadline137">
 <pre class="src src-R">
 <span class="org-builtin">(</span><span class="org-ess-function-call">length</span><span class="org-builtin">(</span>dd<span class="org-builtin">)</span> <span class="org-constant">==</span> <span class="org-ess-numbers">0</span><span class="org-builtin">)</span> &amp;&amp; <span class="org-builtin">(</span><span class="org-ess-function-call">typeof</span><span class="org-builtin">(</span>dd<span class="org-builtin">)</span> <span class="org-constant">==</span> <span class="org-string">"character"</span><span class="org-builtin">)</span>
 </pre></div>
 </div>
-<div id="outline-container-orgheadline141" class="outline-3">
-<h3 id="orgheadline141"><span class="section-number-3">1.22</span> Contributing</h3>
-<div class="outline-text-3" id="text-1-22"></div>
-<div id="outline-container-orgheadline138" class="outline-4">
-<h4 id="orgheadline138">Issues</h4>
-<div class="outline-text-4" id="text-orgheadline138">
+<div id="outline-container-orgheadline141" class="outline-2">
+<h2 id="orgheadline141">Contributing</h2>
+<div class="outline-text-2" id="text-orgheadline141"></div>
+<div id="outline-container-orgheadline138" class="outline-3">
+<h3 id="orgheadline138">Issues</h3>
+<div class="outline-text-3" id="text-orgheadline138">
 <p>Report issues and suggest features and improvements on the <a href="https://github.com/fniessen/refcard-R/issues/new">GitHub issue tracker</a>.</p>
 </div>
 </div>
-<div id="outline-container-orgheadline139" class="outline-4">
-<h4 id="orgheadline139">Patches</h4>
-<div class="outline-text-4" id="text-orgheadline139">
+<div id="outline-container-orgheadline139" class="outline-3">
+<h3 id="orgheadline139">Patches</h3>
+<div class="outline-text-3" id="text-orgheadline139">
 <p>I love contributions! Patches under any form are always welcome!</p>
 </div>
 </div>
-<div id="outline-container-orgheadline140" class="outline-4">
-<h4 id="orgheadline140">Donations</h4>
-<div class="outline-text-4" id="text-orgheadline140">
+<div id="outline-container-orgheadline140" class="outline-3">
+<h3 id="orgheadline140">Donations</h3>
+<div class="outline-text-3" id="text-orgheadline140">
 <p>If you like the refcard-R project (or any of <a href="https://github.com/fniessen/">my other projects</a>), you can show your appreciation and help support future development by making today a <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=VCVAS6KPDQ4JC&amp;lc=BE&amp;item_number=refcard-R&amp;currency_code=EUR&amp;bn=PP-DonationsBF:btn_donate_LG.gif:NonHosted">donation</a> through PayPal.</p>
 <p>Regardless of the donations, refcard-R will always be free both as in beer and as in speech.</p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgheadline142" class="outline-3">
-<h3 id="orgheadline142"><span class="section-number-3">1.23</span> License</h3>
-<div class="outline-text-3" id="text-1-23">
+<div id="outline-container-orgheadline142" class="outline-2">
+<h2 id="orgheadline142">License</h2>
+<div class="outline-text-2" id="text-orgheadline142">
 <p>Copyright (C) 2013-2015 Free Software Foundation, Inc.</p>
 <p>Author: Fabrice Niessen<br />
 Keywords: r reference card</p>
 <p>This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</p>
 <p>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.</p>
 <p>You should have received a copy of the GNU General Public License along with this program. If not, see <a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>.</p>
-</div>
-</div>
+<a href="http://opensource.org/licenses/GPL-3.0"><img src="http://img.shields.io/:license-gpl-blue.svg" alt=":license-gpl-blue.svg" /></a> <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=VCVAS6KPDQ4JC&amp;lc=BE&amp;item_number=refcard%2dR&amp;currency_code=EUR&amp;bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" alt="btn_donate_LG.gif" /></a></div>
 </div>
 </div>
 <div id="postamble" class="status">
