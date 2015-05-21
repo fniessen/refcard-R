@@ -560,13 +560,13 @@ What is data?
 
 ** Basic ("atomic") vector types
 
-| Class     | Example                     |
-|-----------+-----------------------------|
-| ~logical~   | ~TRUE~ / ~FALSE~ / ~NA~           |
-| ~integer~   | ~1L~ (with explicit ~L~ suffix) |
-| ~numeric~   | ~0.5~ or ~1~ (/real/ numbers)     |
-| ~complex~   | ~1+0i~                        |
-| ~character~ | "hello" (= lowest class)    |
+| Class     | Example                         |
+|-----------+---------------------------------|
+| ~logical~   | ~TRUE~ / ~FALSE~ / ~NA~               |
+| ~integer~   | ~1L~ (with explicit ~L~ suffix)     |
+| ~numeric~   | ~0.5~ or ~1~ (/real/, /double/ numbers) |
+| ~complex~   | ~1+0i~                            |
+| ~character~ | "hello" (= lowest class)        |
 
 - ~class()~ ::
      Show the class of the object.
@@ -1688,6 +1688,7 @@ Combine a list of data frames (of identical columns) into a single data frame:
 
 #+begin_src R
 df <- do.call("rbind", list.of.data.frames)
+df <- unique(do.call("rbind", list.of.data.frames)) # Remove duplicated rows
 #+end_src
 
 ** Converting
@@ -1778,6 +1779,15 @@ the mean.
 
 #+begin_src R
 sapply(s, function(x) colMeans(x[, c("Ozone", "Solar.R", "Wind")], na.rm=TRUE))
+#+end_src
+
+*** vapply
+
+#+begin_src R
+  ## Check for errors
+  if (any(vapply(update.list.of.results, length, 1L) != 0)) {
+    stop("Error updating prestations in PFlow!!!\n")
+  }
 #+end_src
 
 ** Splitting a vector into groups
@@ -1919,6 +1929,24 @@ class)~.
      #+end_src
 
 ** Checking on and removing inconsistent values
+
+** Finding and removing duplicates
+
+You can use ~duplicated~ to remove duplicates:
+
+#+begin_src R
+df.unique <- df[!duplicated(df),]
+
+df.unique <- df[!duplicated(df[c("v1", "v2", "v3")]), ] # Duplicates on multiple columns
+#+end_src
+
+Alternatively, you could use the ~unique~ function to remove the duplicate values:
+
+#+begin_src R
+df.unique <- unique(df)
+#+end_src
+
+** Sorting
 
 * 7. Strings (and dates)
 
