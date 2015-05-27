@@ -4196,13 +4196,19 @@ Tellis graphics
 </p>
 
 <dl class="org-dl">
-<dt><code>xyplot</code></dt><dd><b>scatterplots</b></dd>
-<dt><code>bwplot</code></dt><dd>box-and-whiskers plots (&ldquo;boxplots&rdquo;)</dd>
-<dt>histogram</dt><dd>histograms</dd>
-<dt>stripplot</dt><dd>like a boxplot but with actual points (instead of boxes)</dd>
-<dt>dotplot</dt><dd>plot dots on &ldquo;violin strings&rdquo;</dd>
-<dt>splom</dt><dd>scatterplot matrix, like <code>pairs</code> in the base graphics system</dd>
-<dt><code>levelplot</code>, <code>contourplot</code></dt><dd>for plotting &ldquo;image&rdquo; data</dd>
+<dt><code>xyplot</code></dt><dd><b>scatterplots</b>.</dd>
+
+<dt><code>bwplot</code></dt><dd>Box-and-whiskers plots (&ldquo;boxplots&rdquo;).</dd>
+
+<dt><code>histogram</code></dt><dd>Histograms.</dd>
+
+<dt><code>stripplot</code></dt><dd>Like a boxplot but with actual points (instead of boxes).</dd>
+
+<dt><code>dotplot</code></dt><dd>Plot dots on &ldquo;violin strings&rdquo;.</dd>
+
+<dt><code>splom</code></dt><dd>Scatterplot matrix, like <code>pairs</code> in the base graphics system.</dd>
+
+<dt><code>levelplot</code>, <code>contourplot</code></dt><dd>For plotting &ldquo;image&rdquo; data.</dd>
 </dl>
 <div class="org-src-container">
 
@@ -4341,14 +4347,20 @@ Add a (simple linear) regression line to each panel of the plot:
 </div></li>
 
 <li>Options
+
 <ul class="org-ul">
 <li>Don&rsquo;t worry about spacing: everything gets automatically adjusted!</li>
-<li id="main">title</li>
-<li id="layout=c(1,4)">4 panels on top of each other</li>
-<li id="as.table=TRUE">change the order in which the panels are drawn, from
-top to bottom (default: from bottom to top)</li>
-<li id="xlab">label on the x-axis</li>
-<li id="ylab">label on the y-axis</li>
+
+<li id="<code>main</code>">Title.</li>
+
+<li id="<code>layout=c(1,4)</code>">4 panels on top of each other.</li>
+
+<li id="<code>as.table=TRUE</code>">Change the order in which the panels are drawn, from top to bottom
+(default: from bottom to top).</li>
+
+<li id="<code>xlab</code>">Label on the x-axis.</li>
+
+<li id="<code>ylab</code>">Label on the y-axis.</li>
 </ul></li>
 
 <li>Functions
@@ -4531,7 +4543,8 @@ totale des deux noeuds fils par rapport au noeud père.</li>
 
 <div class="org-src-container">
 
-<pre class="src src-R"><span class="org-ess-function-call">print</span><span class="org-builtin">(</span><span class="org-string">"message"</span><span class="org-builtin">)</span>
+<pre class="src src-R"><span class="org-keyword">message</span><span class="org-builtin">(</span><span class="org-string">"testing ..."</span><span class="org-builtin">)</span>
+<span class="org-ess-function-call">print</span><span class="org-builtin">(</span><span class="org-string">"message"</span><span class="org-builtin">)</span>
 </pre>
 </div></li>
 
@@ -4562,7 +4575,7 @@ specific happens</li>
 <li>Functions:
 
 <dl class="org-dl">
-<dt>invisible(x)</dt><dd><b>Prevent auto-printing</b> of the last element in the function value; <b>still
+<dt><code>invisible(x)</code></dt><dd><b>Prevent auto-printing</b> of the last element in the function value; <b>still
 return</b> the same object</dd>
 </dl></li>
 
@@ -4575,16 +4588,16 @@ return</b> the same object</dd>
 <dt><code>debug</code></dt><dd>Flag a function for &ldquo;debug&rdquo; mode to step through any function (you wrote
 or not), one expression at a time, from the top of the function.</dd>
 
-<dt>browser</dt><dd>Put the function in debug mode anywhere in your code; in the browser,
+<dt><code>browser</code></dt><dd>Put the function in debug mode anywhere in your code; in the browser,
 there is nothing in your environment except for the function arguments
 (and the default values which are not listed). You can nest browser
 frames: you can call the debug function even while you&rsquo;re in the
 debugger.</dd>
 
-<dt>trace</dt><dd>Insert debugging code into a function, without actually editing the
+<dt><code>trace</code></dt><dd>Insert debugging code into a function, without actually editing the
 function.</dd>
 
-<dt>recover</dt><dd><p>
+<dt><code>recover</code></dt><dd><p>
        Modify the default behavior (of getting the console back) by creating an
 error handler.
 </p>

@@ -5,6 +5,7 @@
 #+KEYWORDS:
 #+LANGUAGE:  en
 #+OPTIONS:   H:4 num:nil
+#+EXCLUDE_TAGS: noexport
 
 #+PROPERTY:  eval never
 #+PROPERTY:  exports both
@@ -2586,13 +2587,26 @@ See http://www.math.csi.cuny.edu/Statistics/R/simpleR/stat006.html
 
 - Tellis graphics
 
-  + =xyplot= :: *scatterplots*
-  + =bwplot= :: box-and-whiskers plots ("boxplots")
-  + histogram :: histograms
-  + stripplot :: like a boxplot but with actual points (instead of boxes)
-  + dotplot :: plot dots on "violin strings"
-  + splom :: scatterplot matrix, like =pairs= in the base graphics system
-  + =levelplot=, =contourplot= :: for plotting "image" data
+  + ~xyplot~ ::
+       *scatterplots*.
+
+  + ~bwplot~ ::
+       Box-and-whiskers plots ("boxplots").
+
+  + ~histogram~ ::
+       Histograms.
+
+  + ~stripplot~ ::
+       Like a boxplot but with actual points (instead of boxes).
+
+  + ~dotplot~ ::
+       Plot dots on "violin strings".
+
+  + ~splom~ ::
+       Scatterplot matrix, like ~pairs~ in the base graphics system.
+
+  + ~levelplot~, ~contourplot~ ::
+       For plotting "image" data.
 
   #+begin_src R
   library(lattice)
@@ -2601,21 +2615,21 @@ See http://www.math.csi.cuny.edu/Statistics/R/simpleR/stat006.html
 - Generally create plots all in one go, from a single function call
 
 - Strength of Lattice functions = conditioning plots: you can plot
-  the *relationship* between =x= and =y=, *conditioned* on the levels of a third
-  variable (factor variable =f= or variable cut into different ranges, see
-  =equal.count=)
+  the *relationship* between ~x~ and ~y~, *conditioned* on the levels of a third
+  variable (factor variable ~f~ or variable cut into different ranges, see
+  ~equal.count~)
 
   #+begin_src R
   y ~ x | f * g                         # Formula.
   #+end_src
 
-  + =y= = response (on the y-axis)
-  + =x= = input, predictor (on the x-axis)
-  + =f * g= = factors which are *interacting* with each other (often, just one
+  + ~y~ = response (on the y-axis)
+  + ~x~ = input, predictor (on the x-axis)
+  + ~f * g~ = factors which are *interacting* with each other (often, just one
     factor)
 
-- Tell the function =xyplot= where to find the variables =y= and =x=: look up names
-  inside the =environmental= data frame (because they are not objects in my
+- Tell the function ~xyplot~ where to find the variables ~y~ and ~x~: look up names
+  inside the ~environmental~ data frame (because they are not objects in my
   workspace)
 
   #+begin_src R
@@ -2662,16 +2676,27 @@ See http://www.math.csi.cuny.edu/Statistics/R/simpleR/stat006.html
   #+end_src
 
 - Options
+
   + Don't worry about spacing: everything gets automatically adjusted!
-  + main :: title
-  + layout=c(1,4) :: 4 panels on top of each other
-  + as.table=TRUE :: change the order in which the panels are drawn, from
-       top to bottom (default: from bottom to top)
-  + xlab :: label on the x-axis
-  + ylab :: label on the y-axis
+
+  + ~main~ ::
+       Title.
+
+  + ~layout=c(1,4)~ ::
+       4 panels on top of each other.
+
+  + ~as.table=TRUE~ ::
+       Change the order in which the panels are drawn, from top to bottom
+       (default: from bottom to top).
+
+  + ~xlab~ ::
+       Label on the x-axis.
+
+  + ~ylab~ ::
+       Label on the y-axis.
 
 - Functions
-  + x.cut <- equal.count(x, l) :: cut the original =x= variable, creating =l=
+  + x.cut <- equal.count(x, l) :: cut the original ~x~ variable, creating ~l~
        different ranges (~ levels, which may overlap slightly)
 
   + panel.loess(x, y) :: give a smooth rendition of the linear model
@@ -2687,13 +2712,13 @@ See http://www.math.csi.cuny.edu/Statistics/R/simpleR/stat006.html
 
 *** Histogram
 
-- Histogram of =x=
+- Histogram of ~x~
 
   #+begin_src R
   histogram(~ x, data=df)
   #+end_src
 
-- Histogram of =x=, as =f= varies (for each range of =f.cut=)
+- Histogram of ~x~, as ~f~ varies (for each range of ~f.cut~)
 
   #+begin_src R
   histogram(~ x | f.cut, data=df)
@@ -2763,57 +2788,58 @@ rpart
 
 * Debugging
 
-- 3 main indications of a problem / =condition=:
+- 3 main indications of a problem / ~condition~:
 
-  + =message=
+  + ~message~
 
     #+begin_src R
+    message("testing ...")
     print("message")
     #+end_src
 
-  + =warning=
+  + ~warning~
 
     #+begin_src R
     log(-1)
     #+end_src
 
-  + =error=
+  + ~error~
 
     #+begin_src R
     stop("error")                       # Throw an error.
     #+end_src
 
-- General notion of a =condition=: you can create your own if something
+- General notion of a ~condition~: you can create your own if something
   specific happens
 
 - Functions:
 
-  + invisible(x) ::
+  + ~invisible(x)~ ::
        *Prevent auto-printing* of the last element in the function value; *still
        return* the same object
 
 - *Interactive* debugging tools to find problematic code:
 
-  + =traceback= ::
+  + ~traceback~ ::
        Print out the function call stack -- you have to call it *immediately*
        after the error occurred.
 
-  + =debug= ::
+  + ~debug~ ::
        Flag a function for "debug" mode to step through any function (you wrote
        or not), one expression at a time, from the top of the function.
 
-  + browser ::
+  + ~browser~ ::
        Put the function in debug mode anywhere in your code; in the browser,
        there is nothing in your environment except for the function arguments
        (and the default values which are not listed). You can nest browser
        frames: you can call the debug function even while you're in the
        debugger.
 
-  + trace ::
+  + ~trace~ ::
        Insert debugging code into a function, without actually editing the
        function.
 
-  + recover ::
+  + ~recover~ ::
        Modify the default behavior (of getting the console back) by creating an
        error handler.
 
