@@ -2794,7 +2794,6 @@ rpart
 
     #+begin_src R
     message("testing ...")
-    print("message")
     #+end_src
 
   + ~warning~
@@ -2848,7 +2847,13 @@ rpart
        #+end_src
 
 - Blunt techniques:
+
   + ~print~
+
+    #+begin_src R
+    print("message")
+    #+end_src
+
   + ~cat~
 
 * Assert
