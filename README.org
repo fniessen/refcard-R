@@ -268,7 +268,8 @@ Tracebug highlighting of errors.
 **** Breakpoints
 
 - ~C-c C-t b~ ::
-     Set breakpoint (repeat to cycle through the breakpoint types: ~browser~ and ~recover~).
+     Set breakpoint (repeat to cycle through the breakpoint types: ~browser~ and
+     ~recover~).
 
 - ~C-c C-t B~ ::
      Set conditional breakpoint.
