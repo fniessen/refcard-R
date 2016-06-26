@@ -7,8 +7,7 @@
 #+OPTIONS:   H:4 num:nil
 #+EXCLUDE_TAGS: noexport
 
-#+PROPERTY:  eval never
-#+PROPERTY:  exports both
+#+PROPERTY:  header-args :eval never :exports both
 #+SETUPFILE: ~/src/org-html-themes/setup/theme-readtheorg.setup
 
 #+begin_html
@@ -1785,7 +1784,7 @@ sapply(s, function(x) colMeans(x[, c("Ozone", "Solar.R", "Wind")], na.rm=TRUE))
 *** vapply
 
 #+begin_src R
-  ## Check for errors
+  ## Check for errors.
   if (any(vapply(update.list.of.results, length, 1L) != 0)) {
     stop("Error updating prestations in PFlow!!!\n")
   }
