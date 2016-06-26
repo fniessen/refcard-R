@@ -33,7 +33,7 @@ describes how to perform *data analysis* using R.
 #+begin_src R :noweb yes :tangle Rlib.R
 #  Rlib.R -- Collection of utility and convenience functions
 #
-#  Copyright (C) 2014-<<current-year()>> Fabrice Niessen
+#  Copyright (C) 2013-<<current-year()>> Fabrice Niessen
 #
 #  This program is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -180,9 +180,14 @@ same back.
 
 Other nice tools ( probably not available in other editors):
 
-- ~C-c C-e i~ :: ~ess-install-library~
-- ~C-c C-e l~ :: ~ess-load-library~
-- ~C-c C-e C-w~ :: ~ess-execute-screen-options~
+- ~C-c C-e i~ ::
+     ~ess-install-library~
+
+- ~C-c C-e l~ ::
+     ~ess-load-library~
+
+- ~C-c C-e C-w~ ::
+     ~ess-execute-screen-options~
 
 *** Loading source files into the ESS process
 
@@ -316,22 +321,22 @@ Tracebug highlighting of errors.
 
 **** Interactive debugging
 
-- ~M-C~ ::
+- ~M-S-c~ ::
      Continue
 
 - ~C-M-S-c~ ::
      Continue multi
 
-- ~M-N~ ::
+- ~M-S-n~ ::
      Next step
 
 - ~C-M-S-n~ ::
      Next step multi
 
-- ~M-U~ ::
+- ~M-S-u~ ::
      Up frame
 
-- ~M-Q~ ::
+- ~M-S-q~ ::
      Quit debugging
 
 **** Navigation to errors
@@ -2922,7 +2927,7 @@ as in speech.
 
 * License
 
-Copyright (C) 2013-2015 Free Software Foundation, Inc.
+Copyright (C) 2013-2016 Free Software Foundation, Inc.
 
 Author: Fabrice Niessen \\
 Keywords: r reference card
