@@ -78,6 +78,9 @@ describes how to perform *data analysis* using R.
 
 * Emacs Speaks Statistics (ESS) key bindings
 
+# Have a look at:
+# https://github.com/grettke/help/blob/master/help.md#emacs-speaks-statistics-ess
+
 Most of the shortcuts are actually mnemonic and hierarchical:
 
 - ~C-c C-d~ for ~doc-map~,
@@ -733,7 +736,8 @@ x %*% y                                 # True matrix multiplication.
      Remove the first column:
 
      #+begin_src R
-     df[, -1]
+     df[1] <- NULL       # No conversion to a list if there were only 2 columns!
+     # df[, -1]
      #+end_src
 
 - ~[[~ ::
@@ -1663,10 +1667,21 @@ df <- subset(df, select=-c(remove1, remove2))
 #+begin_src R
 ## Remove columns.
 df$remove3 <- NULL
+#+end_src
 
-## Rename columns.
+** Renaming columns by name
+
+To *rename a column by name* in a data frame, you can use R's built-in functions.
+
+#+begin_src R
+## Rename column by name: change "old" to "new".
 colnames(df)[colnames(df) == "old"] <- "new"
 #+end_src
+
+#+begin_note
+Note that these modify ~df~ directly; that is, you don't have to save the result
+back into ~df~.
+#+end_note
 
 ** Merging data frames by common column
 
@@ -2928,7 +2943,7 @@ as in speech.
 
 * License
 
-Copyright (C) 2013-2016 Free Software Foundation, Inc.
+Copyright (C) 2013-2018 Free Software Foundation, Inc.
 
 Author: Fabrice Niessen \\
 Keywords: r reference card
