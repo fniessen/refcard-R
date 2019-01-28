@@ -31,22 +31,22 @@ describes how to perform *data analysis* using R.
 #+end_src
 
 #+begin_src R :noweb yes :tangle Rlib.R
-#  Rlib.R -- Collection of utility and convenience functions
-#
-#  Copyright (C) 2013-<<current-year()>> Fabrice Niessen
-#
-#  This program is free software; you can redistribute it and/or modify
-#  it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation; either version 3 of the License, or
-#  (at your option) any later version.
-#
-#  This program is distributed in the hope that it will be useful,
-#  but WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#  GNU General Public License for more details.
-#
-#  A copy of the GNU General Public License is available at
-#  http://www.r-project.org/Licenses/
+##  Rlib.R -- Collection of utility and convenience functions
+##
+##  Copyright (C) 2013-<<current-year()>> Fabrice Niessen
+##
+##  This program is free software; you can redistribute it and/or modify
+##  it under the terms of the GNU General Public License as published by
+##  the Free Software Foundation; either version 3 of the License, or
+##  (at your option) any later version.
+##
+##  This program is distributed in the hope that it will be useful,
+##  but WITHOUT ANY WARRANTY; without even the implied warranty of
+##  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+##  GNU General Public License for more details.
+##
+##  A copy of the GNU General Public License is available at
+##  http://www.r-project.org/Licenses/
 #+end_src
 
 * Documentation
@@ -212,13 +212,15 @@ Other nice tools ( probably not available in other editors):
 
      After building tags, use ~M-.~ to *jump to* function and objects *definitions*.
 
-Probably the most used command of mine is imenu-anywhere.
+Probably the most used command of mine is ~imenu-anywhere~.
 
+#+begin_src emacs-lisp
    (global-set-key (kbd "C-.") 'imenu-anywhere)
+#+end_src
 
 and you will be able to navigate to the definition of the symbol at point as
 long as the other file is open. This is like tag navigation but more convenient
-IMO. Both ido and helm interfaces are available.
+IMO.  Both ~ido~ and ~helm~ interfaces are available.
 
 ** Reading help files
 
@@ -544,7 +546,7 @@ You may write a script containing R code:
 argv <- commandArgs(TRUE)
 x <- as.numeric(argv[1])
 
-# Etc.
+## Etc.
 
 png("graph.png", 500, 500)
 plot(graph)
@@ -737,7 +739,7 @@ x %*% y                                 # True matrix multiplication.
 
      #+begin_src R
      df[1] <- NULL       # No conversion to a list if there were only 2 columns!
-     # df[, -1]
+     ## df[, -1]
      #+end_src
 
 - ~[[~ ::
@@ -928,7 +930,7 @@ it's allowed to run.
 
   #+begin_src R
   MyFunction <- function(arguments) {
-    # Function documentation.
+    ## Function documentation.
     ## Do something.
   }
   #+end_src
@@ -1182,7 +1184,7 @@ For *large datasets*:
 
   #+begin_src R
   tabSample <- read.table("datatable.txt", nrows=100)
-  classes <- sapply(tabSample, class)
+  classes <- sapply(tabSample, class)   # Data type of columns.
   tabAll <- read.table("datatanble.txt", colClasses=classes)
                                         # Save time on importing data.
   #+end_src
@@ -1238,7 +1240,7 @@ df <- read.table(pipe("cut -f1,5,28 myFile.txt"))
 ** Reading from Excel files
 
 - ~read.xlsx()~, ~read.xlsx2()~ ::
-     Read Excel files.
+     Read Excel files.  Install package ~xlsx~.
 
 You can also read from Excel spreadsheets using RODBC and ~sqlQuery~.
 
@@ -1280,13 +1282,13 @@ read.csv(textConnection(myCsv))
      htmlCode <- readLines(con)
      close(con)
 
-     # Get data off webpages.
+     ## Get data off webpages.
      html3 <- htmlTreeParse("...")
 
-     # Find value of title tag.
+     ## Find value of title tag.
      xpathSApply(html3, "//title", xmlValue)
 
-     # Access parts of the table.
+     ## Access parts of the table.
      xpathSApply(html3, "//td[@id='col-citedby']", xmlValue)
      #+end_src
 
@@ -1300,7 +1302,7 @@ library(RODBC)
 ## channel <- odbcDriverConnect("DRIVER={SQL Server};SERVER=hostname;DATABASE=dbname;UID=username;PWD=password")
 channel <- odbcDriverConnect("DSN=DSN;UID=username;PWD=password")
 
-# Check that connection is working.
+## Check that connection is working.
 if (channel == -1L) {
   stop("Error establishing an ODBC connection.")
 } else
@@ -1324,7 +1326,7 @@ odbcClose(channel)
 #+end_src
 
 #+begin_tip
-- Check the class of each column with ~lapply(df, class)~!
+- Check the class (data type) of each column with ~lapply(df, class)~!
 - Display the factor columns with ~df[sapply(df, is.factor)]~!
 #+end_tip
 
@@ -1592,6 +1594,12 @@ consequences.
 
 Use the ~%in%~ operator to compare a variable to a list of desired values.
 
+** Counting rows which do not contain NA
+
+#+begin_src R
+length(x$bar[!is.na(x$bar)])
+#+end_src
+
 ** Removing NA from a list
 
 Remove missing values (~NA~) from a *list*:
@@ -1637,6 +1645,12 @@ Extract the rows which contain NA in column V2:
 #+begin_src R
 df[is.na(df$V2), ]
 df[which(is.na(df$V2)), ]
+#+end_src
+
+** Replace NA values with 0
+
+#+begin_src R
+df$Freq[is.na(df$Freq)] <- 0
 #+end_src
 
 ** Removing columns that contain NAs from a data frame
@@ -1697,10 +1711,24 @@ back into ~df~.
 - ~merge(df1, df2, by="CustomerId", all=TRUE)~ ::
      *(Full) outer* join (all records from both tables).
 
-Merge data sets (of different columns).
+- merge(df1, df2, by=NULL) ::
+     Cross join.
+
+It's almost always best to explicitly state the identifiers on which you want to
+merge (~by=~); it's safer if the input data frames change unexpectedly, and easier
+to read later on.
+
+Merge data sets (of different columns).  If the column names to merge on are not
+the same, you can specify, e.g
 
 #+begin_src R
-merged.data <- merge(df1, df2, by.x="id1", by.y="id2", all=TRUE)
+merged.data <- merge(df1, df2, by.x="id_in_df1", by.y="id_in_df2", all=TRUE)
+#+end_src
+
+You can merge on multiple columns by giving by a vector, e.g.,
+
+#+begin_src R
+by=c("CustomerId", "OrderId").
 #+end_src
 
 ** Convert a list of data frames into one data frame
@@ -1965,6 +1993,21 @@ Alternatively, you could use the ~unique~ function to remove the duplicate value
 
 #+begin_src R
 df.unique <- unique(df)
+#+end_src
+
+** Finding the rows in df1 that are not present in df2
+
+~sqldf~ provides a nice solution:
+
+#+begin_src R
+require(sqldf)
+df1NotIndf2 <- sqldf('SELECT * FROM df1 EXCEPT SELECT * FROM df2')
+#+end_src
+
+And the rows which are in both data frames:
+
+#+begin_src R
+df1Indf2 <- sqldf('SELECT * FROM df1 INTERSECT SELECT * FROM df2')
 #+end_src
 
 ** Sorting
@@ -2371,7 +2414,7 @@ being too small, would be on the x-axis itself).
   #+begin_src R
   dens <- density(data$var) # Smooth density function.
   plot(dens, lwd=3, col="blue")
-# Or: lines(dens, lwd=3, col="blue") after hist plot.
+## Or: lines(dens, lwd=3, col="blue") after hist plot.
   #+end_src
 
   #+results:
@@ -2379,7 +2422,7 @@ being too small, would be on the x-axis itself).
   Easy to compare multiple distributions:
 
   #+begin_src R
-  # Add another density.
+  ## Add another density.
   densMales <- density(data$var[which(data$sex==1)])
   lines(densMales, lwd=3, col="orange")
   #+end_src
@@ -2943,7 +2986,7 @@ as in speech.
 
 * License
 
-Copyright (C) 2013-2018 Free Software Foundation, Inc.
+Copyright (C) 2013-2019 Free Software Foundation, Inc.
 
 Author: Fabrice Niessen \\
 Keywords: r reference card
