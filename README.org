@@ -1984,9 +1984,16 @@ class)~.
 You can use ~duplicated~ to remove duplicates:
 
 #+begin_src R
-df.unique <- df[!duplicated(df),]
+df.unique <- df[!duplicated(df), ]
 
-df.unique <- df[!duplicated(df[c("v1", "v2", "v3")]), ] # Duplicates on multiple columns
+df.unique <- df[!duplicated(df[c("v1", "v2", "v3")]), ] # Duplicates on multiple columns.
+#+end_src
+
+To filter out all but the *last unique occurrences* of the dataset, use the
+~fromLast~ parameter of ~duplicated~:
+
+#+begin_src R
+df.unique <- df[!duplicated(df[, c("v1", "v2", "v3")], fromLast=T), ]
 #+end_src
 
 Alternatively, you could use the ~unique~ function to remove the duplicate values:
