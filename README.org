@@ -2002,6 +2002,15 @@ Alternatively, you could use the ~unique~ function to remove the duplicate value
 df.unique <- unique(df)
 #+end_src
 
+** Increment each duplicate value by one
+
+Use ~ave~ where we take the first value of each group and basically add the row
+number of that row in that group:
+
+#+begin_src R
+df$value <- with(df, value + ave(value, Id, value, FUN=seq_along) - 1)
+#+end_src
+
 ** Finding the rows in df1 that are not present in df2
 
 ~sqldf~ provides a nice solution:
