@@ -8,7 +8,7 @@
 #+EXCLUDE_TAGS: noexport
 
 #+PROPERTY:  header-args :eval never :exports both
-#+SETUPFILE: ~/src/org-html-themes/setup/theme-readtheorg.setup
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
 
 #+begin_html
 <a href="http://opensource.org/licenses/GPL-3.0">
@@ -806,7 +806,7 @@ This can be turned off by setting ~drop=FALSE~ (*don't drop the dimension*).
 df[, 1, drop=FALSE]                     # A one-column data frame.
 #+end_src
 
-** Give the ~TRUE~ indices of a logical object
+** Give the ~TRUE~ indices (row numbers) of a logical object
 
 - ~which()~ ::
      Return (a vector of) the *indices* of the elements which *are ~TRUE~* --
@@ -814,16 +814,18 @@ df[, 1, drop=FALSE]                     # A one-column data frame.
 
      This is computationally efficient.
 
+#+begin_note
+When you use ~[~ to extract from a dataframe, any calculation in the row position
+that results in ~NA~ will throw back *unwanted results*.  Using ~which~ *removes the
+~NA~'s*. You can use ~subset~ or ~%in%~, which do not create the same problem.
+#+end_note
+
 #+begin_src R :tangle no :exports none
+df[which(df$V1 > 2 | df$V2 < 4), ] == df[!is.na(df$V1 | df$V2) & (df$V1 > 2 | df$V2 < 4), ]
+
 df[df$var != 0, ] ==? df[is.na(df$var) | df$var != 0, ]
 df[which(df$var != 0), ] ==? df[!is.na(df$var) & df$var != 0, ]
 #+end_src
-
-#+begin_note
-When you use ~[~ to extract from a dataframe, any calculation in the row position
-that results in ~NA~ will get a junk row returned. Using ~which~ *removes the
-~NA~'s*. You can use ~subset~ or ~%in%~, which do not create the same problem.
-#+end_note
 
 ** Flatten a list into a vector
 
@@ -1667,12 +1669,14 @@ To *drop columns by name* in a data frame, you can use direct indexing (with
 booleans vectors) and then, simply reassign data:
 
 #+begin_src R
-tokeep <- !names(df) %in% c("remove1", "remove2")
-df <- df[, tokeep]                      # Or...
-df <- df[, tokeep, drop=FALSE]          # You will need this option to avoid the
+dont.keep <- c("remove1", "remove2")
+df <- df[, !names(df) %in% dont.keep, drop=FALSE]
+                                        # You will need this option to avoid the
                                         # conversion to an atomic vector if
                                         # there is only one column left.
+#+end_src
 
+#+begin_src R
 df <- subset(df, select=-c(remove1, remove2))
                                         # Use the `-' operator directly on a
                                         # vector of column names.
@@ -2030,21 +2034,22 @@ df1Indf2 <- sqldf('SELECT * FROM df1 INTERSECT SELECT * FROM df2')
 
 * 7. Strings (and dates)
 
-** Getting the length of a string
+** Getting the LENGTH of a string!
 
 - ~nchar()~ ::
      Get the length of a string.
 
-** Concatenating strings
+** Concatenating strings (vector of strings to 1 string)
     :PROPERTIES:
     :ID:       e6b8c6ad-d5dd-4396-9a0f-ffa168da2118
     :END:
 
 - ~paste()~ ::
-     *Concatenate* a set of *strings together* to create one string or a vector of
+     *Concatenate* a set of *strings together* to create *one string* or a vector of
      strings.
 
-     Convert a vector to a string:
+     Convert a vector to a string, using the *~collapse~ argument* within the ~paste~
+     function:
 
      #+begin_src R :results output :eval yes
      cat(paste(c("This", "is", "one", "sentence.\n"), collapse=" "))
