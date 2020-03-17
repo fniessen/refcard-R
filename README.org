@@ -1545,7 +1545,7 @@ d[, unfactor.cols] <- lapply(unfactor.cols,
 
 Add ~as.numeric~ to convert them to numeric (may induce ~NA~).
 
-#+begin_src R :tangle Rlib.R
+#+begin_src R
 ## Convert all factors from a data frame to character.
 unfactor <- function (df) {
   cols <- sapply(df, is.factor)         # Find the factors.
@@ -2944,7 +2944,7 @@ rpart
 
 https://github.com/hadley/assertthat
 
-#+begin_src R :tangle Rlib.R
+#+begin_src R
 ## TODO Add a message to use; if not provided, generic one...
 warn_if_not_empty <- function (..., env=parent.frame())
 {
