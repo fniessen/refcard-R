@@ -2030,7 +2030,19 @@ And the rows which are in both data frames:
 df1Indf2 <- sqldf('SELECT * FROM df1 INTERSECT SELECT * FROM df2')
 #+end_src
 
-** Sorting
+** Sorting data
+
+To sort a data frame, use the ~order()~ function.  By default, sorting is
+*ascending*.  Prepend the sorting variable by a minus sign to indicate *descending*
+order.
+
+#+begin_src R
+## Sort by mpg.
+newdata <- mtcars[order(mpg), ]
+
+## Sort by mpg (ascending) and cyl (descending).
+newdata <- mtcars[order(mpg, -cyl), ]
+#+end_src
 
 * 7. Strings (and dates)
 
@@ -2962,9 +2974,7 @@ warn_if_not_empty <- function (..., env=parent.frame())
   }
 }
 
-## warn_if_not_empty(pfisortie[is.na(pfisortie$frmArretDate), ])
-##
-## warn_if_not_empty(pfisortie[is.na(pfisortie$stgNom.x), ])
+## warn_if_not_empty(df[is.na(df$var.x), ])
 #+end_src
 
 * Total                                                               :noexport:
