@@ -1780,6 +1780,24 @@ ind <- sapply(x, is.character)
 x[ind] <- lapply(x[ind], factor)
 #+end_src
 
+** Populating a data frame in R in a loop
+
+Use another data frame in the loop:
+
+#+begin_src R
+## Loop over list.
+df <- NULL
+for (i in seq(ls)) {
+  timestamp   <- as.POSIXct(ls[[i]]$timestamp, format="%Y-%m-%dT%H:%M:%OSZ", tz="UTC")
+  temperature <- ls[[i]]$temperature
+  df <- rbind(df,
+              data.frame(timestamp, temperature))
+}
+#+end_src
+
+Alternatives:
+https://stackoverflow.com/questions/13442461/populating-a-data-frame-in-r-in-a-loop
+
 ** Applying a function to each list element
 
 Alternative (to ~for~ *loops*) to apply a function (or summary statistics).
