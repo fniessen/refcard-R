@@ -8,7 +8,7 @@
 #+EXCLUDE_TAGS: noexport
 
 #+PROPERTY:  header-args :eval never :exports both
-#+SETUPFILE: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
+#+SETUPFILE: ~/org/theme-readtheorg.setup
 
 #+begin_html
 <a href="http://opensource.org/licenses/GPL-3.0">
@@ -517,7 +517,7 @@ use in if clauses.
 - ~==~ ::
      Compare.
 
-- ~%in%~ ::
+- ~%in%~ (or ~is.element()~, more readable) ::
      Test membership.
 
 * 3. Navigating the software
@@ -1384,7 +1384,7 @@ Packages:
 - ~str()~ ::
      /Compactly/ display the internal *structure* (*classes*, etc.) of an object.
 
-     Alternative to ~summary()~.
+     (Better?) alternative to ~summary()~.
 
      When applied to functions, show the *arguments*.
 
@@ -3035,7 +3035,7 @@ as in speech.
 
 * License
 
-Copyright (C) 2013-2019 Free Software Foundation, Inc.
+Copyright (C) 2013-2021 Free Software Foundation, Inc.
 
 Author: Fabrice Niessen \\
 Keywords: r reference card
