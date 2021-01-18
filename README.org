@@ -3014,6 +3014,18 @@ Total <- function(df) {
 (length(dd) == 0) && (typeof(dd) == "character")
 #+end_src
 
+* Write an R package from scratch
+
+https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/
+
+#+begin_src R
+> setwd("d:/Users/fni/.dotfiles/mypackage/")
+> document()
+> setwd("..")
+> install("mypackage")
+> ?mypackage
+#+end_src
+
 * Contributing
 
 ** Issues
