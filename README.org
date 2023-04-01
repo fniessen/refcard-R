@@ -76,6 +76,14 @@ describes how to perform *data analysis* using R.
 
   Do not place a space before a comma, but always place one after a comma.
 
+* Tips & Tricks
+
+Make the following changes:
+
+- Replace ~if~ statements with ~stopifnot~ to make input validation more concise.
+- Rename the ~myFunc~ function to ~my_func~ to follow R's naming conventions.
+- Move the constants to the top of the script as for easier modification.
+
 * Emacs Speaks Statistics (ESS) key bindings
 
 # Have a look at:
@@ -2060,6 +2068,12 @@ newdata <- mtcars[order(mpg), ]
 
 ## Sort by mpg (ascending) and cyl (descending).
 newdata <- mtcars[order(mpg, -cyl), ]
+#+end_src
+
+** Reverse the order of the rows
+
+#+begin_src R
+df<- df[seq(dim(df)[1],1),]
 #+end_src
 
 * 7. Strings (and dates)
