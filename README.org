@@ -84,6 +84,31 @@ Make the following changes:
 - Rename the ~myFunc~ function to ~my_func~ to follow R's naming conventions.
 - Move the constants to the top of the script as for easier modification.
 
+** Code
+
+#+begin_src R
+## Remove rows with NA in 'ID'.
+df <- df[complete.cases(df$"ID"), ]
+
+## Remove rows with any missing values.
+df <- df[complete.cases(df), ]
+
+## Remove columns with any missing values.
+df <- df[, colSums(is.na(df)) == 0]
+
+## Remove rows with all missing values (rows that are fully empty).
+df <- df[rowSums(is.na(df)) != ncol(df), ]
+df <- df[rowSums(is.na(df) | df == "") != ncol(df), ]
+
+## Remove columns with all missing values (columns with only NA values).
+df <- df[, colSums(is.na(df)) != nrow(df)]
+#+end_src
+
+#+begin_src R
+## Sort the dataframe by 'category' and 'equipment_standard' columns.
+df <- df[order(df$category, df$equipment_standard), ]
+#+end_src
+
 * Emacs Speaks Statistics (ESS) key bindings
 
 # Have a look at:
