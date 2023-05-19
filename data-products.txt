@@ -1,0 +1,552 @@
+#+TITLE:     Introduction to Developing Data Products
+#+AUTHOR:    Fabrice Niessen
+#+EMAIL:     (concat "fniessen" at-sign "pirilampo.org")
+#+Time-stamp: <2014-06-26 Thu 23:31>
+#+DESCRIPTION:
+#+KEYWORDS:
+#+LANGUAGE:  en
+
+* Week 1
+
+Sorts of data products:
+- Slidify lecture
+- R Studio presenter
+- Shiny App (little Web App using R)
+- R package
+- R charts
+- interactive graphics
+
+** Shiny
+
+Platform for creating *interactive R programs* (for example, a prediction
+algorithm; users can input the relevant predictors and obtain their prediction)
+embedded into a *Web page*.
+
+#+BEGIN_SRC R
+library(shiny)
+#+END_SRC
+
+A basic Shiny project requires:
+
+- a =server.R= file which controls what it does (render print value, plot output,
+  etc.)
+
+  Don't put system calls in your code: security concerns.
+
+- a =ui.R= file which controls how it looks (or a =www/index.html= file with the
+  specific HTML -- in the same directory as =server.R=)
+
+To run it, type ~runApp()~ in the directory that contains the code.
+
+Things that Shiny can do:
+- Have tabbed main panels
+- Have editable data tables
+- Have a dynamic UI
+- User defined inputs and outputs
+- Put a Submit button (non-reactive reactivity!) if the calculations take long.
+
+It's generally good form to reshow the person the value they entered.
+
+Distributing:
+- Put the App on GitHub and the users can call runApp, or
+- Create an R package, or
+- Run a Shiny server (on Amazon AWS), or
+- Deploy on https://www.shinyapps.io/:
+
+  #+begin_src R
+  install.packages("devtools")
+  ## (restart R Studio)
+  devtools::install_github('rstudio/shinyapps')
+  library(shinyapps)
+
+  library(shiny)
+  runApp()
+
+  devtools::install_github('rstudio/rmarkdown')
+  shinyapps::setAccountInfo(name='your account', token='your token', secret='your secret')
+  deployApp()
+  #+end_src
+
+  Deployed on https://fniessen.shinyapps.io/dev-data-products/
+
+Details:
+
+- Code put before ~shinyServer~ (in =server.R=) gets called once when you do
+  ~runApp()~.
+
+- Code inside the unnamed function of ~shinyServer~ but not in a *reactive*
+  statement will run once for every new user (or page refresh)
+
+- Code in reactive functions (for example, ~render*~) of ~shinyServer~ gets run
+  repeatedly *as needed* when new values are entered.
+
+  Shiny only executes the *component of the code* that's needed: the biggest
+  *mistake* you can make in a Shiny app is to think of the Shiny function as
+  something where the code just runs through it serially. These *reactive text
+  statements* are *reacting to the widget input*.
+
+Debugging techniques:
+
+- *Important*: try ~runApp(display.mode='showcase')~ for seeing what Shiny is
+  actually executing at the time it is.
+
+- Use ~cat~ in your code to display output to ~stdout~ (so R console)
+
+Lessons learned (FNI):
+
+- Necessary to use reactive function as soon as I have 2 inputs or more.
+
+- In the renderPlot function, the name of the dataframe must be followed by
+  parentheses.
+
+** Manipulate
+
+~manipulate~ is an awesome function to create a *quick interactive graphic* (*if
+the intended users also use RStudio*): way, way better to do it this way than
+to create a Shiny app or something more complicated.
+
+#+BEGIN_SRC R
+library(manipulate)
+manipulate(plot(1:x), x = slider(1, 100)) ## x = placeholder
+#+END_SRC
+
+You can create:
+- a slider,
+- a checkbox,
+- a drop-down,
+and have more than one.
+
+#+BEGIN_SRC R
+myPlot <- function(s) {
+    plot(cars$dist - mean(cars$dist), cars$speed - mean(cars$speed))
+    abline(0, s)
+}
+#+END_SRC
+
+This function plots distance versus speed, each de-meaned and an associated
+line of slope s. The following code will make a manipulate plot that creates
+a slider for the slope:
+
+#+BEGIN_SRC R
+manipulate(myPlot(s), s = slider(0, 2, step = 0.1))
+#+END_SRC
+
+** rCharts
+
+Way to create *interactive JavaScript visualizations* using R.
+
+#+BEGIN_SRC R
+library(rCharts)
+#+END_SRC
+
+*** nPlot
+
+The basic function for a specific type of ~rCharts~ is ~nPlot~ (which calls
+a specific JavaScript plotting library, ~nvD3~).
+
+#+BEGIN_SRC R
+n1 <- nPlot(...)                        ## n1 contains the plot
+n1$save('fig/n1.html', cdn = TRUE)
+cat('<iframe src="fig/n1.html" width=100%, height=600></iframe>') # embed it back into Slidify
+#+END_SRC
+
+Interactivity:
+- If you hover over a bar, it gives you the frequency
+- You can even switch between grouped and stacked bar plots (nice animation
+  when it does it)
+
+*** rPlot
+
+#+BEGIN_SRC R
+## Facetted barplot
+r1 <- rPlot(...)
+r1$print("chart1")                      ## print out the JS
+r1$save('fig/r1.html', cdn = TRUE)      ## save as HTML file
+cat('<iframe src="fig/r1.html" width=100%, height=600></iframe>') # bring it back into Slidify
+#+END_SRC
+
+*** Publish an rChart
+
+#+BEGIN_SRC R
+r1$publish('myPlot', host = 'gist')     ## save to Gist, rjson required
+r1$publish('myPlot', host = 'rpubs')    ## save to rpubs
+#+END_SRC
+
+*** Morris (time series plot)
+
+~mPlot~.
+
+*** xCharts
+
+*** Leaflet (mapping library)
+
+Create a geographical map with pop-ups set at specific longitude and latitude
+locations.
+
+*** Rickshaw
+
+*** Highchart
+
+(Quite confusing)
+
+** googleVis
+
+Things you can do with googleVis:
+- Interactive data visualizations made *available in websites* (with HTML code).
+  + The R function creates an HTML page.
+  + The HTML page calls Google Charts.
+  + The result is an interactive (clickable) HTML graphic
+- Dynamic visualizations can be built with Shiny, Rook, and R.rsp (and *shared
+  with your friends*).
+- *Embed them in interactive* R markdown based *documents*
+  + Set ~results="asis"~ in the chunk options
+  + Can be used with knitr and slidify.
+
+Some types of charts:
+- Motion charts: ~gvisMotionChart~
+- Interactive maps: ~gvisGeoChart~
+- Interactive tables: ~gvisTable~
+- Line charts: ~gvisLineChart~
+- Bar charts: ~gvisColumnChart~
+- Tree maps: ~gvisTreeMap~
+
+Combine multiple plots together (two at a time): ~gvisMerge~.
+
+#+BEGIN_SRC R
+demo(googleVis)                         ## for more info
+#+END_SRC
+
+* Week 2
+
+** Presenting Data Analysis Writing a Data Report
+
+Directory:
+
+- =prompt.pdf=
+
+- =data/= folder
+
+- =code/= folder
+  + =rawcode/= folder (for quick and dirty figures)
+  + =finalcode/= folder (analysis that I will be sharing with other people)
+
+    Structure of document:
+
+    1. Preliminaries
+    2. Exploratory analysis
+    3. Modelling
+    4. Get the estimates and confidence intervals
+    5. Figure making
+
+- =figures/= folder
+
+- =writing/= folder
+
+  Structure of the document:
+
+  1. Introduction
+  2. Methods
+     - Data collection
+     - Exploratory analysis
+     - Statistical modelling
+     - Reproducibility
+  3. Results
+  4. Conclusions
+  5. References
+
+** Slidify
+
+Presentation that you have to give once a month, and you want the presentation
+to be *updated* automatically with the new numbers. All you have to do is
+recompile the presentation (*rerun the code*).
+
+Amalgamation of other technologies: knitr, Markdown, and several JavaScript
+libraries for *HTML5* (*slide decks*).
+
+The JavaScript library *MathJax* correctly *renders* the *mathematical formulas*, and
+you type them out in LaTeX.
+
+Slidify presentations are just HTML files, so you can view them with any Web
+browser and share them easily on GitHub, DropBox, or your own website.
+
+*** Getting Slidify
+
+#+BEGIN_SRC R
+install.packages("devtools")
+library(devtools)
+install_github("slidify", "ramnathv")
+install_github("slidifyLibraries", "ramnathv")
+library(slidify)
+#+END_SRC
+
+*** Getting started
+
+#+BEGIN_SRC R
+setwd("~/sample/project")
+author("first_deck")                    # create document (template with project name)
+#+END_SRC
+
+The ~author~ command does:
+
+- Creating slide directory at first_deck...
+- Copying files to first_deck...
+- Finished creating slide directory...
+- Switching to slide directory...
+- Initializing Git Repo
+- Initialized empty Git repository in /cygdrive/d/Users/fni/sample/project/first_deck/.git/
+- [master (root-commit) 4c04da6] Initial Commit
+- Checking out gh-pages branch...
+- Switched to a new branch 'gh-pages'
+- Adding .nojekyll to repo
+- Opening slide deck...
+
+*** Working it out
+
+#+BEGIN_SRC R
+slidify("index.Rmd")                    # compile your Rmarkdown file
+#+END_SRC
+
+#+BEGIN_SRC R
+library(knitr)                          # for function browseURL
+browseURL("index.html")                 # open the HTML file
+#+END_SRC
+
+*** Customizatiom
+
+YAML-like code.
+
+Other fields:
+
+- ~logo~
+- ~url~ for ~libs~, for ~assets~
+- (code) ~highlighter~
+- ~hitheme~: ~zenburn~
+
+*** Publishing to GitHub
+
+Create a new repository on GitHub, then:
+
+#+BEGIN_SRC R
+publish_github(<user>, <repo>)
+#+END_SRC
+
+It's probably better to directly *create the project pages manually* using git
+rather than the publish command anyway. Thoug, there's a couple of points that
+seem to keep arising:
+
+1. The empty .nojekyll file is important, if you forget it your page may not
+   display
+
+2. All your changes have to be on a branch called gh-pages, make sure you've
+   merged into that branch
+
+3. your file will be at username.github.io/projectDirectory/filename.html So,
+   on my example, it's http://bcaffo.github.io/testDeck/index.html
+
+4. If your fork my repo, it may not show up as a page for you for a few
+   minutes. Also, I found out that you have to commit a change. (So, for
+   example just edit the readme file and commit it if you want to just fork it
+   and make sure that it's displaying for you).
+
+5. Some of the issues with the publish command appear to be related to git not
+   being your path.
+
+#+begin_src sh
+git branch gh-pages
+git symbolic-ref HEAD refs/heads/gh-pages
+rm .git/index
+git clean -fdx
+touch .nojekyll
+git add .
+git ci -m "my website (first commit)"
+git push origin gh-pages
+git add .
+git commit -m "rebuilt docs"
+git push origin gh-pages
+#+end_src
+
+*** HTML5 Deck frameworks
+
+- io2012
+- html5slides
+- deck.js
+- dzslides
+- landslide
+- Slidy
+
+Some of these HTML effects are actually pretty fancy. So, you should check 'em
+out.
+
+*** HTML
+
+You can include raw HTML it will get kept as HTML when it's slidified.
+
+It is especially useful for more advanced stuff like images or tables where you
+need more control of the HTML options than Slidify actually gives you.
+
+Similarly, you can incorporate JS or do anything else you can do in a Web page.
+
+You can also *add interactive elements* to Slidify such as:
+- quiz questions
+- interactive R plots
+- Shiny apps.
+
+See examples: http://slidify.github.io/dcmeetup/demos/interactive/
+
+** RStudio Presenter
+
+Authoring tool, a bit easier to learn than Slidify.
+
+- Code is authored in a generalized markdown format
+- Output is an HTML5 presentation
+- Index file is .Rpres, which gets converted to an .md file and then to an HTML
+  file if desired
+
+Guide: http://www.rstudio.com/ide/docs/presentations/overview
+
+- Single quote for inline code
+- Triple quotes for block code
+
+*** Getting started
+
+New File > R presentation.
+
+*** Customization
+
+- Transitions.
+- Hierarchical organization structure.
+
+** Slidify vs RStudio Presenter
+
+- Slidify
+  + Flexible control from the .Rmd file
+  + Under rapid ongoing development
+  + Larger user base
+  + Lots and lots of styles and options
+  + Steeper learning curve
+  + More command-line oriented
+
+- RStudio Presenter
+  + Embedded in RStudio
+  + More GUI oriented
+  + *Very easy to get started*
+  + Smaller set of easy styles and options
+  + Default styles look very nice
+  + Ultimately as flexible as Slidify with a little CSS and HTML knowledge
+
+* Week 3
+
+(nothing)
+
+* Week 4
+
+** Building an R package
+
+- R packages primarily available from CRAN
+
+  #+BEGIN_SRC R
+  install.packages()
+  #+END_SRC
+
+- Also available from GitHub, Bitbucket, Gitorious, etc.
+
+  #+BEGIN_SRC R
+  library(devtools)
+  install_github()
+  #+END_SRC
+
+Why making an R package?
+- Structured, *standard* format
+- Centralized resources
+- Users know that it will at least load properly
+
+Package development process:
+- write some code in a R script file
+- Incorporate R scritp file into R package structure
+- Write doc
+- Include exampels, demos, datasets, tutorials
+- package it up!
+- submit package to CRAN or push to GitHub
+- people find problems, tell you about those or fix them for you (real benefit
+  to making your code available to the public!)
+- you incorporate the changes and release a new version
+
+R Package Essentials:
+- Create a directory with the name of the R package
+
+- *DESCRIPTION* file
+  + Package
+  + Title: full name of package
+  + Description: longer description in once sentence (usually)
+  + Version
+  + Author(s)
+  + Maintainer: name + email
+  + License (GNU GPL-3, BSD, MIT)
+
+  Optional fields:
+  + Depends
+  + Suggests
+  + Date: release date
+  + URL: package home page
+
+- R code (in the R/ sub-directory)
+
+- Documentation files (in the man/ sub-directory) written in a specific markup
+  language (.Rd); required for every exported function.
+
+  You can document other things like concepts, package overview.
+
+- NAMESPACE file (optional, but do it!): used to indicate the API (which
+  functions are *exported*)
+
+  You can also indicate what functions you *import* from other packages (use
+  other packages without making them visible to the user in the search list)
+
+- Full requirements in [[http://cran.r-project.org/doc/manuals/r-release/R-exts.html][Writing R Extensions]]
+
+Building and checking the package:
+
+#+begin_src R
+system("R CMD build newpackage") # or New Project > R Package
+system("R CMD check newpackage") # runs a battery tests
+#+end_src
+
+Getting started:
+
+#+BEGIN_SRC R
+package.skeleton() # creates directories and stub files
+#+END_SRC
+
+Documentation using Roxygen 2: put all the doc in the code file itself.
+- focus, no back and forth between code and documentation
+- doc physically close, better chance its stays up to date
+
+** Classes and Methods
+
+R code: use S4 classes and methods.
+
+- Class = description of some thing.
+- Object = instance of a class.
+- Method = fucntion that only operates on a certain class of objects.
+
+#+BEGIN_SRC R
+?setClass
+?setMethod
+?setGeneric
+class(1)
+class(rnorm(100))
+class(NA)
+class("Foo")
+#+END_SRC
+
+S3 generic functions (in the "base" package):
+- mean
+- print
+
+Generic function: search for a specific method for the class of the first
+argument. If not, search for a default method. Otherwise, error.
+
+#+BEGIN_SRC R
+getS3method
+getMethod # for S4 methods
+#+END_SRC

@@ -1,0 +1,1615 @@
+#+TITLE:     Data Analysis
+#+AUTHOR:    Fabrice Niessen
+#+EMAIL:     fni@missioncriticalit.com
+#+DATE:      2013-01-24 Thu
+#+DESCRIPTION:
+#+KEYWORDS:
+#+LANGUAGE:  en
+
+* Representing data
+
+- Distribution = density :: possible values of X and the probabilities for
+     each value
+  + Defined by a set of parameters (sometimes represented by Greek letters)
+- Probability :: chance something will happen (Pr)
+
+- E[X] :: Mean (expected value, "center" of a distribution)
+- Var[X] :: Variance (how "spread out" a distribution is, in units of X^2)
+- SD[X] :: Standard deviation (also how "spread out" a distribution is, in
+           units of X) = root(Var[X])
+
+- Condition: fixed value for some parameter (X|u=2)
+
+- Distributions:
+
+  + *Binomial* bin(n = 10, p = 0.5): describes the sum of a set of
+    coin flips
+
+  + *Normal* N(mu = mean, sigma = sd): probabilities for ranges of variables
+
+  + *Uniform* U(alpha = min, beta = max): all values (between boundaries) are
+    equally likely
+
+* Simulation basics
+
+- Important simulation functions
+  + beta ::
+  + binom ::
+  + cauchy ::
+  + chisq ::
+  + exp ::
+  + f ::
+  + gamma ::
+  + geom ::
+  + hyper ::
+  + logis ::
+  + lnorm ::
+  + nbinom ::
+  + norm ::
+  + pois ::
+  + t ::
+  + unif ::
+  + weibull ::
+
+* Types of data analysis questions
+
+In approximate order of difficulty:
+1. descriptive :: describe a set of data
+2. exploratory :: find relationships you didn't know about
+3. inferential :: use a relatively small sample of data to say something
+                  about a bigger population
+4. predictive :: use the data on some objects to predict values for another
+                 object
+5. causal :: find out what happens to one variable when you make another
+             variable change
+6. mechanistic :: understand the exact changes in variables that lead to
+                  changes in other variables for individual objects
+
+* Structure of a Data Analysis
+
+Steps:
+
+1. Define the question
+   - Start with a general question
+   - Make it concrete (can I use quantitative characteristics?)
+
+2. Define the ideal data set, depending on your goal
+   - descriptive :: a whole population
+   - exploratory :: a random sample with many variables measured
+   - inferential :: the right population, randomly sampled
+   - predictive :: a training and test data set from the same population
+   - causal :: data from a randomized study
+   - mechanistic :: data about all components of the system
+
+3. Determine what data you can access
+   - Find it
+   - Buy it
+   - Generate it
+
+4. Obtain the raw data
+
+5. Clean the data
+   - If it is pre-processed, make sure you understand how
+
+* Organizing a Data Analysis
+
+- Data
+  + Raw data
+  + Processed data
+    * Shoud be named so it is easy to see which script generated the data
+    * Should be *tidy*
+
+- Figures
+  + Exploratory figures, not necessarily part of your final report
+  + Final figures (clear axes/colors)
+
+- R code
+  + Raw scripts
+  + Final scripts (clearly commented, including processing details)
+  + R Markdown files (optional)
+    * Can be used to generate reproducible reports
+    * Text and R code are integrated
+
+- Text
+  + Readme files (should contain step-by-step instructions for analysis, not
+    necessary if you use R Markdown)
+  + Text of analysis should tell a story (don't report analysis in
+    chronological order: Analyses should be reported in an order to convey the
+    story being told with the data analysis)
+    * Title
+    * Introduction (motivation)
+    * Methods (statistics you used)
+    * Results (including measures of uncertainty)
+    * Conclusions (including potential problems)
+
+- Further resources
+  + Reproducible research and Biostatistics
+  + Managing a statistical analysis project guidelines and best practices
+  + Project template - a pre-organized set of files for data analysis
+
+* Summarizing data
+
+- Look for
+  + Missing values
+  + Values outside of expected ranges
+  + Values that seem to be in the wrong units
+  + Mislabeled variables/columns
+  + Variables that are the wrong class
+
+- Looking at data
+
+  #+begin_src R
+  dim(data)
+  names(data)
+  nrow(data)
+  ncol(data)
+  #+end_src
+
+  #+begin_src R
+  class(data)
+  sapply(data[1,], class) # class of each individual column (tricky way)
+  #+end_src
+
+  #+begin_src R
+  any(data$var > 40) # check if any value is greater than 40
+  all(data$var > 40) # check if all value are greater than 40
+  #+end_src
+
+  #+begin_src R
+  is.na(data$var) # determine if there are missing values
+  sum(is.na(data$var)) # calculate the number of NA values (sum of TRUE)
+  table(is.na(data$var)) # how many NA values and how many non-NA values
+  table(data$var,useNA="ifany") # show missing values as well
+  #+end_src
+
+  #+begin_src R
+  colSums(data) # sum of each column
+  colMeans(data,na.rm=TRUE) # means of each column (ignore NA values)
+  rowSums(data,na.rm=TRUE)
+  rowMeans(data,na.rm=TRUE)
+  #+end_src
+
+- Return a data frame with 1 row of column means:
+
+#+begin_src R
+  newdata = as.data.frame(t(colMeans(data)))
+#+end_src
+
+* Data munging basics
+
+- Reshape data sets
+
+  Replace *quantitative variables* with qualitative variables that are labelled
+  with the *ranges* where they appear because:
+  + you want to look at variables at a glance
+  + you think you don't necessarily believe the precision of the quantitative
+    variables
+
+  #+begin_src R
+  ranges <- cut(data$var,seq(0,3600,by=600))
+  table(ranges,useNA="ifany")
+  #+end_src
+
+  Break the values up by quantile
+
+  #+begin_src R
+  ranges <- cut2(data$var,g=6) # 6 ranges of approximately an equal number of points
+  table(ranges,useNA="ifany")
+  #+end_src
+
+  Sort values
+
+  #+begin_src R
+  sort(data$var)
+  #+end_src
+
+  Order values
+
+  #+begin_src R
+  order(data$var) # says how you need to rearrange the vector
+  data$var[order(data$var)] # take the indices of the order command
+  #+end_src
+
+  Reorder a data frame
+
+  #+begin_src R
+  sortedData <- data[order(data$var),]
+  #+end_src
+
+  Reorder by multiple variables
+
+  #+begin_src R
+  sortedData <- data[order(data$var1,data$var2),]
+  #+end_src
+
+  Reshape data
+
+  #+begin_src R
+  melt(misShape,id.vars="",variable.name="",value.name="")
+  #+end_src
+
+* Exploratory Graphs
+
+- Why do we use graphs in data analysis?
+  + To understand data properties
+  + To find patterns in data
+  + To suggest modeling strategies
+  + To "debug" analyses
+  + To communicate results (to other people)
+
+- Characteristics of exploratory graphs
+  + They are made quickly
+  + A large number are made
+
+- Use position comparison on a common scale
+  See [[http://webspace.ship.edu/pgmarr/Geo441/Readings/Cleveland%20and%20McGill%201985%20-%20Graphical%20Perception%20and%20Graphical%20Methods%20for%20Analyzing%20Scientific%20Data.pdf][Graphical Perception and Graphical Methods for Analyzing Scientific Data]]
+
+- Boxplot
+
+  Plot of x versus y
+
+  #+begin_src R
+  boxplot(data$var,col="blue")
+  boxplot(data$y ~ as.factor(data$x),col="blue") # y broken down by level x
+  boxplot(data$y ~ as.factor(data$x),varwidth=TRUE) # width proportional to # obs
+  #+end_src
+
+- Barplot
+
+  #+begin_src R
+  barplot(table(data$var),col="blue") # barplot of the levels (number of observations)
+  #+end_src
+
+- Scatterplot (to visualize relationships between variables -- for exploratory
+  data analysis)
+
+  #+begin_src R
+  plot(data$x,data$y,pch=19,col="blue")
+  #+end_src
+
+  You can pick out particular problems with the data or weird patterns in the
+  data.
+
+  #+begin_src R
+  plot(data$x,data$y,pch=19,col="blue",cex=0.5) # smaller points
+  #+end_src
+
+  *Use color* to *expand beyond 2 dimensions* -- See how the relationship between
+  2 variables is different based on a *3^{rd} variable*:
+
+  #+begin_src R
+  plot(data$x,data$y,pch=19,col=data$sex,cex=0.5) # col param must be a vector of integer values
+  #+end_src
+
+  or
+
+  #+begin_src R
+  plot(data$x,data$y,pch=19,col=((data$sex=="Male")*1+1)) # male in black, female in red
+  #+end_src
+
+  or
+
+  #+begin_src R
+  plot(data$x,data$y,pch=19,col=as.numeric(data$z))
+  legend(1,4.5,legend=unique(data$z),col=unique(as.numeric(data$z)),pch=19)
+  #+end_src
+
+  *Use size* is useful:
+
+  #+begin_src R
+  percentMaxAge <- data$age/max(data$age)
+  plot(data$x,data$y,pch=19,col="blue",cex=percentMaxAge*0.5) # size of points proportional
+  #+end_src
+
+  But it's easier to see if you *break numeric variables as factors*:
+
+  #+begin_src R
+  library(Hmisc)
+  ageGroups <- cut2(data$age,g=5)
+  plot(data$x,data$age,pch=19,col=ageGroups,cex=0.5) # see if the relation is modified by a 3rd variable
+  #+end_src
+
+  Overlay lines/points:
+
+  #+begin_src R
+  lines()
+  points()
+  #+end_src
+
+  *If you have a lot of points*:
+
+  #+begin_src R
+  plot(x,y,pch=19)
+  #+end_src
+
+  + Sample the values (take a random subset)
+
+    #+begin_src R
+    sampledValues <- sample(1:1e5,size=1000,replace=FALSE)
+    plot(x[sampleValues],y[sampledValues],pch=19)
+    #+end_src
+
+  + Use a smoothScatter (smooth density plot)
+
+    #+begin_src R
+    smoothScatter(x,y,pch=19)
+    #+end_src
+
+  + hexbin package
+
+    #+begin_src R
+    library(hexbin)
+    hbo <- hexbin(x,y)
+    plot(hbo)
+    #+end_src
+
+- QQ-plot
+
+  #+begin_src R
+  qqplot(x,y) # plot the quantile of x vs the quantile of y
+  abline(c(0,1)) # intercept and slope (here: 45-degree line)
+  #+end_src
+
+- Matplot (spaghetti-plot)
+
+  If you *observe data over the time*, compare trends or trajectories over time
+  by looking at the trajectories across columns:
+
+  #+begin_src R
+  matplot(matrix,type="b") # plot each column as one specific line
+  #+end_src
+
+- Heatmap (= sort of 2-D histogram)
+
+  Color represents intensity (the brighter, the larger value):
+
+  #+begin_src R
+  image(1:10,161:236,as.matrix(data[1:10,161:236]))
+  #+end_src
+
+  A little bit confusing: it sort of transposes the data in the image. To
+  match a little bit more your intuition of the matrix (rows and columns),
+  take the *transpose* of it:
+
+  #+begin_src R
+  newMatrix <- as.matrix(data[1:10,161:236])
+  newMatrix <- t(newMatrix)[,nrow(newMatrix):1]
+  image(161:236,1:10,newMatrix)
+  #+end_src
+
+- Geographic maps
+
+  #+begin_src R
+  library(maps)
+  map("world")
+  points(lat,lon,col="blue",pch=19)
+  #+end_src
+
+- Missing values and plots
+
+  Keep in mind that *R skips over NA values*: it's not plotting those points,
+  they don't appear on the plot.
+
+  Deal with that fact if you don't want to get inappropriate or incorrect
+  conclusions.
+
+  Explore the data and see if there are relationships between missing values
+  and the other variables in your data set:
+
+  #+begin_src R
+  x <- rnorm(100)
+  y <- rnorm(100)
+  y[x < 0] <- NA
+  boxplot(x ~ is.na(y))
+  #+end_src
+
+* Expository graphs
+
+- Graphs that you're likely to show, *to communicate results*
+
+- Axes
+
+  #+begin_src R
+  plot(x,y,pch=19,col="blue",xlab="Label (unit)",ylab="Label (unit)")
+  plot(x,y,xlab="Label (unit)",ylab="Label (unit)",cex.lab=2) # labels legends
+  plot(x,y,xlab="Label (unit)",ylab="Label (unit)",cex.axis=1.5) # axis legends
+  #+end_src
+
+  Add a legend:
+
+  #+begin_src R
+  legend(xpos,ypos,legend="Text",pch=19,cex=0.5)
+  legend(xpos,ypos,legend=c("men","women"),col=c("black","red"),pch=c(19,19),cex=c(0.5,0.5))
+  #+end_src
+
+  or (put the legend in a second plot)
+
+  #+begin_src R
+  par(mfrow=c(1,2))
+  plot(d$x,d$y,col=as.numeric(d$factor),pch=19)
+  plot(1:10,type="n",xaxt="n",yaxt="n",xlab="",ylab="")
+  legend(1,10,legend=unique(d$factor),col=unique(as.numeric(d$factor)),pch=19)
+  #+end_src
+
+  Add a title:
+
+  #+begin_src R
+  plot(x,y,main="Type of plot or Conclusion of the plot")
+  #+end_src
+
+  Add text to multiple panels:
+
+  #+begin_src R
+  par(mfrow=c(1,2))
+  ...
+  mtext(text="(a)")
+  ...
+  mtext(text="(b)")
+  #+end_src
+
+  Figure captions (bolded text describes the whole purpose of the entire
+  plot).
+
+  Check for colorblindeness: Vischeck
+
+- Devices
+  + pdf(file="file.pdf") :: create a PDF file
+  + png(file="file.png") :: create a PNG file
+  + dev.copy2pdf :: save the file you see on the screen
+
+- Something to avoid: the top ten worst graphs
+
+* Hierarchical clustering
+
+- Clustering
+  + Organize things that are *close* (not very well distinguished) into groups
+  + Find the closest two observations together, put them together, find the
+    next two
+
+- How do we defined close?  Pick a distance/similarity that makes sense for
+  your problem
+  + Continuous -- Euclidian distance
+  + Continuous -- Correlation similarity
+  + Binary -- Manhattan distance (shortest distance between 2 blocks)
+
+- dist(df) :: calculate the distances between the observations (points)
+
+  #+begin_src R
+  dataFrame <- data.frame(x=x,y=y)
+  distxy <- dist(dataFrame)
+  hClustering <- hclust(distxy)
+  plot(hClustering)
+  #+end_src
+
+  Prettier dendograms (where you can color the leaves): =myplclust()=
+
+  #+begin_src R
+  dataFrame <- data.frame(x=x,y=y)
+  distanceMatrix <- dist(dataFrame)
+  hClustering <- hclust(disanceMatrix)
+  myplclust(hClustering,lab.col=numVar) # numeric factor
+  #+end_src
+
+  See colored dendogram at http://gallery.r-enthusiasts.com/.
+
+- Heatmap
+
+  #+begin_src R
+  dataMatrix <- as.matrix(dataFrame)
+  heatmap(dataMatrix)
+  #+end_src
+
+* K-means clustering
+
+- Partitioning approach
+  + Divide all of the points into a fixed number of clusters (must be known
+    in advance)
+  + Guess where the centers might be
+
+  #+begin_src R
+  kClust <- kmeans(dataFrame, centers=3, nstart=100)
+  # average on 100 random starts, so that points gets classified much more
+  # stably to a specific cluster (cluster name are not necessarily stable)
+
+  names(kClust)
+  kClust$cluster
+  #+end_src
+
+  #+begin_src R
+  table(kClust$cluster,dataFrame)
+  #+end_src
+
+  #+begin_src R
+  plot(x,y,col=kClust$cluster)
+  points(kClust$centers,col=1:3)
+  #+end_src
+
+  #+begin_src R
+  plot(kClust$center[<i>],pch=19,ylab="Cluster Center",xlab="")
+  #+end_src
+
+* Dimension reduction
+
+- 2 popular dimension reduction techniques (to compress a large set of
+  variables and compress them down into a smaller set of variables that are
+  easier to interpret)
+  + Principal components analysis
+  + Singular Value decomposition
+
+- Add a particular pattern
+
+Too complex for me!
+
+* Clustering example
+
+  #+begin_src R
+  numVar <- as.numeric(as.factor(df$var))
+  #+end_src
+
+* Least Squares
+
+- Goals of statistical modeling (regression analysis?)
+  + Describe the distribution of variables
+  + Describe the relationship between variables
+  + Make inferences about ditrisbutions or relationships
+
+- *Jittered plot*: add a tiny little bit of random noise to the variables, so
+  that the plotted points are not stacked anymore on each other
+
+  #+begin_src R
+  plot(jitter(d$x,factor=2),jitter(d$y,factor=2),pch=19, col="blue")
+  #+end_src
+
+- Fit a line to the data
+
+  Sum((Ci - mu)^2) must be minimized
+
+  #+begin_src R
+  plot(d$x,d$y,pch=19,col="blue")
+  lm1 <- lm(d$y ~ d$x) # least squares (quantitative outcome ~ covariant variables)
+  lines(d$x,lm1$fitted,col="red",lwd=3)
+  # or abline(lm1,col="red",lwd=3)
+  #+end_src
+
+  Line:  y_i = b_0 (*intercept*) + b_1 (*slope*) x_i
+
+  That means that: a *one* unit increase in x is associated with an average
+  increase of *<slope>* unit in y.
+
+  #+begin_src R
+  lm1 # show regression coefficients
+  # lm1$coeff[1] = coefficient estimate for the intercept
+  # lm1$coeff[2] = coefficient estimate for the slope
+  #+end_src
+
+  #+begin_example
+  Coefficients:
+   (Intercept)  m$box.office
+      50.07559       0.09676
+  #+end_example
+
+  Here:
+  - Intercept = 50.07559
+  - Slope = 0.09676
+
+  #+begin_example
+  Residuals:
+      Min      1Q  Median      3Q     Max
+  -26.134  -9.365  -0.127   8.688  40.343
+
+  Coefficients:
+               Estimate Std. Error t value Pr(>|t|)
+  (Intercept)  50.07559    1.54061  32.504  < 2e-16 ***
+  m$box.office  0.09676    0.01760   5.499  1.8e-07 ***
+  #+end_example
+
+- Allow for variation
+
+  Line:  y_i = b_0 + b_1 x_i + e_i where e_i is everything we didn't measure
+  (error term)
+
+  =lm= is solving this!
+
+- Plot *what is leftover* (after you've substracted the regression line out of
+  the points = *residuals*)
+
+  #+begin_src R
+  plot(d$x,lm1$residuals,pch=19,col="blue")
+  # differences between the points and the line
+  abline(c(0,0),col="red",lwd=3)
+  #+end_src
+
+* Add-on from Quizz 4
+
+Fit a linear regression model by least squares where the Rotten Tomatoes score
+is the outcome and box office gross and running time are the covariates. What
+is the value for the regression coefficient for running time? How is it
+interpreted?
+
+#+begin_example
+> fit <- lm(m$score ~ m$box.office + m$running.time)
+> fit
+
+Call:
+lm(formula = m$score ~ m$box.office + m$running.time)
+
+Coefficients:
+   (Intercept)    m$box.office  m$running.time
+      37.23644         0.08239         0.12752
+#+end_example
+
+The coefficient is 0.12752. That means that *if two movies have the same box
+office gross*, an increase of one minute in running time is associated with an
+average increase of 0.12752 in score.
+
+* Inference
+
+- Create a "population" of 1 million rows
+
+- Histogram of estimates for intercept and slope
+
+- Central limit theorem
+
+  #+begin_src R
+  lm1 <- lm(d$y ~ d$x) # estimate intercept term, then estimate slope for x
+  summary(lm1)
+  #+end_src
+
+- Degrees of freedom ~= number of samples - number of things you estimated
+
+#+begin_src R
+  lines(x,dt(x,df=3),lwd=3,col="red") # t-distribution
+  lines(x,dt(x,df=10),lwd=3,col="red") # 10 degrees of freedom
+#+end_src
+
+- *Confidence intervals*: something about how good our estimate is
+
+  #+begin_src R
+  confint(lm1,level=0.90)
+  #+end_src
+
+  90% CI: <value at 5%> unit - <value at 95%> unit.
+
+  What can you deduce from the 90% confidence interval?
+
+  *If we repeated this study 100 times, we would expect our calculated
+  interval to cover the true value on average 90% of the time.*
+
+* P-values
+
+- P-values
+  + Most common measure of "statistical significance"
+  + Used for *decision making*
+  + Controversial among statisticians
+
+- Defined the hypothetical distribution of a data summary when "nothing is
+  going on" (between 0 and 1, uniformly) = *Null distribution* (slope = 0)
+
+- Calculate the summary with the summary we have (*observed statistic*)
+
+- Compare what we calculated to our hypothetical distribution and see if the
+  value is "extreme" (P-value)
+
+- The P-value is the probability there is a relationship between the two
+  variables
+
+- The statistical association is:
+  + P < 0.05 :: *significant*
+  + P < 0.01 :: strongly significant
+  + P < 0.001 :: very significant
+
+- *Be careful!* P > 0.05 for each case, but once out of 20 times, it will be
+  < 0.05 even if nothing is going on (false positive)...
+
+  ... We may be skeptical this association could be used, since there are many
+  possible explanations for the association that do not involve a direct
+  relationship between the two variables.
+
+* Regression with factor variables
+
+- Fitting lines = fitting means (in factor modeling approach)
+
+- Average score by rating
+
+  #+begin_src R
+  plot(movies$score ~ jitter(as.numeric(movies$rating)),col=blue,xaxt="n",pch=19)
+  axis(side=1,at=unique(as.numeric(movies$rating)),labels=unique(movies$rating)
+  meanRatings <- tapply(movies$score,movies$rating,mean)
+  points(1:4,meanRatings,col="red",pch="-",cex=5)
+  #+end_src
+
+  #+begin_src R
+  lm1 <- lm(movies$score ~ as.factor(movies$rating))
+  summary(lm1)
+  #+end_src
+
+- Plot fitted values
+
+- anova :: analysis of variance table
+
+- Tukey's Honestly Significant Difference test
+
+* Multiple variable regression
+
+- Color by male/female
+
+  #+begin_src R
+  lmM <- lm(d$y[d$Sex=="Male"] ~ d$x[d$Sex=="Male"])
+  lmF <- lm(d$y[d$Sex=="Female"] ~ d$x[d$Sex=="Female"])
+  plot(d$x,d$y,pch=19)
+  points(data$x,data$y,pch=19,col=((data$sex=="Male")*1+1))
+  lines(d$x[d$Sex=="Male"],lmM$fitted,col="black",lwd=3)
+  lines(d$x[d$Sex=="Female"],lmM$fitted,col="red",lwd=3)
+  #+end_src
+
+* Regression in the real world
+
+Things to pay attention:
+
+- *Confounders* = variable that is correlated with both the outcome and the
+  covariates
+
+- *Complicated interactions*
+
+  - X correlated with Y
+
+    #+begin_src R
+    anova(lm(d$y ~ d$x))
+    #+end_src
+
+  - Strong correlation if very large F value and very tiny P value
+
+- *Skewness*
+
+  Logs to address right-skew dat
+
+  #+begin_src R
+  hist(log(data+1),col="blue",breaks=100) # + 1 if data = 0
+  #+end_src
+
+- *Outliers* = data points that do not appear to follow the pattern of the
+  other data points... but they *may be real*!
+
+  If you know they aren't real/of interest, remove them (but changes
+  question!)
+
+  Alternatively:
+  + Sensitivity analysis -- Is it a big differnece if you leave it in/take it
+    out?
+  + Logs -- if the data are right skewed (lots of outliers)
+  + Robust methods -- More robust approaches: =Robust=, =rlm=
+
+- *Non-linear patterns*: A line isn't always the best summary
+
+  http://en.wikipedia.org/wiki/Linear_regression
+
+- *Variance changes*
+  + Box-Cox transform
+  + Variance stabilizing transform
+  + Weighted least squares
+  + Huber-white standard errors
+
+- *Units/scale isssues*: makes more sense to standardize in relative units
+  (number of death per million inhabitants) than in absolute units (number of
+  deaths)
+
+- *Overloading regression*
+
+- *Correlation and causation*: be critical of surprising associations, consider
+  alternative explanations
+
+* Notes from the forum
+
+"One of the assumptions of linear regression is that the residuals of the fit
+should be normally distributed, not the predictors (ie. the data you're using
+in the regression model). Just because you've found that one or more of your
+predictor variables (independent variables) isn't normally distributed doesn't
+mean you can't use it in a regression model. Obviously the residuals might
+still end up non-normal but you can't make that assumption just looking at a
+histogram of the data."
+
+* ANOVA with multiple factors/variables
+
+- Key ideas
+  + Outcome is still quantitative (ideally, symetrically distributed, maybe
+    close to normally distributed)
+  + You have multiple explanatory variables
+  + Goal is to identify contributions of different variables
+
+- Obama campaign: "Learn more" garnered 18.6% more signups than the default
+  "Sign up"
+
+- ANOVA in R
+
+  #+begin_src R
+  aovObject <- aov(outcome var ~ covariate var)
+  aovObject
+  aovObject$coeff
+  #+end_src
+
+- Adding a second factor (qualitative variable, with multiple levels)
+
+  #+begin_src R
+  aovObject2 <- aov(outcome var ~ covariate var1 + var2)
+  aovObject2
+  summary(aovObject2)
+  #+end_src
+
+  + Df = degrees of freedom (number of parameters b1, ..., bn)
+  + Sum Sq = sum of squares
+  + Mean Sq = mean square
+  + F value
+  + Pr(>F) = P-value
+
+  *Order matters*, particulary if you have an unbalanced design (levels of =var1=
+  not distributed evenly between the levels of =var2=)
+
+- Adding a quantitative variable
+
+* Binary outcomes
+
+- Key ideas
+  + Outcome has 2 values (alive/dead, win/loss, ...)
+  + Linear regression (like we've seen) may not be the best
+
+- Probability Pr
+  + Interval is 0 to 1 (constrained: not outside of 0 or 1)
+
+- Odds = Pr / (1 - Pr)
+  + Interval is 0 to infinity
+  + Not a probability!
+  + Odds ratio of 1 = no difference in odds (of winning)
+  + Odds ratio < 0.5 or > 2 commonly a "moderate effect"
+
+- Log odds = log ( Pr / (1 - Pr))
+  + Interval is -infinity to infinity (not constrained anymore)
+  + Log odds ratio of 0 = no difference in odds (of winning)
+
+- Logistic regression: we're going to model the log odds as being a linear
+  function
+
+- glm = generalized lm
+  + family = "binomial" tells glm to do a *logistic regression*
+  + coefficients interpreted very differently (log odds)
+
+  #+begin_src R
+  logReg <- glm()
+  summary(logReg)
+  #+end_src
+
+- Fit is a curve (not a line)
+
+  #+begin_src R
+  plot(d$x, logReg$fitted)
+  #+end_src
+
+- Odds ratios and confidence intervals
+
+  #+begin_src R
+  exp(logReg$coeff)
+  exp(confint(logReg))
+  #+end_src
+
+- ANOVA for logistic regression
+
+  #+begin_src R
+  anova(logReg, test="Chisq")
+  #+end_src
+
+  Terms added sequentially, one at a time, first to last
+
+- Simpson's paradox
+  + Treatment A is better for small stones, and
+  + Treatment A is better for large stones... but
+  + Treatment B is better overall for the total group!?
+  + *What are the important terms to include in the model?*
+
+* Count outcomes
+
+- Key ideas
+  + Counts (calls, number of cases, etc.)
+  + Rates (percent)
+  + Linear regression with transformation is an option
+
+- Poisson distribution
+  + lambda parameter controls both the *mean* (center) and the *variance*
+    (spread) of the distribution: they're both very close to lambda
+
+- Website data (from Google Analytics)
+
+  #+begin_src R
+  download.file("https://.../gaData.rda", destfile="")
+  load("./data/gaData.rda")
+  gaData$julian <- julian(gaData$date) # quantitative number, easier in analysis
+  #+end_src
+
+- Multiplicative differences
+
+  E[Hits]
+
+- Poisson regression
+
+  #+begin_src R
+  glm1 <- glm(gaData$visits ~ gaData$julian, family="poisson")
+  #+end_src
+
+- Mean-variance relationship
+
+- Estimating confidence intervals
+
+  #+begin_src R
+  confint(glm1)
+  #+end_src
+
+- Fitting rates
+
+  #+begin_src R
+  glm2 <- glm(gaData$visits ~ gaData$julian, offset=log(visits+1), # log is fine if >= 1
+              family="poisson", data=gaData)
+  #+end_src
+
+* Model checking and model selection
+
+- Sometimes model checking/selection not allowed (when submitting an
+  analysis, you have to say in advance what are the terms you're gonna use
+  and how it's gonna to be fit)
+
+- Often it can lead to problems (overfitting, overtesting, biased inference)
+  /but/ you don't want to miss something obvious
+
+- Linear regression -- basic *assumptions*
+  + *Constant variance*
+  + You are summarizing with a *linear trend*
+  + You have all the right terms in the model (*no missing covariate*)
+  + There are no big *outliers*
+
+** Increased variance -- What to do?
+
+- See if another variable explains the increased variance
+- Use the =vcovHC= (from library =sandwich=) variance estimators (if =n= is big)
+
+  #+begin_src R
+  lm1 <- lm(data ~ x)
+  vcovHC(lm1)
+  #+end_src
+
+** Curve trend -- What to do?
+
+- Use Poisson regression (if it looks exponential/multiplicative)
+- Use a data transformation (e.g. take the log)
+- Smooth the data/fit a nonlinear trend
+- Use linear regression anyway
+  + Interpret as the linear trend between the variables
+  + Use the =vcovHC= variance estimators (if =n= is big)
+
+** Missing covariate -- What to do?
+
+- Use exploratory analysis to identify other variables to include
+- Use the =vcovHC= variance estimators (if =n= is big)
+- (In the worst case scenario where you actually haven't measured any other
+  variables that explains the pattern that you're seeing), fit a linear model
+  but just) report unexplained patterns in the data (particularly with an
+  added plot in your analysis, to show people that there are maybe some
+  violations of the assumptions when fitting a linear model)
+
+** Outliers -- What to do?
+
+- If outliers are experimental mistakes, remove them and document the
+  variables you removed and why you removed them
+
+- If they are real, consider reporting how sensitvie your estimate is to the
+  outliers (big slope driven by one point)
+
+  #+begin_src R
+  lm1 <- lm(y ~ x)
+  plot(x,y,pch=19,col="blue"); abline(lm1,col="red",lwd=3)
+
+  for(i in 1:length(data)){betahat[i] <- lm(y[-i] ~ x[-i])$coeff[2]} #!
+  plot(betahat - lm1$coeff[2],col="blue",pch=19); abline(c(0,0),col="red",lwd=3)
+  # influence on slope estimate
+  #+end_src
+
+- Consider using a robust linear model fit like =rlm= (from library =MASS=)
+
+  #+begin_src R
+  lm1 <- lm(y ~ x)
+  lm1$coeff
+
+  rlm1 <- rlm(y ~ x)
+  rlm1$coeff
+
+  par(mfrow=c(1,2))
+
+  plot(x,y,pch=19,col="grey")
+  lines(x,lm1$fitted,col="blue",lwd=3); lines(x,rlm1$fitted,col="green",lwd=3)
+
+  plot(x,y,pch=19,col="grey",ylim=c(-5,5),main="Zoomed In")
+  lines(x,lm1$fitted,col="blue",lwd=3); lines(x,rlm1$fitted,col="green",lwd=3)
+  #+end_src
+
+** Default plots
+
+- Automated plots
+
+#+begin_src R
+plot(lm1)
+#+end_src
+
+  + Fitted values vs Residuals
+    * You can look difference in variation (increase in the residual
+      variation)
+    * It also labels points that might be potential outliers
+
+  + QQ plot
+    * On the x-axis, quantiles of the normal 0-1 distribution
+    * On the y-axis, standardized residuals
+
+** Deviance
+
+- Commonly reported for GLM's
+- It doesn't tell you /what/ is wrong
+
+** R^2 may be a bad summary
+
+** Model selection
+
+- Domain-specific knowledge, you know which variables can definitely be
+  excluded
+
+- Exploratory analysis
+
+- Statistical selection; options:
+  + Step-wise
+  + AIC
+  + BIC
+  + Modern approaches: Lasso, Ridge-Regression, etc.
+
+  If possible, perform the variable selection on a subset of your dataset;
+  and, then, do a second then set of variables to do model inference.
+
+*** Error measures
+
+- R^2 alone isn't enough -- more variables = bigger R^2
+- Adjusted R^2 -- taking into account the number of estimated parameters
+- AIC penalizes models with more parameters
+- BIC does the same, but with a bigger penalty
+
+*** =step=
+
+- Procedure to automatically try to add/remove terms
+
+  #+begin_src R
+  data <- data[,-1] # all of the different vars in the dataset - the y var (in col 1)
+  lm1 <- lm(y ~ ., data=data)
+  #+end_src
+
+  #+begin_src R
+  aicFormula <- step(lm1)
+  aicFormula
+  #+end_src
+
+  + Forward selection = start with no variables in the model
+  + Backward selection = start with all of the terms in the model
+  + Both = either adds or deletes terms at each step of the model
+
+*** =regsubsets=
+
+- Look at all the possible subsets of the variables, and calculate the BIC
+  score
+- Goal is to try to minimize the BIC:
+
+#+begin_src R
+library(leaps)
+regSub <- regsubsets(y ~ ., data=movies)
+plot(regSub)
+#+end_src
+
+*** =bic.glm=
+
+#+begin_src R
+library(BMA)
+bicglm1 <- bic.glm(y ~ ., data=movies,glm.family="gaussian")
+# . = includes all the possible variables in the model
+print(bicglm1)
+#+end_src
+
+- Calculate the posterior probability that each of the terms should be
+  included in the model
+
+** Notes
+
+- Exploratory/visual analysis is key: see in visual plots what you definitely
+  can't see in just one dimensional summary of the data
+- Automatic selection produces an answer -- byt may bias inference
+- You might think about separating the sample into 2 groups:
+  + Using one group to estimate the selection step
+  + Another (sub-)set of the data to do the inference
+- The goal is not to get the "causal" model: not the exact correct model that
+  should be used, just one estimate of a possible model that you could use
+
+* Prediction study design
+
+** Motivation
+
+- Glory!
+- Money (3,000,000 USD)!  Win contests...
+- For sport!
+- To save lives!
+
+** Steps in predictive studies
+
+Building a prediction function:
+
+1. Choose the right data
+2. Define your error rate -- major step!
+3. Split data into:
+   - Training
+   - Testing
+   - Validation (optional)
+4. On the training set, pick features
+5. On the training set, pick prediction function
+6. On the training set, cross-validate
+7. If no validation, apply 1x to test set
+8. If validation, apply to test set and refine
+9. If validation, apply 1x to validation
+
+** Choose the right data
+
+- In general, hard (gene expression data -> disease)
+
+- Depends strongly on the definition of "good prediction"
+
+- Often, *more data* > better models
+
+- *Know the benchmark* (what you have to beat in order to be a good prediction
+  function)
+
+  Probability of perfect classification is approximately
+  (1/2)^{test set sample size}
+
+- You need to start with *raw data* (unprocessed data) for predictions --
+  processing is often cross-sample (processing approach independent of how
+  many samples you have in your collection)
+
+** Error measures
+
+- Defining true/false positives
+  + True *positive* = correctly *identified*
+  + *False positive* (*type I error*) = incorrectly identified
+  + True *negative* = correctly *rejected*
+  + *False negative* (*type II error*) = incorrectly rejected
+
+- Define you error rate
+  + *Test outcome* (identification)
+  + *Condition* (true state of the world)
+  + Find the average quality of a test identifying people
+    * *Sensitivity* =
+      Sum of true positive / Sum of condition positive
+    * *Specificity* =
+      Sum of true negative / Sum of condition negative
+  + Give to a person to interpret in his particular case whether that test is
+    useful or not
+    * Positive predictive value =
+      Sum of true positive / Sum of test outcome positive
+    * Negative predictive value =
+      Sum of true negative / Sum of test outcome negative
+
+- Common error measures
+  + Mean squared error (or root mean squared error) -- Continuous data,
+    sensitive to outliers
+  + Median absolute deviation -- Continuous data, often more robust
+  + Sensitivity (recall) -- If you want few missed positives
+  + Specificity -- If you want few negatives called positives
+  + Accuracy -- Weigths false positives/false negatives equally
+  + Concordance
+
+** Study design
+
+- Random split
+  + Training dataset
+  + Test dataset
+  + Validation dataset (optional)
+
+- Key issues
+  + *Accuracy*
+  + *Overfitting*
+  + Interpretability
+  + Computational speed
+
+* Cross validation
+
+** Sub-sampling the training data
+
+- Key idea
+  + Build a *classifier* on the training set -- Accuracy is optimistic
+  + Estimate the test set accuracy with the (independent) training set
+
+- Approach
+  + Split the training set into training/test subsets: the training and test
+    sets must come from the same population
+  + Build a model on the training subset
+  + Evaluate on the test subset, and measure our error rate
+  + Repeat (*iterations*: reassign the random subsets)
+  + Average the error rate, to get the estimated out-of-sample error rate
+    (based on cross-validation)
+
+- Used for:
+  + Picking which variables to include in a model
+  + Picking the (type of) prediction function to use
+  + Picking the parameters in the prediction function
+  + Comparing different predictors
+
+*** "Random subsampling" cross validation
+
+#+begin_src R
+train <- sample(1:1000,size=500)
+trainData <- data[train,]
+testData <- data[-train,]
+#+end_src
+
+- Disadvantages:
+  + You get repeated elements
+  + You get elements that don't actually appear among the random samples
+
+*** "K-fold" cross validation
+
+- 3-fold cross validation
+  + Take the 1st third as training set, build the model on it, and apply it on
+    the test set, and calculate the error rate
+  + Take the 2nd third...
+  + Take the 3rd third...
+
+- Advantage: much more stable error rate than "leave one out"
+
+*** "Leave one out" cross validation
+
+- Extreme K-fold: we take one sample, leave it out, and build the prediction
+  model on the rest of the data set (training set = all the samples but one)
+
+- Advantage: much less biased
+
+- Disadvantages: variable estimate of the error rate
+
+** Avoid overfitting
+
+** Making predictions generalizable
+
+* Predicting with regression models
+
+- Key ideas
+  + Use a standard regression model
+  + Predict new values with the coefficients
+  + Useful when the linear model is (nearly) correct
+
+  + Pros:
+    * Easy to implement
+    * Easy to interpret
+    * Easy to get measures of confidence
+
+  + Cons: often poor performance in nonlinear settings
+
+** Predict a new value
+
+- Calculate the estimate directly:
+
+  #+begin_src R
+  coef(lm1)[1] + coef(lm1)[2]*80
+  #+end_src
+
+- Or use the =predict= function:
+
+  #+begin_src R
+  # pass the original lm object and a df that has values for the variables
+  # you'd like to predict
+  newdata <- data.frame(x=80) # x=c(...)
+  predict(lm1,newdata) # `x' must match the variable name used when fitting the lm function
+  #+end_src
+
+** Plot predictions
+
+#+begin_src R
+plot(testData$x,testData$y)
+lines(testData$x,predict(lm1,newdata=testData)) # build on the training set
+#+end_src
+
+** Get training set/test set errors
+
+- Calculate RMSE (Root Mean Squared Error) on training
+
+  #+begin_src R
+  sqrt(sum((lm1$fitted-trainData$y)^2))
+  #+end_src
+
+  The smaller the value of the RMSE, the better the predictor
+
+- Calculate RMSE on test
+
+  #+begin_src R
+  sqrt(sum((predict(lm1,newdata=testData)-testData$y)^2))
+  # test set error generally slightly larger
+  #+end_src
+
+  or
+
+  #+begin_src R
+  rmse(predict(lm1,data=testData),testData$y)
+  #+end_src
+
+** Prediction intervals
+
+#+begin_src R
+pred1 <- predict(lm1,newdata=testData,interval="prediction")
+ord <- order(testData$x)
+plot(testData$x,testData$y,col="blue")
+matlines(testData$x[ord],pred1[ord,],type="l",,col=c(1,2,2),lty=c(1,1,1),lwd=3)
+#+end_src
+
+* Predicting with trees
+
+- Key ideas
+  + Iteratively split variables into groups
+  + Split where maximally predictive
+  + Evaluate "homogeneity" within each branch
+
+  Pros: better performance in *nonlinear* settings
+
+  Cons:
+  - Without pruning/cross-validation, can lead to overfitting
+  - Harder to estimate uncertainty
+  - Results may be variable
+
+** Basic algorithm
+
+1. Start with all variables in one group
+2. Find the variable/split that best separates the outcomes
+3. Divide the data into two groups ("leaves") on that split ("mode")
+4. Within each split, find the best variable/split that separates the outcomes
+5. Continue until the groups are too small or sufficiently "pure"
+
+** Classification tree
+
+Build a tree model:
+
+#+begin_src R
+library(tree)
+
+# fit the tree model
+tree1 <- tree(data$z ~ data$y + data$x)
+       # outcome var ~ vars we're using to predict
+
+summary(tree1)
+#+end_src
+
+- Residual mean deviance: measure of impurity (cross-entropy or deviance)
+- Misclassification error: rate how often you misclassify
+
+Plot tree:
+
+#+begin_src R
+plot(tree1)
+text(tree1)                             # plot with words!
+#+end_src
+
+Another way of looking at a CART model:
+
+#+begin_src R
+plot(data$x,data$y,pch=19,col=as.numeric(iris$z))
+partition.tree(tree1,label="Species",add=TRUE)
+legend(1.75,4.5,legend=unique(data$z),col=unique(as.numeric(data$z)),pch=19)
+#+end_src
+
+** Predicting new values
+
+#+begin_src R
+# generate new data from unif distributions to represent similar values to the real data
+newdata <- data.frame(data$x = runif(20,0,2.5),data$y = runif(20,2,4.5))
+
+# pass `tree1' object (instead of `lm' object) and a df with the new data in it
+# (the var names in new data have to match the var names you used to build the tree model)
+pred1 <- predict(tree1,newdata)
+
+# look at the predictions (report the probability of being in each `z')
+pred1
+#+end_src
+
+Overlaying new values
+
+#+begin_src R
+pred1 <- predict(tree1,newdata,type="class")
+# type="class" returns only one value per data point (the max probability in each row)
+
+plot(newdata$x,newdata$y,col=as.numeric(pred1),pch=19)
+
+partition.tree(tree1,"Species",add=TRUE)
+#+end_src
+
+** Plot errors
+
+#+begin_src R
+par(mfrow=c(1,2))
+plot(cv.tree(tree1,FUN=prune.tree,method="misclass")) # misclassification errors
+plot(cv.tree(tree1)) # deviance impurity measure
+#+end_src
+
+What happens for different sizes of the model?
+
+- Misclassifications: if the model becomes too complicated (if you include
+  more splits), it might not predict well on a new sample.
+
+- Deviance
+
+** Prune the tree
+
+#+begin_src R
+pruneTree <- prune.tree(tree1,best=4) # 4 terminal leaves in the tree
+plot(pruneTree)
+text(pruneTree)
+#+end_src
+
+* Smoothing
+
+- Key ideas
+
+  + Sometimes, there are *non-linear trends* in data (no straigth line) and you
+    want to be able to predict those trends for other observations
+
+  + Often hard to interpret (in plain English)
+
+- Moving, *local* average of the data: average many points before and after
+
+- Lowess (can be spelled loess): locally weighted scatterplot smoothing
+  (average of the data)
+
+  #+begin_src R
+  lw1 <- loess(y ~ x, data)
+  plot(data$x,data$y,pch=19,cex=0.1)
+  lines(data$x,lw1$fitted,col="blue",lwd=3)
+  #+end_src
+
+  Loess calculates the span for you.
+
+- Span
+
+  #+begin_src R
+  plot(data$x,data$y,pch=19,cex=0.1)
+  lines(data$x,loess(y ~ x,data,span=0.1)$fitted,col="blue",lwd=3) # wild
+  lines(data$x,loess(y ~ x,data,span=0.25)$fitted,col="blue",lwd=3)
+  lines(data$x,loess(y ~ x,data,span=0.75)$fitted,col="blue",lwd=3) # more smooth (bias increased)
+  #+end_src
+
+- Predicting with loess
+
+  #+begin_src R
+  pred1 = predict(lw1,newdata=data.frame(x=xseq),se=TRUE) # std err predictions
+  plot(xseq,pred1$fit,col="blue",lwd=3,type="l")
+  lines(xseq,pred1$fit + 1.96*pred1$se.fit,col="red",lwd=3)
+  lines(xseq,pred1$fit - 1.96*pred1$se.fit,col="red",lwd=3)
+  points(data$x,data$y,pch=19,cex=0.1)
+  #+end_src
+
+- Spline
+
+  #+begin_src R
+  library(splines)
+  ns1 <- ns(data$x,df=3) # degrees of freedom = number of functions to apply
+  #+end_src
+
+  Spline matrix (= set of 3 functions applied to each point)
+
+  #+begin_src R
+  lm1 <- lm(data$y ~ ns1) # spline matrix (instead of covariates)
+  summary(lm1)
+  #+end_src
+
+  Plot the fitted values:
+
+  #+begin_src R
+  plot(data$x,data$y,pch=19,cex=0.1)
+  points(data$x,lm1$fitted,col="blue",pch=19,cex=0.5)
+  #+end_src
+
+  We just used =ns1= in our liner model; we could include other variables in
+  addition to the smooth terms (advantage of using splines: smooth specific
+  variables, not others)
+
+- Notes
+  + Cross-validation with splines/smoothing is a good idea
+  + Do not predict outside the range of observed data (you can get really
+    dramatic differences between the prediction and the reality outside of
+    the observed data)
+
+* Bootstrap
+
+- Key ideas: treat the sample as if it were the population
+  Good for:
+  + Calculating standard errors
+  + Forming confidence intervals
+  + Performing hypothesis tests
+  + *Improving predictors*
+
+XXX
+
+* Bootstrapping for prediction
+
+* Combining predictors
+
+- Key ideas
+  + You can combine classifier by averaging/voting
+  + Improves accuracy
+  + Reduces interpretability
+
+- Combine different classifiers (models)
+
+  #+begin_src R
+  combine1 <- predict(lm1,data=testData)/2 + predict(tree1,data=testData)/2
+  rmse(combine1,testData$y)
+  #+end_src
+
+- Use the *Medley package* to do this in an automated way
+
+XXX from 10:00
+
+* Multiple testing
+
+- Key ideas
+  + Correcting for multiple testing avoids false positives or false discoveries
+  + Definition of *error measure* that you would like to control
+  + Definition of *correction* or statistical method use to control that error
+    measure
+
+- Adjust the threshold \alpha
+
+  + Control the false positive rate
+    10,000 tests x P < 0.05 = 500 false positives
+
+#+begin_src R
+sum(pValues < 0.05)
+#+end_src
+
+  + Control the family-wise error rate (*FWER*) Pr(V >= 1)
+    *Bonferroni correction*
+    10 tests => P must be less than 0.05 / 10 = 0.005 to be significant
+    - Pros: easy to calculate, conservative
+    - Cons: may be pretty extreme (*one* false positive)
+
+#+begin_src R
+sum(p.adjust(pValues,method="bonferroni") < 0.05)
+#+end_src
+
+  + Control false discovery rate (*FDR*)
+    *BH correction*
+
+#+begin_src R
+sum(p.adjust(pValues,method="BH") < 0.05)
+#+end_src
+
+- Adjust P-values
+
+* Simulation for model checking
+
+- Repeat simulations
+
+- Monte Carlo error variability reduced by increasing the number of
+  observations
+
+- Add up the value for each density to generate data for more complicated
+  distributions
+
+* Course wrap-up
+
+- http://www.openintro.org/
+  Free textbook about statistics and probability, really good place to start
+
+- http://www-stat.stanford.edu/~tibs/ElemStatLearn/
+  "The elements of Statistical Learning"
+  Outstanding textbook if you want to do anything involving prediction (free
+  download)
+
+- "Advanced Data Analysis from an Elementary Point of View"
+  (free download)
+
+Also check out:
+
+- Statsblogs
+- Flowing Data
+- junkcharts

@@ -1,0 +1,91 @@
+# Hey Emacs, this is a -*- org -*- file ...
+#+TITLE:     R Refcard Tasks
+#+AUTHOR:    Fabrice Niessen
+#+EMAIL:     fni@missioncriticalit.com
+#+DESCRIPTION:
+#+KEYWORDS:
+#+LANGUAGE:  en
+#+OPTIONS:   H:4 num:3 toc:nil
+
+#+PROPERTY:  header-args :noweb yes :comments no :eval no
+#+SETUPFILE: ~/org/theme-readtheorg.setup
+
+* Reference
+
+rank()
+
+Using Sys.setenv(LANGUAGE = "en") has R speaking to me entirely in English now.
+
+http://lipn.univ-paris13.fr/A3/AAFD12/slides/AAFD12_BertiEquille.pdf
+
+** R
+
+- [[http://www.rdatamining.com/examples/exploration][R and Data Mining]] (data exploration, decision trees, outlier detection,
+  etc.)
+- http://jsresearch.net/wiki/projects/teachdatascience/Teach_Data_Science.html
+- [[http://en.tjcities.com/wp-content/uploads/Books/Machine_Learning_for_Hackers.pdf][Machine learning for hackers]]
+
+** ESS
+
+- [[http://pj.freefaculty.org/guides/Rcourse/emacs-ess/emacs-ess.pdf][Emacs Has No Learning Curve -- Emacs and ESS]]
+
+* Tasks
+
+https://cran.r-project.org/doc/contrib/Kauffmann_aide_memoire_R.pdf
+
+** TODO Improve syntax highlighting
+
+http://www.rstudio.com/ide/screenshots/
+
+** TODO Add ~system~ and ~shell~
+
+Use shell for redirection:
+
+#+begin_src R
+shell("md5sum file.txt > file.md5")
+#+end_src
+
+** TODO Look at R packages
+
+- *Shiny* (interactive Web applications: dynamic graphs in HTML pages)
+- ggplot2
+- plyr (utilize split, apply, combine methods for fast, consistent results)
+- devtools
+
+** TODO Sort things
+
+Filter out entries (rows) that are identical with respect to one column like
+so:
+
+#+begin_src R
+duplicity <- duplicated(data[column])
+data_unique <- subset(data,duplicity!=TRUE)
+#+end_src
+
+How many duplicates each of the remaining rows had?
+
+#+begin_src R
+table(data[column])
+#+end_src
+
+*** Try
+
+Another option might be to use a tryCatch expression. Here's an example:
+
+#+begin_src R
+ vari <- 1
+ tryCatch(print("passes"),  error = function(e) print(vari)) # => passes
+ tryCatch(stop("fails"),  error = function(e) print(vari)) # => 1
+#+end_src
+
+You can do whatever you want within the error block, so in your case, something
+like this should work:
+
+tryCatch(pJohnson(.18, parms), error=function(e) alternativeFunction())
+
+This isn't really the intended usage of the error, but it's a little more
+concise.
+
+** TODO Performance test with Microbenchmark
+
+http://stackoverflow.com/questions/14409084/pad-with-leading-zeros-to-common-width

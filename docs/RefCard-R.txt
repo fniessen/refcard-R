@@ -1,0 +1,95 @@
+#+TITLE:     R Reference Card
+#+AUTHOR:    Fabrice Niessen
+#+EMAIL:     fni@missioncriticalit.com
+#+Time-stamp: <2012-11-07 Wed 14:07 Fabrice>
+#+DESCRIPTION:
+#+KEYWORDS:
+#+LANGUAGE:  en
+
+* What
+
+R is an open source statistical programming language. It is incredibly
+powerful. Over two million (and counting) analysts use R. It's been around
+since 1997 if you can believe it. It is a modern version of the S language for
+statistical computing that originally came out of the Bell Labs. Today, R is
+quickly becoming the new standard for statistics.
+
+R performs complex data science at a much smaller price (both literally and
+figuratively). R is making serious headway in ousting SAS and SPSS from their
+thrones, and has become the tool of choice for the world's best statisticians
+(and data scientists, and analysts too).
+
+Why should you care?
+
+Because it has an unusually strong community around it, you can find R
+libraries for almost anything under the sun --- making virtually any kind of
+data science capability accessible without new code. R is exciting because of
+who is working on it, and how much net-new innovation is happening on a daily
+basis. the R community is one of the most thrilling places to be in Big Data
+right now.
+
+R is a also wonderful way to future-proof your Big Data program. In the last
+few months, literally thousands of new features have been introduced, replete
+with publicly available knowledge bases for every analysis type you'd want to
+do as an organization.
+
+Also, R works very well with Hadoop, making it an ideal part of an integrated
+Big Data approach.
+
+To keep an eye on: Julia is an interesting and growing alternative to R,
+because it combats R's notoriously slow language interpreter problem. The
+community around Julia isn't nearly as strong right now, but if you have a
+need for speed...
+
+* Présentation sommaire de R
+  [2011-02-15 Tue]
+
+R est un monde en soi, gigantesque, et dont l'application dans le domaine
+géospatial ne représente qu'une petite partie
+(fr.wikipedia.org/wiki/R_%28logiciel%29). Dans sa version de base, il dispose
+de tout ce qui est nécessaire pour les traitements statistiques classiques.
+Tout comme Python, ses possibilités se voient considérablement accrues par
+l'adjonction de très nombreuses librairies ("packages" ou extensions, quasi
+2000). Ces librairies permettent à R de pratiquement tout traiter depuis la
+statistique multivariée jusqu'à l'analyse complète des données écologiques en
+passant par la biométrie, l'analyse des séries chronologiques, l'analyse
+bayésienne ou l'économétrie. Tous les domaines d'applications sont résumés
+sous forme de thèmes dans cran.r-project.org/web/views/.
+
+R possède bien évidemment des librairies pour traiter les données géospatiales
+(cran.r-project.org/web/views/Spatial.html,r-spatial.sourceforge.net/,
+geodacenter.asu.edu/r-spatial-projects/). Elles offrent, entre autres, la
+possibilité d'effectuer les traitements géostatistiques où R est très utilisé
+dans le monde de la recherche. Par leur entremise, R sait traiter les données
+SIG mais aussi interagir directement avec les programmes. En sus de ceux Open
+Source comme Grass, il peut aussi être couplé à ArcGIS (package RPyGeo, voir
+aussi www.forumsig.org/showthread.php ) ou à ArcInfo (RArcInfo). R sait aussi
+extraire des images de Google Maps pour les utiliser dans les traitements
+(RgoogleMaps). Tout cela indique que R est fort utilisé dans le domaine. Par
+exemple, Kamran Safi explique sur son site sites.google.com/site/spatialr/
+comment il a été conduit à utiliser R en lieu et place d'ArcGis suite à son
+abandon par l'institution où il travaillait. Il y a cependant un problème pour
+l'utilisateur débutant. Chaque librairie s'est en effet développée
+parallèlement, avec ses formats et structures propres, et il est nécessaire
+d'apprendre à jongler entre ces éléments. Ce manque d'homogénéité est bien
+explicité par S.Dray sous le titre "Le grand bazar" dans
+biom3.univ-lyon1.fr/R/pdf/ter5.pdf. Tout ce qu'il est possible de faire est
+synthétisé dans le cours geography.uoregon.edu/GeogR/topics/index.html
+
+R sait aussi se connecter à toutes les bases de données depuis Oracle jusqu'à
+Microsoft Access en passant par SQLite ou PostgreSQL/Postgis.
+
+"Foin d'une interface graphique élaborée !", tout se fait dans le langage de
+R. Plusieurs livres ont été écrits à son sujet
+(www.r-project.org/doc/bib/R-books.html , avec, notamment pour l'analyse
+géospatiale, "Applied Spatial Data Analysis with R"
+www.springer.com/public+health/epidemiology/book/978-0-387-78170-9). Le
+chapitre 10 du livre "Open Source GIS: A GRASS GIS Approach"
+(www.grassbook.org/) est consacré à ce sujet. Des sites comme
+bm2.genes.nig.ac.jp/RGM2/index.php ou addictedtor.free.fr/graphiques/ se
+proposent de montrer toutes ses facettes sous forme visuelle (plus de 21000
+graphiques pour le premier cité), accompagnés des commandes permettant de les
+réaliser. Ses domaines d'application sont donc extrêmement variés et ce n'est
+pas la maigre petite application qui suit qui lui rendra justice...
+
+From [[http://www.portailsig.org/content/grass-gis-ses-amis-python-et-r-ou-la-puissance-d-un-shell-pas-si-ringard-que-ca-traitement-d][Grass Gis, ses amis Python et R, ou la puissance d'un shell pas si "ringard" que ça... (traitement des données, géostatistiques and Co.) | PortailSIG]]

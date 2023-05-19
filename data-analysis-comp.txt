@@ -1,0 +1,376 @@
+#+TITLE:     R quick reference card
+#+AUTHOR:    Fabrice Niessen
+#+EMAIL:     (concat "fniessen" at-sign "pirilampo.org")
+#+Time-stamp: <2014-09-11 Thu 10:26>
+#+DESCRIPTION:
+#+KEYWORDS:
+#+LANGUAGE:  en
+
+* Notes
+
+- http://www.statmethods.net/index.html
+
+- http://tryr.codeschool.com/
+
+* Commands
+
+- dir() :: list all the *files* in the working directory
+
+* General functions
+
+- dim() :: give the dimension attribute
+- is.na() :: test if object is =NA=
+- is.nan() :: test if object is =NaN=
+- dimnames() :: show or give a name to each *row element and* each *column
+                element* of a matrix
+- complete.cases() :: subset all the missing values
+- version :: is the OS 32 or 64-bit
+- rbinom(1, 1, 0.5) :: generating 1 observation of 1 head flip of a fair *coin* (0.5)
+- abs() :: absolute value
+- lm(yValues ~ xValues) (in the =stats= package) :: linear regression modeling
+     function
+- arg(function.default) ::
+- gl(n, k, labels = c("Male", "Female")) :: create a factor variable, with =n=
+     groups and =k= iterations of each, with names
+
+* Introduction to the R language: Data types and basic operations
+
+- Special values
+  + =Inf= for infinity
+  + =NaN= for "Not a Number" (undefined mathematical operation)
+  + =NA= for *missing value* (for example, the result of nonsensical coercion)
+    * =NA= values have a class
+    * A =NaN= value is also =NA= (but the converse is not true)
+  + =NULL=???
+
+- Attributes
+  + names
+  + dimensions
+  + class
+  + length
+
+* Application: optimization
+
+- Routines:
+  + optim() ::
+  + nlm() ::
+  + optimize() ::
+
+- Most of those functions in R attempt to /minimize/ functions by default; so,
+  when you write your *objective* function, if they're designed to be maximized,
+  then you have to take the negative of those functions so that you can
+  minimize them
+
+- Standard deviation =rnorm=
+  + number of observations, =n=
+  + mean, =mu=
+  + standard deviation, =sigma=
+
+* Plotting
+
+** =lattice=
+
+- Tellis graphics
+
+  + =xyplot= :: *scatterplots*
+  + =bwplot= :: box-and-whiskers plots ("boxplots")
+  + =histogram= :: histograms
+  + =stripplot= :: like a boxplot but with actual points (instead of boxes)
+  + =dotplot= :: plot dots on "violin strings"
+  + =splom= :: scatterplot matrix, like =pairs= in the base graphics system
+  + =levelplot=, =contourplot= :: for plotting "image" data
+
+  #+begin_src R
+  library(lattice)
+  #+end_src
+
+- Generally create plots all in one go, from a single function call
+
+- Strength of Lattice functions = conditioning plots: you can plot
+  the *relationship* between =x= and =y=, *conditioned* on the levels of a third
+  variable (factor variable =f= or variable cut into different ranges, see
+  =equal.count=)
+
+  #+begin_src R
+  y ~ x | f * g # formula
+  #+end_src
+
+  + =y= = response (on the y-axis)
+  + =x= = input, predictor (on the x-axis)
+  + =f * g= = factors which are *interacting* with each other (often, just one
+    factor)
+
+- Tell the function =xyplot= where to find the variables =y= and =x=: look up names
+  inside the =environmental= data frame (because they are not objects in my
+  workspace)
+
+  #+begin_src R
+  xyplot(y ~ x, data = environmental)
+  #+end_src
+
+- Lattice functions have a separate panel created for each level of the
+  factors
+
+  #+begin_src R
+  xyplot(y ~ x | f)
+  #+end_src
+
+  The *panel function* controls what happens inside each panel of the entire
+  plot
+
+  I can create my own (anonymous) panel function:
+
+  #+begin_src R
+  xyplot(y ~ x | f,
+         panel = function(x, y, ...) { # x and y = data that appear in a specific panel (it's not all the data)
+                 panel.xyplot(x, y, ...) # plot using all the default options
+                 panel.abline(h = median(y), lty = 2) # plot the median of the y values in each panel
+         })
+  #+end_src
+
+  Add a (simple linear) regression line to each panel of the plot:
+
+  #+begin_src R
+  xyplot(y ~ x | f,
+         panel = function(x, y, ...) {
+                 panel.xyplot(x, y, ...)
+                 panel.lmline(x, y, col = 2)
+         })
+  #+end_src
+
+  #+begin_src R
+  xyplot(y ~ x | f, pch = 20,
+         panel = function(x, y, ...) {
+                 panel.xyplot(x, y, ...)
+                 fit <- lm(y ~ x)
+                 panel.abline(fit, lwd = 2) # add a regression line to the plot
+         })
+  #+end_src
+
+- Options
+  + Don't worry about spacing: everything gets automatically adjusted!
+  + main :: title
+  + layout = c(1,4) :: 4 panels on top of each other
+  + as.table = TRUE :: change the order in which the panels are drawn, from
+       top to bottom (default: from bottom to top)
+  + xlab :: label on the x-axis
+  + ylab :: label on the y-axis
+
+- Functions
+  + x.cut <- equal.count(x, l) :: cut the original =x= variable, creating =l=
+       different ranges (~ levels, which may overlap slightly)
+
+  + panel.loess(x, y) :: give a smooth rendition of the linear model
+
+*** Splom
+
+-  Look at pairwise relationships possible in the data frame (make a scatter
+   plot of all the different variables against each other)
+
+  #+begin_src R
+  splom(~ df)
+  #+end_src
+
+*** Histogram
+
+- Histogram of =x=
+
+  #+begin_src R
+  histogram(~ x, data = df)
+  #+end_src
+
+- Histogram of =x=, as =f= varies (for each range of =f.cut=)
+
+  #+begin_src R
+  histogram(~ x | f.cut, data = df)
+  #+end_src
+
+** Mathematical annotations
+
+- Produce LaTeX-like symbols onto your plots (relevant to both the =base=
+  plotting and the =lattice= plotting system)
+
+- Math symbols are expressions in R, so you have to use the =expression=
+  function to encode them when you use them in a plot
+
+- List of allowed symbols
+
+  #+begin_src R
+  ?plotmath
+  #+end_src
+
+- Plotting functions that take arguments for text (title, axis, text, labels,
+  ...) generally allow expressions for math symbols
+
+  #+begin_src R
+  plot(0, 0, main = expression(theta == 0),
+       ylab = expression(hat(gamma) == 0),
+       xlab = expression(sum(x[i] * y[i], i == 1, n))
+  #+end_src
+
+- Paste strings together
+
+  #+begin_src R
+  expression("The mean " * bar(x) * " is " * ...)
+  #+end_src
+
+- Use a computed value in the annotation
+
+  #+begin_src R
+  xlab=substitute(bar(x) == k, list(k=mean(x))) # substitute k
+  #+end_src
+
+** Plotting and Color
+
+- Proper use of color can help to describe the relationships that you're
+  trying to demonstrate
+
+- =colors()= lists the names of colors you can use
+
+- =grDevices= package has functions which *take a palette of colors* and help to
+  interpolate between the colors
+
+  + =colorRamp()= :: return a function that takes *values between 0 and 1* and
+                   interpolates between the extremes of the color palette
+
+    #+begin_src R
+    pal <- colorRamp(c("red", "blue")) # return a function `pal'
+    pal(0)
+    pal(0.5)
+    pal(1)
+    pal(seq(0, 1, len = 10)) # sequence between 0 and 1 -> sequence of colors
+    #+end_src
+
+  + =colorRampPalette()= :: return a function that takes *integer arguments* and
+       return a (character) vector of hexadecimal colors interpolating the
+       palette
+
+    #+begin_src R
+    pal <- colorRampPalette(c("red", "yellow")) # return a function `pal'
+    pal(2) # return 2 colors
+    pal(10) # return 10 colors
+    #+end_src
+
+- =RColorBrewer= package contains interesting color palettes of 3 types:
+
+  #+begin_src R
+  library(RColorBrewer)
+  cols <- brewer.pal(3, "BuGn") # 3 (primary) colors from the "blue/green" palette
+  pal <- colorRampPalette(cols)
+  image(volcano, col = pal(20)) # 20 different colors
+  #+end_src
+
+  + *Sequential*, used for (numerical) data that are *ordered* from low to high
+
+  + *Qualitative*, used for data that are *not ordered* (factors or categorical
+    data which just have different values)
+
+  + *Diverging*, used for data that *deviate* from something (for example, the
+    deviation from the mean)
+
+  + Used by =smoothScatter=, useful if you have to make a scatterplot of a lot
+    of different points, and want to see high-density regions of the plot.
+
+- Alternative to =smoothScatter=: use *scatterplot with transparency* to clarify
+  plots with many points
+  + rgb() :: produce any color via red, green and blue proportions
+    * Color *transparency* can be added via the =alpha= (4^{th}) parameter
+
+  #+begin_src R
+  plot(x, y, col = rgb(0, 0, 0, 0.2), pch = 19)
+  #+end_src
+
+- =colorspace= package can be used for a different control over colors
+
+* Classes and methods
+
+- R is both interactive /and/ has a system for object orientation (OO)
+
+- The code for implementing S4 classes/methods is in the =methods= package
+  (usually loaded by default)
+
+- A /class/ (defined using =setClass()=)is a description of a thing (= new data
+  type); you can customize the methods for that class (output of =print=, =str=,
+  =summary=, =plot=, ...)
+
+- An /object/ (created using =new()=) is an instance of a class
+
+- A /method/ is a function that only operates on a certain class of objects
+
+- A generic function is an R function which dispatches methods; it does not
+  actually do any computation
+
+  The first argument for any generic function is an object of a particular
+  class.
+
+  1. Search for a method designed just for that class
+  2. Search for a default method
+  3. Throw an error
+
+  You should *never* call methods directly. Rather, use (the abstraction of) the
+  generic function and let the method be dispatched automatically.
+
+- A /method/ is the implementation of a generic function for an object of a
+  particular class
+
+  #+begin_src R
+  methods("mean")
+  #+end_src
+
+- S4 equivalent of (S3 generic) =print= function is =show=
+
+- showMethods() :: List the different methods for a generic function
+
+- getMethod() :: Obtain the code (function body) of an S4 method
+
+- Extend the R system:
+  + Write a method for a new class but for an existing generic function
+  + Write a new generic functions and new methods
+
+- Why would you want to create a new class?
+  + To represent new types of data
+  + New concepts/ideas
+  + To abstract/hide implementation details from the user
+
+- Create a new class using the =setClass= function
+  + name
+  + data elements (/slots/)
+
+- Create a method for this class with the =setMethod= function
+  + name of the generic name function (=plot=, ...)
+  + signature (= classes of objects accepted by this method)
+
+- showClass :: Obtain information about a class definition
+
+* Question
+
+** Question 5
+
+#+begin_src R
+data <- read.csv("ss06hid.csv")
+ok <- complete.cases(data$ACR,data$AGS)
+okdata <- data[ok,]
+okdata[okdata$BDS==3 & okdata$RMS==4,2]
+#+end_src
+
+** Question 7
+
+Create a logical vector that identifies the households on greater than 10
+acres who sold more than $10,000 worth of agriculture products. Assign that
+logical vector to the variable agricultureLogical. Apply the =which()= function
+like this to identify the rows of the data frame where the logical vector is
+TRUE and assign it to the variable indexes.
+
+#+begin_src R
+indexes =  which(agricultureLogical)
+#+end_src
+
+If your data frame for the complete data is called dataFrame you can create a
+data frame with only the above subset with the command:
+
+#+begin_src R
+subsetDataFrame  = dataFrame[indexes,]
+#+end_src
+
+Note that we are subsetting this way because the NA values in the variables
+will cause problems if you subset directly with the logical statement.
