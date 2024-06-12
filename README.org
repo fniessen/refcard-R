@@ -33,7 +33,7 @@ describes how to perform *data analysis* using R.
 #+begin_src R :noweb yes :tangle Rlib.R
 ##  Rlib.R -- Collection of utility and convenience functions
 ##
-##  Copyright (C) 2013-<<current-year()>> Fabrice Niessen
+##  Copyright (C) 2013, 2024-<<current-year()>> Fabrice Niessen
 ##
 ##  This program is free software; you can redistribute it and/or modify
 ##  it under the terms of the GNU General Public License as published by
@@ -76,7 +76,7 @@ describes how to perform *data analysis* using R.
 
   Do not place a space before a comma, but always place one after a comma.
 
-* Best Practices
+* Best Practices!!!
 
 Make the following changes:
 
@@ -88,6 +88,9 @@ Make the following changes:
 ** Code
 
 #+begin_src R
+## Replace 'NA' values with empty strings.
+df[is.na(df)] <- ""
+
 ## Remove rows with NA in 'ID'.
 df <- df[complete.cases(df$"ID"), ]
 
