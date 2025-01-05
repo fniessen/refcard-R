@@ -1,6 +1,6 @@
 ##  Rlib.R -- Collection of utility and convenience functions
 ##
-##  Copyright (C) 2013-2020 Fabrice Niessen
+##  Copyright (C) 2013-2020 Fabrice Niessen. All rights reserved.
 ##
 ##  This program is free software; you can redistribute it and/or modify
 ##  it under the terms of the GNU General Public License as published by
