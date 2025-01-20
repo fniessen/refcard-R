@@ -33,7 +33,7 @@ describes how to perform *data analysis* using R.
 #+begin_src R :noweb yes :tangle Rlib.R
 ##  Rlib.R -- Collection of utility and convenience functions
 ##
-##  Copyright (C) 2013, 2024-<<current-year()>> Fabrice Niessen
+##  Copyright (C) 2013-<<current-year()>> Fabrice Niessen. All rights reserved.
 ##
 ##  This program is free software; you can redistribute it and/or modify
 ##  it under the terms of the GNU General Public License as published by
@@ -86,6 +86,69 @@ Make the following changes:
 - Convert the date columns to R date format using ~as.Date()~.
 
 ** Code
+
+*** Modify Pander output to remove header lines
+
+This section shows how to handle effectively data output and formatting in R,
+specifically using the `pander` package for pretty-printing dataframes.
+
+#+begin_src R
+## Pretty print the dataframe using pander.
+output <- capture.output(pander(df, caption = caption))
+
+## Remove the first 4 lines (header).
+output <- output[-(1:4)]
+
+cat("\n")
+
+## Print the modified output.
+cat(output, sep = "\n")
+#+end_src
+
+*** Install required packages
+
+Execute the following command to install the ~docopt~ package:
+
+: sudo R -e 'install.packages("docopt", repos = "http://cran.us.r-project.org")'
+
+*** Select specific columns for output
+
+To include only specific columns in the output, use the following code:
+
+#+begin_src R
+## Select only the specified columns for pander output.
+columns_to_keep <- c("table_name", "field_name", "ml_heading", "allow_null", "data_type",
+                     "dflt_val", "num_format", "ref_table", "afm_size", "validate_data")
+df <- df[, columns_to_keep, drop = FALSE]
+#+end_src
+
+*** Handle uncertain column existence
+
+Or, if you are unsure whether the specified columns exist in the dataframe, adapt
+the code as follows:
+
+#+begin_src R
+## Select only the specified columns that exist in the dataframe.
+columns_to_keep <- c("table_name", "field_name", "ml_heading", "allow_null", "data_type",
+                     "dflt_val", "num_format", "ref_table", "afm_size", "validate_data")
+existing_columns <- intersect(columns_to_keep, names(df))
+df <- df[, existing_columns, drop = FALSE]
+#+end_src
+
+*** Remove Row Names from the Dataframe
+
+To prevent row names from being included as an extra column in the output:
+
+#+begin_src R
+## Remove row names from the dataframe (to prevent the extra column in the
+## output).
+rownames(df) <- NULL
+
+## Pretty print the dataframe using pander.
+pander(df)
+#+end_src
+
+*** Handle missing data
 
 #+begin_src R
 ## Replace 'NA' values with empty strings.
