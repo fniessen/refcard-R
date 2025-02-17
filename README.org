@@ -122,6 +122,13 @@ columns_to_keep <- c("table_name", "field_name", "ml_heading", "allow_null", "da
 df <- df[, columns_to_keep, drop = FALSE]
 #+end_src
 
+*** Remove specific columns
+
+#+begin_src awk
+# Remove columns Arrival.time and Departure.time.
+df <- subset(df, select = -c(Arrival.time, Departure.time))
+#+end_src
+
 *** Handle uncertain column existence
 
 Or, if you are unsure whether the specified columns exist in the dataframe, adapt
@@ -171,6 +178,12 @@ df <- df[rowSums(is.na(df) | df == "") < ncol(df), ]
 df <- df[, colSums(is.na(df)) < nrow(df)]
 #+end_src
 
+#+begin_src awk
+# Replace empty strings with NA.
+df[sapply(df, is.character)] <- lapply(df[sapply(df, is.character)],
+                                       function(x) ifelse(x == "", NA, x))
+#+end_src
+
 #+begin_src R
 ## Sort the dataframe by 'category' and 'equipment_standard' columns.
 df <- df[order(df$category, df$equipment_standard), ]
@@ -192,6 +205,16 @@ unique_indices <- !duplicated(df)
 
 # Subset the data frame to keep only the unique rows.
 df <- df[unique_indices, ]
+#+end_src
+
+*** Refactor column names: replace spaces with dots
+
+#+begin_src awk
+## Convert column names with spaces to column names with dots.
+colnames(df) <- make.names(colnames(df), unique = TRUE)
+## refactored:
+# Convert column names with spaces to dot-separated names.
+colnames(df) <- gsub("\\s+", ".", colnames(df))
 #+end_src
 
 * Emacs Speaks Statistics (ESS) key bindings
